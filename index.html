@@ -1119,6 +1119,68 @@
                 animation-duration: 0.01ms !important;
             }
         }
+
+                /* ニュースの横にショート動画（縦長 9:16） */
+        .news-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .short-video {
+            margin: 0;
+        }
+
+        .short-frame {
+            position: relative;
+            aspect-ratio: 9 / 16;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #000;
+            border: 1px solid var(--border-color);
+        }
+
+        .short-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .short-video figcaption {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.25rem 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .short-video figcaption .fa-youtube {
+            color: #ff3d3d;
+        }
+
+        .short-video figcaption a {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* 幅900px以下は、ニュースの下に中央寄せで表示 */
+        @media (max-width: 900px) {
+            .news-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .news-shorts {
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 <body>
