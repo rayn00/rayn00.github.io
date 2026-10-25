@@ -116,6 +116,7 @@
 
     <!-- About Section -->
     <section id="about">
+        <div class="about-intro">
         <div class="section-header">
             <span class="section-tag">About AME LAB</span>
             <h2 class="section-title"><span class="ja">感覚と身体の限界を超える工学</span><span class="en" lang="en">Engineering Beyond the Limits of the Senses and Body</span></h2>
@@ -123,7 +124,29 @@
                 <span class="ja">雨宮研究室（AME LAB: Augmented Multisensory Experience Lab）では、クロスモーダル（多感覚相互作用）や経皮電気刺激、錯覚現象を活用した身体性インターフェースの研究開発に取り組んでいます。</span>
                 <span class="en" lang="en">AME LAB (Augmented Multisensory Experience Lab) develops embodied interfaces that take advantage of crossmodal (multisensory) interaction, transcutaneous electrical stimulation, and perceptual illusions.</span>
             </p>
+            <div class="about-actions">
+                <a href="research.html" class="btn btn-primary" data-site-link><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究紹介を見る</span><span class="en" lang="en">Our research</span></a>
+                <a href="https://www.youtube.com/@amelabvr" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> <span class="ja">YouTubeチャンネル</span><span class="en" lang="en">YouTube channel</span></a>
+            </div>
         </div>
+
+        <!-- 研究紹介動画（YouTube）。data-youtube に動画IDを入れる（空にすると動画欄は表示されない）。
+             横長の動画は data-ratio="16:9"、縦長のショート動画は data-ratio="9:16" -->
+        <figure class="about-video" data-youtube="jZ3yYCJGaDI" data-ratio="16:9">
+            <div class="video-frame">
+                <a class="video-facade" href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener" data-youtube-link>
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="1280" height="720" decoding="async">
+                    <span class="video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                    <span class="sr-only"><span class="ja">研究紹介動画を再生</span><span class="en" lang="en">Play the research overview video</span></span>
+                </a>
+            </div>
+            <figcaption>
+                <span><i class="fa-brands fa-youtube" aria-hidden="true"></i> <span class="ja">研究紹介動画</span><span class="en" lang="en">Research overview video</span></span>
+                <a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener" data-youtube-link><span class="ja">YouTubeで見る</span><span class="en" lang="en">Watch on YouTube</span></a>
+            </figcaption>
+        </figure>
+        </div>
+
         <div class="grid-3">
             <div class="card">
                 <i class="fa-solid fa-brain card-icon icon-cyan" aria-hidden="true"></i>

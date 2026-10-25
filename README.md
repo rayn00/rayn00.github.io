@@ -137,6 +137,14 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「企業・研究機関の方」タブにも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
 - トップページのタブにあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
 
+### About の研究紹介動画（index.html）
+
+トップページの「About AME LAB」の右（スマホでは下）に、研究紹介動画を表示します。`index.html` の「研究紹介動画」のコメントの下にある `<figure class="about-video" data-youtube="" data-ratio="16:9">` の `data-youtube` に、YouTube の動画IDを入れてください（動画IDの調べ方は下の「研究テーマのショート動画」と同じです）。
+
+- `data-youtube` が空のあいだは動画欄を表示せず、見出しは中央そろえのままになります。
+- 横長の動画は `data-ratio="16:9"`、縦長のショート動画は `data-ratio="9:16"` にします。
+- 最初はサムネイルだけを表示し、再生ボタンを押したときに YouTube の再生画面を読み込みます（ページの表示を軽くするため）。「YouTubeで見る」のリンク先も自動で設定されます。
+
 ### 研究テーマのショート動画（index.html・research.html）
 
 研究テーマのカードに `data-short="YouTubeの動画ID"` を付けると、カードに「動画を見る」ボタンが表示され、カードをクリックすると縦長の動画が画面中央に開いて再生されます。閉じるボタン・Esc キー・動画の外側のクリックで閉じ、閉じると再生も止まります。

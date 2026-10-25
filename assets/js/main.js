@@ -529,6 +529,47 @@
         });
     }
 
+    /* ---------- About の研究紹介動画 ---------- */
+    // <figure data-youtube="動画ID" data-ratio="16:9 または 9:16">。最初はサムネイルだけを表示し、
+    // クリックしたときに YouTube の再生画面を読み込む（ページの表示を軽くするため）
+    document.querySelectorAll('figure[data-youtube]').forEach(function (fig) {
+        var id = (fig.getAttribute('data-youtube') || '').trim();
+        var wrap = fig.closest('.about-intro');
+        if (!id) {
+            fig.hidden = true;
+            if (wrap) wrap.classList.add('no-video');
+            return;
+        }
+        var portrait = fig.getAttribute('data-ratio') === '9:16';
+        fig.classList.toggle('is-portrait', portrait);
+        if (wrap) wrap.classList.toggle('is-portrait', portrait);
+        var vid = encodeURIComponent(id);
+        var watch = portrait ? 'https://youtube.com/shorts/' + vid : 'https://www.youtube.com/watch?v=' + vid;
+        fig.querySelectorAll('[data-youtube-link]').forEach(function (a) { a.href = watch; });
+        var facade = fig.querySelector('.video-facade');
+        var img = facade && facade.querySelector('img');
+        if (img) {
+            // 横長は高画質のサムネイル（無い動画は標準画質）を使う
+            var hq = 'https://i.ytimg.com/vi/' + vid + '/hqdefault.jpg';
+            img.onload = function () { if (img.naturalWidth <= 120 && img.src !== hq) img.src = hq; };
+            img.onerror = function () { if (img.src !== hq) img.src = hq; };
+            img.src = portrait ? hq : 'https://i.ytimg.com/vi/' + vid + '/maxresdefault.jpg';
+        }
+        if (facade) {
+            facade.addEventListener('click', function (e) {
+                e.preventDefault();
+                var f = document.createElement('iframe');
+                f.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&rel=0&playsinline=1';
+                f.title = root.lang === 'en' ? 'Research overview video (YouTube)' : '研究紹介動画（YouTube）';
+                f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                f.setAttribute('allowfullscreen', '');
+                facade.replaceWith(f);
+                f.focus();
+            });
+        }
+    });
+
     /* ---------- 初期表示 ---------- */
     applyLang(root.lang === 'en' ? 'en' : 'ja');
     updateThemeUI();
