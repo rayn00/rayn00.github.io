@@ -340,6 +340,23 @@
         });
     }
 
+    /* ---------- メールアドレス（迷惑メール対策） ---------- */
+    // HTML にはアドレスを書かず、<a data-mail="…"> に Base64 で入れておく。
+    // アドレス収集ロボットに読まれないよう、マウスを乗せる・タップ・キーボードで選ぶ・クリックの
+    // いずれかをしたときに初めて mailto: のリンクを組み立てる。
+    // アドレスを変えるときは、ブラウザの開発者ツールで btoa('新しいアドレス') を実行した結果を data-mail に入れる。
+    document.querySelectorAll('a[data-mail]').forEach(function (a) {
+        function reveal() {
+            if (a.hasAttribute('data-mail-ready')) return;
+            try { a.href = 'mailto:' + atob(a.getAttribute('data-mail')); } catch (e) { return; }
+            a.setAttribute('data-mail-ready', '');
+            if (inFrame) { a.target = '_blank'; a.rel = 'noopener'; }
+        }
+        ['pointerenter', 'pointerdown', 'touchstart', 'focus', 'click'].forEach(function (ev) {
+            a.addEventListener(ev, reveal, { passive: true });
+        });
+    });
+
     /* ---------- 一覧ページの絞り込み・検索（論文・ニュース） ---------- */
     // <div id="…" data-list> の中の [data-type] を、.filter-tab[data-for="…"] と
     // input[data-search-for="…"] で絞り込む。年ごとの .year-group は中身が無くなると隠す

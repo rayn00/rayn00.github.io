@@ -666,6 +666,25 @@ section {
     letter-spacing: 0.02em;
 }
 
+/* 個人サイトへのリンク（メンバーのカード） */
+.person-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.45rem;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    transition: var(--transition);
+}
+
+.person-link:hover {
+    border-color: var(--accent-cyan);
+}
+
 .person-chip .campus-badge {
     margin: 0.4rem 0 0;
 }
@@ -758,6 +777,30 @@ section {
 .pub-venue {
     font-size: 0.85rem;
     color: var(--text-muted);
+}
+
+/* 論文の DOI リンク */
+.pub-links {
+    margin-top: 0.45rem;
+}
+
+.pub-doi {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    max-width: 100%;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    overflow-wrap: anywhere;
+}
+
+.pub-doi i {
+    font-size: 0.7rem;
+}
+
+.pub-doi:hover {
+    text-decoration: underline;
 }
 
 .pub-note {
@@ -1348,6 +1391,10 @@ footer {
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-top: 1.5rem;
+}
+
+.member-info .profile-links {
+    margin-top: 0.9rem;
 }
 
 /* 表（OB・OG） */
