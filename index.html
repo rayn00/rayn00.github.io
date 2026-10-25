@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雨宮研究室 | AME LAB - Augmented Multisensory Experience Lab</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）。錯覚と多感覚統合の機序を解明し、人間の知覚・身体機能を拡張するVR・触覚技術を研究しています。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="雨宮研究室 | AME LAB - Augmented Multisensory Experience Lab">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）。錯覚と多感覚統合の機序を解明し、人間の知覚・身体機能を拡張するVR・触覚技術を研究しています。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <!-- GitHub Pages の公開URLに書き換えてから、以下2行のコメントを外してください
+         例：https://ユーザー名.github.io/リポジトリ名/
+    <meta property="og:url" content="https://ユーザー名.github.io/リポジトリ名/">
+    <meta property="og:image" content="https://ユーザー名.github.io/リポジトリ名/img/ogp.png">
+    -->
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-secondary: #121824;
+            --bg-card: rgba(18, 24, 36, 0.75);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(10, 13, 20, 0.8);
+            --text-primary: #f0f4f8;
+            --text-secondary: #94a3b8;
+            --text-muted: #7d8ba1;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-purple: #7f00ff;
+            --accent-purple-text: #c084fc;
+            --on-accent: #000;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(0, 242, 254, 0.25);
+            --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.3);
+            --particle-rgb: 0, 242, 254;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --gutter: 2rem;
+            --header-h: 70px;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color-scheme: dark;
+        }
+
+        /* ライトテーマ：文字色・アクセント色は背景に対してWCAG AA（4.5:1）以上 */
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(0, 0, 0, 0.02);
+            --header-bg: rgba(248, 250, 252, 0.85);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent-cyan: #0369a1;
+            --accent-blue: #2563eb;
+            --accent-purple: #7c3aed;
+            --accent-purple-text: #6d28d9;
+            --on-accent: #fff;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-glow: rgba(3, 105, 161, 0.25);
+            --shadow-hover: 0 12px 30px rgba(15, 23, 42, 0.08);
+            --particle-rgb: 3, 105, 161;
+            color-scheme: light;
+        }
+
+        /* 日英切替：.ja / .en を付けた要素は表示中の言語だけを出す */
+        html[lang="ja"] .en,
+        html[lang="en"] .ja {
+            display: none !important;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-padding-top: calc(var(--header-h) + 0.5rem);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -100px;
+            z-index: 2000;
+            padding: 0.6rem 1rem;
+            background: var(--accent-cyan);
+            color: var(--on-accent);
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem var(--gutter);
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .brand-logo img {
+            height: 38px;
+            width: auto;
+            max-width: min(40vw, 200px);
+            object-fit: contain;
+        }
+
+        .no-logo img[data-logo] {
+            display: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            padding: 0.25rem 0;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-cyan);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 2.6rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section（全幅） */
+        .hero {
+            position: relative;
+            max-width: none;
+            margin: 0;
+            min-height: 92vh;
+            min-height: 92svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem var(--gutter) 4rem;
+            overflow: hidden;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--border-glow);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        /* ロゴ画像が読み込めないときの文字ロゴ */
+        .logo-wordmark {
+            display: none;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .no-logo .logo-wordmark {
+            display: inline-block;
+        }
+
+        .hero-wordmark {
+            display: inline-block;
+            font-size: clamp(3rem, 12vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            padding: 0.1em 0;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: var(--on-accent);
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 242, 254, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Section Layout */
+        section {
+            padding: 6rem var(--gutter);
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-panel {
+            width: calc(100% - 2 * var(--gutter));
+            background: var(--bg-glass);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+            text-align: center;
+        }
+
+        .section-tag {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 2.25rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .keyword-list li {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            background: var(--bg-glass);
+        }
+
+        /* Cards Grid（狭い画面でもはみ出さないよう min() で列幅を制限） */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            line-height: 1.4;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .icon-cyan { color: var(--accent-cyan); }
+        .icon-blue { color: var(--accent-blue); }
+        .icon-purple { color: var(--accent-purple-text); }
+
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .card-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .card-link {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            word-break: break-all;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Campus / Prospective Guide Section */
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .campus-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            position: relative;
+        }
+
+        .campus-card.main-lab {
+            border-color: var(--accent-cyan);
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.05) 0%, var(--bg-card) 100%);
+        }
+
+        .campus-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .badge-cyan { background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); }
+        .badge-purple { background: rgba(127, 0, 255, 0.15); color: var(--accent-purple-text); }
+        .badge-blue { background: rgba(79, 172, 254, 0.15); color: var(--accent-blue); }
+
+        .campus-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .campus-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Members Hierarchy */
+        .member-category {
+            margin-bottom: 3rem;
+        }
+
+        .member-category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-left: 4px solid var(--accent-cyan);
+            padding-left: 0.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .member-subtitle {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .member-card {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        /* 顔写真（読み込めない場合は頭文字・アイコンを表示） */
+        .avatar {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-glass);
+            border: 2px solid var(--border-glow);
+        }
+
+        .avatar img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+        }
+
+        .avatar.no-photo img {
+            display: none;
+        }
+
+        .avatar-fallback {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .person-chip .avatar {
+            margin-bottom: 0.6rem;
+        }
+
+        .member-avatar {
+            width: 104px;
+            height: 104px;
+        }
+
+        .member-avatar .avatar-fallback {
+            font-size: 2.25rem;
+        }
+
+        .member-info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .member-info h4 small {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: 0.4rem;
+        }
+
+        .member-role {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .member-bio {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.4rem;
+        }
+
+        .person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr));
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .person-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.15rem;
+        }
+
+        .person-role {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        .person-name {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .person-roman {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .person-chip .campus-badge {
+            margin: 0.4rem 0 0;
+        }
+
+        /* Publications Subcategories */
+        .pub-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pub-tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 30px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .pub-tab:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .pub-tab.active {
+            background: var(--accent-cyan);
+            color: var(--on-accent);
+            border-color: var(--accent-cyan);
+        }
+
+        .pub-list {
+            list-style: none;
+        }
+
+        .pub-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .pub-item:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .pub-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            align-items: center;
+            font-size: 0.8rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .pub-type {
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .pub-year {
+            color: var(--text-muted);
+        }
+
+        .pub-award {
+            color: var(--accent-purple-text);
+            font-weight: 700;
+        }
+
+        .pub-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            line-height: 1.5;
+        }
+
+        .pub-authors {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .pub-venue {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .pub-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .more-btn-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* News Section */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .news-card {
+            display: flex;
+            gap: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .news-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 700;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .news-content {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            flex-grow: 1;
+        }
+
+        /* Map */
+        .map-card {
+            margin-top: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .map-frame {
+            display: block;
+            width: 100%;
+            height: 420px;
+            border: 0;
+            background: var(--bg-glass);
+        }
+
+        .map-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1rem;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-sm {
+            padding: 0.55rem 1.1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem var(--gutter) 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand img {
+            display: block;
+            height: 120px;
+            width: auto;
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .logo-wordmark {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Mobile Drawer */
+        .mobile-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        /* 中間幅ではナビの間隔を詰める */
+        @media (max-width: 1280px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 1100px以下はハンバーガーメニュー（7項目が1行に収まらないため） */
+        @media (max-width: 1100px) {
+            .nav-container {
+                gap: 0.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--header-h);
+                right: 0;
+                width: min(280px, 100vw);
+                height: calc(100vh - var(--header-h));
+                height: calc(100dvh - var(--header-h));
+                overflow-y: auto;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                align-items: flex-start;
+                border-left: 1px solid var(--border-color);
+                transform: translateX(100%);
+                visibility: hidden;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.3s;
+            }
+
+            .nav-links.open {
+                transform: none;
+                visibility: visible;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .nav-link {
+                font-size: 1rem;
+            }
+
+            .mobile-toggle {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .news-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --gutter: 1rem;
+            }
+
+            header {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+
+            .brand-logo {
+                font-size: 1rem;
+                gap: 8px;
+            }
+
+            .brand-logo img {
+                height: 32px;
+            }
+
+            .nav-actions {
+                gap: 0.4rem;
+            }
+
+            .theme-toggle, .lang-toggle {
+                padding: 0.45rem 0.6rem;
+            }
+
+            section {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+
+            .section-panel {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .hero {
+                padding-top: 7rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .br-wide {
+                display: none;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .member-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .map-frame {
+                height: 320px;
+            }
+
+            .map-footer {
+                padding: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="#top" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="#research" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="#members" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="#publications" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="#news" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                <span class="ja">東京大学 身体性インターフェース・錯覚工学研究室</span>
+                <span class="en" lang="en">The University of Tokyo — Embodied Interface &amp; Illusion Engineering Lab</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-wordmark">AME LAB</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="ja">錯覚と多感覚統合（Multisensory Integration）の機序を解明し、<br class="br-wide">
+                人間の知覚・身体機能を拡張する次世代VR・触覚技術を創出します。</span>
+                <span class="en" lang="en">We uncover the mechanisms of illusion and multisensory integration,<br class="br-wide">
+                and create next-generation VR and haptic technologies that augment human perception and the body.</span>
+            </p>
+            <div class="hero-buttons">
+                <a href="#research" class="btn btn-primary"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究領域を見る</span><span class="en" lang="en">Explore Research</span></a>
+                <a href="#prospective" class="btn btn-secondary"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> <span class="ja">配属・共同研究案内</span><span class="en" lang="en">Admissions &amp; Collaboration</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <span class="section-tag">About AME LAB</span>
+            <h2 class="section-title"><span class="ja">感覚と身体の限界を超える工学</span><span class="en" lang="en">Engineering Beyond the Limits of the Senses and Body</span></h2>
+            <p class="section-description">
+                <span class="ja">雨宮研究室（AME LAB: Augmented Multisensory Experience Lab）では、クロスモーダル（多感覚相互作用）や経皮電気刺激、錯覚現象を活用した身体性インターフェースの研究開発に取り組んでいます。</span>
+                <span class="en" lang="en">AME LAB (Augmented Multisensory Experience Lab) develops embodied interfaces that take advantage of crossmodal (multisensory) interaction, transcutaneous electrical stimulation, and perceptual illusions.</span>
+            </p>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <i class="fa-solid fa-brain card-icon icon-cyan" aria-hidden="true"></i>
+                <h3><span class="ja">錯覚・クロスモーダル工学</span><span class="en" lang="en">Illusion &amp; Crossmodal Engineering</span></h3>
+                <p class="card-text">
+                    <span class="ja">視覚・聴覚・前庭覚・触覚の相互作用によって生じる錯覚現象を数理モデル化し、軽量・非装着型デバイスで強力な体験を生み出します。</span>
+                    <span class="en" lang="en">We model illusions that arise from interactions among vision, hearing, the vestibular sense and touch, and use them to create powerful experiences with lightweight, non-wearable devices.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-compass card-icon icon-blue" aria-hidden="true"></i>
+                <h3><span class="ja">移動感・空間ナビゲーション提示</span><span class="en" lang="en">Self-Motion &amp; Spatial Navigation Cues</span></h3>
+                <p class="card-text">
+                    <span class="ja">錯覚による牽引感や方向感覚の提示技術を活用し、VR空間や現実空間における直感的な移動支援・歩行感覚・空間ナビゲーション技術を開発しています。</span>
+                    <span class="en" lang="en">Using illusory pulling sensations and techniques for conveying a sense of direction, we develop intuitive locomotion support, walking sensations and spatial navigation for both virtual and real spaces.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-vr-cardboard card-icon icon-purple" aria-hidden="true"></i>
+                <h3><span class="ja">身体性VR・メタバース</span><span class="en" lang="en">Embodied VR &amp; Metaverse</span></h3>
+                <p class="card-text">
+                    <span class="ja">バーチャル空間における自己所有感（Body Ownership）や主体感（Agency）を制御し、身体運動能力の拡張や直感的な遠隔操作を実現します。</span>
+                    <span class="en" lang="en">We control the sense of body ownership and agency in virtual spaces to augment motor abilities and enable intuitive teleoperation.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="section-header">
+            <span class="section-tag">Research</span>
+            <h2 class="section-title"><span class="ja">研究テーマ</span><span class="en" lang="en">Research Themes</span></h2>
+            <p class="section-description">
+                <span class="ja">身体感覚・錯覚・五感インタフェースの基礎研究から、VR/メタバースを活用した教育・訓練まで幅広く取り組んでいます。</span>
+                <span class="en" lang="en">Our work ranges from fundamental research on bodily sensation, illusions and multisensory interfaces to education and training with VR and the metaverse.</span>
+            </p>
+            <ul class="keyword-list">
+                <li><span class="ja">VR/メタバース教育</span><span class="en" lang="en">VR/Metaverse Education</span></li>
+                <li><span class="ja">身体感覚</span><span class="en" lang="en">Bodily Sensation</span></li>
+                <li><span class="ja">錯覚応用工学</span><span class="en" lang="en">Illusion-Based Engineering</span></li>
+                <li><span class="ja">五感インタフェース</span><span class="en" lang="en">Multisensory Interfaces</span></li>
+                <li><span class="ja">経皮電気刺激</span><span class="en" lang="en">Transcutaneous Electrical Stimulation</span></li>
+                <li><span class="ja">疑似体験</span><span class="en" lang="en">Simulated Experience</span></li>
+                <li><span class="ja">行動変容</span><span class="en" lang="en">Behavior Change</span></li>
+                <li><span class="ja">人間情報システム</span><span class="en" lang="en">Human Information Systems</span></li>
+            </ul>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <i class="fa-solid fa-hand-sparkles card-icon icon-cyan" aria-hidden="true"></i>
+                <h3><span class="ja">擬似力覚の提示</span><span class="en" lang="en">Pseudo-Force Presentation</span></h3>
+                <p class="card-text">
+                    <span class="ja">受容器や身体構造の特性を利用して、従来の装置では表現できなかった力覚を生み出し、他の五感情報と組み合わせる技術を研究しています。</span>
+                    <span class="en" lang="en">We exploit the properties of sensory receptors and body structure to create force sensations that conventional devices cannot render, and combine them with other sensory information.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-wave-square card-icon icon-blue" aria-hidden="true"></i>
+                <h3><span class="ja">腱振動による運動錯覚</span><span class="en" lang="en">Kinesthetic Illusions by Tendon Vibration</span></h3>
+                <p class="card-text">
+                    <span class="ja">腱への振動で生じる運動錯覚を、方向や強度などの情報を身体感覚で伝えるUIとして活用するほか、両手で持った物体が伸び縮みして感じられる変形錯覚にも応用しています。</span>
+                    <span class="en" lang="en">We use movement illusions induced by tendon vibration as a body-based UI that conveys direction and intensity, and apply them to make an object held in both hands feel as if it stretches or shrinks.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-person-walking card-icon icon-purple" aria-hidden="true"></i>
+                <h3><span class="ja">VR空間の移動感覚</span><span class="en" lang="en">Sense of Walking in VR</span></h3>
+                <p class="card-text">
+                    <span class="ja">座った状態で視覚・前庭感覚・触覚に機械的・電気的刺激を与え、実際に歩かなくても歩いているような感覚を生み出すVR技術を研究しています。</span>
+                    <span class="en" lang="en">We apply mechanical and electrical stimulation to the visual, vestibular and tactile senses so that seated users feel as if they are walking, without actually walking.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-mug-hot card-icon icon-cyan" aria-hidden="true"></i>
+                <h3><span class="ja">Pseudo-hapticsによる体験の変調</span><span class="en" lang="en">Modulating Experience with Pseudo-Haptics</span></h3>
+                <p class="card-text">
+                    <span class="ja">VR内の手の表示を実際の動きより遅らせたり早めたりする視覚操作が、飲み物を飲む体験にどう影響するかを評価しています。</span>
+                    <span class="en" lang="en">We evaluate how visually delaying or advancing the virtual hand relative to the real one changes the experience of drinking a beverage.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-chalkboard-user card-icon icon-blue" aria-hidden="true"></i>
+                <h3><span class="ja">VR・メタバースによる教育</span><span class="en" lang="en">Education with VR &amp; the Metaverse</span></h3>
+                <p class="card-text">
+                    <span class="ja">ソーシャルVR空間での講義、見た目を変えたアバタ講師による遠隔講義、脳波などの生体情報から集中度を推定して教材の再生速度を調整する学習支援などに取り組んでいます。</span>
+                    <span class="en" lang="en">We run lectures in social VR spaces, study remote classes taught by avatar instructors with altered appearances, and build learning support that estimates concentration from EEG and other biosignals to adjust playback speed.</span>
+                </p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-kit-medical card-icon icon-purple" aria-hidden="true"></i>
+                <h3><span class="ja">VR訓練システム・教材</span><span class="en" lang="en">VR Training Systems &amp; Materials</span></h3>
+                <p class="card-text">
+                    <span class="ja">受講者の理解度に応じて内容を編集できるVR/AR訓練システム、術者視点の360度映像を用いた獣医学教育向けの手術VR教材、消防隊員のVR訓練などを開発しています。</span>
+                    <span class="en" lang="en">We develop VR/AR training systems that adapt content to each learner's understanding, first-person 360° surgical VR materials for veterinary education, and VR training for firefighters.</span>
+                </p>
+            </div>
+        </div>
+        <div class="more-btn-container">
+            <a href="https://www.amelab.vr.u-tokyo.ac.jp/research" class="btn btn-secondary" data-site-link>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">研究紹介の詳細を見る</span><span class="en" lang="en">More about our research</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Prospective Students & Industry Collaboration Guide -->
+    <section id="prospective" class="section-panel">
+        <div class="section-header">
+            <span class="section-tag">Admissions &amp; Collaboration</span>
+            <h2 class="section-title"><span class="ja">配属希望者・企業連携案内</span><span class="en" lang="en">For Prospective Students &amp; Partners</span></h2>
+            <p class="section-description">
+                <span class="ja">当研究室は複数の大学院から学生を受け入れており、研究拠点と講義の主な実施キャンパスが異なります。</span>
+                <span class="en" lang="en">We accept students from two graduate schools. Note that our research base and the campuses where most courses are held are different.</span>
+            </p>
+        </div>
+
+        <div class="campus-grid">
+            <div class="campus-card main-lab">
+                <span class="campus-badge badge-cyan"><span class="ja">研究拠点・研究室所在地</span><span class="en" lang="en">Research Base &amp; Lab Location</span></span>
+                <h3 class="campus-title">
+                    <span><span class="ja">浅野キャンパス</span><span class="en" lang="en">Asano Campus</span></span>
+                    <i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i>
+                </h3>
+                <p class="campus-desc">
+                    <span class="ja"><strong>情報基盤センター 浅野本館</strong><br>
+                    研究室の実験環境、デスク、プロトタイピング機器はすべて浅野キャンパスに集約されています。日々の研究活動の拠点となります。</span>
+                    <span class="en" lang="en"><strong>Information Technology Center, Asano Main Building</strong><br>
+                    All of the lab's experimental spaces, desks and prototyping equipment are on the Asano Campus, the base of our day-to-day research.</span>
+                </p>
+            </div>
+
+            <div class="campus-card">
+                <span class="campus-badge badge-purple"><span class="ja">大学院受入（総合文化）</span><span class="en" lang="en">Graduate Admissions (Arts &amp; Sciences)</span></span>
+                <h3 class="campus-title">
+                    <span><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></span>
+                    <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                </h3>
+                <p class="campus-desc">
+                    <span class="ja"><strong>講義の主な開催地: 駒場キャンパス</strong><br>
+                    広域科学専攻 広域システム科学系で学生を受け入れています。単位取得に必要な講義の多くは駒場キャンパスで開講されます。</span>
+                    <span class="en" lang="en"><strong>Main lecture venue: Komaba Campus</strong><br>
+                    We accept students through the Department of Multi-Disciplinary Sciences, General Systems Studies. Most courses required for credits are held on the Komaba Campus.</span>
+                </p>
+            </div>
+
+            <div class="campus-card">
+                <span class="campus-badge badge-blue"><span class="ja">大学院受入（学際情報）</span><span class="en" lang="en">Graduate Admissions (III)</span></span>
+                <h3 class="campus-title">
+                    <span><span class="ja">学際情報学府</span><span class="en" lang="en">Graduate School of Interdisciplinary Information Studies</span></span>
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                </h3>
+                <p class="campus-desc">
+                    <span class="ja"><strong>講義の主な開催地: 本郷キャンパス</strong><br>
+                    学際情報学専攻 先端表現情報学コースで学生を受け入れています。講義は主に本郷キャンパスで実施されます。</span>
+                    <span class="en" lang="en"><strong>Main lecture venue: Hongo Campus</strong><br>
+                    We accept students through the Emerging Design and Informatics Course, Interdisciplinary Information Studies. Courses are mainly held on the Hongo Campus.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members">
+        <div class="section-header">
+            <span class="section-tag">Team Members</span>
+            <h2 class="section-title"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></h2>
+            <p class="section-description">
+                <span class="ja">多様なバックグラウンドを持つ研究者・学生が共創しています。</span>
+                <span class="en" lang="en">Researchers and students from diverse backgrounds work together.</span>
+            </p>
+        </div>
+
+        <!-- PI -->
+        <div class="member-category">
+            <h3 class="member-category-title">Principal Investigator (PI)</h3>
+            <div class="member-card">
+                <div class="member-avatar avatar" data-avatar>
+                    <i class="fa-solid fa-user-tie avatar-fallback" aria-hidden="true"></i>
+                    <img src="img/members/amemiya-tomohiro.jpg" alt="" width="96" height="96" decoding="async">
+                </div>
+                <div class="member-info">
+                    <div class="member-role"><span class="ja">教授</span><span class="en" lang="en">Professor</span></div>
+                    <h4>雨宮 智浩<small lang="en">AMEMIYA Tomohiro</small></h4>
+                    <p class="member-bio">
+                        <span class="ja">本務：東京大学 情報基盤センター 教授<br>
+                        兼務：東京大学 バーチャルリアリティ教育研究センター 教授・副センター長<br>
+                        大学院学際情報学府・総合文化研究科で学生を受け入れ。バーチャルリアリティ、触覚インタフェース、錯覚応用工学の研究に従事。</span>
+                        <span class="en" lang="en">Professor, Information Technology Center, The University of Tokyo<br>
+                        Professor and Vice Director (concurrent), Virtual Reality Educational Research Center, The University of Tokyo<br>
+                        Supervises students in the Graduate School of Interdisciplinary Information Studies and the Graduate School of Arts and Sciences. Research interests: virtual reality, haptic interfaces and illusion-based engineering.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff -->
+        <div class="member-category">
+            <h3 class="member-category-title"><span class="ja">スタッフ</span><span class="en" lang="en">Staff</span></h3>
+            <ul class="person-grid">
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">青</span>
+                        <img src="img/members/aoyama-kazuma.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任准教授</span><span class="en" lang="en">Project Associate Professor</span></span>
+                    <span class="person-name">青山 一真</span>
+                    <span class="person-roman" lang="en">AOYAMA Kazuma</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">牛</span>
+                        <img src="img/members/ushiyama-keigo.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任研究員</span><span class="en" lang="en">Project Researcher</span></span>
+                    <span class="person-name">牛山 奎悟</span>
+                    <span class="person-roman" lang="en">USHIYAMA Keigo</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">小</span>
+                        <img src="img/members/oyanagi-akimi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任研究員</span><span class="en" lang="en">Project Researcher</span></span>
+                    <span class="person-name">小柳 陽光</span>
+                    <span class="person-roman" lang="en">OYANAGI Akimi</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">伊</span>
+                        <img src="img/members/ito-mitsuru.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">客員研究員</span><span class="en" lang="en">Visiting Researcher</span></span>
+                    <span class="person-name">伊藤 充</span>
+                    <span class="person-roman" lang="en">ITO Mitsuru</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">栗</span>
+                        <img src="img/members/kurita-yusuke.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">学術専門職員</span><span class="en" lang="en">Academic Support Specialist</span></span>
+                    <span class="person-name">栗田 祐輔</span>
+                    <span class="person-roman" lang="en">KURITA Yusuke</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">佐</span>
+                        <img src="img/members/sakuma-asuka.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任専門職員</span><span class="en" lang="en">Project Specialist</span></span>
+                    <span class="person-name">佐久間 明日香</span>
+                    <span class="person-roman" lang="en">SAKUMA Asuka</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Students -->
+        <div class="member-category">
+            <h3 class="member-category-title"><span class="ja">学生</span><span class="en" lang="en">Students</span></h3>
+
+            <h4 class="member-subtitle"><span class="ja">博士課程</span><span class="en" lang="en">Doctoral Course</span></h4>
+            <ul class="person-grid">
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">渡</span>
+                        <img src="img/members/watanabe-riku.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">渡部 理久</span>
+                    <span class="person-roman" lang="en">WATANABE Riku</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">何</span>
+                        <img src="img/members/izu-takeshi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">何 毅</span>
+                    <span class="person-roman" lang="en">IZU Takeshi</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">川</span>
+                        <img src="img/members/kawashima-yusuke.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">川島 悠輔</span>
+                    <span class="person-roman" lang="en">KAWASHIMA Yusuke</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+            </ul>
+
+            <h4 class="member-subtitle"><span class="ja">修士課程</span><span class="en" lang="en">Master's Course</span></h4>
+            <ul class="person-grid">
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">佐</span>
+                        <img src="img/members/sasao-tsukihi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">佐々尾 月陽</span>
+                    <span class="person-roman" lang="en">SASAO Tsukihi</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">志</span>
+                        <img src="img/members/shiki-kenta.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">志貴 健太</span>
+                    <span class="person-roman" lang="en">SHIKI Kenta</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">長</span>
+                        <img src="img/members/hasegawa-yuhi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">長谷川 雄飛</span>
+                    <span class="person-roman" lang="en">HASEGAWA Yuhi</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">渡</span>
+                        <img src="img/members/watanabe-masatoshi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">渡邉 政紀</span>
+                    <span class="person-roman" lang="en">WATANABE Masatoshi</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">佐</span>
+                        <img src="img/members/sato-ryoichi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">佐藤 遼一</span>
+                    <span class="person-roman" lang="en">SATO Ryoichi</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">深</span>
+                        <img src="img/members/fukaya-taisei.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">深谷 太聖</span>
+                    <span class="person-roman" lang="en">FUKAYA Taisei</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">塚</span>
+                        <img src="img/members/tsukada-masataka.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">塚田 昌孝</span>
+                    <span class="person-roman" lang="en">TSUKADA Masataka</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">三</span>
+                        <img src="img/members/mikami-hinata.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">三上 日向汰</span>
+                    <span class="person-roman" lang="en">MIKAMI Hinata</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="more-btn-container">
+            <a href="https://www.amelab.vr.u-tokyo.ac.jp/members/members" class="btn btn-secondary" data-site-link>
+                <i class="fa-solid fa-users" aria-hidden="true"></i> <span class="ja">メンバー一覧・OB/OGを見る</span><span class="en" lang="en">Members &amp; alumni</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <div class="section-header">
+            <span class="section-tag">Publications</span>
+            <h2 class="section-title"><span class="ja">主要論文・学会発表</span><span class="en" lang="en">Selected Publications</span></h2>
+            <p class="section-description">
+                <span class="ja">学術論文誌、国際会議、国内学会・研究会、招待講演の最近の成果から抜粋しています。</span>
+                <span class="en" lang="en">Recent selections from journals, international conferences, domestic conferences and invited talks.</span>
+            </p>
+        </div>
+
+        <!-- Subcategory Filter Tabs -->
+        <div class="pub-tabs" role="group" aria-label="Filter">
+            <button type="button" class="pub-tab active" data-type="all" aria-pressed="true"><span class="ja">すべて</span><span class="en" lang="en">All</span></button>
+            <button type="button" class="pub-tab" data-type="intl" aria-pressed="false"><span class="ja">査読付き国際会議</span><span class="en" lang="en">International Conferences</span></button>
+            <button type="button" class="pub-tab" data-type="journal" aria-pressed="false"><span class="ja">学術論文誌</span><span class="en" lang="en">Journals</span></button>
+            <button type="button" class="pub-tab" data-type="dom" aria-pressed="false"><span class="ja">国内学会・研究会</span><span class="en" lang="en">Domestic Conferences</span></button>
+            <button type="button" class="pub-tab" data-type="talk" aria-pressed="false"><span class="ja">招待講演</span><span class="en" lang="en">Invited Talks</span></button>
+        </div>
+
+        <ol class="pub-list" id="pubContainer">
+            <li class="pub-item" data-type="intl">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                    <time class="pub-year" datetime="2026-07">2026.07</time>
+                </div>
+                <p class="pub-title">FEM-Based Optimal Electrode Configuration for Combined Transcutaneous Electrical Nerve Stimulation</p>
+                <p class="pub-authors">Takashi Ota, Tomohiro Amemiya, Hideaki Kuzuoka, Kazuma Aoyama</p>
+                <p class="pub-venue">Human Interface and the Management of Information (HIMI 2026), held as part of the 28th HCI International Conference, Montreal, Canada, pp. 63–78, July 2026.</p>
+            </li>
+
+            <li class="pub-item" data-type="intl">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                    <time class="pub-year" datetime="2026-07">2026.07</time>
+                </div>
+                <p class="pub-title">Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object</p>
+                <p class="pub-authors">Keigo Ushiyama*, Tsukihi Sasao*, Tomohiro Amemiya</p>
+                <p class="pub-venue">Proceedings of Eurohaptics 2026, Siena, Italy, July 2026.</p>
+            </li>
+
+            <li class="pub-item" data-type="intl">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                    <time class="pub-year" datetime="2026-07">2026.07</time>
+                    <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Demo Award Honorable Mention</span>
+                </div>
+                <p class="pub-title">Demonstration of Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object</p>
+                <p class="pub-authors">Keigo Ushiyama*, Tsukihi Sasao*, Tomohiro Amemiya</p>
+                <p class="pub-venue">Proceedings of Eurohaptics 2026, Siena, Italy, July 2026.</p>
+            </li>
+
+            <li class="pub-item" data-type="journal">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                    <time class="pub-year" datetime="2026-06">2026.06</time>
+                </div>
+                <p class="pub-title">Combining Intergroup Contact and Outgroup Embodiment in Virtual Reality: An Exploratory Test of Backfire and Secondary Transfer Effects of Outgroup Embodiment</p>
+                <p class="pub-authors">Matilde Tassinari, Akimi Oyanagi, Tomohiro Amemiya</p>
+                <p class="pub-venue">Computers in Human Behavior, 109094, June 2026.</p>
+            </li>
+
+            <li class="pub-item" data-type="journal">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                    <time class="pub-year" datetime="2026-06">2026.06</time>
+                </div>
+                <p class="pub-title">Waterless Virtual Footbath Using Airflow and Thermal Contrast: Design and Exploratory Evaluation of Relaxation-Oriented VR Experience</p>
+                <p class="pub-authors">Zi Xin, Hiroaki Yano, Kazuhiro Fujitsuka, Tomohiro Amemiya, Vibol Yem</p>
+                <p class="pub-venue">Frontiers in Virtual Reality, 7:1826083, June 2026.</p>
+            </li>
+
+            <li class="pub-item" data-type="dom">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[国内学会・研究会]</span><span class="en" lang="en">[Domestic]</span></span>
+                    <time class="pub-year" datetime="2026-03">2026.03</time>
+                    <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> MVE賞</span>
+                </div>
+                <p class="pub-title">架空都市展示「ない街」における参加型イマーシブ展示の実践報告 ～ 展示構成と来場者アンケートから得られた示唆</p>
+                <p class="pub-authors">渡邉政紀, 牛山奎悟, 雨宮智浩</p>
+                <p class="pub-venue">電子情報通信学会研究会, IMQ2025-48 IE2025-125 MVE2025-55, 2026.03</p>
+            </li>
+
+            <li class="pub-item" data-type="talk">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                    <time class="pub-year" datetime="2025-11">2025.11</time>
+                </div>
+                <p class="pub-title">錯覚が生み出す心と身体の変革</p>
+                <p class="pub-authors">雨宮智浩</p>
+                <p class="pub-venue">第123回テレコム技術情報セミナー, 一般財団法人テレコム先端技術研究支援センター, Nov. 2025.</p>
+            </li>
+
+            <li class="pub-item" data-type="journal">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                    <time class="pub-year" datetime="2025-10">2025.10</time>
+                </div>
+                <p class="pub-title">Effects of Ankle Tendon Electrical Stimulation on Detection Threshold and Applicability of Redirected Walking</p>
+                <p class="pub-authors">Takashi Ota, Keigo Matsumoto, Kazuma Aoyama, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
+                <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, Vol. 31, No. 10, pp. 8956–8968, Oct. 2025.</p>
+            </li>
+
+            <li class="pub-item" data-type="dom">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[国内学会・研究会]</span><span class="en" lang="en">[Domestic]</span></span>
+                    <time class="pub-year" datetime="2025-09">2025.09</time>
+                    <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 学術奨励賞</span>
+                </div>
+                <p class="pub-title">Modulating Perceived Properties of Beverages Through Visuomotor Distortion in Virtual Reality</p>
+                <p class="pub-authors">王禄廷, 牛山奎悟, 雨宮智浩</p>
+                <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+            </li>
+
+            <li class="pub-item" data-type="dom">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[国内学会・研究会]</span><span class="en" lang="en">[Domestic]</span></span>
+                    <time class="pub-year" datetime="2025-09">2025.09</time>
+                </div>
+                <p class="pub-title">腱への非対称振動刺激を用いた指先非拘束型力覚提示手法の提案</p>
+                <p class="pub-authors">福田光輝, 中村拓人, 青山一真, 鳴海拓志, 雨宮智浩, 葛岡英明</p>
+                <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+            </li>
+
+            <li class="pub-item" data-type="talk">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                    <time class="pub-year" datetime="2024-10">2024.10</time>
+                </div>
+                <p class="pub-title">【基調講演】メタバース/VRによる教育訓練の可能性</p>
+                <p class="pub-authors">雨宮智浩</p>
+                <p class="pub-venue">特定非営利活動法人 M2M･IoT研究会 専門部会セミナー, 藤沢, Oct. 2024.</p>
+            </li>
+
+            <li class="pub-item" data-type="talk">
+                <div class="pub-meta">
+                    <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                    <time class="pub-year" datetime="2024-10">2024.10</time>
+                </div>
+                <p class="pub-title">【特別講演】メタバース/VRで変容する心技体</p>
+                <p class="pub-authors">雨宮智浩</p>
+                <p class="pub-venue">IDW’24 メタバース技術研究会, 東京, Oct. 2024.</p>
+            </li>
+        </ol>
+        <p class="pub-note"><span class="ja">* 共同第一著者</span><span class="en" lang="en">* Equal contribution</span></p>
+
+        <div class="more-btn-container">
+            <a href="https://www.amelab.vr.u-tokyo.ac.jp/publications" class="btn btn-secondary" data-site-link>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">論文・発表一覧を全件見る</span><span class="en" lang="en">View all publications</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news">
+        <div class="section-header">
+            <span class="section-tag">Latest News</span>
+            <h2 class="section-title"><span class="ja">ニュース</span><span class="en" lang="en">News</span></h2>
+            <p class="section-description">
+                <span class="ja">研究室の最新情報、受賞、学会発表のお知らせです。</span>
+                <span class="en" lang="en">Lab updates, awards and conference presentations.</span>
+            </p>
+        </div>
+
+        <ul class="news-list">
+            <li class="news-card">
+                <time class="news-date" datetime="2026-09-09">2026.09.09</time>
+                <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                <p class="news-content"><span class="ja">雨宮教授が日本VR学会の論文賞を受賞しました。</span><span class="en" lang="en">Prof. Amemiya received the Paper Award from the Virtual Reality Society of Japan.</span></p>
+            </li>
+            <li class="news-card">
+                <time class="news-date" datetime="2026-09-09">2026.09.09</time>
+                <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                <p class="news-content"><span class="ja">三上さん(M1)が触覚若手の会 触覚デモ交流会でベストプレゼンテーション賞を受賞しました。</span><span class="en" lang="en">Hinata Mikami (M1) received the Best Presentation Award at the haptics demo exchange of the Young Haptics Researchers' Meeting.</span></p>
+            </li>
+            <li class="news-card">
+                <time class="news-date" datetime="2026-09-09">2026.09.09</time>
+                <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                <p class="news-content"><span class="ja">日本VR学会大会で研究室関連で10件の発表（+2件OS）、触覚若手の会デモ交流会で2件のデモ発表がありました。</span><span class="en" lang="en">Lab members gave 10 presentations (plus 2 organized-session talks) at the VRSJ Annual Conference and 2 demos at the Young Haptics Researchers' demo exchange.</span></p>
+            </li>
+            <li class="news-card">
+                <time class="news-date" datetime="2026-07-09">2026.07.09</time>
+                <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                <p class="news-content"><span class="ja">牛山特任研究員と佐々尾さん(M2)の発表がEurohaptics 2026で Best Demo Award Honorable Mentionを受賞しました。</span><span class="en" lang="en">The demo by Project Researcher Keigo Ushiyama and Tsukihi Sasao (M2) received the Best Demo Award Honorable Mention at Eurohaptics 2026.</span></p>
+            </li>
+            <li class="news-card">
+                <time class="news-date" datetime="2026-07-07">2026.07.07</time>
+                <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                <p class="news-content"><span class="ja">Eurohaptics 2026でポスター発表＆デモ発表をしました。</span><span class="en" lang="en">We gave poster and demo presentations at Eurohaptics 2026.</span></p>
+            </li>
+            <li class="news-card">
+                <time class="news-date" datetime="2026-07-01">2026.07.01</time>
+                <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                <p class="news-content"><span class="ja">ラーニングイノベーショングランプリ2026でチームAmelab M2が優秀ラーニングイノベーション賞を受賞しました。</span><span class="en" lang="en">Team "Amelab M2" received an Excellent Learning Innovation Award at the Learning Innovation Grand Prix 2026.</span></p>
+            </li>
+        </ul>
+
+        <div class="more-btn-container">
+            <a href="https://www.amelab.vr.u-tokyo.ac.jp/news" class="btn btn-secondary" data-site-link>
+                <i class="fa-solid fa-list-ul" aria-hidden="true"></i> <span class="ja">過去のニュース一覧を見る</span><span class="en" lang="en">All news</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact & Access Section -->
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-tag">Access &amp; Inquiries</span>
+            <h2 class="section-title"><span class="ja">アクセス・お問い合わせ</span><span class="en" lang="en">Access &amp; Contact</span></h2>
+            <p class="section-description">
+                <span class="ja">研究室見学、産学連携、取材に関するご相談はお問い合わせ先アドレスまでお願いいたします。</span>
+                <span class="en" lang="en">For lab visits, industry collaboration or media inquiries, please contact us by email.</span>
+            </p>
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <h3><i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i> <span class="ja">研究室所在地</span><span class="en" lang="en">Lab Location</span></h3>
+                <address class="card-text" style="font-style: normal;">
+                    <span class="ja">〒113-8658 東京都文京区弥生2-11-16<br>
+                    東京大学 浅野キャンパス<br>
+                    情報基盤センター 浅野本館</span>
+                    <span class="en" lang="en">Information Technology Center, Asano Main Building<br>
+                    Asano Campus, The University of Tokyo<br>
+                    2-11-16 Yayoi, Bunkyo-ku, Tokyo 113-8658, Japan</span>
+                </address>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-train icon-blue" aria-hidden="true"></i> <span class="ja">最寄り駅アクセス</span><span class="en" lang="en">Nearest Stations</span></h3>
+                <ul class="card-text card-list">
+                    <li><span class="ja">千代田線「根津駅」徒歩5分</span><span class="en" lang="en">Nezu Sta. (Chiyoda Line): 5 min walk</span></li>
+                    <li><span class="ja">南北線「東大前駅」徒歩10分</span><span class="en" lang="en">Todaimae Sta. (Namboku Line): 10 min walk</span></li>
+                    <li><span class="ja">丸ノ内線「本郷三丁目駅」徒歩15分</span><span class="en" lang="en">Hongo-sanchome Sta. (Marunouchi Line): 15 min walk</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-envelope icon-purple" aria-hidden="true"></i> <span class="ja">お問い合わせ</span><span class="en" lang="en">Contact</span></h3>
+                <p class="card-text">
+                    <span class="ja">雨宮研究室 事務窓口:</span><span class="en" lang="en">Lab office:</span><br>
+                    <a href="mailto:info@vr.u-tokyo.ac.jp" class="card-link">info@vr.u-tokyo.ac.jp</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- 地図（Google マップ埋め込み。APIキー不要） -->
+        <div class="map-card" id="access-map">
+            <iframe class="map-frame" id="mapFrame"
+                src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16&amp;hl=ja&amp;z=17&amp;output=embed"
+                data-map-q="%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16"
+                title="地図：東京大学 情報基盤センター 浅野本館"
+                data-title-ja="地図：東京大学 情報基盤センター 浅野本館"
+                data-title-en="Map: Information Technology Center, Asano Main Building, The University of Tokyo"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="map-footer">
+                <span><i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i>
+                    <span class="ja">東京大学 浅野キャンパス 情報基盤センター 浅野本館</span><span class="en" lang="en">Information Technology Center, Asano Main Building, Asano Campus</span></span>
+                <a class="btn btn-secondary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> <span class="ja">Google マップで開く</span><span class="en" lang="en">Open in Google Maps</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.amelab.vr.u-tokyo.ac.jp/research" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="https://www.amelab.vr.u-tokyo.ac.jp/members/members" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="https://www.amelab.vr.u-tokyo.ac.jp/publications" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="https://www.amelab.vr.u-tokyo.ac.jp/news" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+    (function () {
+        'use strict';
+
+        var root = document.documentElement;
+        var store = {
+            get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+            set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+        };
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        /* ---------- UI文言（日英） ---------- */
+        var UI = {
+            ja: {
+                title: '雨宮研究室 | AME LAB - Augmented Multisensory Experience Lab',
+                desc: '東京大学 雨宮研究室（AME LAB）。錯覚と多感覚統合の機序を解明し、人間の知覚・身体機能を拡張するVR・触覚技術を研究しています。',
+                toLight: 'ライトモードに切り替え',
+                toDark: 'ダークモードに切り替え',
+                langText: 'EN',
+                langLabel: 'Switch to English',
+                langLabelLang: 'en',
+                menuOpen: 'メニューを開く',
+                menuClose: 'メニューを閉じる',
+                nav: 'メインメニュー',
+                filter: '論文の種類で絞り込み'
+            },
+            en: {
+                title: 'AME LAB | Amemiya Lab, The University of Tokyo',
+                desc: 'AME LAB (Amemiya Lab), The University of Tokyo. We study the mechanisms of illusion and multisensory integration and create VR and haptic technologies that augment human perception and the body.',
+                toLight: 'Switch to light mode',
+                toDark: 'Switch to dark mode',
+                langText: 'JA',
+                langLabel: '日本語に切り替え',
+                langLabelLang: 'ja',
+                menuOpen: 'Open menu',
+                menuClose: 'Close menu',
+                nav: 'Main menu',
+                filter: 'Filter publications by type'
+            }
+        };
+        function t(key) { return UI[root.lang === 'en' ? 'en' : 'ja'][key]; }
+
+        /* ---------- ヘッダー高さをCSS変数へ（モバイルメニュー位置・アンカー位置用） ---------- */
+        var header = document.getElementById('siteHeader');
+        function setHeaderH() { root.style.setProperty('--header-h', header.offsetHeight + 'px'); }
+        setHeaderH();
+        if ('ResizeObserver' in window) new ResizeObserver(setHeaderH).observe(header);
+        else window.addEventListener('resize', setHeaderH);
+
+        /* ---------- ロゴ画像が読めないときは文字ロゴに切替 ---------- */
+        document.querySelectorAll('img[data-logo]').forEach(function (img) {
+            var wrap = img.closest('[data-logo-wrap]');
+            function fail() { if (wrap) wrap.classList.add('no-logo'); }
+            if (img.complete && img.naturalWidth === 0) fail();
+            else img.addEventListener('error', fail);
+        });
+
+        /* ---------- 顔写真：縮小版→原寸→頭文字の順にフォールバック ---------- */
+        document.querySelectorAll('[data-avatar] img').forEach(function (img) {
+            var box = img.closest('[data-avatar]');
+            function fail() {
+                var full = img.getAttribute('data-full');
+                if (full) {
+                    img.removeAttribute('data-full');
+                    img.src = full;
+                } else {
+                    box.classList.add('no-photo');
+                }
+            }
+            img.addEventListener('error', fail);
+            if (img.complete && img.naturalWidth === 0) fail();
+        });
+
+        /* ---------- ヒーローCanvas ---------- */
+        var hero = (function () {
+            var canvas = document.getElementById('hero-canvas');
+            var section = canvas.parentElement;
+            var ctx = canvas.getContext('2d');
+            var LINK = 120;
+            var w = 0, h = 0, particles = [], rgb = '0, 242, 254';
+            var running = false, visible = true, rafId = 0;
+
+            function readColor() {
+                var v = getComputedStyle(root).getPropertyValue('--particle-rgb').trim();
+                if (v) rgb = v;
+            }
+            function makeParticle() {
+                return {
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.8,
+                    r: Math.random() * 2 + 1
+                };
+            }
+            // 画面サイズに応じて粒子数を調整（スマホでは少なめ）
+            function targetCount() {
+                return Math.round(Math.min(70, Math.max(24, (w * h) / 16000)));
+            }
+            // Canvasの描画解像度を表示サイズ×devicePixelRatioに合わせる（歪み・ぼやけ防止）
+            function resize() {
+                var rect = section.getBoundingClientRect();
+                var dpr = Math.min(window.devicePixelRatio || 1, 2);
+                w = rect.width;
+                h = rect.height;
+                canvas.width = Math.round(w * dpr);
+                canvas.height = Math.round(h * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                particles.forEach(function (p) {
+                    p.x = Math.min(Math.max(p.x, 0), w);
+                    p.y = Math.min(Math.max(p.y, 0), h);
+                });
+                var n = targetCount();
+                while (particles.length < n) particles.push(makeParticle());
+                particles.length = n;
+                if (!running) draw();
+            }
+            function step() {
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    // 端で位置を戻してから反転（縮小時に端で震えて止まるのを防ぐ）
+                    if (p.x < 0) { p.x = 0; p.vx = Math.abs(p.vx); }
+                    else if (p.x > w) { p.x = w; p.vx = -Math.abs(p.vx); }
+                    if (p.y < 0) { p.y = 0; p.vy = Math.abs(p.vy); }
+                    else if (p.y > h) { p.y = h; p.vy = -Math.abs(p.vy); }
+                }
+            }
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                ctx.fillStyle = 'rgb(' + rgb + ')';
+                ctx.lineWidth = 0.5;
+                for (var i = 0; i < particles.length; i++) {
+                    var a = particles[i];
+                    ctx.beginPath();
+                    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+                    ctx.fill();
+                    for (var j = i + 1; j < particles.length; j++) {
+                        var b = particles[j];
+                        var dx = a.x - b.x, dy = a.y - b.y;
+                        var dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < LINK) {
+                            ctx.beginPath();
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            ctx.strokeStyle = 'rgba(' + rgb + ', ' + (1 - dist / LINK) + ')';
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            function frame() {
+                step();
+                draw();
+                rafId = requestAnimationFrame(frame);
+            }
+            function start() {
+                if (running || reduceMotion.matches || !visible) return;
+                running = true;
+                rafId = requestAnimationFrame(frame);
+            }
+            function stop() {
+                running = false;
+                cancelAnimationFrame(rafId);
+            }
+
+            readColor();
+            resize();
+            if ('ResizeObserver' in window) new ResizeObserver(resize).observe(section);
+            else window.addEventListener('resize', resize);
+
+            // 画面外ではアニメーションを止める
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    visible = entries[0].isIntersecting;
+                    if (visible) start(); else stop();
+                }).observe(section);
+            }
+            // 「視差効果を減らす」設定時は静止画で表示
+            reduceMotion.addEventListener('change', function () {
+                if (reduceMotion.matches) { stop(); draw(); } else { start(); }
+            });
+            start();
+
+            return {
+                refreshColor: function () { readColor(); if (!running) draw(); }
+            };
+        })();
+
+        /* ---------- テーマ切替（保存・OS設定に追従） ---------- */
+        var themeBtn = document.getElementById('themeBtn');
+        function updateThemeUI() {
+            var light = root.getAttribute('data-theme') === 'light';
+            themeBtn.querySelector('i').className = 'fa-solid ' + (light ? 'fa-sun' : 'fa-moon');
+            themeBtn.setAttribute('aria-label', light ? t('toDark') : t('toLight'));
+        }
+        function applyTheme(theme) {
+            root.setAttribute('data-theme', theme);
+            updateThemeUI();
+            hero.refreshColor();
+        }
+        themeBtn.addEventListener('click', function () {
+            var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            store.set('amelab-theme', next);
+            applyTheme(next);
+        });
+        var mqLight = window.matchMedia('(prefers-color-scheme: light)');
+        mqLight.addEventListener('change', function (e) {
+            if (!store.get('amelab-theme')) applyTheme(e.matches ? 'light' : 'dark');
+        });
+
+        /* ---------- モバイルメニュー ---------- */
+        var mobileBtn = document.getElementById('mobileBtn');
+        var navLinks = document.getElementById('navLinks');
+        function isMenuOpen() { return navLinks.classList.contains('open'); }
+        function updateMenuUI() {
+            var open = isMenuOpen();
+            mobileBtn.setAttribute('aria-expanded', String(open));
+            mobileBtn.setAttribute('aria-label', open ? t('menuClose') : t('menuOpen'));
+            // アイコン要素は差し替えずクラスだけ変更（クリック中の要素が消えると外側クリック判定が誤作動するため）
+            mobileBtn.querySelector('i').className = 'fa-solid ' + (open ? 'fa-xmark' : 'fa-bars');
+        }
+        function setMenu(open) {
+            navLinks.classList.toggle('open', open);
+            updateMenuUI();
+        }
+        mobileBtn.addEventListener('click', function () { setMenu(!isMenuOpen()); });
+        // リンクを押したら閉じる
+        navLinks.addEventListener('click', function (e) {
+            if (e.target.closest('a')) setMenu(false);
+        });
+        // Escキー・メニュー外クリックで閉じる
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && isMenuOpen()) { setMenu(false); mobileBtn.focus(); }
+        });
+        document.addEventListener('click', function (e) {
+            if (isMenuOpen() && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) setMenu(false);
+        });
+        window.matchMedia('(max-width: 1100px)').addEventListener('change', function (e) {
+            if (!e.matches) setMenu(false);
+        });
+
+        /* ---------- 日英切替 ---------- */
+        var langBtn = document.getElementById('langBtn');
+        var metaDesc = document.querySelector('meta[name="description"]');
+        var siteNav = document.getElementById('siteNav');
+        var pubTabsGroup = document.querySelector('.pub-tabs');
+        function applyLang(lang) {
+            root.lang = lang;
+            document.title = t('title');
+            metaDesc.setAttribute('content', t('desc'));
+            langBtn.textContent = t('langText');
+            langBtn.setAttribute('aria-label', t('langLabel'));
+            langBtn.setAttribute('lang', t('langLabelLang'));
+            siteNav.setAttribute('aria-label', t('nav'));
+            pubTabsGroup.setAttribute('aria-label', t('filter'));
+            updateThemeUI();
+            updateMenuUI();
+            updateMapLang(lang);
+        }
+        // 地図の表示言語を切り替え
+        var mapFrame = document.getElementById('mapFrame');
+        function updateMapLang(lang) {
+            if (!mapFrame) return;
+            var src = 'https://maps.google.com/maps?q=' + mapFrame.getAttribute('data-map-q') + '&hl=' + lang + '&z=17&output=embed';
+            if (mapFrame.getAttribute('src') !== src) mapFrame.setAttribute('src', src);
+            mapFrame.setAttribute('title', mapFrame.getAttribute('data-title-' + lang));
+        }
+        langBtn.addEventListener('click', function () {
+            var next = root.lang === 'en' ? 'ja' : 'en';
+            store.set('amelab-lang', next);
+            applyLang(next);
+            // ?lang=en を付けたURLで英語版を共有できるようにする
+            try {
+                var url = new URL(location.href);
+                if (next === 'en') url.searchParams.set('lang', 'en');
+                else url.searchParams.delete('lang');
+                history.replaceState(null, '', url);
+            } catch (e) {}
+        });
+
+        /* ---------- 論文フィルタ ---------- */
+        var pubTabs = document.querySelectorAll('.pub-tab');
+        var pubItems = document.querySelectorAll('.pub-item');
+        pubTabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                var type = tab.getAttribute('data-type');
+                pubTabs.forEach(function (tb) {
+                    var on = tb === tab;
+                    tb.classList.toggle('active', on);
+                    tb.setAttribute('aria-pressed', String(on));
+                });
+                pubItems.forEach(function (item) {
+                    item.hidden = !(type === 'all' || item.getAttribute('data-type') === type);
+                });
+            });
+        });
+
+        /* ---------- 表示中のセクションをナビでハイライト ---------- */
+        var navAnchors = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+        if ('IntersectionObserver' in window) {
+            var spy = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (!en.isIntersecting) return;
+                    navAnchors.forEach(function (a) {
+                        var on = a.getAttribute('href') === '#' + en.target.id;
+                        a.classList.toggle('active', on);
+                        if (on) a.setAttribute('aria-current', 'location');
+                        else a.removeAttribute('aria-current');
+                    });
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            document.querySelectorAll('main > section[id]').forEach(function (s) { spy.observe(s); });
+        }
+
+        /* ---------- Googleサイトに埋め込まれた場合のリンク ---------- */
+        // Googleサイトの「埋め込み」(iframe) 内では同じタブでのページ移動が制限されるため、
+        // 研究室内ページとメールのリンクは新しいタブで開く。単独で表示している場合は同じタブで移動する。
+        var inFrame = true;
+        try { inFrame = window.self !== window.top; } catch (e) {}
+        if (inFrame) {
+            document.querySelectorAll('a[data-site-link], a[href^="mailto:"]').forEach(function (a) {
+                a.target = '_blank';
+                a.rel = 'noopener';
+            });
+        }
+
+        /* ---------- 初期表示 ---------- */
+        applyLang(root.lang === 'en' ? 'en' : 'ja');
+        updateThemeUI();
+    })();
+    </script>
+</body>
+</html>
