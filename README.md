@@ -24,6 +24,7 @@ img/
   apple-touch-icon.png  スマホのホーム画面用アイコン
   ogp.png           SNSで共有したときの画像（1200×630）
   members/          メンバーの顔写真（伊藤・佐久間の2名は仮の画像）
+  research/         研究紹介ページのカード画像（ファイル名は research/README.md）
 ```
 
 ## 公開手順
@@ -136,6 +137,13 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - **主な共同研究と成果**：`<article class="collab-project" id="…">` 〜 `</article>` が1件分です。成果は、その中の `<li class="collab-output">` 〜 `</li>` を1件分コピーして書き換えます。DOI などのリンクは論文・発表一覧と同じ書き方です。
 - **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「企業・研究機関の方」タブにも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
 - トップページのタブにあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
+
+### 研究紹介のカードに図・写真を入れる（research.html）
+
+研究紹介ページのすべてのカードの上部に、同じ大きさ（横長 16:9）の図・写真の枠があります。`img/research/` フォルダに決められたファイル名で JPG 画像を入れると表示され、画像が無いカードにはアイコン入りの背景が表示されます。ファイル名の一覧と画像の推奨サイズは `img/research/README.md` を見てください。
+
+- 16:9 からはみ出す部分は切り取られます。グラフや模式図など全体を見せたいものは、該当カードの `<figure class="card-media" data-media>` を `<figure class="card-media fit-contain" data-media>` にします（余白は白）。
+- 動画（`data-short`）があるカードは、画像の右下に再生マークが付きます。
 
 ### About の研究紹介動画（index.html）
 

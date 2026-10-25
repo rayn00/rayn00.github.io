@@ -570,6 +570,16 @@
         }
     });
 
+    /* ---------- 研究紹介カードの図・写真 ---------- */
+    // 画像ファイルが無い・読み込めないときは、アイコン入りの背景を表示する
+    document.querySelectorAll('[data-media] img').forEach(function (img) {
+        var box = img.closest('[data-media]');
+        function ok() { box.classList.add('has-image'); }
+        function fail() { box.classList.add('is-empty'); img.remove(); }
+        if (img.complete) { if (img.naturalWidth) ok(); else fail(); }
+        else { img.addEventListener('load', ok); img.addEventListener('error', fail); }
+    });
+
     /* ---------- 初期表示 ---------- */
     applyLang(root.lang === 'en' ? 'en' : 'ja');
     updateThemeUI();

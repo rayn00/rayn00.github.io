@@ -2120,3 +2120,99 @@ a.partner-chip i {
         margin: 0 auto;
     }
 }
+
+/* =====================================================================
+   研究紹介カードの図・写真（すべて同じ大きさ 16:9）
+   ===================================================================== */
+.card-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin: -2rem -2rem 1.5rem;
+    border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 25% 20%, rgba(0, 242, 254, 0.16), transparent 60%),
+        radial-gradient(circle at 80% 90%, rgba(127, 0, 255, 0.16), transparent 55%),
+        var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 図（グラフや模式図）など、切り取らずに全体を見せたいとき：<figure class="card-media fit-contain"> */
+.card-media.fit-contain img {
+    object-fit: contain;
+    background: #fff;
+}
+
+.theme-card:hover .card-media img {
+    transform: scale(1.04);
+}
+
+.card-media.fit-contain img,
+.theme-card:hover .card-media.fit-contain img {
+    transform: none;
+}
+
+/* 画像が無いときのアイコン */
+.card-media-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 3.25rem;
+    opacity: 0.6;
+    transform: translate(-50%, -50%);
+}
+
+.card-media.has-image .card-media-icon {
+    display: none;
+}
+
+/* 動画があるカードは、画像の右下に再生マーク */
+.has-short .card-media::after {
+    content: "\f04b";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: grid;
+    place-items: center;
+    padding-left: 0.15rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--on-accent);
+    font-size: 0.95rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* 「動画を見る」ボタンを各カードの下端にそろえる */
+.theme-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.theme-card > .play-badge {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.theme-card > :has(+ .play-badge) {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    .card-media {
+        margin: -1.5rem -1.5rem 1.25rem;
+    }
+}
