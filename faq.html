@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）への大学院進学を希望する方向けのよくある質問。出願前の連絡、面談・見学、研究指導、院試、修了後の進路などについて。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="よくある質問 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）への大学院進学を希望する方向けのよくある質問。出願前の連絡、面談・見学、研究指導、院試、修了後の進路などについて。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://rayn00.github.io/faq.html">
+    <meta property="og:image" content="https://rayn00.github.io/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- このページ専用のスタイル（よくある質問） -->
+    <style>
+        .faq-wrap { max-width: 920px; margin: 0 auto; }
+        /* 募集のお知らせ */
+        .faq-notice { position: relative; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); padding: 2rem 2rem 2rem 2.25rem; margin-bottom: 3rem; }
+        .faq-notice::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 4px; background: linear-gradient(var(--accent-cyan), var(--accent-purple)); }
+        .faq-notice-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin-bottom: 1.25rem; }
+        .faq-notice-head h2 { font-size: 1.35rem; line-height: 1.4; }
+        .faq-notice-list { list-style: none; display: grid; gap: 0.85rem; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; }
+        .faq-notice-list li { display: flex; gap: 0.75rem; }
+        .faq-notice-list li > i { flex: none; margin-top: 0.4rem; color: var(--accent-cyan); width: 1.1rem; text-align: center; }
+        .faq-notice-list strong { color: var(--text-primary); }
+        .faq-notice .hero-buttons { justify-content: flex-start; margin-top: 1.5rem; gap: 0.75rem; }
+        /* カテゴリへのジャンプ */
+        .faq-toc { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .faq-toc .chip-link { font-size: 0.85rem; padding: 0.4rem 0.9rem; background: var(--bg-glass); }
+        .faq-toc-count { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
+        .faq-toolbar .btn-sm { white-space: nowrap; }
+        /* 質問と回答 */
+        .faq-group { margin-bottom: 3rem; }
+        .faq-group .member-category-title i { color: var(--accent-cyan); margin-right: 0.35rem; font-size: 0.95em; }
+        .faq-group-note { display: flex; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); background: var(--bg-glass); border: 1px dashed var(--border-color); border-radius: var(--radius-md); padding: 0.85rem 1.1rem; margin: -0.5rem 0 1rem; line-height: 1.75; }
+        .faq-group-note i { color: var(--accent-purple-text); margin-top: 0.3rem; }
+        .faq-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); transition: border-color 0.2s, box-shadow 0.2s; }
+        .faq-item[open] { border-color: var(--border-glow); box-shadow: var(--shadow-hover); }
+        .faq-item summary { list-style: none; display: flex; align-items: flex-start; gap: 0.9rem; padding: 1.1rem 1.25rem; cursor: pointer; font-weight: 700; line-height: 1.6; border-radius: var(--radius-md); }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary:hover .faq-question { color: var(--accent-cyan); }
+        .faq-item summary:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+        .faq-mark { flex: none; display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 8px; font-size: 0.85rem; font-weight: 800; line-height: 1; }
+        .faq-mark.q { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: var(--on-accent); }
+        .faq-mark.a { background: rgba(127, 0, 255, 0.15); color: var(--accent-purple-text); }
+        .faq-question { flex: 1; min-width: 0; padding-top: 0.15rem; transition: color 0.2s; }
+        .faq-chevron { flex: none; margin-top: 0.5rem; color: var(--text-muted); transition: transform 0.25s, color 0.25s; }
+        .faq-item[open] .faq-chevron { transform: rotate(180deg); color: var(--accent-cyan); }
+        .faq-answer { display: flex; gap: 0.9rem; margin: 0 1.25rem; padding: 1.1rem 0 1.35rem; border-top: 1px dashed var(--border-color); }
+        .faq-body { flex: 1; min-width: 0; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.85; }
+        .faq-body > * + * { margin-top: 0.75rem; }
+        .faq-body a:not(.chip-link) { color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 2px; }
+        .faq-sublabel { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+        .faq-sublabel i { color: var(--accent-cyan); margin-right: 0.3rem; }
+        .faq-sublabel + * { margin-top: 0.4rem; }
+        .faq-books { padding-left: 1.25rem; }
+        .faq-books li + li { margin-top: 0.3rem; }
+        .faq-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .faq-chips li { font-size: 0.82rem; line-height: 1.5; padding: 0.3rem 0.75rem; border-radius: 30px; border: 1px solid var(--border-color); background: var(--bg-glass); color: var(--text-primary); }
+        .faq-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .faq-goals { display: grid; gap: 0.75rem; }
+        .faq-goals > div { display: grid; grid-template-columns: auto 1fr; gap: 0.9rem; align-items: start; background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
+        .faq-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+        .faq-table .data-table th[scope="row"] { white-space: nowrap; }
+        .faq-table .data-table th small { font-weight: 400; color: var(--text-muted); }
+        .faq-item mark { background: rgba(0, 242, 254, 0.22); color: inherit; border-radius: 3px; padding: 0 1px; }
+        :root[data-theme="light"] .faq-item mark { background: rgba(3, 105, 161, 0.16); }
+        /* お問い合わせ */
+        .faq-contact { text-align: center; }
+        .faq-contact h2 { font-size: 1.35rem; margin-bottom: 0.75rem; }
+        .faq-contact > p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .faq-contact address { font-style: normal; color: var(--text-muted); font-size: 0.85rem; margin-top: 1.5rem; line-height: 1.8; }
+        .faq-sns { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+        .faq-sns a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; font-weight: 600; padding: 0.45rem 0.95rem; border-radius: 30px; border: 1px solid var(--border-color); color: var(--text-primary); }
+        .faq-sns a:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .faq-sns .fa-youtube { color: #ff3d3d; }
+        .faq-sns .fa-instagram { color: #e1306c; }
+        .x-logo { display: inline-block; vertical-align: -0.125em; }
+        @media (max-width: 600px) {
+            .faq-notice { padding: 1.5rem 1.25rem 1.5rem 1.5rem; }
+            .faq-item summary { padding: 1rem; gap: 0.7rem; }
+            .faq-answer { margin: 0 1rem; }
+            .faq-answer > .faq-mark.a { display: none; }
+            .faq-table .data-table th, .faq-table .data-table td { padding: 0.65rem 0.6rem; white-space: normal; font-size: 0.8rem; }
+            .faq-table .data-table th[scope="row"] { white-space: normal; width: 5.5em; }
+            .faq-goals > div { grid-template-columns: 1fr; gap: 0.5rem; }
+            .faq-toolbar .btn-sm { flex: 1 1 auto; }
+        }
+        @media print {
+            .faq-toc, .faq-toolbar, .result-count, .faq-chevron { display: none !important; }
+            .faq-item:not([open]) > .faq-answer { display: flex !important; }
+        }
+    </style>
+</head>
+<body data-title-ja="よくある質問 | 雨宮研究室 AME LAB" data-title-en="FAQ | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）への大学院進学を希望する方向けのよくある質問。出願前の連絡、面談・見学、研究指導、院試、修了後の進路などについて。" data-desc-en="Frequently asked questions for prospective graduate students of the Amemiya Lab (AME LAB), The University of Tokyo.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link active" aria-current="true"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></span>
+            </nav>
+            <span class="section-tag">FAQ</span>
+            <h1 class="page-title"><span class="ja">よくある質問</span><span class="en" lang="en">Frequently Asked Questions</span></h1>
+            <p class="hero-subtitle"><span class="ja">雨宮研究室への進学を希望する方から、よく寄せられる質問と回答をまとめました。</span><span class="en" lang="en">Answers to questions we often receive from prospective graduate students.</span></p>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="faq-wrap">
+
+            <!-- 募集のお知らせ（年度が変わったら書き換えてください） -->
+            <div class="faq-notice">
+                <div class="faq-notice-head">
+                    <span class="faq-badge badge-cyan"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> <span class="ja">募集中</span><span class="en" lang="en">Now accepting</span></span>
+                    <h2><span class="ja">2027年度入学希望者を受け入れています</span><span class="en" lang="en">Accepting students for April / October 2027 entry</span></h2>
+                </div>
+                <ul class="faq-notice-list">
+                    <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><span><span class="ja">雨宮を第1希望とする場合は、志望する専攻・コースの<strong>入学願書受付開始日の前日まで</strong>に、必ずメールでご連絡ください。事前の面談は必須ではありません。</span><span class="en" lang="en">If Prof. Amemiya is your first-choice supervisor, please be sure to email us <strong>by the day before the application period of your intended program opens</strong>. A prior interview is not required.</span></span></li>
+                    <li><i class="fa-solid fa-paperclip" aria-hidden="true"></i><span><span class="ja">メールには、CV、既発表資料、研究計画（完成していなくてもかまいません）、制作物があればその資料を添付してください。</span><span class="en" lang="en">Please attach your CV, any published work, a research plan (a draft is fine) and materials on anything you have made.</span></span></li>
+                    <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span><span class="ja">博士課程への進学を希望している方は特に歓迎します（修士課程修了後に就職する選択も尊重します）。大学院からの受け入れのため、長期間腰を据えて博士を目指したい方は大歓迎です。</span><span class="en" lang="en">Applicants aiming for a doctorate are especially welcome, though we also respect the choice to start a career after the master&rsquo;s program. As we admit students at the graduate level, those who want to settle in for the long haul toward a PhD are very welcome.</span></span></li>
+                    <li><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span><span class="ja">研究生は受け入れていません。</span><span class="en" lang="en">We do not accept research students (kenkyusei).</span></span></li>
+                </ul>
+                <div class="hero-buttons">
+                    <a href="mailto:info@vr.u-tokyo.ac.jp" class="btn btn-primary btn-sm"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="ja">メールで連絡する</span><span class="en" lang="en">Email us</span></a>
+                    <a href="research.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究内容を見る</span><span class="en" lang="en">Our research</span></a>
+                </div>
+            </div>
+
+            <p class="lang-note en" lang="en"><i class="fa-solid fa-language" aria-hidden="true"></i> The questions and answers below are available in Japanese only.</p>
+
+            <ul class="faq-toc" aria-label="カテゴリ / Categories">
+                <li><a class="chip-link" href="#schools"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> <span class="ja">大学院の違いについて</span><span class="en" lang="en">Graduate Schools</span> <span class="faq-toc-count">2</span></a></li>
+                <li><a class="chip-link" href="#visit"><i class="fa-solid fa-comments" aria-hidden="true"></i> <span class="ja">面談・見学について</span><span class="en" lang="en">Meetings &amp; Lab Visits</span> <span class="faq-toc-count">1</span></a></li>
+                <li><a class="chip-link" href="#study"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究室における研究について</span><span class="en" lang="en">Research in the Lab</span> <span class="faq-toc-count">6</span></a></li>
+                <li><a class="chip-link" href="#life"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i> <span class="ja">研究室での生活について</span><span class="en" lang="en">Life in the Lab</span> <span class="faq-toc-count">2</span></a></li>
+                <li><a class="chip-link" href="#exam"><i class="fa-solid fa-file-pen" aria-hidden="true"></i> <span class="ja">院試関係</span><span class="en" lang="en">Entrance Examinations</span> <span class="faq-toc-count">5</span></a></li>
+                <li><a class="chip-link" href="#career"><i class="fa-solid fa-route" aria-hidden="true"></i> <span class="ja">これまでの学生の進路や成果など</span><span class="en" lang="en">Student Outcomes</span> <span class="faq-toc-count">2</span></a></li>
+            </ul>
+
+            <div class="list-toolbar faq-toolbar">
+                <label class="search-box">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="faqSearch" data-ph-ja="質問・回答を検索" data-ph-en="Search (Japanese)" placeholder="質問・回答を検索" aria-label="質問・回答を検索" autocomplete="off">
+                </label>
+                <button type="button" class="btn btn-secondary btn-sm" id="faqToggle" aria-expanded="false" aria-controls="faqGroups"><i class="fa-solid fa-angles-down" aria-hidden="true"></i> <span class="ja">すべて開く</span><span class="en" lang="en">Expand all</span></button>
+            </div>
+            <p class="result-count" id="faqCount" aria-live="polite">全18件の質問</p>
+
+            <div id="faqGroups">
+            <div class="faq-group" id="schools">
+                <h2 class="member-category-title"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> <span class="ja">大学院の違いについて</span><span class="en" lang="en">Graduate Schools</span></h2>
+                <div class="faq-list">
+                <details class="faq-item" id="q-apply">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">雨宮研究室に進学したいのですが、どうすればよいですか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>修士課程・博士課程の学生として雨宮研究室への参加を希望する方は、所定の期限までにメールでご連絡ください。面談は必須ではありません。</p>
+                        <p>雨宮研究室の学生は「東京大学大学院 総合文化研究科 広域システム科学系」または「東京大学大学院 情報学環・学際情報学府」に所属します。いずれかの大学院に合格・入学したうえで、指導教員として雨宮を選んでください。</p>
+                        <p>入試の日程や出願要件は年度によって変わります。必ず各大学院のWebサイトで最新の情報を確認してください。</p>
+                        <div class="faq-links"><a class="chip-link" href="https://system.c.u-tokyo.ac.jp/" target="_blank" rel="noopener">総合文化研究科 広域システム科学系 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="chip-link" href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener">情報学環・学際情報学府 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-schools">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究指導は所属する大学院ごとに違いはありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>研究指導は、所属する大学院にかかわらず研究室として一体的に行います。ただし、必修科目や修士論文・博士論文の提出スケジュールなどは、大学院ごとに異なる場合があります。</p>
+                        <div class="table-wrap faq-table">
+                            <table class="data-table">
+                                <thead><tr><th scope="col"></th><th scope="col">総合文化研究科<br><small>広域システム科学系</small></th><th scope="col">情報学環・学際情報学府</th></tr></thead>
+                                <tbody>
+                                    <tr><th scope="row">入学時期</th><td>4月入学・10月入学</td><td>原則4月入学のみ</td></tr>
+                                    <tr><th scope="row">講義の主な開催地</th><td>駒場キャンパス</td><td>本郷キャンパス</td></tr>
+                                    <tr><th scope="row">研究室（研究拠点）</th><td colspan="2">浅野キャンパス 情報基盤センター 浅野本館</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>規則は修正されることがあるため、最新の情報は各大学院で確認してください。</p>
+                        </div>
+                    </div>
+                </details>
+                </div>
+            </div>
+
+            <div class="faq-group" id="visit">
+                <h2 class="member-category-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> <span class="ja">面談・見学について</span><span class="en" lang="en">Meetings &amp; Lab Visits</span></h2>
+                <div class="faq-list">
+                <details class="faq-item" id="q-interview">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">出願前に面談や研究室見学をする必要はありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>必須ではありません。連絡はメールで受け付けています。</p>
+                        <p>研究内容が自分の関心に合っているかを相談したい場合は、研究計画の案を添えてご連絡ください。必要に応じて、メールまたはオンライン面談で相談に応じます。ただし、研究計画書の添削や、公開されている情報を超える入試に関する相談には応じられません。</p>
+                        <p>研究室の現地見学は、個別の日程調整による実施は原則として行っていません。各大学院の説明会に合わせて実施する予定で、詳細は本Webサイトなどでお知らせします。</p>
+                        </div>
+                    </div>
+                </details>
+                </div>
+            </div>
+
+            <div class="faq-group" id="study">
+                <h2 class="member-category-title"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究室における研究について</span><span class="en" lang="en">Research in the Lab</span></h2>
+                <div class="faq-list">
+                <details class="faq-item" id="q-policy">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">大学院生の指導方針を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>研究テーマは、本人の関心や得意分野を尊重し、議論を重ねて決めます。原則として一人一テーマですが、研究室内での共同研究も奨励しています。</p>
+                        <p>心理実験が中心のテーマ、VRシステムの開発が中心のテーマ、企業との共同研究を含むテーマなど、挑戦的な内容も相談できます。必要に応じて教員からテーマを提案することもあり、院試の研究計画書に書いた内容を必ずそのまま行う必要はありません。</p>
+                        <p>研究室でどのような研究・共同研究・受託研究を行っているか、事前に確認しておくとよいでしょう。</p>
+                        <div class="faq-links"><a class="chip-link" href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="chip-link" href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-support">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究のサポート体制を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>教員とのミーティングを必要に応じて設定しています。また、先輩やスタッフによるメンタリング、学生同士のピアレビューも行っています。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-meeting">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">ミーティングの頻度を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>週1回程度、研究室の研究会を開き、議論や進捗確認などのメンタリングを行います。成果が十分に出ていなくても、必ず何らかの報告をします。</p>
+                        <p>このほか、学生が選んだ論文を輪読するジャーナルクラブや、技術・技能の講習会も開いています。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-prepare">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究室に入るまでに勉強しておいた方が良いことを教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>メカトロニクス、電気回路、実験心理学、プログラミングなどです。研究の土台となる数学に加え、汎用性の高い統計や情報学の基礎を学んでおくことをおすすめします。</p>
+                        <p>英語は論文の読解や発表に欠かせません。入試の合否とは関係ありませんが、研究を進めるうえで CEFR B2 以上の英語力が必要です。</p>
+                        <p class="faq-sublabel"><i class="fa-solid fa-book-open" aria-hidden="true"></i> 参考書</p>
+                        <ul class="faq-books">
+                            <li>日本バーチャルリアリティ学会 編『バーチャルリアリティ学』コロナ社、2011年</li>
+                            <li>雨宮智浩『メタバースの教科書 ―原理・基礎技術から産業応用まで―』オーム社、2023年</li>
+                            <li>岩村吉晃『タッチ（神経心理学コレクション）』医学書院、2001年</li>
+                        </ul>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-goal">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">学生の修了までの目標はどこに設定されていますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <dl class="faq-goals">
+                            <div><dt><span class="faq-badge badge-cyan">修士課程</span></dt><dd>一つの研究テーマを主体的に進め、学会発表と論文執筆までを経験することを目指します。修了までに、査読付き国際会議での英語による発表と、査読付き論文への投稿・掲載を目標とします。</dd></div>
+                            <div><dt><span class="faq-badge badge-purple">博士課程</span></dt><dd>指導教員の支援に過度に頼らず、自立して研究テーマを設定し、論文執筆まで完成させることを目指します。3件以上の査読付き国際会議での発表や査読付き論文の掲載を目標とします。</dd></div>
+                        </dl>
+                        <p>トップカンファレンスへの採択や論文数だけを唯一のゴールとはしませんが、その水準に耐える研究遂行能力と発信力も重視しています。自ら課題を設定し、研究を主導する経験を通じて博士号の取得を目指します。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-equipment">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">所有する設備・機器を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>主な設備・機器は次のとおりです。研究内容や予算を踏まえて、適宜整備しています。</p>
+                        <ul class="faq-chips"><li>HMD（Meta Quest シリーズ、HTC Vive シリーズ、Apple Vision Pro、Pico シリーズなど）</li><li>モーションキャプチャーシステム</li><li>フォースプレート</li><li>360度カメラ</li><li>3Dプリンタ</li><li>超音波触覚ディスプレイ</li><li>非対称振動発生装置</li><li>立体視ディスプレイ</li><li>脳波計（簡易型）</li><li>TMS装置</li><li>電気刺激装置</li></ul>
+                        </div>
+                    </div>
+                </details>
+                </div>
+            </div>
+
+            <div class="faq-group" id="life">
+                <h2 class="member-category-title"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i> <span class="ja">研究室での生活について</span><span class="en" lang="en">Life in the Lab</span></h2>
+                <div class="faq-list">
+                <details class="faq-item" id="q-coretime">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">コアタイム（研究室にいなければならない時間帯）はありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>ありません。研究室の外でできる作業は、適切な場所で行ってかまいません。在室時間ではなく、研究の進捗を重視しています。</p>
+                        <p>一方で、対面での情報共有や偶発的な議論、設備の利用も大切にしています。Zoom や Slack も活用しつつ、研究室を積極的に利用することをおすすめします。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-rules">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究室のルールはありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>研究室の歴史が浅いため、必要に応じて学生とスタッフで話し合いながら整備しています。大学・研究室の規則、研究倫理、安全管理を守り、互いを尊重することが前提です。研究室づくりに主体的に関われる方を歓迎します。</p>
+                        </div>
+                    </div>
+                </details>
+                </div>
+            </div>
+
+            <div class="faq-group" id="exam">
+                <h2 class="member-category-title"><i class="fa-solid fa-file-pen" aria-hidden="true"></i> <span class="ja">院試関係</span><span class="en" lang="en">Entrance Examinations</span></h2>
+            <p class="faq-group-note"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> <span>院試に関しては、公平性の観点から、募集要項など公開されている情報を超える内容について私からお伝えすることは一切できません。</span></p>
+                <div class="faq-list">
+                <details class="faq-item" id="q-proposal">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究計画書に関して添削してもらえますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>添削はできません。ただし、研究内容が研究室に合っているかを判断するため、研究計画の案を見ながらメールやオンラインで相談することは可能です。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-exam-tips">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">院試で注意することはありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>志望する専攻・コースのWebサイトをよく確認してください。英語試験の種類・有効期限・提出方法は募集要項で確認できます。</p>
+                        <p>スコアの発行には時間がかかる場合があるので、余裕をもって準備してください。スコアは高いほどよいです。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-multiple">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">複数の大学院・専攻を併願することはできますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>試験日程が重ならなければ可能です。日程や出願条件は年度によって変わるので、必ず確認してください。</p>
+                        <p>併願先や進学の希望順位は、コンタクトの際に伝えていただいてかまいません。他の大学院が第一志望の場合や未定の場合でも、不利益に扱うことはありません。</p>
+                        <p>他の大学院への進学が決まり、雨宮研究室への進学の意思がなくなった場合は、できるだけ早くご連絡ください。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-working">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">社会人を受け入れていますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>修士課程・博士課程ともに、多様なバックグラウンドの方を歓迎しています。現在も社会人ドクターが在籍しています。</p>
+                        <p>一部の授業は対面で行われるため、仕事との両立の条件は個別に確認し、履修については事前にご相談ください。制度を適用できるかどうかは所属先の規則によります。長期履修制度を活用することもできます。</p>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-other-lab">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">他の研究室に所属したまま、雨宮研究室で研究指導を受けることはできますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>共同研究や助言を行うことはあります。正式な指導教員・副指導教員になれるかどうかは、研究科・学府の制度、研究内容、関係する教員の判断によります。まずは所属先の指導教員に相談してください。</p>
+                        <p>博士課程への進学時に雨宮を第1希望とする場合は、その時点の募集要項を確認し、所定の期限までにご連絡ください。</p>
+                        </div>
+                    </div>
+                </details>
+                </div>
+            </div>
+
+            <div class="faq-group" id="career">
+                <h2 class="member-category-title"><i class="fa-solid fa-route" aria-hidden="true"></i> <span class="ja">これまでの学生の進路や成果など</span><span class="en" lang="en">Student Outcomes</span></h2>
+                <div class="faq-list">
+                <details class="faq-item" id="q-venues">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">学生の主な発表先はどこですか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>投稿したい国際会議があれば、相談して決めます。主な発表先は次のとおりです。</p>
+                        <p class="faq-sublabel">国際会議</p>
+                        <ul class="faq-chips"><li>IEEE World Haptics</li><li>IEEE VR</li><li>IEEE ISMAR</li><li>EuroHaptics</li><li>Augmented Humans</li><li>ACM SIGGRAPH</li><li>AsiaHaptics</li><li>SfN (Society for Neuroscience)</li></ul>
+                        <p class="faq-sublabel">国内</p>
+                        <ul class="faq-chips"><li>日本バーチャルリアリティ学会</li><li>ヒューマンインタフェースシンポジウム</li><li>電子情報通信学会 研究会</li></ul>
+                        <div class="faq-links"><a class="chip-link" href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                </details>
+                <details class="faq-item" id="q-careers">
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">修了後の進路例はありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <div class="faq-answer">
+                        <span class="faq-mark a" aria-hidden="true">A</span>
+                        <div class="faq-body">
+                        <p>研究室の歴史が浅いため、前の研究室での指導学生も含みます。修士課程の修了者は大手IT系企業・メーカー、コンサルティングファームなど、博士課程の修了者は大学や企業の研究者などです。</p>
+                        </div>
+                    </div>
+                </details>
+                </div>
+            </div>
+            </div>
+            <p class="empty-state" id="faqEmpty" hidden><span class="ja">該当する質問が見つかりませんでした。</span><span class="en" lang="en">No matching questions.</span></p>
+
+            <!-- お問い合わせ -->
+            <div class="card faq-contact" id="faq-contact">
+                <h2><i class="fa-solid fa-envelope icon-purple" aria-hidden="true"></i> <span class="ja">ご連絡・お問い合わせ</span><span class="en" lang="en">Contact</span></h2>
+                <p><span class="ja">進学のご相談はメールで受け付けています。上記のよくある質問もあわせてご確認ください。</span><span class="en" lang="en">Inquiries about admission are accepted by email.</span></p>
+                <div class="hero-buttons">
+                    <a href="mailto:info@vr.u-tokyo.ac.jp" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> info@vr.u-tokyo.ac.jp</a>
+                    <a href="index.html#contact" class="btn btn-secondary"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> <span class="ja">アクセス</span><span class="en" lang="en">Access</span></a>
+                </div>
+                <ul class="faq-sns" aria-label="SNS">
+                    <li><a href="https://x.com/amelabvr" target="_blank" rel="noopener"><svg class="x-logo" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a></li>
+                    <li><a href="https://www.instagram.com/amelabvr/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    <li><a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube</a></li>
+                </ul>
+                <address>
+                    <span class="ja">〒113-8658 東京都文京区弥生2-11-16<br>東京大学 浅野キャンパス 情報基盤センター 浅野本館 雨宮研究室</span><span class="en" lang="en">Amemiya Lab, Information Technology Center, Asano Main Building<br>2-11-16 Yayoi, Bunkyo-ku, Tokyo 113-8658, Japan</span>
+                </address>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html"><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- このページ専用の動き：検索・すべて開く・URLの #質問ID で開く -->
+    <script>
+    (function () {
+        var root = document.documentElement;
+        var items = [].slice.call(document.querySelectorAll('.faq-item'));
+        var groups = [].slice.call(document.querySelectorAll('.faq-group'));
+        var input = document.getElementById('faqSearch');
+        var toggle = document.getElementById('faqToggle');
+        var count = document.getElementById('faqCount');
+        var empty = document.getElementById('faqEmpty');
+        var query = '';
+        var en = function () { return root.lang === 'en'; };
+        var norm = function (s) { return s.toLowerCase().replace(/\s+/g, ' ').normalize('NFKC'); };
+        items.forEach(function (d) { d._text = norm(d.textContent); });
+        // カテゴリ一覧の横の件数を数える
+        document.querySelectorAll('.faq-toc a').forEach(function (a) {
+            var g = document.getElementById(a.getAttribute('href').slice(1));
+            var c = a.querySelector('.faq-toc-count');
+            if (g && c) c.textContent = g.querySelectorAll('.faq-item').length;
+        });
+
+        function updateToggle() {
+            var shown = items.filter(function (d) { return !d.hidden; });
+            var allOpen = shown.length > 0 && shown.every(function (d) { return d.open; });
+            toggle.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+            toggle.querySelector('i').className = 'fa-solid ' + (allOpen ? 'fa-angles-up' : 'fa-angles-down');
+            toggle.querySelector('.ja').textContent = allOpen ? 'すべて閉じる' : 'すべて開く';
+            toggle.querySelector('.en').textContent = allOpen ? 'Collapse all' : 'Expand all';
+        }
+        function updateCount() {
+            var n = items.filter(function (d) { return !d.hidden; }).length;
+            if (!query) count.textContent = en() ? items.length + ' questions' : '全' + items.length + '件の質問';
+            else count.textContent = en() ? n + ' of ' + items.length + ' questions match' : n + '件の質問が見つかりました';
+            empty.hidden = n > 0;
+        }
+        function search() {
+            query = norm(input.value.trim());
+            var words = query ? query.split(' ') : [];
+            items.forEach(function (d) {
+                var hit = words.every(function (w) { return d._text.indexOf(w) !== -1; });
+                d.hidden = !hit;
+                if (words.length) {
+                    if (hit && !d.open) { d.open = true; d._auto = true; }
+                } else if (d._auto) { d.open = false; d._auto = false; }
+            });
+            groups.forEach(function (g) { g.hidden = !g.querySelector('.faq-item:not([hidden])'); });
+            updateCount(); updateToggle();
+        }
+        input.addEventListener('input', search);
+        toggle.addEventListener('click', function () {
+            var open = toggle.getAttribute('aria-expanded') !== 'true';
+            items.forEach(function (d) { if (!d.hidden) { d.open = open; d._auto = false; } });
+            updateToggle();
+        });
+        items.forEach(function (d) { d.addEventListener('toggle', function () { if (!d.open) d._auto = false; updateToggle(); }); });
+
+        // faq.html#q-apply のように質問IDを付けると、その質問を開いて表示
+        function openFromHash() {
+            var id = decodeURIComponent(location.hash.slice(1));
+            var el = id && document.getElementById(id);
+            if (!el) return;
+            var d = el.closest('.faq-item');
+            if (d) {
+                if (d.hidden) { input.value = ''; search(); }
+                d.open = true;
+                requestAnimationFrame(function () { d.scrollIntoView({ block: 'start' }); });
+            }
+        }
+        window.addEventListener('hashchange', openFromHash);
+        openFromHash();
+
+        // 日英切替に合わせて件数表示を更新
+        new MutationObserver(updateCount).observe(root, { attributes: true, attributeFilter: ['lang'] });
+        updateCount(); updateToggle();
+    })();
+    </script>
+</body>
+</html>
