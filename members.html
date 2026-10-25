@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）のメンバー紹介。教授・スタッフ・学生・OB/OG。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="メンバー | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）のメンバー紹介。教授・スタッフ・学生・OB/OG。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <!-- GitHub Pages の公開URLに書き換えてから、以下2行のコメントを外してください
+    <meta property="og:url" content="https://ユーザー名.github.io/リポジトリ名/members.html">
+    <meta property="og:image" content="https://ユーザー名.github.io/リポジトリ名/img/ogp.png">
+    -->
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-title-ja="メンバー | 雨宮研究室 AME LAB" data-title-en="Members | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）のメンバー紹介。教授・スタッフ・学生・OB/OG。" data-desc-en="Members of AME LAB (Amemiya Lab), The University of Tokyo: faculty, staff, students and alumni.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="members.html" class="nav-link active" aria-current="page"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></span>
+            </nav>
+            <span class="section-tag">Team Members</span>
+            <h1 class="page-title"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></h1>
+            <p class="hero-subtitle"><span class="ja">教員・スタッフ・学生と、研究室を巣立ったOB・OGを紹介します。</span><span class="en" lang="en">Faculty, staff and students, as well as our alumni.</span></p>
+        </div>
+    </section>
+
+    <section id="pi">
+        <div class="member-category">
+            <h2 class="member-category-title">Principal Investigator (PI)</h2>
+            <div class="pi-profile">
+                <div class="avatar" data-avatar>
+                    <i class="fa-solid fa-user-tie avatar-fallback" aria-hidden="true"></i>
+                    <img src="img/members/amemiya-tomohiro.jpg" alt="" width="168" height="168" decoding="async">
+                </div>
+                <div>
+                    <div class="member-role"><span class="ja">教授</span><span class="en" lang="en">Professor</span></div>
+                    <h3>雨宮 智浩<small lang="en">AMEMIYA Tomohiro</small></h3>
+                    <p class="pi-affil"><span class="ja">東京大学 情報基盤センター 教授<br>東京大学 バーチャルリアリティ教育研究センター 教授・副センター長（兼務）<br>博士（情報科学）</span><span class="en" lang="en">Professor, Information Technology Center, The University of Tokyo<br>Professor and Vice Director (concurrent), Virtual Reality Educational Research Center<br>Ph.D. (Information Science)</span></p>
+
+                    <h4 class="sub-heading"><span class="ja">研究分野</span><span class="en" lang="en">Research Interests</span></h4>
+                    <p class="card-text"><span class="ja">バーチャルリアリティ、触覚インタフェース、錯覚応用工学、VR/メタバースの教育利用</span><span class="en" lang="en">Virtual reality, haptic interfaces, illusion-based engineering, and VR/metaverse in education</span></p>
+
+                    <h4 class="sub-heading"><span class="ja">経歴</span><span class="en" lang="en">Career</span></h4>
+                    <ul class="timeline">
+                            <li><time>2002</time><span class="ja">東京大学 工学部 卒業</span><span class="en" lang="en">B.Eng., Faculty of Engineering, The University of Tokyo</span></li>
+                            <li><time>2004</time><span class="ja">東京大学大学院 情報理工学系研究科 修士課程 修了。NTT入社、NTTコミュニケーション科学基礎研究所 研究員</span><span class="en" lang="en">M.S., Graduate School of Information Science and Technology, The University of Tokyo. Joined NTT as a researcher at NTT Communication Science Laboratories</span></li>
+                            <li><time>2014–2015</time><span class="ja">University College London (UCL) Institute of Cognitive Neuroscience 客員研究員</span><span class="en" lang="en">Visiting Researcher, UCL Institute of Cognitive Neuroscience</span></li>
+                            <li><time>2019</time><span class="ja">東京大学大学院 情報理工学系研究科 准教授</span><span class="en" lang="en">Associate Professor, Graduate School of Information Science and Technology, The University of Tokyo</span></li>
+                            <li><time>2023</time><span class="ja">東京大学 情報基盤センター 教授。バーチャルリアリティ教育研究センター 教授・副センター長（兼務）</span><span class="en" lang="en">Professor, Information Technology Center, The University of Tokyo; Professor and Vice Director (concurrent), Virtual Reality Educational Research Center</span></li>
+                    </ul>
+
+                    <h4 class="sub-heading"><span class="ja">主な役職</span><span class="en" lang="en">Service</span></h4>
+                    <p class="card-text"><span class="ja">日本バーチャルリアリティ学会・ヒューマンインタフェース学会 理事、総務省の研究会構成員 など</span><span class="en" lang="en">Board member of the Virtual Reality Society of Japan and the Human Interface Society; member of study groups of the Ministry of Internal Affairs and Communications</span></p>
+
+                    <div class="profile-links">
+                        <a href="https://www.amemiya.ecc.u-tokyo.ac.jp/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-globe" aria-hidden="true"></i> <span class="ja">個人サイト</span><span class="en" lang="en">Personal website</span></a>
+                        <span class="chip-link"><i class="fa-solid fa-envelope" aria-hidden="true"></i> amemiya [at] vr.u-tokyo.ac.jp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" style="padding-top: 0;">
+        <!-- Staff -->
+        <div class="member-category">
+            <h2 class="member-category-title"><span class="ja">スタッフ</span><span class="en" lang="en">Staff</span></h2>
+            <ul class="person-grid">
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">青</span>
+                        <img src="img/members/aoyama-kazuma.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任准教授</span><span class="en" lang="en">Project Associate Professor</span></span>
+                    <span class="person-name">青山 一真</span>
+                    <span class="person-roman" lang="en">AOYAMA Kazuma</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">牛</span>
+                        <img src="img/members/ushiyama-keigo.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任研究員</span><span class="en" lang="en">Project Researcher</span></span>
+                    <span class="person-name">牛山 奎悟</span>
+                    <span class="person-roman" lang="en">USHIYAMA Keigo</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">小</span>
+                        <img src="img/members/oyanagi-akimi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任研究員</span><span class="en" lang="en">Project Researcher</span></span>
+                    <span class="person-name">小柳 陽光</span>
+                    <span class="person-roman" lang="en">OYANAGI Akimi</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">伊</span>
+                        <img src="img/members/ito-mitsuru.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">客員研究員</span><span class="en" lang="en">Visiting Researcher</span></span>
+                    <span class="person-name">伊藤 充</span>
+                    <span class="person-roman" lang="en">ITO Mitsuru</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">栗</span>
+                        <img src="img/members/kurita-yusuke.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">学術専門職員</span><span class="en" lang="en">Academic Support Specialist</span></span>
+                    <span class="person-name">栗田 祐輔</span>
+                    <span class="person-roman" lang="en">KURITA Yusuke</span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">佐</span>
+                        <img src="img/members/sakuma-asuka.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-role"><span class="ja">特任専門職員</span><span class="en" lang="en">Project Specialist</span></span>
+                    <span class="person-name">佐久間 明日香</span>
+                    <span class="person-roman" lang="en">SAKUMA Asuka</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Students -->
+        <div class="member-category">
+            <h2 class="member-category-title"><span class="ja">学生</span><span class="en" lang="en">Students</span></h2>
+
+            <h3 class="member-subtitle"><span class="ja">博士課程</span><span class="en" lang="en">Doctoral Course</span></h3>
+            <ul class="person-grid">
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">渡</span>
+                        <img src="img/members/watanabe-riku.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">渡部 理久</span>
+                    <span class="person-roman" lang="en">WATANABE Riku</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">何</span>
+                        <img src="img/members/izu-takeshi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">何 毅</span>
+                    <span class="person-roman" lang="en">IZU Takeshi</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">川</span>
+                        <img src="img/members/kawashima-yusuke.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">川島 悠輔</span>
+                    <span class="person-roman" lang="en">KAWASHIMA Yusuke</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+            </ul>
+
+            <h3 class="member-subtitle"><span class="ja">修士課程</span><span class="en" lang="en">Master's Course</span></h3>
+            <ul class="person-grid">
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">佐</span>
+                        <img src="img/members/sasao-tsukihi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">佐々尾 月陽</span>
+                    <span class="person-roman" lang="en">SASAO Tsukihi</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">志</span>
+                        <img src="img/members/shiki-kenta.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">志貴 健太</span>
+                    <span class="person-roman" lang="en">SHIKI Kenta</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">長</span>
+                        <img src="img/members/hasegawa-yuhi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">長谷川 雄飛</span>
+                    <span class="person-roman" lang="en">HASEGAWA Yuhi</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">渡</span>
+                        <img src="img/members/watanabe-masatoshi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">渡邉 政紀</span>
+                    <span class="person-roman" lang="en">WATANABE Masatoshi</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">佐</span>
+                        <img src="img/members/sato-ryoichi.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">佐藤 遼一</span>
+                    <span class="person-roman" lang="en">SATO Ryoichi</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">深</span>
+                        <img src="img/members/fukaya-taisei.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">深谷 太聖</span>
+                    <span class="person-roman" lang="en">FUKAYA Taisei</span>
+                    <span class="campus-badge badge-purple"><span class="ja">総合文化研究科</span><span class="en" lang="en">Arts and Sciences</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">塚</span>
+                        <img src="img/members/tsukada-masataka.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">塚田 昌孝</span>
+                    <span class="person-roman" lang="en">TSUKADA Masataka</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+                <li class="person-chip">
+                    <span class="avatar" data-avatar>
+                        <span class="avatar-fallback" aria-hidden="true">三</span>
+                        <img src="img/members/mikami-hinata.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+                    </span>
+                    <span class="person-name">三上 日向汰</span>
+                    <span class="person-roman" lang="en">MIKAMI Hinata</span>
+                    <span class="campus-badge badge-blue"><span class="ja">学際情報学府</span><span class="en" lang="en">Interdisciplinary Info. Studies</span></span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="alumni" style="padding-top: 0;">
+        <div class="member-category">
+            <h2 class="member-category-title"><span class="ja">OB・OG</span><span class="en" lang="en">Alumni</span></h2>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><span class="ja">氏名</span><span class="en" lang="en">Name</span></th>
+                            <th scope="col"><span class="ja">在籍時の身分</span><span class="en" lang="en">Position</span></th>
+                            <th scope="col"><span class="ja">在籍期間</span><span class="en" lang="en">Period</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>王 禄廷<small lang="en">WANG Luting</small></td>
+                            <td><span class="ja">修士課程（総合文化研究科 広域科学専攻 広域システム科学系）</span><span class="en" lang="en">Master's Course, Graduate School of Arts and Sciences</span></td>
+                            <td><span class="ja">2026年3月 修了</span><span class="en" lang="en">Graduated Mar. 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td>ヤェム ヴィボル<small lang="en">YEM Vibol</small></td>
+                            <td><span class="ja">特任准教授</span><span class="en" lang="en">Project Associate Professor</span></td>
+                            <td><span class="ja">2024.4 – 2026.3</span><span class="en" lang="en">Apr. 2024 – Mar. 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td>髙橋 哲史<small lang="en">TAKAHASHI Akifumi</small></td>
+                            <td><span class="ja">特任助教</span><span class="en" lang="en">Project Assistant Professor</span></td>
+                            <td><span class="ja">2024.6 – 2026.3</span><span class="en" lang="en">Jun. 2024 – Mar. 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td>伊藤 研一郎<small lang="en">ITO Kenichiro</small></td>
+                            <td><span class="ja">助教</span><span class="en" lang="en">Assistant Professor</span></td>
+                            <td><span class="ja">2020.4 – 2025.5</span><span class="en" lang="en">Apr. 2020 – May 2025</span></td>
+                        </tr>
+                        <tr>
+                            <td>宮本 道人<small lang="en">MIYAMOTO Dohjin</small></td>
+                            <td><span class="ja">特任研究員</span><span class="en" lang="en">Project Researcher</span></td>
+                            <td><span class="ja">2022.6 – 2023.9</span><span class="en" lang="en">Jun. 2022 – Sep. 2023</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-links">
+            <a href="index.html#prospective" class="btn btn-primary"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> <span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions &amp; Collaboration</span></a>
+            <a href="index.html#members" class="btn btn-secondary"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="ja">トップページへ戻る</span><span class="en" lang="en">Back to top page</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究紹介 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）の研究紹介。擬似力覚、腱振動による運動錯覚、VR空間の移動感覚、VR/メタバースによる教育・訓練など。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="研究紹介 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）の研究紹介。擬似力覚、腱振動による運動錯覚、VR空間の移動感覚、VR/メタバースによる教育・訓練など。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <!-- GitHub Pages の公開URLに書き換えてから、以下2行のコメントを外してください
+    <meta property="og:url" content="https://ユーザー名.github.io/リポジトリ名/research.html">
+    <meta property="og:image" content="https://ユーザー名.github.io/リポジトリ名/img/ogp.png">
+    -->
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-title-ja="研究紹介 | 雨宮研究室 AME LAB" data-title-en="Research | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）の研究紹介。擬似力覚、腱振動による運動錯覚、VR空間の移動感覚、VR/メタバースによる教育・訓練など。" data-desc-en="Research at AME LAB (Amemiya Lab), The University of Tokyo: pseudo-force, kinesthetic illusions, self-motion in VR, and education and training with VR.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link active" aria-current="page"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></span>
+            </nav>
+            <span class="section-tag">Research</span>
+            <h1 class="page-title"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></h1>
+            <p class="hero-subtitle"><span class="ja">身体感覚・錯覚・五感インタフェースの基礎研究から、VR/メタバースを活用した教育・訓練まで、研究室の取り組みを紹介します。</span><span class="en" lang="en">From fundamental research on bodily sensation, illusions and multisensory interfaces to education and training with VR and the metaverse.</span></p>
+        </div>
+    </section>
+
+    <section id="themes">
+        <div class="section-header" style="margin-bottom: 3rem;">
+            <ul class="keyword-list" style="margin-top: 0;">
+                <li><span class="ja">VR/メタバース教育</span><span class="en" lang="en">VR/Metaverse Education</span></li>
+                <li><span class="ja">身体感覚</span><span class="en" lang="en">Bodily Sensation</span></li>
+                <li><span class="ja">錯覚応用工学</span><span class="en" lang="en">Illusion-Based Engineering</span></li>
+                <li><span class="ja">五感インタフェース</span><span class="en" lang="en">Multisensory Interfaces</span></li>
+                <li><span class="ja">経皮電気刺激</span><span class="en" lang="en">Transcutaneous Electrical Stimulation</span></li>
+                <li><span class="ja">疑似体験</span><span class="en" lang="en">Simulated Experience</span></li>
+                <li><span class="ja">行動変容</span><span class="en" lang="en">Behavior Change</span></li>
+                <li><span class="ja">人間情報システム</span><span class="en" lang="en">Human Information Systems</span></li>
+            </ul>
+        </div>
+
+        <div class="theme-group" id="sensation">
+            <div class="theme-group-head">
+                <h2 class="member-category-title"><span class="ja">身体感覚・錯覚・五感インタフェース</span><span class="en" lang="en">Bodily Sensation, Illusions &amp; Multisensory Interfaces</span></h2>
+                <p><span class="ja">錯覚や身体感覚の仕組みを利用して、従来の装置では難しかった力覚・運動感覚・移動感覚を生み出す技術を研究しています。</span><span class="en" lang="en">We use the mechanisms of illusions and bodily sensation to create force, kinesthetic and self-motion sensations that conventional devices struggle to produce.</span></p>
+            </div>
+            <div class="grid-3">
+                <article class="card theme-card">
+                    <i class="fa-solid fa-hand-sparkles card-icon icon-cyan" aria-hidden="true"></i>
+                    <h3><span class="ja">擬似力覚表現の研究</span><span class="en" lang="en">Pseudo-Force Presentation</span></h3>
+                    <p class="card-text"><span class="ja">牽引感や重量感といった力感覚は、皮膚や筋などにある受容器への機械的刺激によって生み出されますが、受容器の特性や身体構造の影響を強く受けます。</span><span class="en" lang="en">Force sensations such as being pulled or feeling weight arise from mechanical stimulation of receptors in the skin and muscles, but they are strongly shaped by receptor properties and body structure.</span></p>
+                    <p class="card-text"><span class="ja">そのため、知覚・運動特性を逆手に取れば、従来では表現できない力覚を生み出すことができます。本研究では、こうした擬似力覚表現と五感情報を組み合わせた表現技術について研究しています。</span><span class="en" lang="en">By turning these perceptual and motor characteristics to our advantage, we can create force sensations that conventional methods cannot render. We study presentation techniques that combine such pseudo-force cues with multisensory information.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-wave-square card-icon icon-blue" aria-hidden="true"></i>
+                    <h3><span class="ja">腱振動刺激による運動錯覚を使った情報表現</span><span class="en" lang="en">Information Display Using Kinesthetic Illusions from Tendon Vibration</span></h3>
+                    <p class="card-text"><span class="ja">腱に対する振動刺激によって生じる運動錯覚を活用し、新しい情報提示手法の実現を目指しています。腱振動刺激は、実際には身体を動かしていないにもかかわらず、関節が動いたように感じさせることができます。</span><span class="en" lang="en">We aim to build new ways of presenting information using the movement illusions produced by vibrating tendons. Tendon vibration can make a joint feel as if it has moved even though the body is still.</span></p>
+                    <p class="card-text"><span class="ja">この現象は身体の状態を知覚する固有感覚に作用するため、身体内部に直接働きかける情報提示として利用できる可能性があります。運動錯覚を、方向や強度などの情報を身体感覚として表現する手段と位置づけ、UIへの活用に向けた研究を行っています。</span><span class="en" lang="en">Because it acts on proprioception, the sense of the body's own state, it may enable information display that works directly inside the body. We treat the illusion as a means of expressing information such as direction and intensity through bodily sensation, and study its use in user interfaces.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-arrows-left-right card-icon icon-purple" aria-hidden="true"></i>
+                    <h3><span class="ja">腱振動による物体の変形錯覚</span><span class="en" lang="en">Object Deformation Illusions by Tendon Vibration</span></h3>
+                    <p class="card-text"><span class="ja">腱振動によって生じる運動錯覚を、棒の擬似的な伸縮を提示する手法に応用する研究を進めています。</span><span class="en" lang="en">We apply movement illusions induced by tendon vibration to a method that makes a rod seem to stretch or shrink.</span></p>
+                    <p class="card-text"><span class="ja">両手で物体に外力を加えて変形させるVRインタラクションへの応用や、操作のリアリティを高める可能性を検証しています。</span><span class="en" lang="en">We are examining applications to VR interactions in which users deform objects with both hands, and the potential to make such manipulation feel more real.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-person-walking card-icon icon-cyan" aria-hidden="true"></i>
+                    <h3><span class="ja">VR空間の移動感覚に関する研究</span><span class="en" lang="en">Sense of Self-Motion in VR</span></h3>
+                    <p class="card-text"><span class="ja">VR空間で歩行した感覚を生むために、実際に歩くことなく歩行したような感覚を生み出す手法の確立を目指しています。</span><span class="en" lang="en">To create the feeling of walking in VR, we aim to establish methods that produce a walking sensation without actually walking.</span></p>
+                    <p class="card-text"><span class="ja">着座状態で視覚・前庭感覚・触覚に機械的・電気的刺激を提示し、擬似的な歩行感覚を生み出すVR技術を研究しています。</span><span class="en" lang="en">We study VR techniques that present mechanical and electrical stimulation to the visual, vestibular and tactile senses of a seated user to generate a pseudo-walking sensation.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-mug-hot card-icon icon-blue" aria-hidden="true"></i>
+                    <h3><span class="ja">Pseudo-hapticsによる飲料体験変調の研究</span><span class="en" lang="en">Modulating Drinking Experiences with Pseudo-Haptics</span></h3>
+                    <p class="card-text"><span class="ja">VRにおける疑似触覚フィードバックが、飲料の知覚にどのような影響を与えるかを調べています。</span><span class="en" lang="en">We investigate how pseudo-haptic feedback in VR affects the perception of beverages.</span></p>
+                    <p class="card-text"><span class="ja">実際の手の動きに対してVR内の手の表示を遅らせたり早めたりする視覚操作（Pseudo-haptics）が、飲用課題にどのような影響を及ぼすかを評価しました。</span><span class="en" lang="en">We evaluated how visually delaying or advancing the virtual hand relative to the real hand (pseudo-haptics) influences a drinking task.</span></p>
+                </article>
+            </div>
+        </div>
+
+        <div class="theme-group" id="education">
+            <div class="theme-group-head">
+                <h2 class="member-category-title"><span class="ja">VR・メタバースによる教育・訓練</span><span class="en" lang="en">Education &amp; Training with VR and the Metaverse</span></h2>
+                <p><span class="ja">東京大学バーチャルリアリティ教育研究センターでの実践を通じて、VR・メタバースを講義や訓練に活用する方法を研究しています。</span><span class="en" lang="en">Through practice at the UTokyo Virtual Reality Educational Research Center, we study how to use VR and the metaverse in lectures and training.</span></p>
+            </div>
+            <div class="grid-3">
+                <article class="card theme-card">
+                    <i class="fa-solid fa-vr-cardboard card-icon icon-purple" aria-hidden="true"></i>
+                    <h3><span class="ja">ソーシャルVR空間でのVR講義</span><span class="en" lang="en">VR Lectures in Social VR Spaces</span></h3>
+                    <p class="card-text"><span class="ja">新型コロナウイルス感染症（COVID-19）の世界的な拡大に伴い、大学でも対面講義から遠隔講義への変更を迫られました。</span><span class="en" lang="en">As COVID-19 spread worldwide, universities had to shift from in-person to remote lectures.</span></p>
+                    <p class="card-text"><span class="ja">東大VRセンターではVR講義を実施してきましたが、気軽に試してみたいという問い合わせが多いことから、バーチャルSNSのひとつであるclusterにVR講義用の教室を公開しました。交流の場として、カフェを模したスペースも公開しています。</span><span class="en" lang="en">The UTokyo VR Center has been running VR lectures, and because many people asked to try them casually, we opened a VR lecture classroom on the virtual social platform cluster, along with a café-style space for socializing.</span></p>
+                    <div class="theme-links">
+                        <a href="https://cluster.mu/w/4a45790f-8576-482a-8d3d-d7c2c9a42e2c" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">clusterのワールド 1</span><span class="en" lang="en">cluster world 1</span></a>
+                        <a href="https://cluster.mu/w/215f4ad2-0777-45bd-ae32-b8416a763490" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">clusterのワールド 2</span><span class="en" lang="en">cluster world 2</span></a>
+                    </div>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-people-group card-icon icon-cyan" aria-hidden="true"></i>
+                    <h3><span class="ja">ソーシャルVRサービスを活用した遠隔講義</span><span class="en" lang="en">Remote Lectures Using Social VR Services</span></h3>
+                    <p class="card-text"><span class="ja">新型コロナウイルス感染症の拡大に伴い、日本の大学では遠隔講義の導入が一気に進みました。一方で、オンライン会議システムを使った遠隔講義が続くことによる「Zoom Fatigue（Zoom疲れ）」も報告されています。</span><span class="en" lang="en">As COVID-19 spread, Japanese universities rapidly adopted remote lectures, while continued use of video conferencing led to reports of "Zoom fatigue."</span></p>
+                    <p class="card-text"><span class="ja">VRセンターでは、ソーシャルVRプラットフォームを遠隔講義に活用できないか、実験的な講義を通じて有効なトピックや使い方に取り組んでいます。</span><span class="en" lang="en">Through experimental lectures, the VR Center explores whether social VR platforms can be used for remote teaching, and which topics and ways of use work well.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-masks-theater card-icon icon-blue" aria-hidden="true"></i>
+                    <h3><span class="ja">アバタ技術を使った効果的な遠隔講義の研究</span><span class="en" lang="en">Effective Remote Lectures with Avatar Technology</span></h3>
+                    <p class="card-text"><span class="ja">アバタを使ったライバー（いわゆるVTuber）の登場など、自らの見た目を変えて情報発信をする場が増えています。しかし、見た目を変えた講師が情報を伝えることで、先生側・生徒側にどのような効果が得られるかは、まだ十分に明らかになっていません。</span><span class="en" lang="en">With the rise of avatar-based streamers (so-called VTubers), more people share information with an altered appearance. However, the effects on teachers and students when a lecturer with a changed appearance teaches are not yet well understood.</span></p>
+                    <p class="card-text"><span class="ja">東大VRセンターでは、ディープフェイク技術で見た目を変えた状態でZoomによるオンライン授業を実施し、受講生の振る舞いを検証しています。</span><span class="en" lang="en">At the UTokyo VR Center, we run online classes on Zoom with the lecturer's appearance altered by deepfake technology and examine how students behave.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-brain card-icon icon-purple" aria-hidden="true"></i>
+                    <h3><span class="ja">生体情報を利用した学習支援</span><span class="en" lang="en">Learning Support Using Biosignals</span></h3>
+                    <p class="card-text"><span class="ja">動画や音声コンテンツを倍速で再生する視聴スタイルが広まっています。</span><span class="en" lang="en">Watching videos and listening to audio at increased playback speed has become common.</span></p>
+                    <p class="card-text"><span class="ja">本研究では、脳波などの生体信号に基づいて集中度を計測し、音声コンテンツの再生速度を制御する手法の開発を進めています。</span><span class="en" lang="en">We are developing a method that measures concentration from EEG and other biosignals and uses it to control the playback speed of audio content.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-chalkboard-user card-icon icon-cyan" aria-hidden="true"></i>
+                    <h3><span class="ja">VRを活用した訓練システムの研究</span><span class="en" lang="en">VR-Based Training Systems</span></h3>
+                    <p class="card-text"><span class="ja">教育にVRを活用すると、教室内では難しかったインタラクティブな体験の導入、個々の受講者の理解度に応じた講義内容の編集、さまざまな知覚・心理効果の拡張による学習内容の理解の深化などが期待できます。</span><span class="en" lang="en">Using VR in education makes it possible to introduce interactive experiences that are hard to offer in a classroom, tailor content to each learner's understanding, and deepen understanding by extending perceptual and psychological effects.</span></p>
+                    <p class="card-text"><span class="ja">本テーマでは、実際の教育・学習で使うことを目標に、新しいVR/AR教育システムを研究しています。</span><span class="en" lang="en">In this theme, we study new VR/AR education systems intended for use in real teaching and learning.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-kit-medical card-icon icon-blue" aria-hidden="true"></i>
+                    <h3><span class="ja">一人称視点の切り替えによる小動物の手術VR教材</span><span class="en" lang="en">First-Person Surgical VR Materials for Small-Animal Surgery</span></h3>
+                    <p class="card-text"><span class="ja">獣医臨床教育において、技能依存度の高い外科手術の教育は、その複雑さと繊細さから常に難しい課題です。</span><span class="en" lang="en">In veterinary clinical education, teaching highly skill-dependent surgery is always challenging because of its complexity and delicacy.</span></p>
+                    <p class="card-text"><span class="ja">本研究では、術者の頭部に360度カメラを装着して撮影したVR映像を用い、一人称視点で体験できる獣医学教育用のVRシステムを開発し、従来の映像教材と学習効果を比較しました。</span><span class="en" lang="en">We developed a VR system that lets learners experience surgery from the surgeon's first-person view, using 360° video recorded with a camera mounted on the surgeon's head, and compared its learning effects with conventional video materials.</span></p>
+                </article>
+                <article class="card theme-card">
+                    <i class="fa-solid fa-fire-extinguisher card-icon icon-purple" aria-hidden="true"></i>
+                    <h3><span class="ja">消防隊員のVR訓練</span><span class="en" lang="en">VR Training for Firefighters</span></h3>
+                    <p class="card-text"><span class="ja">進行中のプロジェクトです。詳しくは東京大学バーチャルリアリティ教育研究センターのWebサイトをご覧ください。</span><span class="en" lang="en">An ongoing project. See the website of the Virtual Reality Educational Research Center, The University of Tokyo, for details.</span></p>
+                    <div class="theme-links">
+                        <a href="https://vr.u-tokyo.ac.jp/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">VR教育研究センター</span><span class="en" lang="en">VR Educational Research Center</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="page-links">
+            <a href="publications.html" class="btn btn-primary"><i class="fa-solid fa-book" aria-hidden="true"></i> <span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a>
+            <a href="index.html#research" class="btn btn-secondary"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="ja">トップページへ戻る</span><span class="en" lang="en">Back to top page</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>論文・発表一覧 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）の学術論文誌、国際会議、国内発表、招待講演、受賞、メディア掲載の一覧。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="論文・発表一覧 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）の学術論文誌、国際会議、国内発表、招待講演、受賞、メディア掲載の一覧。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <!-- GitHub Pages の公開URLに書き換えてから、以下2行のコメントを外してください
+    <meta property="og:url" content="https://ユーザー名.github.io/リポジトリ名/publications.html">
+    <meta property="og:image" content="https://ユーザー名.github.io/リポジトリ名/img/ogp.png">
+    -->
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-title-ja="論文・発表一覧 | 雨宮研究室 AME LAB" data-title-en="Publications | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）の学術論文誌、国際会議、国内発表、招待講演、受賞、メディア掲載の一覧。" data-desc-en="Publications, talks, awards and media coverage of AME LAB (Amemiya Lab), The University of Tokyo.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link active" aria-current="page"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></span>
+            </nav>
+            <span class="section-tag">Publications</span>
+            <h1 class="page-title"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></h1>
+            <p class="hero-subtitle"><span class="ja">学術論文誌、国際会議、国内学会・解説記事、招待講演、受賞、メディア掲載の一覧です（2026年10月時点）。</span><span class="en" lang="en">Journal papers, international conferences, domestic presentations and articles, invited talks, awards and media coverage (as of October 2026).</span></p>
+        </div>
+    </section>
+
+    <section id="publication-list">
+        <div class="list-toolbar">
+            <div class="filter-tabs" role="group" aria-label="Filter">
+                <button type="button" class="filter-tab active" data-for="pubList" data-filter="all" aria-pressed="true"><span class="ja">すべて</span><span class="en" lang="en">All</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="pubList" data-filter="journal" aria-pressed="false"><span class="ja">学術論文誌</span><span class="en" lang="en">Journals</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="pubList" data-filter="intl" aria-pressed="false"><span class="ja">国際会議</span><span class="en" lang="en">International</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="pubList" data-filter="dom" aria-pressed="false"><span class="ja">国内発表・解説記事</span><span class="en" lang="en">Domestic &amp; Articles</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="pubList" data-filter="talk" aria-pressed="false"><span class="ja">招待講演</span><span class="en" lang="en">Invited Talks</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="pubList" data-filter="award" aria-pressed="false"><span class="ja">受賞</span><span class="en" lang="en">Awards</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="pubList" data-filter="media" aria-pressed="false"><span class="ja">メディア掲載</span><span class="en" lang="en">Media</span><span class="count"></span></button>
+            </div>
+            <label class="search-box">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search" data-search-for="pubList" data-ph-ja="タイトル・著者・会議名で検索" data-ph-en="Search by title, author or venue" placeholder="タイトル・著者・会議名で検索" aria-label="タイトル・著者・会議名で検索">
+            </label>
+        </div>
+        <p class="result-count" data-count-for="pubList" aria-live="polite"></p>
+
+        <div id="pubList" data-list>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2026">2026</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-07">2026.07</time>
+                        </div>
+                        <p class="pub-title">FEM-Based Optimal Electrode Configuration for Combined Transcutaneous Electrical Nerve Stimulation</p>
+                        <p class="pub-authors">Takashi Ota, Tomohiro Amemiya, Hideaki Kuzuoka, Kazuma Aoyama</p>
+                        <p class="pub-venue">Human Interface and the Management of Information (HIMI 2026), held as part of the 28th HCI International Conference, Montreal, Canada, pp. 63–78, July 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-07">2026.07</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Demo Award Honorable Mention</span>
+                        </div>
+                        <p class="pub-title">Demonstration of Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object</p>
+                        <p class="pub-authors">Keigo Ushiyama*, Tsukihi Sasao*, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Proceedings of Eurohaptics 2026, Siena, Italy, July 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-07">2026.07</time>
+                        </div>
+                        <p class="pub-title">Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object</p>
+                        <p class="pub-authors">Keigo Ushiyama*, Tsukihi Sasao*, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Proceedings of Eurohaptics 2026, Siena, Italy, July 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2026-06">2026.06</time>
+                        </div>
+                        <p class="pub-title">Combining Intergroup Contact and Outgroup Embodiment in Virtual Reality: An Exploratory Test of Backfire and Secondary Transfer Effects of Outgroup Embodiment</p>
+                        <p class="pub-authors">Matilde Tassinari, Akimi Oyanagi, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Computers in Human Behavior, 109094, June 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2026-06">2026.06</time>
+                        </div>
+                        <p class="pub-title">Waterless Virtual Footbath Using Airflow and Thermal Contrast: Design and Exploratory Evaluation of Relaxation-Oriented VR Experience</p>
+                        <p class="pub-authors">Zi Xin, Hiroaki Yano, Kazuhiro Fujitsuka, Tomohiro Amemiya, Vibol Yem</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, 7:1826083, June 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2026-04">2026.04</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 電子情報通信学会 MVE賞</span>
+                        </div>
+                        <p class="pub-title">架空都市展示「ない街」における参加型イマーシブ展示の実践報告 ～ 展示構成と来場者アンケートから得られた示唆</p>
+                        <p class="pub-authors">渡邉政紀, 牛山奎悟, 雨宮智浩</p>
+                        <p class="pub-venue">電子情報通信学会研究会, 2026.03</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-03">2026.03</time>
+                        </div>
+                        <p class="pub-title">AsymDrive: Fingertip-Free Force Illusions Induced by Asymmetric Vibrations on Dorsal-Palmar Tendons</p>
+                        <p class="pub-authors">Koki Fukuda, Kazuma Aoyama, Hideaki Kuzuoka, Takuji Narumi, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE VR 2026, Daegu, South Korea, Mar. 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-03">2026.03</time>
+                        </div>
+                        <p class="pub-title">Pulling Illusion Induced by Asymmetric Vibration with Visual Motion Cues</p>
+                        <p class="pub-authors">Keigo Hattori, Satoshi Hashiguchi, Takeshi Tanabe, Tomohiro Amemiya, Fumihisa Shibata, Asako Kimura</p>
+                        <p class="pub-venue">IEEE VR 2026 Workshops, Daegu, South Korea, Mar. 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-03">2026.03</time>
+                        </div>
+                        <p class="pub-title">ThickSip: Pseudo-Haptic Augmentation of Liquid Weight and Thickness in Perceived Mouthfeel</p>
+                        <p class="pub-authors">Luting Wang, Keigo Ushiyama, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Augmented Humans 2026, Okinawa, Japan, Mar. 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2026-03">2026.03</time>
+                        </div>
+                        <p class="pub-title">Self-Hand Joint Deformation with Contact-Color Cueing for Pseudo-Weight and Pressure in VR: A Deployable Design with Initial Validation</p>
+                        <p class="pub-authors">Weiya Chen, Mitsuru Ito, Riku Watanabe, Tomohiro Amemiya, Yuki Ban</p>
+                        <p class="pub-venue">Augmented Humans 2026, Okinawa, Japan, Mar. 2026.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2026-03">2026.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> MVE賞</span>
+                        </div>
+                        <p class="pub-title">架空都市展示「ない街」における参加型イマーシブ展示の実践報告 ～ 展示構成と来場者アンケートから得られた示唆</p>
+                        <p class="pub-authors">渡邉政紀, 牛山奎悟, 雨宮智浩</p>
+                        <p class="pub-venue">電子情報通信学会研究会, IMQ2025-48 IE2025-125 MVE2025-55, 2026.03</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2026-03">2026.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 学術奨励賞</span>
+                        </div>
+                        <p class="pub-title">Modulating Perceived Properties of Beverages Through Visuomotor Distortion in Virtual Reality</p>
+                        <p class="pub-authors">王禄廷, 牛山奎悟, 雨宮智浩</p>
+                        <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2025">2025</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025-12">2025.12</time>
+                        </div>
+                        <p class="pub-title">Co-embodied Mirroring: Investigating the Effects of Movement Blending on Partner Impressions in Virtual Environments</p>
+                        <p class="pub-authors">Yusuke Koseki, Kizashi Nakano, Takuji Narumi, Hideaki Kuzuoka, Tomohiro Amemiya</p>
+                        <p class="pub-venue">31st ACM Symposium on Virtual Reality Software and Technology (VRST 2025), Dec. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2025-11">2025.11</time>
+                        </div>
+                        <p class="pub-title">錯覚が生み出す心と身体の変革</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">第123回テレコム技術情報セミナー, 一般財団法人テレコム先端技術研究支援センター, Nov. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2025-10">2025.10</time>
+                        </div>
+                        <p class="pub-title">Effects of Ankle Tendon Electrical Stimulation on Detection Threshold and Applicability of Redirected Walking</p>
+                        <p class="pub-authors">Takashi Ota, Keigo Matsumoto, Kazuma Aoyama, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
+                        <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, Vol. 31, No. 10, pp. 8956–8968, Oct. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025-10">2025.10</time>
+                        </div>
+                        <p class="pub-title">Enhancing Pseudo-Haptics on the Hand by Viewpoint Shifts in VR</p>
+                        <p class="pub-authors">Riku Watanabe, Mitsuru Ito, Akifumi Takahashi, Tomohiro Amemiya, Yuki Ban</p>
+                        <p class="pub-venue">IEEE International Symposium on Mixed and Augmented Reality (ISMAR 2025), Daejeon, South Korea, Oct. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 論文賞</span>
+                        </div>
+                        <p class="pub-title">有限要素法を用いた経皮電気刺激の電極配置最適化のための自動化システム</p>
+                        <p class="pub-authors">太田貴士, 雨宮智浩, 葛岡英明, 青山一真</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 30, No. 3, pp. 263–270, 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                        </div>
+                        <p class="pub-title">足首の腱電気刺激を用いた勾配操作型リダイレクテッドウォーキング</p>
+                        <p class="pub-authors">太田貴士, 松本啓吾, 青山一真, 雨宮智浩, 鳴海拓志, 葛岡英明</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 30, No. 3, pp. 251–261, 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                        </div>
+                        <p class="pub-title">Pseudo-walking Sensation by Anteroposterior or Lateral Galvanic Vestibular Stimulation and Synchronous Foot-sole Vibrations</p>
+                        <p class="pub-authors">Taiga Oyama, Kazuma Aoyama, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, Vol. 31, No. 9, pp. 5435–5446, Sep. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 学術奨励賞</span>
+                        </div>
+                        <p class="pub-title">Modulating Perceived Properties of Beverages Through Visuomotor Distortion in Virtual Reality</p>
+                        <p class="pub-authors">王禄廷, 牛山奎悟, 雨宮智浩</p>
+                        <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                        </div>
+                        <p class="pub-title">腱への非対称振動刺激を用いた指先非拘束型力覚提示手法の提案</p>
+                        <p class="pub-authors">福田光輝, 中村拓人, 青山一真, 鳴海拓志, 雨宮智浩, 葛岡英明</p>
+                        <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                        </div>
+                        <p class="pub-title">学内サービス展開用の学び場メタバース開発</p>
+                        <p class="pub-authors">Hu Yong Hao, 伊藤研一郎, 雨宮智浩, 相澤清晴</p>
+                        <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                        </div>
+                        <p class="pub-title">仮想の視点と手の操作によるPseudo-haptics</p>
+                        <p class="pub-authors">渡部理久, 伊藤充, 髙橋哲史, 雨宮智浩, 伴祐樹</p>
+                        <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 奨励賞</span>
+                        </div>
+                        <p class="pub-title">FocuSpeed: 生体信号に基づいた集中度計測による音声再生速度の適応制御</p>
+                        <p class="pub-authors">志貴健太, 佐々尾月陽, 長谷川雄飛, 渡邉政紀, 牛山奎悟, 雨宮智浩</p>
+                        <p class="pub-venue">ヒューマンインタフェースシンポジウム2025, 2025.09</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 論文賞</span>
+                        </div>
+                        <p class="pub-title">Pseudo-hapticsによる重さ知覚の変調がVR空間での商品の価値評価向上に及ぼす影響</p>
+                        <p class="pub-authors">大倉直也, 小柳陽光, 鳴海拓志, 葛岡英明, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 3, pp. 165–175, Sep. 2024</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2025-09">2025.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 奨励賞</span>
+                        </div>
+                        <p class="pub-title">FocuSpeed: 生体信号に基づいた集中度計測による音声再生速度の適応制御</p>
+                        <p class="pub-authors">志貴健太, 佐々尾月陽, 長谷川雄飛, 渡邉政紀, 牛山奎悟, 雨宮智浩</p>
+                        <p class="pub-venue">ヒューマンインタフェースシンポジウム2025 学生コンテスト（SICHI）</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025-08">2025.08</time>
+                        </div>
+                        <p class="pub-title">Pulling Illusions on Seating Surfaces: Force Feedback Induced by Distributed Asymmetric Vibrations on Seats</p>
+                        <p class="pub-authors">Koki Fukuda, Kazuma Aoyama, Takuto Nakamura, Tomohiro Amemiya, Takuji Narumi</p>
+                        <p class="pub-venue">ACM Symposium on Applied Perception (SAP &#x27;25), Aug. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025-08">2025.08</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Poster Award</span>
+                        </div>
+                        <p class="pub-title">Exploring the Impact of Moderate Movement Blending and Partner Impressions in Virtual Environments</p>
+                        <p class="pub-authors">Yusuke Koseki, Kizashi Nakano, Takuji Narumi, Hideaki Kuzuoka, Tomohiro Amemiya</p>
+                        <p class="pub-venue">ACM Symposium on Applied Perception (SAP &#x27;25), Aug. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025-08">2025.08</time>
+                        </div>
+                        <p class="pub-title">Evaluating the Text-to-Video-to-Motion Pipeline for Realistic Avatar Animation: A Comparative User Study</p>
+                        <p class="pub-authors">Yong-Hao Hu, Atsuya Matsumoto, Kenichiro Ito, Kizashi Nakano, Takuji Narumi, Hideaki Kuzuoka, Tomohiro Amemiya</p>
+                        <p class="pub-venue">ACM Symposium on Applied Perception (SAP &#x27;25), Aug. 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2025">2025</time>
+                        </div>
+                        <p class="pub-title">Effects of Proprioceptive Attenuation with Noisy Tendon Electrical Stimulation on Adaptation to Beyond-Real Interaction</p>
+                        <p class="pub-authors">Maki Ogawa, Keigo Matsumoto, Kazuma Aoyama, Takuji Narumi</p>
+                        <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, 31(5): 2600–2610, 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025">2025</time>
+                        </div>
+                        <p class="pub-title">Automated Optimization of Electrode Placement in Transcutaneous Electrical Nerve Stimulation Using Numerical Simulation</p>
+                        <p class="pub-authors">Takashi Ota, Hideaki Kuzuoka, Tomohiro Amemiya, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE International Symposium on Biomedical Imaging (ISBI 2025), 2025.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2025">2025</time>
+                        </div>
+                        <p class="pub-title">Avatar Motion Generation Pipeline for the Metaverse via Synthesis of Generative Models of Text and Video</p>
+                        <p class="pub-authors">Yong-Hao Hu, Atsuya Matsumoto, Kenichiro Ito, Takuji Narumi, Hideaki Kuzuoka, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE VR 2025 Workshops, 2025.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2024">2024</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-12">2024.12</time>
+                        </div>
+                        <p class="pub-title">獣医手技学習におけるVR教材と2D教材の効果比較 ―両側精巣摘出術を対象とした実習での導入事例―</p>
+                        <p class="pub-authors">加藤大貴, 前田清洲, 青山一真, 伊藤研一郎, 中川貴之, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 4, pp. 303–312, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-10">2024.10</time>
+                        </div>
+                        <p class="pub-title">Ankle Tendon Electrical Stimulation to Enhance Sensation of Walking on a Slope in Walking-in-Place</p>
+                        <p class="pub-authors">Takashi Ota, Keigo Matsumoto, Kazuma Aoyama, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, Vol. 5, 1456202, Oct. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-10">2024.10</time>
+                            <span class="pub-label">基調講演</span>
+                        </div>
+                        <p class="pub-title">メタバース/VRによる教育訓練の可能性</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">特定非営利活動法人 M2M･IoT研究会 専門部会セミナー, 藤沢, Oct. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-10">2024.10</time>
+                            <span class="pub-label">特別講演</span>
+                        </div>
+                        <p class="pub-title">メタバース/VRで変容する心技体</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">IDW’24 メタバース技術研究会, 東京, Oct. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2024-10">2024.10</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Honorable Mention</span>
+                        </div>
+                        <p class="pub-title">Can a Smartwatch Move Your Fingers? Compact and Practical Electrical Muscle Stimulation in a Smartwatch</p>
+                        <p class="pub-authors">Akifumi Takahashi, Yudai Tanaka, Archit Tamhane, Alan Shen, Shan-Yuan Teng, Pedro Lopes</p>
+                        <p class="pub-venue">ACM UIST 2024</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                        </div>
+                        <p class="pub-title">足底振動で生成されるバーチャル歩行感覚の交流前庭電気刺激とノイズ前庭電気刺激による向上</p>
+                        <p class="pub-authors">小山大嘉, 青山一真, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 3, pp. 101–108, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                        </div>
+                        <p class="pub-title">Virtual Omnibus Lecture: 多様な講師アバタを使った遠隔講義が学生の記憶に与える効果</p>
+                        <p class="pub-authors">瑞穂嵩人, 雨宮智浩, 鳴海拓志, 葛岡英明</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 3, pp. 109–118, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                        </div>
+                        <p class="pub-title">ノンスタVR漫才トレーニング：身体性を伴う漫才実演体験システムの開発</p>
+                        <p class="pub-authors">宮本道人, 石田明, 深谷陸, 谷川智洋, 金井夏生, 田中爽太, 梁弘一, 廣瀬通孝, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 3, pp. 139–142, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 論文賞</span>
+                        </div>
+                        <p class="pub-title">Pseudo-hapticsによる重さ知覚の変調がVR空間での商品の価値評価向上に及ぼす影響</p>
+                        <p class="pub-authors">大倉直也, 小柳陽光, 鳴海拓志, 葛岡英明, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 3, pp. 165–175, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                        </div>
+                        <p class="pub-title">座面への分布的な非対称振動波形が牽引力錯覚に及ぼす効果</p>
+                        <p class="pub-authors">福田光輝, 青山一真, 雨宮智浩, 中村拓人, 鳴海拓志</p>
+                        <p class="pub-venue">第29回日本バーチャルリアリティ学会大会, 2024.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                        </div>
+                        <p class="pub-title">有限要素法を用いた経皮電気刺激の電極配置最適化システム</p>
+                        <p class="pub-authors">太田貴士, 葛岡英明, 雨宮智浩, 青山一真</p>
+                        <p class="pub-venue">第29回日本バーチャルリアリティ学会大会, 2024.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2024-09">2024.09</time>
+                        </div>
+                        <p class="pub-title">足の甲への振動触覚刺激による歩行感覚の生成</p>
+                        <p class="pub-authors">伊藤充, 小川勇, 雨宮智浩</p>
+                        <p class="pub-venue">第29回日本バーチャルリアリティ学会大会, 2024.09</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-08">2024.08</time>
+                            <span class="pub-label">特別講演</span>
+                        </div>
+                        <p class="pub-title">体験の再定義：フィジカルとバーチャルの新たな融合に向けて</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">第23回日本VR医学会学術大会, 東京, Aug. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-05">2024.05</time>
+                        </div>
+                        <p class="pub-title">メタバースとVR技術の利活用と課題</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">光技術動向調査委員会, May 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-05">2024.05</time>
+                        </div>
+                        <p class="pub-title">都市課題をTechでサバこう！～東大教授と学ぶ実践型WS～</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">Student Pavilion, SusHi Tech Tokyo 2024, May 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-05">2024.05</time>
+                            <span class="pub-label">招待講演</span>
+                        </div>
+                        <p class="pub-title">VR/メタバースの現在とこれから</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">Digital Dream Teamプロジェクト：地域課題ラボ～導入編～, May 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-04">2024.04</time>
+                        </div>
+                        <p class="pub-title">Being an older person: Modulation of walking speed with geriatric walking motion avatars</p>
+                        <p class="pub-authors">Yusuke Koseki, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, Vol. 5, 1363043, Apr. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-04">2024.04</time>
+                        </div>
+                        <p class="pub-title">Be Sensei, My Friend: Aikido Training with a Remotely Controlled Proxy Trainer</p>
+                        <p class="pub-authors">Takashige Suzuki, Alarith Uhde, Takuto Nakamura, Takuji Narumi, Tomohiro Amemiya, Hideaki Kuzuoka</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, Vol. 5, 1392635, Apr. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024-04">2024.04</time>
+                        </div>
+                        <p class="pub-title">Synergistic Illusions: Enhancing Perceptual Effects of Pseudo-Attraction Force by Kinesthetic Illusory Hand Movement</p>
+                        <p class="pub-authors">Takuya Noto, Takuto Nakamura, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE Transactions on Haptics, Vol. 17, No. 4, pp. 729–741, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2024-03">2024.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> テレコムシステム学際研究賞 特例表彰</span>
+                        </div>
+                        <p class="pub-title">『メタバースの教科書―原理・基礎技術から産業応用まで』（オーム社, 2023）</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">第39回電気通信普及財団賞</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2024-03">2024.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 学術奨励賞</span>
+                        </div>
+                        <p class="pub-title">異なる力覚錯覚の刺激間時間差が知覚強度に与える影響</p>
+                        <p class="pub-authors">納藤拓哉, 中村拓人, 雨宮智浩</p>
+                        <p class="pub-venue">第28回日本バーチャルリアリティ学会大会, 2A1-09, Sep. 2023</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2024-01">2024.01</time>
+                        </div>
+                        <p class="pub-title">メタバース/VRが何を解決できるのか</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">神奈川県政策研究フォーラム, Jan. 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2024">2024</time>
+                        </div>
+                        <p class="pub-title">Electrical Stimulation of Nerve Bundles in the Lower Leg Generates Tactile Sensations on the Plantar and Dorsal Foot</p>
+                        <p class="pub-authors">Takashi Ota, Tomohiro Amemiya, Hideaki Kuzuoka, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE Access, 12: 188914–188925, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2024">2024</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Paper Honorable Mention</span>
+                        </div>
+                        <p class="pub-title">Insights from an Experiment Investigating the Relationship between the Effect of Electrical Stimulation of the Ankle Tendons and the User&#x27;s Biological Structure, Gender, or Age</p>
+                        <p class="pub-authors">Takashi Ota, Hideaki Kuzuoka, Tomohiro Amemiya, Kazuma Aoyama</p>
+                        <p class="pub-venue">ICAT-EGVE 2024, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2024">2024</time>
+                        </div>
+                        <p class="pub-title">TractFree: Finger-Free Grip for Traction and Weight</p>
+                        <p class="pub-authors">Mitsuru Ito, Yuta Itoh, Kazuma Aoyama, Tomohiro Amemiya</p>
+                        <p class="pub-venue">SIGGRAPH Asia 2024 Emerging Technologies, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2024">2024</time>
+                        </div>
+                        <p class="pub-title">ElectricalVRSki: Switching of Ankle Tendon Electrical Stimulation for Dynamic Modulation of Ground Shape Perception</p>
+                        <p class="pub-authors">Takashi Ota, Keigo Matsumoto, Kazuma Aoyama, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
+                        <p class="pub-venue">IEEE VR 2024 Workshops, 2024.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2024">2024</time>
+                        </div>
+                        <p class="pub-title">The Effects of Electrical Stimulation of Ankle Tendons on Redirected Walking with the Gradient Gain</p>
+                        <p class="pub-authors">Takashi Ota, Keigo Matsumoto, Kazuma Aoyama, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
+                        <p class="pub-venue">ACM VRST 2024, 2024.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2023">2023</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2023-11">2023.11</time>
+                            <span class="pub-label">基調講演</span>
+                        </div>
+                        <p class="pub-title">デジタルとフィジカルの交差点 〜メタバースとVRによる社会変革に向けて〜</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">VACUUM2023 真空展, 東京ビッグサイト, Nov. 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2023-10">2023.10</time>
+                        </div>
+                        <p class="pub-title">Intranasal Chemosensory Lateralization Through the Multi-electrode Transcutaneous Electrical Nasal Bridge Stimulation</p>
+                        <p class="pub-authors">Ayari Matsui, Tomohiro Amemiya, Takuji Narumi, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE Access, Vol. 11, pp. 110899–110909, 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2023-09">2023.09</time>
+                        </div>
+                        <p class="pub-title">Effects of Bone-Conducted Vibration Stimulation of Various Frequencies on the Vertical Vection</p>
+                        <p class="pub-authors">Tetsuta Kondo, Yutaro Hirao, Takuji Narumi, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Scientific Reports, Vol. 13, 15759, 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-09">2023.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 学術奨励賞</span>
+                        </div>
+                        <p class="pub-title">異なる力覚錯覚の刺激間時間差が知覚強度に与える影響</p>
+                        <p class="pub-authors">納藤拓哉, 中村拓人, 雨宮智浩</p>
+                        <p class="pub-venue">第28回日本バーチャルリアリティ学会大会, 2A1-09, 2023.09</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2023-08">2023.08</time>
+                        </div>
+                        <p class="pub-title">Leveraging Tendon Vibration to Enhance Pseudo-Haptic Perceptions in VR</p>
+                        <p class="pub-authors">Yutaro Hirao, Tomohiro Amemiya, Takuji Narumi, Ferran Argelaguet, Anatole Lécuyer</p>
+                        <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-08">2023.08</time>
+                        </div>
+                        <p class="pub-title">メタバースの教育現場への利活用（特集「接近するバーチャルとリアル ―メタバース・ディジタルツインの現在と未来―」）</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">電子情報通信学会誌, Vol. 106, No. 8, pp. 723–727, 2023.08</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-08">2023.08</time>
+                        </div>
+                        <p class="pub-title">多様な感覚を惹起する神経刺激とメタバース（特集「接近するバーチャルとリアル ―メタバース・ディジタルツインの現在と未来―」）</p>
+                        <p class="pub-authors">青山一真</p>
+                        <p class="pub-venue">電子情報通信学会誌, Vol. 106, No. 8, pp. 711–716, 2023.08</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2023-07">2023.07</time>
+                        </div>
+                        <p class="pub-title">Influence of Electrical Stimulation Intensity on the Perception of Piquancy</p>
+                        <p class="pub-authors">Masaki Ohno, Kazuma Aoyama, Tomohiro Amemiya, Hideaki Kuzuoka, Keigo Matsumoto, Takuji Narumi</p>
+                        <p class="pub-venue">IEEE World Haptics Conference 2023, The Netherlands, July 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2023-07">2023.07</time>
+                        </div>
+                        <p class="pub-title">VRでみえること</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">みえにくいとは みえるとは みえないとは～QWS ACADEMIA SPECIAL, SHIBUYA QWS, July 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-06">2023.06</time>
+                        </div>
+                        <p class="pub-title">メタバースにおける身体</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">kotoba 2023年夏号, 集英社, 2023.06</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-06">2023.06</time>
+                        </div>
+                        <p class="pub-title">仮想現実研究の最前線 “漫才”でプレゼン能力を上げる!?</p>
+                        <p class="pub-authors">NHK おはよう日本</p>
+                        <p class="pub-venue">2023年6月7日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-06">2023.06</time>
+                        </div>
+                        <p class="pub-title">＜チューモク！＞仮想空間・最新事情</p>
+                        <p class="pub-authors">NHK ニュースLIVE! ゆう5時</p>
+                        <p class="pub-venue">2023年6月5日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-06">2023.06</time>
+                        </div>
+                        <p class="pub-title">オンライン教育でメタバースやVR/アバタをつかった取り組み</p>
+                        <p class="pub-authors">東京大学情報基盤センター広報誌「nodes」</p>
+                        <p class="pub-venue">2023年6月1日</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-05">2023.05</time>
+                        </div>
+                        <p class="pub-title">メタバース／VR技術により加速する教育DX（特集「DXが職場や仕事にもたらすもの」）</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本労働研究雑誌, No. 754, pp. 65–73, 2023.05</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2023-05">2023.05</time>
+                            <span class="pub-label">記念講演</span>
+                        </div>
+                        <p class="pub-title">メタバースが拓く現実社会</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">「電波の日・情報通信月間」記念講演会, May 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2023-05">2023.05</time>
+                        </div>
+                        <p class="pub-title">メタバースが拓く身体と社会のDX</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">Oak Leaf Seminar 柏キャンパス合同セミナー, May 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2023-03">2023.03</time>
+                        </div>
+                        <p class="pub-title">Virtual Omnibus Lecture: Investigating the Effects of Varying Lecturer Avatars as Environmental Context on Audience Memory</p>
+                        <p class="pub-authors">Takato Mizuho, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
+                        <p class="pub-venue">Augmented Humans International Conference 2023, Mar. 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2023-03">2023.03</time>
+                        </div>
+                        <p class="pub-title">Inducing joint attention between users by visual guidance with blur effects</p>
+                        <p class="pub-authors">Nikolaos Chatziantoniou, Akimi Oyanagi, Kenichiro Ito, Kazuma Aoyama, Hideaki Kuzuoka, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE VR 2023 Workshops, Shanghai, China, Mar. 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-03">2023.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> MVE賞</span>
+                        </div>
+                        <p class="pub-title">嗅覚刺激と鼻腔外電気刺激によるVR空間内の進路誘導効果</p>
+                        <p class="pub-authors">松井彩里, 青山一真, 雨宮智浩, 葛岡英明, 鳴海拓志</p>
+                        <p class="pub-venue">電子情報通信学会 MVE研究会, MVE2022-59, 2023.03</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2023-03">2023.03</time>
+                        </div>
+                        <p class="pub-title">メタバースの未来について話そう</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">超体験NHKフェス メタバース, バーチャル渋谷 (cluster), Mar. 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2023-03">2023.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 電子情報通信学会 MVE賞</span>
+                        </div>
+                        <p class="pub-title">嗅覚刺激と鼻腔外電気刺激によるVR空間内の進路誘導効果</p>
+                        <p class="pub-authors">松井彩里, 青山一真, 雨宮智浩, 葛岡英明, 鳴海拓志</p>
+                        <p class="pub-venue">電子情報通信学会 MVE研究会, MVE2022-59, Mar. 2023</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2023-02">2023.02</time>
+                        </div>
+                        <p class="pub-title">Multi Surface Electrodes Nerve Bundles Stimulation on the Wrist: Modified Location of Tactile Sensation on the Palm</p>
+                        <p class="pub-authors">Shuto Ogihara, Tomohiro Amemiya, Hideaki Kuzuoka, Takuji Narumi, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE Access, Vol. 11, pp. 13794–13809, 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-02">2023.02</time>
+                        </div>
+                        <p class="pub-title">メタバースが作り出す新しい生活圏とそれを支える技術</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">MDB 技術予測レポート, 株式会社日本能率協会総合研究所, 2023.02</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2023-02">2023.02</time>
+                        </div>
+                        <p class="pub-title">メタバースの教育訓練への活用</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">2022年度第3回講演会, Feb. 2023.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-02">2023.02</time>
+                        </div>
+                        <p class="pub-title">VRは、もうひとつの「現実」になる：東京大学VRC・雨宮智浩</p>
+                        <p class="pub-authors">Dig the Tea</p>
+                        <p class="pub-venue">2023年2月27日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-02">2023.02</time>
+                        </div>
+                        <p class="pub-title">VRの未来、“錯覚”はひとの感覚を騙すトリガー：東京大学VRC・雨宮智浩</p>
+                        <p class="pub-authors">Dig the Tea</p>
+                        <p class="pub-venue">2023年2月24日</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2023-01">2023.01</time>
+                        </div>
+                        <p class="pub-title">アバター化技術による教育効果への期待 メタバースは一時的な流行に終わらない</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">中央公論 2023年2月号, pp. 128–135, 2023.01</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-01">2023.01</time>
+                        </div>
+                        <p class="pub-title">メタバースを使った新しい働き方はすでに始まっている 多様な働き方の実現に向け積極的な活用に期待</p>
+                        <p class="pub-authors">パーソル総合研究所</p>
+                        <p class="pub-venue">2023年1月20日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-01">2023.01</time>
+                        </div>
+                        <p class="pub-title">イチから分かる！メタバースって何？</p>
+                        <p class="pub-authors">日本経済新聞 電子版</p>
+                        <p class="pub-venue">2023年1月8日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2023-01">2023.01</time>
+                        </div>
+                        <p class="pub-title">特設L 23面 メタバース×教育、その可能性 国・地域の枠超える／水怖くても水泳体験 記者サロン</p>
+                        <p class="pub-authors">朝日新聞</p>
+                        <p class="pub-venue">2023年1月1日</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2022">2022</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-12">2022.12</time>
+                        </div>
+                        <p class="pub-title">Anodal Electrical Stimulation Enhances the Perceived Piquancy Induced by Chili Peppers and Wasabi</p>
+                        <p class="pub-authors">Masaki Ohno, Kazuma Aoyama, Tomohiro Amemiya, Hideaki Kuzuoka, Keigo Matsumoto, Daisuke Mine, Takuji Narumi</p>
+                        <p class="pub-venue">IEEE Access, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-12">2022.12</time>
+                        </div>
+                        <p class="pub-title">足裏振動刺激を用いたVR空間での飛行浮遊感覚の生起に関する研究</p>
+                        <p class="pub-authors">大倉直也, 松本啓吾, 鳴海拓志, 葛岡英明, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 27, No. 4, pp. 369–379, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-12">2022.12</time>
+                            <span class="pub-label">Metaverse Special Lecture</span>
+                        </div>
+                        <p class="pub-title">Metaverse Applied Research and Technologies</p>
+                        <p class="pub-authors">Tomohiro Amemiya</p>
+                        <p class="pub-venue">The 29th International Display Workshops (IDW &#x27;22), Fukuoka, Dec. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-12">2022.12</time>
+                            <span class="pub-label">招待講演</span>
+                        </div>
+                        <p class="pub-title">Educational applications of Metaverse and VR technology: possibilities and limitations</p>
+                        <p class="pub-authors">Tomohiro Amemiya</p>
+                        <p class="pub-venue">東北大学 国際シンポジウム「メタバース・XR技術の教育利用と国際協創」, Sendai, Miyagi, Dec. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-11">2022.11</time>
+                            <span class="pub-label">招待講演</span>
+                        </div>
+                        <p class="pub-title">豊かなVR体験を産み出す五感提示技術</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">一般財団法人 総合研究奨励会, Nov. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-11">2022.11</time>
+                        </div>
+                        <p class="pub-title">教員が押さえておきたい「メタバースの活用」、東大VRセンターに聞いてみた</p>
+                        <p class="pub-authors">東洋経済 education×ICT</p>
+                        <p class="pub-venue">2022年11月26日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-11">2022.11</time>
+                        </div>
+                        <p class="pub-title">メタバース×教育で変わる！ 第4回「体験！！授業活用」</p>
+                        <p class="pub-authors">朝日新聞 記者サロン</p>
+                        <p class="pub-venue">2022年11月20日から配信</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-11">2022.11</time>
+                        </div>
+                        <p class="pub-title">東京大学メタバース工学部 デジタル空間で最新の工学・情報が学べるメタバース工学部を設立</p>
+                        <p class="pub-authors">Kei-Net（河合塾）</p>
+                        <p class="pub-venue">2022年11月1日</p>
+                    </li>
+                    <li class="pub-item" data-type="intl">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
+                            <time class="pub-year" datetime="2022-10">2022.10</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Poster Award</span>
+                        </div>
+                        <p class="pub-title">Dynamically Controlling Spatial Taste Location by Extraoral Galvanic Taste Stimulation</p>
+                        <p class="pub-authors">So Tanaka, Takuji Narumi, Hiromi Nakamura, Tomohiro Amemiya, Hideaki Kuzuoka, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE ISMAR 2022, Oct. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-10">2022.10</time>
+                            <span class="pub-label">招待講演</span>
+                        </div>
+                        <p class="pub-title">メタバース産業応用と可能性</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">株式会社日立製作所 中央研究所 講演会, Oct. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-10">2022.10</time>
+                            <span class="pub-label">招待講演</span>
+                        </div>
+                        <p class="pub-title">メタバースが拓く大学の未来</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">電子情報通信学会 CSワークショップ, Oct. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2022-10">2022.10</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best IEEE ISMAR 2022 Poster Award</span>
+                        </div>
+                        <p class="pub-title">Dynamically Controlling Spatial Taste Location by Extraoral Galvanic Taste Stimulation</p>
+                        <p class="pub-authors">So Tanaka, Takuji Narumi, Hiromi Nakamura, Tomohiro Amemiya, Hideaki Kuzuoka, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE ISMAR 2022</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">メタバースを活用した社会に向けて―研究が導く社会実装</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">アド・スタディーズ, 公益財団法人 吉田秀雄記念事業財団, Vol. 81, pp. 10–15, 2022.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">リアルとバーチャルが融け合う拠点 −東京大学VRセンターの取り組み−</p>
+                        <p class="pub-authors">雨宮智浩, 相澤清晴</p>
+                        <p class="pub-venue">大学時報, Vol. 406, pp. 56–63, 2022.09</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">メタバース講演の課題と展望 ー東大総長メタバース講演の舞台裏ー</p>
+                        <p class="pub-authors">雨宮智浩, 青山一真, 伊藤研一郎, 栗田祐輔, 相澤清晴</p>
+                        <p class="pub-venue">電子情報通信学会誌, Vol. 105, No. 9, pp. 1136–1141, 2022.09</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">教育におけるメタバースの利活用</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">総務省 Web3時代に向けたメタバース等の利活用に関する研究会（第2回）, Sep. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">東大「メタバース工学部」開講式 オンライン講座など提供へ</p>
+                        <p class="pub-authors">NHK ニュース</p>
+                        <p class="pub-venue">2022年9月23日放送</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">【特集】どんな世界でもつくれる？自分の「分身」ができる？体験！メタバース</p>
+                        <p class="pub-authors">子供の科学 85巻 9月号</p>
+                        <p class="pub-venue">2022年9月号</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-09">2022.09</time>
+                        </div>
+                        <p class="pub-title">特集「メタバースとしての東大」</p>
+                        <p class="pub-authors">東京大学 学内広報（No.1561）</p>
+                        <p class="pub-venue">2022年9月2日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-08">2022.08</time>
+                        </div>
+                        <p class="pub-title">深層断面／メタバースブーム到来で転機 教育現場にVRで新しい学びの形</p>
+                        <p class="pub-authors">日刊工業新聞</p>
+                        <p class="pub-venue">2022年8月15日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-08">2022.08</time>
+                        </div>
+                        <p class="pub-title">東大、電気刺激で唾液分泌1.5倍 味覚強化“食事VR”へ</p>
+                        <p class="pub-authors">日刊工業新聞</p>
+                        <p class="pub-venue">2022年8月2日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-08">2022.08</time>
+                        </div>
+                        <p class="pub-title">なりすましや個人情報、メタバースの課題を議論 総務省会議が初会合</p>
+                        <p class="pub-authors">朝日新聞</p>
+                        <p class="pub-venue">2022年8月1日</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-07">2022.07</time>
+                        </div>
+                        <p class="pub-title">現実世界をつなぐVR，VRがアップデートする現実世界</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">東進ハイスクール 大学学部研究会, July–Aug. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-07">2022.07</time>
+                        </div>
+                        <p class="pub-title">メタバースで開ける新しい世界とマーケット〜東大 VR センターの企業と協創〜</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">中部オープンイノベーションカレッジ, オープンイノベーション勉強会, July 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2022-07">2022.07</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 奨励賞</span>
+                        </div>
+                        <p class="pub-title">オンライン講師画面のディープフェイクによる見かけの操作と授業参加への積極性の検証</p>
+                        <p class="pub-authors">東京大学 バーチャルリアリティ教育研究センター</p>
+                        <p class="pub-venue">ラーニングイノベーショングランプリ2022</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2022-07">2022.07</time>
+                        </div>
+                        <p class="pub-title">東大「メタバース工学部」が9月に開講…女子中高生向けの講義も検討</p>
+                        <p class="pub-authors">読売新聞</p>
+                        <p class="pub-venue">2022年7月30日</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-06">2022.06</time>
+                        </div>
+                        <p class="pub-title">経皮電気刺激による効果的な唾液分泌促進手法の構築</p>
+                        <p class="pub-authors">高橋希実, 中村裕美, 雨宮智浩, 鳴海拓志, 葛岡英明, 廣瀬通孝, 青山一真</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 27, No. 2, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-05">2022.05</time>
+                        </div>
+                        <p class="pub-title">Improving Remote Spatial Understanding by Transmitting Spherical Images via Video Chat Applications</p>
+                        <p class="pub-authors">Kazuma Aoyama, Nobukazu Sakura, Ryoko Ueoka, Shigeo Makioka, Kiyosu Maeda, Kunihiko Nakashima, Michitaka Hirose, Tomohiro Amemiya</p>
+                        <p class="pub-venue">International Journal of Automation Technology, Vol. 6, No. 3, pp. 286–295, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-05">2022.05</time>
+                        </div>
+                        <p class="pub-title">バーチャルな場としての大学を体験する</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本高等教育学会第25回大会 大会校企画, May 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-04">2022.04</time>
+                        </div>
+                        <p class="pub-title">Influence of hand-arm self-avatar motion delay on the directional perception induced by an illusory sensation of being twisted</p>
+                        <p class="pub-authors">Tomohiro Amemiya</p>
+                        <p class="pub-venue">Scientific Reports, Vol. 12, 6626, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-04">2022.04</time>
+                        </div>
+                        <p class="pub-title">Sensation of Anteroposterior and Lateral Body Tilt Induced by Electrical Stimulation of Ankle Tendons</p>
+                        <p class="pub-authors">Nozomi Takahashi, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka, Michitaka Hirose, Kazuma Aoyama</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, 3: 800884, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2022-03">2022.03</time>
+                        </div>
+                        <p class="pub-title">歩行VRにおける旋回歩行表現のためのヨー回転前庭刺激の効果に関する研究</p>
+                        <p class="pub-authors">海野みのり, ヤェム ヴィボル, 雨宮智浩, 北崎充晃, 池井 寧</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 27, No. 1, pp. 29–32, 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-03">2022.03</time>
+                            <span class="pub-label">パネリスト</span>
+                        </div>
+                        <p class="pub-title">Beyond 5Gで拡がるアバター生活</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">第1回 Beyond 5Gオープンディスカッション, NICT, オンライン, Mar. 2022.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2022-02">2022.02</time>
+                        </div>
+                        <p class="pub-title">VR/メタバースの話題提供</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">専修学校における先端技術利活用実証研究 勉強会, オンライン, Feb. 2022.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2021">2021</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-12">2021.12</time>
+                        </div>
+                        <p class="pub-title">Virtual Walking with Omnidirectional Movies and Foot Vibrations: Scene-congruent Vibrations Enhance Walking-related Sensations and Ground Material Perceptions</p>
+                        <p class="pub-authors">Junya Nakamura, Yusuke Matsuda, Tomohiro Amemiya, Yasushi Ikei, Michiteru Kitazaki</p>
+                        <p class="pub-venue">IEEE Access, Vol. 9, pp. 168107–168120, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2021-12">2021.12</time>
+                        </div>
+                        <p class="pub-title">VR／メタバース講義の実践と課題</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">教育機関DXシンポ, 国立情報学研究所, Dec. 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2021-11">2021.11</time>
+                        </div>
+                        <p class="pub-title">東大VRセンターによるVR技術を活用したオンラインライブ講義の実践</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">映像情報メディア学会誌, Vol. 75, No. 6, pp. 697–701, 2021.11</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2021-11">2021.11</time>
+                        </div>
+                        <p class="pub-title">時空間を超える遠隔協調</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">産総研 HCMIコンソーシアム 研究開発部会 テクニカルセミナー, Nov. 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">Anodal Galvanic Taste Stimulation to the Chin Enhances Salty Taste of NaCl Water Solution</p>
+                        <p class="pub-authors">Hiromi Nakamura, Tomohiro Amemiya, Jun Rekimoto, Hideyuki Ando, Kazuma Aoyama</p>
+                        <p class="pub-venue">Journal of Robotics and Mechatronics, Vol. 33, No. 5, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">VR技術が架ける橋（巻頭言）</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本オフィス学会誌, Vol. 13, No. 2, p. 1, 2021.10</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">サービスVR トレーナーからリモートサービスへ</p>
+                        <p class="pub-authors">青山一真</p>
+                        <p class="pub-venue">サービスVRシンポジウム ～サービスVRの挑戦～, オンライン, 2021.10</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">VR基盤に向けて</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">サービスVRシンポジウム ～サービスVRの挑戦～, オンライン, 2021.10</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">遠隔地の見えを実現する立体視テレプレゼンス技術とVR</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本光学会年次学術講演会 Optics &amp; Photonics Japan 2021, Oct. 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">身体感覚表現とVR空間への拡張</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">三菱電機株式会社 先端技術総合研究所 技術部会 講演会, Oct. 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2021-10">2021.10</time>
+                        </div>
+                        <p class="pub-title">急成長するVR市場 進化する技術の「真価」を見極めよ</p>
+                        <p class="pub-authors">月刊誌 Wedge</p>
+                        <p class="pub-venue">2021年10月号</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-09">2021.09</time>
+                        </div>
+                        <p class="pub-title">並走するバーチャルアバタの形態と運動によって生じる歩行速度変調</p>
+                        <p class="pub-authors">谷崎充, 松本啓吾, 鳴海拓志, 葛岡英明, 雨宮智浩</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 26, No. 3, pp. 208–218, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2021-09">2021.09</time>
+                        </div>
+                        <p class="pub-title">Editorial: Professional Training in Extended Reality: Challenges and Solutions</p>
+                        <p class="pub-authors">Lap-Fai Yu, Christos Mousas, David Lindlbauer, George Alex Koulieris, Liwei Chan, Ryan P McMahan, Tomohiro Amemiya</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, Sep. 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2021-09">2021.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 学生奨励賞</span>
+                        </div>
+                        <p class="pub-title">脚部の腱電気刺激による身体傾斜感覚の提示</p>
+                        <p class="pub-authors">高橋希実, 雨宮智浩, 鳴海拓志, 葛岡英明, 廣瀬通孝, 青山一真</p>
+                        <p class="pub-venue">情報処理学会 HCI193研究会, June 2021</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2021-09">2021.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 論文賞</span>
+                        </div>
+                        <p class="pub-title">ドラゴンアバタを用いたプロテウス効果の生起による高所に対する恐怖の抑制</p>
+                        <p class="pub-authors">小柳陽光, 鳴海拓志, Jean-Luc Lugrin, 安藤英由樹, 大村廉</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 25, No. 2, pp. 2–11, 2020</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2021-09">2021.09</time>
+                        </div>
+                        <p class="pub-title">東大VR教育研究センター、アバター使う教育探る</p>
+                        <p class="pub-authors">日本経済新聞 朝刊</p>
+                        <p class="pub-venue">2021年9月22日</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-08">2021.08</time>
+                        </div>
+                        <p class="pub-title">TeleParallax: Low-motion-blur Stereoscopic System with Correct Interpupillary Distance for 3D Head Rotations</p>
+                        <p class="pub-authors">Tomohiro Amemiya, Kazuma Aoyama, Michitaka Hirose</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, Vol. 2, 726285, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-07">2021.07</time>
+                        </div>
+                        <p class="pub-title">Electrical Generation of Intranasal Irritating Chemosensation</p>
+                        <p class="pub-authors">Kazuma Aoyama, Nobuhisa Miyamoto, Satoru Sakurai, Hiroyuki Iizuka, Makoto Mizukami, Masahiro Furukawa, Taro Maeda, Hidyuki Ando</p>
+                        <p class="pub-venue">IEEE Access, Vol. 9, pp. 106714–106724, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2021-07">2021.07</time>
+                        </div>
+                        <p class="pub-title">デジタルバーチャル空間の役割と使命</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本オフィス学会 第49回研究セミナー, July 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2021-07">2021.07</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Paper Award</span>
+                        </div>
+                        <p class="pub-title">Perception of Illusory Body Tilt Induced by Electrical Tendon Stimulation</p>
+                        <p class="pub-authors">Nozomi Takahashi, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka, Michitaka Hirose, Kazuma Aoyama</p>
+                        <p class="pub-venue">Human Computer Interaction International 2021</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-06">2021.06</time>
+                        </div>
+                        <p class="pub-title">頭部回転運動時に光軸と瞳孔間距離を一定に保つ立体視テレプレゼンスシステム</p>
+                        <p class="pub-authors">雨宮智浩, 青山一真, 廣瀬通孝</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 26, No. 2, pp. 139–142, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2021-05">2021.05</time>
+                        </div>
+                        <p class="pub-title">VRで私たちの生活は変わりますか？―情報理工学系研究科・雨宮智浩准教授(3)</p>
+                        <p class="pub-authors">キミの東大</p>
+                        <p class="pub-venue">2021年5月7日</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-04">2021.04</time>
+                        </div>
+                        <p class="pub-title">Enhancing Virtual Walking Sensation using Self-Avatar in First-person Perspective and Foot Vibrations</p>
+                        <p class="pub-authors">Yusuke Matsuda, Junya Nakamura, Tomohiro Amemiya, Yasushi Ikei, Michiteru Kitazaki</p>
+                        <p class="pub-venue">Frontiers in Virtual Reality, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2021-04">2021.04</time>
+                        </div>
+                        <p class="pub-title">VRで私たちの生活は変わりますか？―情報理工学系研究科・雨宮智浩准教授(2)</p>
+                        <p class="pub-authors">キミの東大</p>
+                        <p class="pub-venue">2021年4月30日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2021-04">2021.04</time>
+                        </div>
+                        <p class="pub-title">VRで私たちの生活は変わりますか？―情報理工学系研究科・雨宮智浩准教授(1)</p>
+                        <p class="pub-authors">キミの東大</p>
+                        <p class="pub-venue">2021年4月26日</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-03">2021.03</time>
+                        </div>
+                        <p class="pub-title">Method of Modifying Spatial Taste Location through Multielectrode Galvanic Taste Stimulation</p>
+                        <p class="pub-authors">Hiromi Nakamura, Makoto Mizukami, Kazuma Aoyama</p>
+                        <p class="pub-venue">IEEE Access, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021-03">2021.03</time>
+                        </div>
+                        <p class="pub-title">遠隔講義における講師アバタの見かけによって変化する受講希望度が授業への積極的参加行動に与える効果 –オンライン授業への導入事例–</p>
+                        <p class="pub-authors">雨宮智浩, 青山一真, 伊藤研一郎</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 26, No. 1, pp. 86–91, 2021.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2021-02">2021.02</time>
+                        </div>
+                        <p class="pub-title">VR空間内での対面講義の試み</p>
+                        <p class="pub-authors">小柳陽光, 伊藤研一郎, 青山一真, 雨宮智浩</p>
+                        <p class="pub-venue">ヒューマンインタフェース学会誌, Vol. 23, No. 1, 2021.02</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2021">2021</time>
+                        </div>
+                        <p class="pub-title">対面接客訓練VRにおける交替潜時がアバタの印象に及ぼす影響</p>
+                        <p class="pub-authors">塩崎敬祐, 小柳陽光, 青山一真, 鳴海拓志, 谷川智洋, 葛岡英明, 廣瀬通孝</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 26, No. 3, 2021.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2020">2020</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2020-12">2020.12</time>
+                        </div>
+                        <p class="pub-title">非対称振動刺激による牽引力錯覚の研究動向</p>
+                        <p class="pub-authors">田辺健, 雨宮智浩, 遠藤博史, 井野秀一</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 25, No. 4, pp. 291–301, 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2020-12">2020.12</time>
+                        </div>
+                        <p class="pub-title">身体感覚インタフェースのデザイン ～ぶるなび誕生秘話とVR応用展開～</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">自動車技術会 ヒューマンファクター部門委員会, Dec. 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2020-11">2020.11</time>
+                            <span class="pub-label">特別招待講演</span>
+                        </div>
+                        <p class="pub-title">VR技術を活用したオンライン授業の実施報告</p>
+                        <p class="pub-authors">雨宮智浩, 青山一真, 伊藤研一郎</p>
+                        <p class="pub-venue">電子情報通信学会 通信方式研究会（CS）ほか, Nov. 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="dom">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[国内発表・解説]</span><span class="en" lang="en">[Domestic / Article]</span></span>
+                            <time class="pub-year" datetime="2020-09">2020.09</time>
+                        </div>
+                        <p class="pub-title">研究室紹介 東京大学大学院情報理工学系研究科 知能機械情報学専攻 サイバーインタフェース研究室／葛岡・雨宮・鳴海研究室</p>
+                        <p class="pub-authors">葛岡英明, 雨宮智浩, 鳴海拓志</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会誌, Vol. 25, No. 3, pp. 38–40, 2020.09</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2020-09">2020.09</time>
+                        </div>
+                        <p class="pub-title">VR空間を使った授業の試みの紹介</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本VR学会第25回大会「オンラインをこえて」, Sep. 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2020-09">2020.09</time>
+                        </div>
+                        <p class="pub-title">アバタ化コミュニケーションの事例報告</p>
+                        <p class="pub-authors">雨宮智浩</p>
+                        <p class="pub-venue">日本VR学会第25回大会「遠隔臨場感体験とアバタコミュニケーション」, Sep. 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2020-07">2020.07</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Paper Award</span>
+                        </div>
+                        <p class="pub-title">Galvanic Taste Stimulation Method for Virtual Reality and Augmented Reality</p>
+                        <p class="pub-authors">Kazuma Aoyama</p>
+                        <p class="pub-venue">Human Computer Interaction International 2020</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2020-05">2020.05</time>
+                        </div>
+                        <p class="pub-title">VRのすゝめ</p>
+                        <p class="pub-authors">青山一真, 伊藤研一郎, 雨宮智浩, 相澤清晴</p>
+                        <p class="pub-venue">国立情報学研究所 第6回サイバーシンポジウム, May 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2020-05">2020.05</time>
+                        </div>
+                        <p class="pub-title">火災現場、VRで体験 横浜市消防局がシステム開発中</p>
+                        <p class="pub-authors">神奈川新聞</p>
+                        <p class="pub-venue">2020年5月25日</p>
+                    </li>
+                    <li class="pub-item" data-type="media">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[メディア]</span><span class="en" lang="en">[Media]</span></span>
+                            <time class="pub-year" datetime="2020-04">2020.04</time>
+                        </div>
+                        <p class="pub-title">その7「VRセンター三銃士に会ってきた！ どうなるVRの未来!?」</p>
+                        <p class="pub-authors">情報処理学会誌「情報処理」</p>
+                        <p class="pub-venue">2020年4月号</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2020-03">2020.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 学術奨励賞</span>
+                        </div>
+                        <p class="pub-title">遠隔共同作業のための搭乗感覚共有システムに関する研究</p>
+                        <p class="pub-authors">森田翼, ヤェム ヴィボル, 雨宮智浩, 池井寧</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会第24回大会, 東京, Sep. 2019</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2020-03">2020.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 学術奨励賞</span>
+                        </div>
+                        <p class="pub-title">遠隔体験の臨場感向上手法に関する研究</p>
+                        <p class="pub-authors">八木龍之介, 藤江柊生, 雨宮智浩, 北崎充晃, ヤェム ヴィボル, 池井寧</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会第24回大会, 東京, Sep. 2019</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2020-03">2020.03</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> ヤマト科学賞</span>
+                        </div>
+                        <p class="pub-title">ニューロ・コンピュータインタフェースの先駆的研究</p>
+                        <p class="pub-authors">青山一真</p>
+                        <p class="pub-venue">第7回ヤマト科学賞</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2020-01">2020.01</time>
+                        </div>
+                        <p class="pub-title">Pseudo-sensation of walking generated by passive whole-body motions in heave and yaw directions</p>
+                        <p class="pub-authors">Tomohiro Amemiya, Michiteru Kitazaki, Yasushi Ikei</p>
+                        <p class="pub-venue">IEEE Transactions on Haptics, Vol. 13, No. 1, pp. 80–86, 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2020">2020</time>
+                        </div>
+                        <p class="pub-title">Perceptual simultaneity and its modulation during EMG-triggered motion induction with electrical muscle stimulation</p>
+                        <p class="pub-authors">Matsubara S, Wakisaka S, Aoyama K, Seaborn K, Hiyama A, Inami M</p>
+                        <p class="pub-venue">PLOS ONE, 15(8): e0236497, 2020.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2020">2020</time>
+                        </div>
+                        <p class="pub-title">バーチャルリアリティ環境を利用したサービス業のための業務訓練シミュレータの構築</p>
+                        <p class="pub-authors">小柳陽光, 青山一真, 大村簾, 谷川智洋, 廣瀬通孝</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 25, No. 1, pp. 78–85, 2020.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="pub-2019">2019</h2>
+                <ol class="pub-list">
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2019-12">2019.12</time>
+                        </div>
+                        <p class="pub-title">上下揺と旋回の受動的身体運動による疑似歩行感覚の生成</p>
+                        <p class="pub-authors">雨宮智浩, 北崎充晃, 池井寧</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 24, No. 4, pp. 371–376, 2019.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2019-10">2019.10</time>
+                        </div>
+                        <p class="pub-title">Remapping Peripersonal Space by Using Foot-Sole Vibrations Without Any Body Movement</p>
+                        <p class="pub-authors">Tomohiro Amemiya, Yasushi Ikei, Michiteru Kitazaki</p>
+                        <p class="pub-venue">Psychological Science, Vol. 30, No. 10, pp. 1522–1532, 2019.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2019-10">2019.10</time>
+                        </div>
+                        <p class="pub-title">Virtual walking sensation by prerecorded oscillating optic flow and synchronous foot vibration</p>
+                        <p class="pub-authors">Michiteru Kitazaki, Takeo Hamada, Katsuya Yoshiho, Ryota Kondo, Tomohiro Amemiya, Koichi Hirota, Yasushi Ikei</p>
+                        <p class="pub-venue">i-Perception, Vol. 10, No. 5, pp. 1–14, 2019.</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2019-09">2019.09</time>
+                        </div>
+                        <p class="pub-title">Percutaneous Electrical Stimulation for Virtual Reality</p>
+                        <p class="pub-authors">Kazuma Aoyama</p>
+                        <p class="pub-venue">Solid State Devices and Materials (SSDM 2019), Sep. 2019.</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2019-09">2019.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 優秀プレゼンテーション賞</span>
+                        </div>
+                        <p class="pub-title">疑似歩行感を身体近傍空間の大きさで測る</p>
+                        <p class="pub-authors">雨宮智浩, 北崎充晃, 池井寧</p>
+                        <p class="pub-venue">ヒューマンインタフェースシンポジウム2019</p>
+                    </li>
+                    <li class="pub-item" data-type="award">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[受賞]</span><span class="en" lang="en">[Award]</span></span>
+                            <time class="pub-year" datetime="2019-09">2019.09</time>
+                            <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 対話発表賞（PC委員）</span>
+                        </div>
+                        <p class="pub-title">電気味覚で甘味を制御する手法</p>
+                        <p class="pub-authors">鍜治慶亘, 上野新葉, 青山一真, 中村裕美, 宮下芳明</p>
+                        <p class="pub-venue">第27回インタラクティブシステムとソフトウェアに関するワークショップ（WISS 2019）</p>
+                    </li>
+                    <li class="pub-item" data-type="talk">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
+                            <time class="pub-year" datetime="2019-01">2019.01</time>
+                        </div>
+                        <p class="pub-title">VR技術の今と未来</p>
+                        <p class="pub-authors">青山一真</p>
+                        <p class="pub-venue">Dell VR研究会, Jan. 2019.</p>
+                    </li>
+                    <li class="pub-item" data-type="journal">
+                        <div class="pub-meta">
+                            <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
+                            <time class="pub-year" datetime="2019">2019</time>
+                        </div>
+                        <p class="pub-title">連続矩形波電流刺激による五味の継続的増強</p>
+                        <p class="pub-authors">原彰良, 安藤英由樹, 櫻井健太, 前田太郎, 青山一真</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 24, No. 1, pp. 13–21, 2019.</p>
+                    </li>
+                </ol>
+            </div>
+            <p class="empty-state" hidden><span class="ja">該当する業績がありません。</span><span class="en" lang="en">No matching items.</span></p>
+        </div>
+        <p class="pub-note"><span class="ja">* 共同第一著者</span><span class="en" lang="en">* Equal contribution</span></p>
+
+        <div class="page-links">
+            <a href="index.html#publications" class="btn btn-secondary"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="ja">トップページへ戻る</span><span class="en" lang="en">Back to top page</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

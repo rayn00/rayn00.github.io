@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ニュース一覧 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）のニュース一覧。受賞、学会発表、メディア掲載、お知らせ。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="ニュース一覧 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）のニュース一覧。受賞、学会発表、メディア掲載、お知らせ。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <!-- GitHub Pages の公開URLに書き換えてから、以下2行のコメントを外してください
+    <meta property="og:url" content="https://ユーザー名.github.io/リポジトリ名/news.html">
+    <meta property="og:image" content="https://ユーザー名.github.io/リポジトリ名/img/ogp.png">
+    -->
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-title-ja="ニュース一覧 | 雨宮研究室 AME LAB" data-title-en="News | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）のニュース一覧。受賞、学会発表、メディア掲載、お知らせ。" data-desc-en="News from AME LAB (Amemiya Lab), The University of Tokyo: awards, conferences, media coverage and announcements.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" class="nav-link active" aria-current="page"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">ニュース</span><span class="en" lang="en">News</span></span>
+            </nav>
+            <span class="section-tag">News</span>
+            <h1 class="page-title"><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></h1>
+            <p class="hero-subtitle"><span class="ja">受賞、学会発表、メディア掲載、研究室からのお知らせを新しい順に掲載しています。</span><span class="en" lang="en">Awards, conference presentations, media coverage and lab announcements, newest first.</span></p>
+        </div>
+    </section>
+
+    <section id="news-list">
+        <div class="list-toolbar">
+            <div class="filter-tabs" role="group" aria-label="Filter">
+                <button type="button" class="filter-tab active" data-for="newsList" data-filter="all" aria-pressed="true"><span class="ja">すべて</span><span class="en" lang="en">All</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="newsList" data-filter="award" aria-pressed="false"><span class="ja">受賞</span><span class="en" lang="en">Awards</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="newsList" data-filter="conf" aria-pressed="false"><span class="ja">学会発表</span><span class="en" lang="en">Conferences</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="newsList" data-filter="pub" aria-pressed="false"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="newsList" data-filter="event" aria-pressed="false"><span class="ja">イベント</span><span class="en" lang="en">Events</span><span class="count"></span></button>
+                <button type="button" class="filter-tab" data-for="newsList" data-filter="info" aria-pressed="false"><span class="ja">お知らせ</span><span class="en" lang="en">Notices</span><span class="count"></span></button>
+            </div>
+            <label class="search-box">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search" data-search-for="newsList" data-ph-ja="キーワードで検索" data-ph-en="Search news" placeholder="キーワードで検索" aria-label="キーワードで検索">
+            </label>
+        </div>
+        <p class="result-count" data-count-for="newsList" aria-live="polite"></p>
+
+        <p class="lang-note en" lang="en">News items are written in Japanese.</p>
+        <div id="newsList" data-list>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2026">2026</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-09-09">2026.09.09</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">雨宮教授が日本VR学会の論文賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-09-09">2026.09.09</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">三上さん(M1)が触覚若手の会 触覚デモ交流会でベストプレゼンテーション賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2026-09-09">2026.09.09</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">日本VR学会大会で研究室関連で10件の発表（+2件OS），触覚若手の会デモ交流会で2件のデモ発表がありました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-07-09">2026.07.09</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">牛山特任研究員と佐々尾さん(M2)の発表がEurohaptics 2026で Best Demo Award Honorable Mentionを受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2026-07-07">2026.07.07</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">Eurohaptics 2026でポスター発表＆デモ発表をしました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-07-01">2026.07.01</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">ラーニングイノベーショングランプリ2026でチームAmelab M2が優秀ラーニングイノベーション賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-05-30">2026.05.30</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">雨宮教授が日本火災学会技術賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-05-01">2026.05.01</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">イエンさん(インターン生)が BR41N.IO Designers&#x27; Hackathon 2026のData Analysis部門で2位を獲得しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-04-23">2026.04.23</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">渡邉さん(M2)の発表が電子情報通信学会 MVE研究会でMVE賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2026-04-01">2026.04.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">2026年度の新メンバー(D:2名, M:4名)を迎えました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-03-27">2026.03.27</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">王さん(M2)が日本VR学会の学術奨励賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2026-03-24">2026.03.24</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">王さん(M2)が広域科学専攻奨励賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2026-03-23">2026.03.23</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">IEEE VR2026でカンファレンストラックとポスターの発表がありました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2026-03-16">2026.03.16</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">AHs 2026で口頭発表が2件ありました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2026-03-16">2026.03.16</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">電子情報通信学会MVE研究会で4件の発表がありました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2026-03-04">2026.03.04</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">大学院入試についてのFAQを公開しました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2026-01-06">2026.01.06</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">日本経済新聞の「メタバースで不登校支援　居場所作りや学習伴走、活用広がる」に雨宮教授のコメントが掲載されました</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2025">2025</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2025-12-08">2025.12.08</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">コニカミノルタジャパンの公式noteでM1の渡邉さんが代表の企画展示「ない街」が紹介されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2025-09-19">2025.09.19</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">第30回日本VR学会大会で発表しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2025-09-18">2025.09.18</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">小柳特任研究員と雨宮教授が執筆した論文が日本VR学会の論文賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2025-09-12">2025.09.12</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">HI2025の学生コンテストSICHIでチーム：Amelab M1が「FocuSpeed:生体信号に基づいた集中度計測による音声再生速度の適応制御」で奨励賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2025-09-11">2025.09.11</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">HI2025で学生コンテストSICHIに参加しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2025-07-11">2025.07.11</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">牛山特任研究員がIEEE World Haptics 2025でBest Reviewerに選ばれました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2025-05-17">2025.05.17</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">5/17に2026年度入試の研究室説明会を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2025-04-09">2025.04.09</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">研究室のXとInstagramのアカウントを開設しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2025-04-06">2025.04.06</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">2026年度入試の研究室説明会の情報を公開しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2025-04-06">2025.04.06</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">2025年度の研究室メンバーを更新しました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2025-04-04">2025.04.04</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">2025年度の研究室ガイダンス＆歓迎会を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2025-04-01">2025.04.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">牛山先生が特任研究員（学振PD）として着任しました</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2024">2024</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2024-12-07">2024.12.07</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">バーチャル学会で雨宮教授が基調講演を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2024-12-07">2024.12.07</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">ACM SIGGRAPH Asia 2024で三菱電機との共同研究成果を発表しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2024-10-28">2024.10.28</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">Asiahaptics 2024でヤェム先生の研究成果を発表しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2024-10-26">2024.10.26</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">髙橋特任助教が柏一般公開2024で研究講演「力を伝えるコンピュータ！」とデモ展示「腕時計型電気刺激装置」を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2024-10-13">2024.10.13</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">髙橋特任助教がACM UIST 2024で Honorable Mention を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2024-09-19">2024.09.19</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">髙橋特任助教が執筆した論文が日本VR学会の論文賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2024-08-31">2024.08.31</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">「第23回日本VR医学会学術大会」にて雨宮教授が特別講演を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2024-07-01">2024.07.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">ヤェム先生が特任准教授（非常勤）として着任しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2024-06-16">2024.06.16</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">髙橋先生が特任助教として着任しました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2024-04-19">2024.04.19</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">2025年度の大学院入試説明会と研究室相談会がZoomで開催されました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2024-04-04">2024.04.04</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">研究室のメンバーが更新されました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2024-03-21">2024.03.21</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">雨宮教授の著書『メタバースの教科書（オーム社, 2023）』が第39回電気通信普及財団賞 テレコムシステム学際研究賞 特例表彰を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2024-03-12">2024.03.12</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">青山特任准教授が編著した「バーチャルリアリティ学ライブラリ2 神経刺激インタフェース」（コロナ社）が出版されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2024-01-24">2024.01.24</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">雨宮教授が神奈川県政策研究フォーラムにて講演を行いました</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2023">2023</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2023-12-26">2023.12.26</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">育児教育メディア KIDSNA STYLEにてメタバースと不登校に関する雨宮教授のインタビューが掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-11-30">2023.11.30</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">雨宮教授が基調講演，招待講演，講演＆デモ展示を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-10-01">2023.10.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">宮本先生が北海道大学に特任助教として異動され，VRセンターの客員研究員となりました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2023-09-11">2023.09.11</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">東京大学広報誌の淡青Vol. 47「犬と東大」に盲導犬VRの取り組みが紹介されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-09-11">2023.09.11</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">日本VR学会にてOS「メタバースによって変わる生活空間と活動」，OS「対話と笑いとVR」の2件をセンター員が担当しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-09-06">2023.09.06</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">ヒューマンインタフェースシンポジウム2023の講習会にて「メタバース/VRの教育の場への活用」の講師を雨宮教授が務めました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-09-05">2023.09.05</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">私立大学情報教育協会のR5年度 教育イノベーション大会にてメタバースと教育の関係について全体会で雨宮教授が講演しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-08-01">2023.08.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">筑波大学准教授のヤェム先生が客員研究員として加わりました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-07-01">2023.07.01</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">7/16の対話イベント「みえにくいとは　みえるとは　みえないとは 〜QWS Academia Special〜」に雨宮教授が登壇します。渋谷QWSで講演とLow VisionのVRデモを行います</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-07-01">2023.07.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">群馬大学准教授の青山先生が特任准教授（兼務）として着任しました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2023-06-04">2023.06.04</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">多様性を考える言論誌 集英社のkotobaにて「メタバースはブルース・リーの夢を見るか」という特集で雨宮教授が寄稿した記事が掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-05-26">2023.05.26</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">雨宮教授が総務省 関東総合通信局, 関東情報通信協力会主催の講演会「令和5年度「電波の日・情報通信月間」 記念講演会WEB」で「メタバースが拓く新しい現実社会」と題する講演をしました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-05-21">2023.05.21</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">雨宮研究室の1期生の募集が始まりました。東京大学大学院 情報学環・学際情報学府 先端表現情報学コース と 東京大学大学院 総合文化研究科 広域科学専攻 広域システム科学系で募集しています</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2023-04-21">2023.04.21</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">雨宮教授が執筆した「メタバースの教科書：原理・基礎技術から産業応用まで」がオーム社より出版されました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-04-01">2023.04.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">構成メンバーの雨宮が教授に昇任し，伊藤が助教となりました。メンバーリストを更新しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2023-03-18">2023.03.18</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">雨宮准教授が超体験NHKフェスにてバーチャル渋谷に登壇しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-02-01">2023.02.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">VRセンター第2期が開始しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2023-01-27">2023.01.27</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">2022年度の科学技術振興機構(JST)の創発的研究支援事業に雨宮准教授と青山特任講師の2件が採択されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2023-01-25">2023.01.25</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">宮本研究員が執筆した「古びた未来をどう壊す？～世界を書き換える「ストーリー」のつくり方とつかい方～」が光文社より出版されました</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2022">2022</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2022-12-28">2022.12.28</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">朝日新聞出版の発行する週刊誌「AERA」（2023年1/2-1/9合併号）の特集「2023年を動かす114人」に雨宮准教授が「科学技術」部門で選出されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-12-26">2022.12.26</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">宮本特任研究員が登壇したJ-WAVE INNOVATION WORLD FESTA 2022の記事が公開されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-12-26">2022.12.26</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">TBSラジオで宮本特任研究員が出演したSFプロトタイピングの回の記事が公開されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2022-12-15">2022.12.15</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">国際会議IDW&#x27;22にて雨宮准教授が特別講演「Metaverse Applied Research and Technologies」を実施しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2022-12-02">2022.12.02</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">東北大学の国際シンポジウム「メタバース・XR技術の教育利用と国際協創」にて雨宮准教授が招待講演を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-11-26">2022.11.26</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">東洋経済オンラインeducation × ICTにて雨宮准教授の「教員が押さえておきたい「メタバースの活用」」が掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2022-10-30">2022.10.30</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">雨宮准教授が朝日新聞の記者サロン「『メタバース×教育』で変わる！」第4回にてオンライン＋メタバース講演を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2022-10-26">2022.10.26</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">雨宮准教授が電子情報通信学会CSワークショップにて招待講演「メタバースが拓く大学の未来」を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-10-11">2022.10.11</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">雨宮准教授が監修した「メタバースでできる100のこと」が宝島社より発売されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-09-23">2022.09.23</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">NHKのニュース7で雨宮准教授のメタバースの教育利用についてのコメントが放送されました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2022-09-23">2022.09.23</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">メタバース工学部の開講式を技術支援しました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-09-02">2022.09.02</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">「メタバースとしての東大」という特集でVRセンターが学内広報で紹介されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-08-06">2022.08.06</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">雨宮准教授が取材に協力した記事が子供の科学(9月号)に掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2022-08-01">2022.08.01</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">雨宮准教授が総務省「Web3時代に向けたメタバース等の利活用に関する研究会」の構成員となりました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2022-07-01">2022.07.01</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">ラーニングイノベーショングランプリ2022にて奨励賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-05-24">2022.05.24</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">メタバース上でのサークル新歓オリエンテーションの実施に関する記事が紹介されました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2022-01-14">2022.01.14</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">NII主催の第45回「教育機関DXシンポ」での東大 藤井総長メタバース講演を技術支援しました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2022-01-12">2022.01.12</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">情報理工学系研究科の教員紹介ページに雨宮准教授のインタビュー記事が掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2022-01-06">2022.01.06</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">cluster上に研究紹介のワールドをアップロードしました。錯視デモもあります</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2021">2021</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2021-12-10">2021.12.10</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">第44回 大学等におけるオンライン教育とデジタル変革に関するサイバーシンポジウム「教育機関DXシンポ」にて「VR/メタバース講義の実践と課題」と題した講演を雨宮准教授が行いました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2021-11-23">2021.11.23</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">clusterにカフェスペースをアップロードしました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2021-11-01">2021.11.01</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">映像情報メディア学会誌 2021年11月号に本研究室の取り組み「東大VRセンターによるVR技術を活用したオンラインライブ講義の実践」が掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2021-09-22">2021.09.22</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">日本経済新聞 朝刊（2021年9月22日）に本研究室で実施したVR講義の記事「東大VR教育研究センター、アバター使う教育探る」が掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2021-09-20">2021.09.20</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">月刊誌 Wedge 2021年10月号「急成長するVR市場　進化する技術の「真価」を見極めよ」に雨宮准教授のコメントが掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2021-09-16">2021.09.16</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">小柳特任研究員が博士課程時に執筆した論文が日本VR学会の論文賞を受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2021-08-24">2021.08.24</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">clusterにVR講義用のワールドをアップロードしました</p>
+                    </li>
+                    <li class="news-card" data-type="award">
+                        <time class="news-date" datetime="2021-07-24">2021.07.24</time>
+                        <span class="news-badge badge-blue"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                        <p class="news-content" lang="ja">情報理工 葛岡研M2の高橋さんがHCII2021でBest Paper Awardを受賞しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2021-07-06">2021.07.06</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">日本オフィス学会のセミナーにてデジタルバーチャル空間に関する講演を雨宮准教授が行いました</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2021-05-07">2021.05.07</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">キミの東大の研究室探訪にて本研究室が掲載されました</p>
+                    </li>
+                    <li class="news-card" data-type="info">
+                        <time class="news-date" datetime="2021-04-28">2021.04.28</time>
+                        <span class="news-badge badge-gray"><span class="ja">お知らせ</span><span class="en" lang="en">Notice</span></span>
+                        <p class="news-content" lang="ja">東京大学大学院情報理工学系研究科 特任助教 募集のお知らせ</p>
+                    </li>
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2021-03-01">2021.03.01</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">東京大学の次世代サイバーインフライニシアティブ登録プロジェクトに本研究室の取り組みが登録されました</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="year-group">
+                <h2 class="year-heading" id="news-2020">2020</h2>
+                <ul class="news-list">
+                    <li class="news-card" data-type="pub">
+                        <time class="news-date" datetime="2020-12-21">2020.12.21</time>
+                        <span class="news-badge badge-cyan"><span class="ja">掲載・出版</span><span class="en" lang="en">Media</span></span>
+                        <p class="news-content" lang="ja">東京大学出版会より出版された「オンライン・ファースト: コロナ禍で進展した情報社会を元に戻さないために」の執筆に雨宮准教授と青山助教が参加しました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2020-11-26">2020.11.26</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">信学会CS研究会にて[特別招待講演] VR技術を活用したオンライン授業の実施報告を行いました</p>
+                    </li>
+                    <li class="news-card" data-type="conf">
+                        <time class="news-date" datetime="2020-09-18">2020.09.18</time>
+                        <span class="news-badge badge-purple"><span class="ja">学会発表</span><span class="en" lang="en">Conference</span></span>
+                        <p class="news-content" lang="ja">第25回日本バーチャルリアリティ学会大会にてオーガナイズドセッションを企画しました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2020-07-09">2020.07.09</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">ソーシャルVRサービス(Mozilla HubsとVRChat)を用いた実験的講義を実施しました</p>
+                    </li>
+                    <li class="news-card" data-type="event">
+                        <time class="news-date" datetime="2020-07-02">2020.07.02</time>
+                        <span class="news-badge badge-gray"><span class="ja">イベント</span><span class="en" lang="en">Event</span></span>
+                        <p class="news-content" lang="ja">遠隔講義(Zoom)で実験的講義を実施しました</p>
+                    </li>
+                </ul>
+            </div>
+            <p class="empty-state" hidden><span class="ja">該当するニュースがありません。</span><span class="en" lang="en">No matching news.</span></p>
+        </div>
+
+        <div class="page-links">
+            <a href="index.html#news" class="btn btn-secondary"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="ja">トップページへ戻る</span><span class="en" lang="en">Back to top page</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
