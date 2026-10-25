@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共同研究・産学連携 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）の共同研究・産学連携。企業・自治体・大学との共同研究と、論文・受賞などの成果を紹介します。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="共同研究・産学連携 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）の共同研究・産学連携。企業・自治体・大学との共同研究と、論文・受賞などの成果を紹介します。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://rayn00.github.io/collaboration.html">
+    <meta property="og:image" content="https://rayn00.github.io/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-title-ja="共同研究・産学連携 | 雨宮研究室 AME LAB" data-title-en="Industry Collaboration | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）の共同研究・産学連携。企業・自治体・大学との共同研究と、論文・受賞などの成果を紹介します。" data-desc-en="Joint research of AME LAB (Amemiya Lab), The University of Tokyo, with companies, public organizations and universities, and its outputs.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link active" aria-current="true"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <a href="index.html#industry"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></span>
+            </nav>
+            <span class="section-tag">Industry Collaboration</span>
+            <h1 class="page-title"><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></h1>
+            <p class="hero-subtitle"><span class="ja">企業・自治体・大学との共同研究と、論文・受賞などの成果を紹介します。</span><span class="en" lang="en">Our joint research with companies, public organizations and universities, and what it has produced.</span></p>
+        </div>
+    </section>
+
+    <section id="ways">
+        <div class="grid-3">
+            <div class="card">
+                <i class="fa-solid fa-handshake card-icon icon-cyan" aria-hidden="true"></i>
+                <h3><span class="ja">共同研究・受託研究</span><span class="en" lang="en">Joint &amp; Commissioned Research</span></h3>
+                <p class="card-text"><span class="ja">錯覚・多感覚の提示、触覚・力覚インタフェース、VR/メタバースを活用した教育・訓練などのテーマで、企業・団体と共同研究・受託研究を行っています。成果は論文や学会発表として積極的に公開しています。</span><span class="en" lang="en">We carry out joint and commissioned research with companies and organizations on illusions and multisensory display, haptic interfaces, and education and training with VR and the metaverse. We actively publish the results as papers and conference presentations.</span></p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-graduate card-icon icon-blue" aria-hidden="true"></i>
+                <h3><span class="ja">客員研究員・社会人博士</span><span class="en" lang="en">Visiting Researchers &amp; Working PhD Students</span></h3>
+                <p class="card-text"><span class="ja">企業の研究者が客員研究員として研究に参加しているほか、社会人の博士課程学生も在籍しています。</span><span class="en" lang="en">Researchers from companies take part as visiting researchers, and working professionals are enrolled as doctoral students.</span></p>
+                <p class="pub-links"><a class="pub-doi" href="faq.html#q-working"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">社会人の受け入れについて（よくある質問）</span><span class="en" lang="en">Working professionals (FAQ, Japanese)</span></a></p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-envelope card-icon icon-purple" aria-hidden="true"></i>
+                <h3><span class="ja">ご相談・お問い合わせ</span><span class="en" lang="en">Contact</span></h3>
+                <p class="card-text"><span class="ja">共同研究・受託研究のご相談は、メールでお問い合わせください。</span><span class="en" lang="en">For joint or commissioned research, please contact us by email.</span></p>
+                <p class="pub-links"><a class="pub-doi" href="#contact-collab" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" style="padding-top: 0;">
+        <div class="section-header">
+            <span class="section-tag">Projects</span>
+            <h2 class="section-title"><span class="ja">主な共同研究と成果</span><span class="en" lang="en">Selected Projects &amp; Outputs</span></h2>
+            <p class="section-description"><span class="ja">論文やプレスリリースなどで公開されている共同研究を紹介します。</span><span class="en" lang="en">Joint projects whose results have been made public through papers, press releases and other channels.</span></p>
+        </div>
+        <div class="collab-projects">
+            <article class="collab-project" id="mitsui">
+                <div class="collab-project-head">
+                    <i class="fa-solid fa-spa card-icon icon-cyan" aria-hidden="true"></i>
+                    <div>
+                        <p class="collab-partner"><span class="ja">三井不動産株式会社（三井不動産東大ラボ）</span><span class="en" lang="en">Mitsui Fudosan Co., Ltd. (Mitsui Fudosan UTokyo Lab)</span></p>
+                        <h3><span class="ja">限定空間における五感提示VR技術の研究</span><span class="en" lang="en">Multisensory VR for confined spaces</span></h3>
+                    </div>
+                </div>
+                <p class="card-text"><span class="ja">物流施設やホテルなど制約の多い限定空間で働く人や利用者に向けて、錯覚技術を用いたリラクゼーション体験の実現を目指し、触覚を中心とした研究を行っています。水を使わずに、気流と温度の対比で足湯の感覚を再現するバーチャル足湯を開発しました。</span><span class="en" lang="en">For people who work in or use confined spaces such as logistics facilities and hotels, we study relaxation experiences based on perceptual illusions, with a focus on touch. One result is a waterless virtual footbath that recreates the feeling of a footbath with airflow and thermal contrast.</span></p>
+                    <p class="pub-links"><a class="pub-doi" href="https://mfut-lab.ducr.u-tokyo.ac.jp/theme_post/%e9%99%90%e5%ae%9a%e7%a9%ba%e9%96%93%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8b%e4%ba%94%e6%84%9f%e6%8f%90%e7%a4%bavr%e6%8a%80%e8%a1%93%e3%81%ae%e7%a0%94%e7%a9%b6/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">テーマ紹介（三井不動産東大ラボ）</span><span class="en" lang="en">Theme page (Mitsui Fudosan UTokyo Lab)</span></a></p>
+                <h4 class="sub-heading"><span class="ja">主な成果</span><span class="en" lang="en">Outputs</span></h4>
+                <ul class="collab-outputs">
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">論文誌</span><span class="en" lang="en">Journal</span></span>
+                            <p class="pub-title">Waterless Virtual Footbath Using Airflow and Thermal Contrast: Design and Exploratory Evaluation of Relaxation-Oriented VR Experience</p>
+                            <p class="pub-authors">Zi Xin, Hiroaki Yano, Kazuhiro Fujitsuka, Tomohiro Amemiya, Vibol Yem</p>
+                            <p class="pub-venue">Frontiers in Virtual Reality, 7:1826083, June 2026.</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.3389/frvir.2026.1826083" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.3389/frvir.2026.1826083</a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">プレプリント</span><span class="en" lang="en">Preprint</span></span>
+                            <p class="pub-title">v-Relax: Virtual Footbath Experiencing by Airflow and Thermal Presentation</p>
+                            <p class="pub-authors">Vibol Yem, Mattia Quartana, Zi Xin, Kazuhiro Fujitsuka, Tomohiro Amemiya</p>
+                            <p class="pub-venue">arXiv:2411.05145, Nov. 2024.</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://arxiv.org/abs/2411.05145" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">arXiv</span><span class="en" lang="en">arXiv</span></a></p>
+                        </li>
+                </ul>
+            </article>
+            <article class="collab-project" id="mitsubishi">
+                <div class="collab-project-head">
+                    <i class="fa-solid fa-hand-sparkles card-icon icon-blue" aria-hidden="true"></i>
+                    <div>
+                        <p class="collab-partner"><span class="ja">三菱電機株式会社</span><span class="en" lang="en">Mitsubishi Electric Corporation</span></p>
+                        <h3><span class="ja">擬似力覚・Pseudo-hapticsによる触力覚の提示</span><span class="en" lang="en">Pseudo-force and pseudo-haptic feedback</span></h3>
+                    </div>
+                </div>
+                <p class="card-text"><span class="ja">指を拘束せずに牽引力や重さを感じさせる振動デバイスや、VRで視点や手の見え方を操作して触覚を生み出すPseudo-hapticsなどを研究しています。三菱電機の研究者が客員研究員として参加し、国際会議で成果を発表しています。</span><span class="en" lang="en">We study vibration devices that convey traction and weight without restraining the fingers, and pseudo-haptics that create touch by manipulating the viewpoint or the appearance of the hand in VR. Researchers from Mitsubishi Electric take part as visiting researchers, and the results have been presented at international conferences.</span></p>
+                <h4 class="sub-heading"><span class="ja">主な成果</span><span class="en" lang="en">Outputs</span></h4>
+                <ul class="collab-outputs">
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国際会議</span><span class="en" lang="en">Intl. Conference</span></span>
+                            <p class="pub-title">TractFree: Finger-Free Grip for Traction and Weight</p>
+                            <p class="pub-authors">Mitsuru Ito, Yuta Itoh, Kazuma Aoyama, Tomohiro Amemiya</p>
+                            <p class="pub-venue">SIGGRAPH Asia 2024 Emerging Technologies, 2024.</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1145/3681755.3688948" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1145/3681755.3688948</a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国際会議</span><span class="en" lang="en">Intl. Conference</span></span>
+                            <p class="pub-title">Enhancing Pseudo-Haptics on the Hand by Viewpoint Shifts in VR</p>
+                            <p class="pub-authors">Riku Watanabe, Mitsuru Ito, Akifumi Takahashi, Tomohiro Amemiya, Yuki Ban</p>
+                            <p class="pub-venue">IEEE International Symposium on Mixed and Augmented Reality (ISMAR 2025), Oct. 2025.</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1109/ismar67309.2025.00058" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/ismar67309.2025.00058</a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国際会議</span><span class="en" lang="en">Intl. Conference</span></span>
+                            <p class="pub-title">Self-Hand Joint Deformation with Contact-Color Cueing for Pseudo-Weight and Pressure in VR: A Deployable Design with Initial Validation</p>
+                            <p class="pub-authors">Weiya Chen, Mitsuru Ito, Riku Watanabe, Tomohiro Amemiya, Yuki Ban</p>
+                            <p class="pub-venue">Augmented Humans 2026, Okinawa, Japan, Mar. 2026.</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1145/3795011.3795039" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1145/3795011.3795039</a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国内学会</span><span class="en" lang="en">Domestic</span></span>
+                            <p class="pub-title">フィンガーフリー型振動デバイスによる擬似牽引力提示とそのVR応用</p>
+                            <p class="pub-authors">伊藤充, 雨宮智浩</p>
+                            <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://conference.vrsj.org/ac2025/program/doc/3G-25.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span class="ja">予稿（PDF）</span><span class="en" lang="en">Paper (PDF)</span></a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国内学会</span><span class="en" lang="en">Domestic</span></span>
+                            <p class="pub-title">仮想の視点と手の操作によるPseudo-haptics</p>
+                            <p class="pub-authors">渡部理久, 伊藤充, 髙橋哲史, 雨宮智浩, 伴祐樹</p>
+                            <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://conference.vrsj.org/ac2025/program/doc/1E1-03.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span class="ja">予稿（PDF）</span><span class="en" lang="en">Paper (PDF)</span></a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国内学会</span><span class="en" lang="en">Domestic</span></span>
+                            <p class="pub-title">足の甲への振動触覚刺激による歩行感覚の生成</p>
+                            <p class="pub-authors">伊藤充, 小川勇, 雨宮智浩</p>
+                            <p class="pub-venue">第29回日本バーチャルリアリティ学会大会, 2024.09</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://conference.vrsj.org/ac2024/program/doc/3C1-12.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span class="ja">予稿（PDF）</span><span class="en" lang="en">Paper (PDF)</span></a></p>
+                        </li>
+                </ul>
+            </article>
+            <article class="collab-project" id="yoshimoto">
+                <div class="collab-project-head">
+                    <i class="fa-solid fa-masks-theater card-icon icon-purple" aria-hidden="true"></i>
+                    <div>
+                        <p class="collab-partner"><span class="ja">吉本興業株式会社 / FANY（東京大学VRセンターとの共同研究）</span><span class="en" lang="en">Yoshimoto Kogyo Co., Ltd. / FANY (with the UTokyo VR Center)</span></p>
+                        <h3><span class="ja">VR漫才トレーニング</span><span class="en" lang="en">VR manzai training</span></h3>
+                    </div>
+                </div>
+                <p class="card-text"><span class="ja">お笑いコンビ NON STYLE の石田明さんらと、漫才の掛け合いを身体の動きとともに体験・練習できるVRシステムを開発し、「掛け合いプレゼン力」の向上を目指しました。2023年の五月祭で一般公開し、NHK「おはよう日本」でも紹介されました。</span><span class="en" lang="en">With Akira Ishida of the comedy duo NON STYLE and others, we developed a VR system for experiencing and practising the back-and-forth of manzai comedy with the whole body, aiming to improve presentation skills in dialogue. It was shown to the public at the 2023 May Festival and featured on NHK&rsquo;s &ldquo;Ohayo Nippon&rdquo;.</span></p>
+                <h4 class="sub-heading"><span class="ja">主な成果</span><span class="en" lang="en">Outputs</span></h4>
+                <ul class="collab-outputs">
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">論文誌</span><span class="en" lang="en">Journal</span></span>
+                            <p class="pub-title">ノンスタVR漫才トレーニング：身体性を伴う漫才実演体験システムの開発</p>
+                            <p class="pub-authors">宮本道人, 石田明, 深谷陸, 谷川智洋, 金井夏生, 田中爽太, 梁弘一, 廣瀬通孝, 雨宮智浩</p>
+                            <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 29, No. 3, pp. 139–142, 2024.</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.18974/tvrsj.29.3_139" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.18974/tvrsj.29.3_139</a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">国内学会</span><span class="en" lang="en">Domestic</span></span>
+                            <p class="pub-title">「掛け合いプレゼン力」向上のためのVR漫才トレーニングの開発</p>
+                            <p class="pub-authors">宮本道人, 石田明, 深谷陸, 谷川智洋, 金井夏生, 田中爽太, 梁弘一, 廣瀬通孝, 雨宮智浩</p>
+                            <p class="pub-venue">第28回日本バーチャルリアリティ学会大会, 2023.09</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://conference.vrsj.org/ac2023/program/doc/3G-09.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span class="ja">予稿（PDF）</span><span class="en" lang="en">Paper (PDF)</span></a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">メディア</span><span class="en" lang="en">Media</span></span>
+                            <p class="pub-title">仮想現実研究の最前線 “漫才”でプレゼン能力を上げる!?</p>
+                            <p class="pub-authors">NHK おはよう日本</p>
+                            <p class="pub-venue">2023年6月7日</p>
+                        </li>
+                </ul>
+            </article>
+            <article class="collab-project" id="firefighting">
+                <div class="collab-project-head">
+                    <i class="fa-solid fa-fire-extinguisher card-icon icon-cyan" aria-hidden="true"></i>
+                    <div>
+                        <p class="collab-partner"><span class="ja">株式会社理経・東京理科大学・横浜市消防局（産学官の共同研究開発）</span><span class="en" lang="en">Rikei Corporation, Tokyo University of Science &amp; Yokohama City Fire Bureau</span></p>
+                        <h3><span class="ja">VR消防教育訓練シミュレーションシステム</span><span class="en" lang="en">VR training simulator for firefighters</span></h3>
+                    </div>
+                </div>
+                <p class="card-text"><span class="ja">消防隊員の教育訓練に特化したVRシミュレーションシステムを、産学官で共同開発しました（2020年開始）。2023年に「学習モード」が製品化され、2026年度日本火災学会技術賞を受賞しました。</span><span class="en" lang="en">Industry, academia and government jointly developed a VR simulation system dedicated to firefighter training (started in 2020). Its learning mode became a product in 2023, and the system received the 2026 Technology Award of the Japan Association for Fire Science and Engineering.</span></p>
+                <h4 class="sub-heading"><span class="ja">主な成果</span><span class="en" lang="en">Outputs</span></h4>
+                <ul class="collab-outputs">
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">受賞</span><span class="en" lang="en">Award</span></span>
+                            <p class="pub-title">2026年度 日本火災学会技術賞「消防隊員の教育訓練に特化したVR消防教育訓練シミュレーションシステム」</p>
+                            <p class="pub-authors">西川 厚, 雨宮智浩, 大宮喜文, 石川大樹</p>
+                            <p class="pub-venue">2026年5月30日</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://www.itc.u-tokyo.ac.jp/education/2026/06/17/post-5647/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">情報基盤センターのお知らせ</span><span class="en" lang="en">ITC news</span></a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">プレスリリース</span><span class="en" lang="en">Press Release</span></span>
+                            <p class="pub-title">理経が横浜市消防局、東京大学、東京理科大学と共同開発したVR消防教育訓練シミュレーションシステム「学習モード」を販売開始</p>
+                            <p class="pub-authors">株式会社理経</p>
+                            <p class="pub-venue">2023年10月31日</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://www.rikei.co.jp/news/2023-29/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">理経のお知らせ</span><span class="en" lang="en">Rikei news</span></a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">プレスリリース</span><span class="en" lang="en">Press Release</span></span>
+                            <p class="pub-title">全国初 産学官による消防隊員の教育訓練に特化したVR共同研究開発</p>
+                            <p class="pub-authors">株式会社理経</p>
+                            <p class="pub-venue">2020年3月19日</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://prtimes.jp/main/html/rd/p/000000025.000025721.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">プレスリリース（PR TIMES）</span><span class="en" lang="en">Press release (PR TIMES)</span></a></p>
+                        </li>
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">メディア</span><span class="en" lang="en">Media</span></span>
+                            <p class="pub-title">火災現場、VRで体験 横浜市消防局がシステム開発中</p>
+                            <p class="pub-authors">神奈川新聞</p>
+                            <p class="pub-venue">2020年5月25日</p>
+                        </li>
+                </ul>
+            </article>
+            <article class="collab-project" id="dmm">
+                <div class="collab-project-head">
+                    <i class="fa-solid fa-vr-cardboard card-icon icon-blue" aria-hidden="true"></i>
+                    <div>
+                        <p class="collab-partner"><span class="ja">合同会社DMM.com（東京大学VRセンターとの共同研究）</span><span class="en" lang="en">DMM.com LLC (with the UTokyo VR Center)</span></p>
+                        <h3><span class="ja">VRシステムの評価及び最適化手法の提案</span><span class="en" lang="en">Evaluating and optimizing VR systems</span></h3>
+                    </div>
+                </div>
+                <p class="card-text"><span class="ja">VR空間のユーザーインタフェースへの習熟度や没入度を科学的に定量評価する手法を確立し、インタフェースの最適化につなげることを目指した共同研究です（2020年開始）。</span><span class="en" lang="en">A joint project (started in 2020) to establish methods for quantitatively evaluating users&rsquo; proficiency with and immersion in VR user interfaces, and to use them to optimize those interfaces.</span></p>
+                <h4 class="sub-heading"><span class="ja">主な成果</span><span class="en" lang="en">Outputs</span></h4>
+                <ul class="collab-outputs">
+                        <li class="collab-output">
+                            <span class="collab-kind"><span class="ja">プレスリリース</span><span class="en" lang="en">Press Release</span></span>
+                            <p class="pub-title">DMM VR研究室が東京大学 連携研究機構 バーチャルリアリティ教育研究センターと共同研究を開始</p>
+                            <p class="pub-authors">合同会社DMM.com</p>
+                            <p class="pub-venue">2020年4月1日</p>
+                            <p class="pub-links"><a class="pub-doi" href="https://prtimes.jp/main/html/rd/p/000003525.000002581.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">プレスリリース（PR TIMES）</span><span class="en" lang="en">Press release (PR TIMES)</span></a></p>
+                        </li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section id="partners" style="padding-top: 0;">
+        <div class="member-category">
+            <h2 class="member-category-title"><span class="ja">共同研究実績（終了分を含む）</span><span class="en" lang="en">Research Partners (including completed projects)</span></h2>
+            <ul class="partner-chips"><li><a class="partner-chip has-detail" href="#mitsui"><span class="ja">三井不動産株式会社</span><span class="en" lang="en">Mitsui Fudosan Co., Ltd.</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li><li><a class="partner-chip has-detail" href="#mitsubishi"><span class="ja">三菱電機株式会社</span><span class="en" lang="en">Mitsubishi Electric Corporation</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li><li><span class="partner-chip"><span class="ja">NTT株式会社</span><span class="en" lang="en">NTT, Inc.</span></span></li><li><span class="partner-chip"><span class="ja">アサヒクオリティーアンドイノベーションズ株式会社</span><span class="en" lang="en">Asahi Quality &amp; Innovations, Ltd.</span></span></li><li><span class="partner-chip"><span class="ja">株式会社ニッスイ</span><span class="en" lang="en">Nissui Corporation</span></span></li><li><a class="partner-chip has-detail" href="#yoshimoto"><span class="ja">吉本興業株式会社 / FANY</span><span class="en" lang="en">Yoshimoto Kogyo Co., Ltd. / FANY</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li><li><span class="partner-chip"><span class="ja">一般財団法人 デジタルコンテンツ協会</span><span class="en" lang="en">Digital Content Association of Japan</span></span></li><li><a class="partner-chip has-detail" href="#firefighting"><span class="ja">株式会社理経・東京理科大学・横浜市消防局</span><span class="en" lang="en">Rikei Corporation, Tokyo University of Science &amp; Yokohama City Fire Bureau</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li><li><span class="partner-chip"><span class="ja">株式会社フジタ</span><span class="en" lang="en">Fujita Corporation</span></span></li><li><span class="partner-chip"><span class="ja">中日本高速道路株式会社</span><span class="en" lang="en">Central Nippon Expressway Co., Ltd.</span></span></li><li><span class="partner-chip"><span class="ja">株式会社デンソー</span><span class="en" lang="en">DENSO Corporation</span></span></li><li><a class="partner-chip has-detail" href="#dmm"><span class="ja">合同会社DMM.com</span><span class="en" lang="en">DMM.com LLC</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li></ul>
+        </div>
+        <div class="card collab-cta" id="contact-collab">
+            <h2><span class="ja">共同研究・受託研究のご相談</span><span class="en" lang="en">Interested in working with us?</span></h2>
+            <p><span class="ja">研究内容は研究紹介や論文・発表一覧もあわせてご覧ください。</span><span class="en" lang="en">See also our research and publications.</span></p>
+            <div class="hero-buttons">
+                <a href="#contact-collab" class="btn btn-primary" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
+                <a href="research.html" class="btn btn-secondary"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a>
+                <a href="publications.html" class="btn btn-secondary"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="collaboration.html" data-site-link><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

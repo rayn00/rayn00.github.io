@@ -419,6 +419,116 @@
         listCounters.push(updateCount);
     });
 
+    /* ---------- タブ（配属・連携案内） ---------- */
+    // <div data-tabs> の中の [role="tab"]（aria-controls でパネルを指定）で切り替える。
+    // index.html#industry のようにパネルのIDを付けたURLで開くと、そのタブを表示する
+    document.querySelectorAll('[data-tabs]').forEach(function (box) {
+        var tabs = Array.prototype.slice.call(box.querySelectorAll('[role="tab"]'));
+        var panels = tabs.map(function (tb) { return document.getElementById(tb.getAttribute('aria-controls')); });
+        function select(i, focus) {
+            tabs.forEach(function (tb, j) {
+                var on = i === j;
+                tb.setAttribute('aria-selected', String(on));
+                tb.tabIndex = on ? 0 : -1;
+                if (panels[j]) panels[j].hidden = !on;
+            });
+            if (focus) tabs[i].focus();
+        }
+        tabs.forEach(function (tb, i) {
+            tb.addEventListener('click', function () { select(i); });
+            tb.addEventListener('keydown', function (e) {
+                var n = tabs.length;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    select((i + (e.key === 'ArrowRight' ? 1 : n - 1)) % n, true);
+                } else if (e.key === 'Home') { e.preventDefault(); select(0, true); }
+                else if (e.key === 'End') { e.preventDefault(); select(n - 1, true); }
+            });
+        });
+        function fromHash() {
+            var id = decodeURIComponent(location.hash.slice(1));
+            var target = id && document.getElementById(id);
+            if (!target) return;
+            for (var i = 0; i < panels.length; i++) {
+                if (panels[i] && (panels[i] === target || panels[i].contains(target))) {
+                    select(i);
+                    if (panels[i] === target) box.scrollIntoView({ block: 'start' });
+                    return;
+                }
+            }
+        }
+        select(0);
+        fromHash();
+        window.addEventListener('hashchange', fromHash);
+    });
+
+    /* ---------- 研究テーマのショート動画 ---------- */
+    // カードに data-short="YouTubeの動画ID" を付けると、カードのクリックで縦長の動画をポップアップ再生する
+    var shortCards = Array.prototype.slice.call(document.querySelectorAll('[data-short]'));
+    if (shortCards.length) {
+        var dlg = null, dlgFrame, dlgTitle, dlgLink, dlgClose, lastFocus = null;
+        var buildDialog = function () {
+            dlg = document.createElement('dialog');
+            dlg.className = 'short-dialog';
+            dlg.setAttribute('aria-labelledby', 'shortDialogTitle');
+            dlg.innerHTML = '<div class="short-dialog-inner">' +
+                '<div class="short-dialog-head"><p class="short-dialog-title" id="shortDialogTitle"></p>' +
+                '<button type="button" class="short-dialog-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>' +
+                '<div class="short-frame"></div>' +
+                '<p class="short-dialog-foot"><a target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> ' +
+                '<span class="ja">YouTubeで見る</span><span class="en" lang="en">Watch on YouTube</span></a></p></div>';
+            document.body.appendChild(dlg);
+            dlgFrame = dlg.querySelector('.short-frame');
+            dlgTitle = dlg.querySelector('.short-dialog-title');
+            dlgLink = dlg.querySelector('.short-dialog-foot a');
+            dlgClose = dlg.querySelector('.short-dialog-close');
+            dlgClose.addEventListener('click', function () { dlg.close(); });
+            // 動画の外側（背景）をクリックしたら閉じる
+            dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+            // 閉じたら動画を止める
+            dlg.addEventListener('close', function () {
+                dlgFrame.innerHTML = '';
+                if (lastFocus) lastFocus.focus();
+            });
+        };
+        var openShort = function (card, opener) {
+            var id = card.getAttribute('data-short');
+            var watch = 'https://youtube.com/shorts/' + encodeURIComponent(id);
+            if (typeof HTMLDialogElement !== 'function') { window.open(watch, '_blank', 'noopener'); return; }
+            if (!dlg) buildDialog();
+            lastFocus = opener || null;
+            var h = card.querySelector('h3, h4');
+            dlgTitle.innerHTML = h ? h.innerHTML : '';
+            var label = h ? (h.querySelector(root.lang === 'en' ? '.en' : '.ja') || h).textContent : '';
+            dlgClose.setAttribute('aria-label', root.lang === 'en' ? 'Close' : '閉じる');
+            dlgLink.href = watch;
+            var f = document.createElement('iframe');
+            f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1';
+            f.title = label + (root.lang === 'en' ? ' (video)' : '（動画）');
+            f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            f.setAttribute('allowfullscreen', '');
+            dlgFrame.appendChild(f);
+            dlg.showModal();
+            dlgClose.focus();
+        };
+        shortCards.forEach(function (card) {
+            card.classList.add('has-short');
+            var btn = card.querySelector('.play-badge');
+            if (!btn) {
+                btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'play-badge';
+                btn.innerHTML = '<i class="fa-solid fa-circle-play" aria-hidden="true"></i> <span class="ja">動画を見る</span><span class="en" lang="en">Watch video</span>';
+                card.appendChild(btn);
+            }
+            card.addEventListener('click', function (e) {
+                if (e.target.closest('a')) return;   // カード内のリンクはそのまま開く
+                openShort(card, btn);
+            });
+        });
+    }
+
     /* ---------- 初期表示 ---------- */
     applyLang(root.lang === 'en' ? 'en' : 'ja');
     updateThemeUI();

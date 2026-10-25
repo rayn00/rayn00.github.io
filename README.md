@@ -11,6 +11,7 @@ members.html        メンバー（教授のプロフィール・スタッフ・
 publications.html   論文・発表一覧（種類で絞り込み・キーワード検索）
 news.html           ニュース一覧（種類で絞り込み・キーワード検索）
 faq.html            よくある質問（進学を希望する方へ。開閉式・キーワード検索）
+collaboration.html  共同研究・産学連携（主な共同研究と成果、共同研究実績）
 404.html            ページが見つからないときの表示
 .nojekyll           GitHub Pages の加工処理（Jekyll）を止める空ファイル
 assets/
@@ -64,7 +65,7 @@ img/
 
 メンバーを追加するときは、`<li class="person-chip">` を1人分コピーして名前と画像ファイル名を書き換え、写真を `img/members/` に追加してください。メンバーは `index.html` と `members.html` の両方に載っているので、両方を書き換えます。
 
-個人サイトを持っている人は、ローマ字の名前の下に次の1行を入れるとリンクが表示されます（現在は雨宮・青山・牛山の3名）。無い人は不要です。
+個人サイトを持っている人は、ローマ字の名前の下に次の1行を入れるとリンクが表示されます（現在は雨宮・青山・牛山の3名）。無い人は不要です。雨宮の Google Scholar・ORCID・researchmap のリンクは、`index.html` と `members.html` の教授欄（`profile-links`）にあります。
 
 ```html
 <a class="person-link" href="https://個人サイトのURL/" target="_blank" rel="noopener"><i class="fa-solid fa-globe" aria-hidden="true"></i> <span class="ja">個人サイト</span><span class="en" lang="en">Website</span></a>
@@ -125,6 +126,24 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - プライバシー強化モード（`youtube-nocookie.com`）で埋め込んでいます。
 - ページを開いた時点では読み込まず、ニュース欄の近くまでスクロールしたときに読み込みます。
 - 投稿者が「埋め込みを許可」をオフにしている動画は再生できません。
+
+### 配属・連携案内のタブ（index.html）
+
+トップページの「配属希望者・企業連携案内」は、「進学を希望する方」と「企業・研究機関の方」の2つのタブで切り替わります。`index.html#industry` のように、タブの中身の ID（`students` または `industry`）を付けたURLで開くと、そのタブが表示されます。
+
+### 共同研究・産学連携を更新する（collaboration.html）
+
+- **主な共同研究と成果**：`<article class="collab-project" id="…">` 〜 `</article>` が1件分です。成果は、その中の `<li class="collab-output">` 〜 `</li>` を1件分コピーして書き換えます。DOI などのリンクは論文・発表一覧と同じ書き方です。
+- **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「企業・研究機関の方」タブにも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
+- トップページのタブにあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
+
+### 研究テーマのショート動画（index.html・research.html）
+
+研究テーマのカードに `data-short="YouTubeの動画ID"` を付けると、カードに「動画を見る」ボタンが表示され、カードをクリックすると縦長の動画が画面中央に開いて再生されます。閉じるボタン・Esc キー・動画の外側のクリックで閉じ、閉じると再生も止まります。
+
+- 動画IDは `https://youtube.com/shorts/` の後ろの部分です（例：`https://youtube.com/shorts/-jkH-vsxufw` なら `-jkH-vsxufw`）。
+- トップページは「研究テーマ」の `<div class="card">` を `<div class="card" data-short="動画ID">` に、研究紹介ページは `<article class="card theme-card">` を `<article class="card theme-card" data-short="動画ID">` にします。
+- `data-short` を付けていないカードは、これまでどおりクリックしても何も起きません。
 
 ### よくある質問を更新する（faq.html）
 
