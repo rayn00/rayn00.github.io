@@ -580,6 +580,321 @@
         else { img.addEventListener('load', ok); img.addEventListener('error', fail); }
     });
 
+    /* ---------- 研究のつながり（ネットワーク図・研究紹介ページ） ---------- */
+    // <div data-network> が画面に近づいたら D3.js を読み込んで描く。
+    // 点は、研究カード（id と data-topics を付けた .theme-card）と、
+    // <script type="application/json" id="networkData"> のキーワードから自動で作る
+    var netBox = document.querySelector('[data-network]');
+    if (netBox && document.getElementById('networkData')) {
+        var startNetwork = function () {
+            if (window.d3) { buildNetwork(netBox); return; }
+            var sc = document.createElement('script');
+            sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+            sc.onload = function () {
+                try { buildNetwork(netBox); } catch (e) { netBox.classList.add('is-error'); }
+            };
+            sc.onerror = function () { netBox.classList.add('is-error'); };
+            document.head.appendChild(sc);
+        };
+        if ('IntersectionObserver' in window) {
+            var netIO = new IntersectionObserver(function (entries) {
+                if (entries.some(function (en) { return en.isIntersecting; })) { netIO.disconnect(); startNetwork(); }
+            }, { rootMargin: '400px 0px' });
+            netIO.observe(netBox);
+        } else {
+            startNetwork();
+        }
+    }
+
+    function buildNetwork(box) {
+        var d3 = window.d3;
+        var data = JSON.parse(document.getElementById('networkData').textContent);
+        var isEn = function () { return root.lang === 'en'; };
+        var tx = function (o) { return o ? (isEn() ? o.en : o.ja) : ''; };
+        var pair = function (el) {
+            if (!el) return { ja: '', en: '' };
+            var ja = el.querySelector('.ja'), en = el.querySelector('.en');
+            return { ja: (ja || el).textContent.trim(), en: (en || ja || el).textContent.trim() };
+        };
+        var KIND = {
+            core: ['研究室', 'Lab'], domain: ['研究分野', 'Research area'], topic: ['キーワード', 'Keyword'],
+            current: ['現在の研究', 'Current research'], past: ['これまでの研究', 'Past research']
+        };
+
+        // ---- 点と線
+        var nodes = [], links = [], byId = {};
+        var addNode = function (n) { nodes.push(n); byId[n.id] = n; return n; };
+        var addLink = function (a, b, kind) { if (byId[a] && byId[b]) links.push({ source: a, target: b, kind: kind }); };
+        document.querySelectorAll('#themes > .theme-group[id]').forEach(function (grp) {
+            addNode({ id: 'd-' + grp.id, kind: 'domain', name: pair(grp.querySelector('.theme-group-head h2, .theme-group-head h3')),
+                desc: pair(grp.querySelector('.theme-group-head p')), target: grp });
+        });
+        data.topics.forEach(function (t) {
+            addNode({ id: 't-' + t.id, kind: 'topic', name: { ja: t.ja, en: t.en }, desc: { ja: t.desc_ja, en: t.desc_en }, href: t.href || null });
+        });
+        document.querySelectorAll('.theme-card[data-topics][id]').forEach(function (card) {
+            var grp = card.closest('.theme-group');
+            var dom = grp ? grp.id.replace(/^past-/, '') : '';
+            var n = addNode({ id: 'r-' + card.id, kind: card.closest('#past') ? 'past' : 'current',
+                name: pair(card.querySelector('h3, h4')), desc: pair(card.querySelector('.card-text')), card: card });
+            addLink(n.id, 'd-' + dom, 'domain');
+            card.getAttribute('data-topics').split(/[\s,]+/).forEach(function (t) { if (t) addLink(n.id, 't-' + t, 'topic'); });
+        });
+        links.forEach(function (l) {
+            byId[l.source].deg = (byId[l.source].deg || 0) + 1;
+            byId[l.target].deg = (byId[l.target].deg || 0) + 1;
+        });
+        nodes.forEach(function (n) {
+            n.r = n.kind === 'domain' ? 16 : n.kind === 'topic' ? 7 + Math.min(8, n.deg || 0) : 6;
+        });
+
+        // ---- 配置（最初にまとめて計算してから描く）
+        // 分野ごとに左右へ寄せる（1つ目の分野は左、2つ目は右）。キーワードはつながる研究の分野の平均の位置へ
+        // 縦長の枠（スマホ）では上下に分け、狭い枠では全体を小さめに配置する
+        var portrait = box.clientWidth < box.clientHeight * 1.1;
+        var sf = Math.max(0.6, Math.min(1, box.clientWidth / 1100));
+        var domIds = nodes.filter(function (n) { return n.kind === 'domain'; }).map(function (n) { return n.id; });
+        var SPREAD = 340 * sf;
+        var domX = {};
+        domIds.forEach(function (id, k) { domX[id] = domIds.length > 1 ? -SPREAD + (2 * SPREAD) * k / (domIds.length - 1) : 0; });
+        nodes.forEach(function (n) {
+            if (n.kind === 'domain') n.tx = domX[n.id];
+        });
+        links.forEach(function (l) {
+            if (l.kind === 'domain') byId[l.source].tx = domX[l.target] * 0.85;
+        });
+        nodes.forEach(function (n) {
+            if (n.kind !== 'topic') return;
+            var xs = links.filter(function (l) { return l.target === n.id; }).map(function (l) { return byId[l.source].tx || 0; });
+            n.tx = xs.length ? xs.reduce(function (a, b) { return a + b; }, 0) / xs.length : 0;
+        });
+        nodes.forEach(function (n, k) {   // 初期位置（毎回同じ形になるように）
+            var along = n.tx || 0, across = Math.sin(k * 2.4) * 120 * sf;
+            n.x = portrait ? across : along + Math.cos(k * 2.4) * 40;
+            n.y = portrait ? along + Math.cos(k * 2.4) * 40 : across;
+        });
+        var sim = d3.forceSimulation(nodes)
+            .force('link', d3.forceLink(links).id(function (n) { return n.id; })
+                .distance(function (l) { return (l.kind === 'domain' ? 170 : 62) * sf; })
+                .strength(function (l) { return l.kind === 'domain' ? 0.05 : 0.5; }))
+            .force('charge', d3.forceManyBody().strength(function (n) {
+                return (n.kind === 'domain' ? -500 : n.kind === 'topic' ? -340 : -130) * sf;
+            }))
+            .force('collide', d3.forceCollide().radius(function (n) { return n.r + (n.kind === 'topic' ? 16 : 7); }))
+            .force('x', portrait
+                ? d3.forceX(0).strength(0.09)
+                : d3.forceX(function (n) { return n.tx || 0; }).strength(function (n) { return n.kind === 'topic' ? 0.08 : 0.14; }))
+            .force('y', portrait
+                ? d3.forceY(function (n) { return n.tx || 0; }).strength(function (n) { return n.kind === 'topic' ? 0.08 : 0.14; })
+                : d3.forceY(0).strength(0.07))
+            .stop();
+        for (var i = 0; i < 420; i++) sim.tick();
+        nodes.forEach(function (n) { n.x0 = n.x; n.y0 = n.y; });
+
+        var adj = {};
+        nodes.forEach(function (n) { adj[n.id] = {}; adj[n.id][n.id] = true; });
+        links.forEach(function (l) { adj[l.source.id][l.target.id] = true; adj[l.target.id][l.source.id] = true; });
+
+        // ---- 描画
+        box.classList.add('is-ready');
+        var svg = d3.select(box).insert('svg', ':first-child').attr('class', 'net-svg');
+        var g = svg.append('g');
+        var link = g.append('g').selectAll('line').data(links).join('line')
+            .attr('class', function (l) { return 'net-link k-' + l.kind; });
+        var node = g.append('g').selectAll('g').data(nodes).join('g')
+            .attr('class', function (n) { return 'net-node k-' + n.kind; })
+            .attr('tabindex', 0).attr('role', 'button');
+        node.append('circle').attr('r', function (n) { return n.r; });
+        node.append('text').attr('class', 'net-label')
+            .attr('text-anchor', function (n) { return n.kind === 'domain' ? 'middle' : 'start'; })
+            .attr('x', function (n) { return n.kind === 'domain' ? 0 : n.r + 5; })
+            .attr('y', function (n) { return n.kind === 'domain' ? -(n.r + 9) : 0; })
+            .attr('dy', function (n) { return n.kind === 'domain' ? 0 : '0.35em'; });
+        var position = function () {
+            link.attr('x1', function (l) { return l.source.x; }).attr('y1', function (l) { return l.source.y; })
+                .attr('x2', function (l) { return l.target.x; }).attr('y2', function (l) { return l.target.y; });
+            node.attr('transform', function (n) { return 'translate(' + n.x + ',' + n.y + ')'; });
+        };
+        var updateText = function () {
+            node.select('text').text(function (n) { return tx(n.name); });
+            node.attr('aria-label', function (n) { return tx(n.name) + '（' + KIND[n.kind][isEn() ? 1 : 0] + '）'; });
+        };
+        sim.on('tick', position);
+        updateText();
+        position();
+
+        // ---- 拡大・縮小・移動（ページのスクロールを邪魔しないよう、ホイールは Ctrl/⌘ 付き、タッチは2本指のときだけ）
+        var quick = reduceMotion.matches ? 0 : 500;
+        var zoom = d3.zoom().scaleExtent([0.3, 4])
+            .filter(function (e) {
+                if (e.type === 'wheel') return e.ctrlKey || e.metaKey;
+                if (e.type === 'touchstart') return e.touches.length > 1;
+                return !e.button;
+            })
+            .on('zoom', function (e) {
+                g.attr('transform', e.transform);
+                // 縮小しているときは文字を少し大きくして読みやすくする
+                box.style.setProperty('--net-font', e.transform.k < 1 ? Math.pow(e.transform.k, -0.6).toFixed(3) : 1);
+            });
+        svg.call(zoom).on('dblclick.zoom', null);
+        svg.style('touch-action', 'pan-y');
+        var fit = function () {
+            var b = g.node().getBBox();
+            var w = box.clientWidth, h = box.clientHeight, pad = 28;
+            if (!b.width || !b.height) return d3.zoomIdentity;
+            var k = Math.min((w - pad * 2) / b.width, (h - pad * 2) / b.height, 1.5);
+            return d3.zoomIdentity.translate(w / 2 - k * (b.x + b.width / 2), h / 2 - k * (b.y + b.height / 2)).scale(k);
+        };
+        svg.call(zoom.transform, fit());
+        var lastW = box.clientWidth;
+        if ('ResizeObserver' in window) {
+            new ResizeObserver(function () {
+                if (Math.abs(box.clientWidth - lastW) > 40) { lastW = box.clientWidth; svg.call(zoom.transform, fit()); }
+            }).observe(box);
+        }
+
+        // ---- 点のドラッグ（マウス・ペン・指）。動かした点はその場所に留まる（↺ボタンで元に戻す）
+        var moved = false;
+        node.call(d3.drag()
+            .filter(function (e) {
+                if (e.type === 'touchstart') return e.touches.length === 1;
+                return !e.button;
+            })
+            .on('start', function (e, n) { moved = false; n.fx = n.x; n.fy = n.y; })
+            .on('drag', function (e, n) {
+                if (!moved) {
+                    moved = true;
+                    sim.alphaTarget(0.25).restart();
+                    d3.select(this).classed('is-dragging', true);
+                }
+                n.fx = e.x; n.fy = e.y;
+                n.x = e.x; n.y = e.y;
+                position();
+            })
+            .on('end', function (e, n) {
+                sim.alphaTarget(0);
+                d3.select(this).classed('is-dragging', false).classed('is-pinned', moved || d3.select(this).classed('is-pinned'));
+                if (!moved && !d3.select(this).classed('is-pinned')) { n.fx = null; n.fy = null; }
+            }));
+        var resetLayout = function () {
+            sim.stop();
+            nodes.forEach(function (n) { n.fx = null; n.fy = null; n.x = n.x0; n.y = n.y0; n.vx = 0; n.vy = 0; });
+            node.classed('is-pinned', false);
+            position();
+        };
+
+        // ---- 強調表示と説明パネル
+        var selected = null;
+        var highlight = function (n) {
+            box.classList.toggle('has-focus', !!n);
+            node.classed('is-on', function (m) { return !!n && !!adj[n.id][m.id]; })
+                .classed('is-selected', function (m) { return !!selected && m === selected; });
+            link.classed('is-on', function (l) { return !!n && (l.source === n || l.target === n); });
+        };
+        var panel = document.createElement('div');
+        panel.className = 'net-panel';
+        panel.hidden = true;
+        panel.setAttribute('aria-live', 'polite');
+        box.appendChild(panel);
+        var el = function (tag, cls, text) { var x = document.createElement(tag); if (cls) x.className = cls; if (text != null) x.textContent = text; return x; };
+        var goTo = function (target) {
+            target.scrollIntoView({ behavior: quick ? 'smooth' : 'auto', block: 'center' });
+            target.classList.add('is-flash');
+            setTimeout(function () { target.classList.remove('is-flash'); }, 1800);
+        };
+        var renderPanel = function () {
+            var n = selected;
+            panel.innerHTML = '';
+            if (!n) { panel.hidden = true; return; }
+            var close = el('button', 'net-panel-close');
+            close.type = 'button';
+            close.setAttribute('aria-label', isEn() ? 'Close' : '閉じる');
+            close.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+            close.addEventListener('click', function () { select(null); });
+            panel.appendChild(close);
+            panel.appendChild(el('span', 'net-badge k-' + n.kind, KIND[n.kind][isEn() ? 1 : 0]));
+            panel.appendChild(el('p', 'net-title', tx(n.name)));
+            if (tx(n.desc)) panel.appendChild(el('p', 'net-desc', tx(n.desc)));
+            var actions = el('div', 'net-actions');
+            if (n.card || n.target) {
+                var b = el('button', 'chip-link');
+                b.type = 'button';
+                b.innerHTML = '<i class="fa-solid fa-arrow-down" aria-hidden="true"></i> ';
+                b.appendChild(document.createTextNode(n.card ? (isEn() ? 'See the card' : 'カードを見る') : (isEn() ? 'See this area' : 'この分野のカードを見る')));
+                b.addEventListener('click', function () { goTo(n.card || n.target); });
+                actions.appendChild(b);
+            }
+            if (n.card && n.card.querySelector('.play-badge')) {
+                var vb = el('button', 'chip-link');
+                vb.type = 'button';
+                vb.innerHTML = '<i class="fa-solid fa-circle-play" aria-hidden="true"></i> ';
+                vb.appendChild(document.createTextNode(isEn() ? 'Watch video' : '動画を見る'));
+                vb.addEventListener('click', function () { n.card.querySelector('.play-badge').click(); });
+                actions.appendChild(vb);
+            }
+            if (n.card) {
+                Array.prototype.slice.call(n.card.querySelectorAll('.theme-links a')).slice(0, 3).forEach(function (a) {
+                    actions.appendChild(a.cloneNode(true));
+                });
+            }
+            if (n.href) {
+                var a = el('a', 'chip-link');
+                a.href = n.href;
+                a.innerHTML = '<i class="fa-solid fa-arrow-right" aria-hidden="true"></i> ';
+                a.appendChild(document.createTextNode(isEn() ? 'Learn more' : 'くわしく見る'));
+                actions.appendChild(a);
+            }
+            if (actions.children.length) panel.appendChild(actions);
+            if (n.kind === 'topic' || n.kind === 'domain') {
+                var rel = nodes.filter(function (m) { return m !== n && adj[n.id][m.id]; })
+                    .sort(function (a, b) { return (a.kind === 'past') - (b.kind === 'past'); });
+                if (rel.length) {
+                    panel.appendChild(el('p', 'net-sub', isEn() ? 'Connected' : 'つながっている項目'));
+                    var ul = el('ul', 'net-related');
+                    rel.forEach(function (m) {
+                        var li = el('li');
+                        var rb = el('button', m.kind === 'past' ? 'is-past' : '', tx(m.name));
+                        rb.type = 'button';
+                        rb.addEventListener('click', function () { select(m); });
+                        li.appendChild(rb);
+                        ul.appendChild(li);
+                    });
+                    panel.appendChild(ul);
+                }
+            }
+            panel.hidden = false;
+        };
+        var select = function (n) { selected = n; highlight(n); renderPanel(); };
+        node.on('mouseenter', function (e, n) { highlight(n); })
+            .on('mouseleave', function () { highlight(selected); })
+            .on('focus', function (e, n) { highlight(n); })
+            .on('blur', function () { highlight(selected); })
+            .on('click', function (e, n) { e.stopPropagation(); select(n); })
+            .on('keydown', function (e, n) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(n); }
+            });
+        svg.on('click', function () { select(null); });
+        box.addEventListener('keydown', function (e) { if (e.key === 'Escape' && selected) select(null); });
+
+        // ---- 操作ボタン
+        document.querySelectorAll('[data-net]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var act = btn.getAttribute('data-net');
+                if (act === 'in') svg.transition().duration(quick ? 250 : 0).call(zoom.scaleBy, 1.3);
+                else if (act === 'out') svg.transition().duration(quick ? 250 : 0).call(zoom.scaleBy, 1 / 1.3);
+                else if (act === 'reset') { select(null); resetLayout(); svg.transition().duration(quick).call(zoom.transform, fit()); }
+                else if (act === 'labels') {
+                    var on = box.classList.toggle('labels-all');
+                    btn.setAttribute('aria-pressed', String(on));
+                }
+            });
+        });
+
+        // ---- 日英切替に合わせて文字を更新
+        new MutationObserver(function () { updateText(); renderPanel(); })
+            .observe(root, { attributes: true, attributeFilter: ['lang'] });
+    }
+
     /* ---------- 初期表示 ---------- */
     applyLang(root.lang === 'en' ? 'en' : 'ja');
     updateThemeUI();
