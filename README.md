@@ -146,6 +146,15 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - 動画（`data-short`）があるカードは、画像の右下に再生マークが付きます。
 - ページ下部の「これまでの研究」（`<section id="past">`）のカードも同じ仕組みです。カードを追加するときは、`<article class="card theme-card past-card">` 〜 `</article>` を1件分コピーし、期間（`past-period`）・見出し・説明・論文リンクと画像ファイル名を書き換えます。
 
+### 研究のつながり（ネットワーク図・research.html）
+
+研究紹介ページの上部に、研究とキーワードのつながりを表すネットワーク図があります（D3.js で描画。図の近くまでスクロールしたときに読み込みます）。図は研究カードから自動で作られるので、次の2か所を書き換えるだけで更新できます。
+
+- **研究カードの点**：各カードの `<article … id="card-…" data-topics="…">` が1つの点になります。`data-topics` にはつながるキーワードの ID を半角スペース区切りで書きます（例：`data-topics="pseudo-haptics multisensory"`）。新しいカードを図に出すときは、重ならない `id` と `data-topics` を付けてください。付けないカードは図に出ません。
+- **キーワード**：research.html の `<script type="application/json" id="networkData">` の `topics` に、ID・日本語名・英語名・説明があります。キーワードを増やすときはここに1件追加します。
+
+使えるキーワードの ID：`illusion`（錯覚）、`pseudo-force`（擬似力覚）、`pseudo-haptics`、`tendon`（腱刺激・運動錯覚）、`locomotion`（移動感覚・歩行）、`vestibular`（前庭感覚）、`multisensory`（多感覚・五感）、`avatar`（アバタ・身体性）、`remote`（遠隔・テレプレゼンス）、`education`（講義・学習支援）、`training`（VR訓練）、`collaboration`（共同研究）
+
 ### About の研究紹介動画（index.html）
 
 トップページの「About AME LAB」の右（スマホでは下）に、研究紹介動画を表示します。`index.html` の「研究紹介動画」のコメントの下にある `<figure class="about-video" data-youtube="" data-ratio="16:9">` の `data-youtube` に、YouTube の動画IDを入れてください（動画IDの調べ方は下の「研究テーマのショート動画」と同じです）。
