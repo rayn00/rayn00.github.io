@@ -24,3 +24,21 @@
 | 生体情報を利用した学習支援 | `biosignal-learning.jpg` |
 | 一人称視点の切り替えによる小動物の手術VR教材 | `veterinary-surgery-vr.jpg` |
 | 消防隊員のVR訓練 | `firefighter-vr.jpg` |
+
+## これまでの研究（研究紹介ページの下部）
+
+| カードの見出し | ファイル名 |
+| --- | --- |
+| 運動錯覚とPseudo-hapticsの相乗効果 | `past-illusion-synergy.jpg` |
+| 自己アバタの遅延と「ねじれ」の錯覚 | `past-twist-illusion.jpg` |
+| 受動的な身体運動による疑似歩行感覚 | `past-passive-walking.jpg` |
+| 足裏振動と映像によるバーチャル歩行 | `past-virtual-walking.jpg` |
+| 前庭刺激による旋回・歩行感覚 | `past-vestibular.jpg` |
+| 足首の腱刺激による身体傾斜・坂道の知覚 | `past-ankle-tendon.jpg` |
+| 上下方向の移動感覚（浮遊感・ベクション） | `past-vertical-motion.jpg` |
+| アバタによる行動・態度の変化 | `past-avatar-behavior.jpg` |
+| 動きを共有するアバタ | `past-shared-movement.jpg` |
+| バーチャル足湯（三井不動産との共同研究） | `past-virtual-footbath.jpg` |
+| 立体視テレプレゼンスと遠隔の空間理解 | `past-telepresence.jpg` |
+| VR漫才トレーニング（吉本興業との共同研究） | `past-vr-manzai.jpg` |
+| テキストからのアバタ動作の生成 | `past-avatar-motion.jpg` |
