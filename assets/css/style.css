@@ -2216,3 +2216,73 @@ a.partner-chip i {
         margin: -1.5rem -1.5rem 1.25rem;
     }
 }
+
+/* =====================================================================
+   研究紹介：これまでの研究（小さめのカード）
+   ===================================================================== */
+.past-jump {
+    margin-top: 1.25rem;
+}
+
+.past-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+    gap: 1.5rem;
+}
+
+.past-card {
+    padding: 1.5rem;
+}
+
+.past-card .card-media {
+    margin: -1.5rem -1.5rem 1.1rem;
+}
+
+.past-card .card-media-icon {
+    font-size: 2.6rem;
+}
+
+.past-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.75rem;
+    margin-bottom: 0.4rem;
+}
+
+.past-period {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--accent-cyan);
+}
+
+.past-award {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-purple-text);
+}
+
+.past-card h4 {
+    font-size: 1.02rem;
+    line-height: 1.45;
+    margin-bottom: 0.5rem;
+}
+
+.past-card .card-text {
+    font-size: 0.85rem;
+}
+
+.past-card .theme-links {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.past-card .chip-link {
+    font-size: 0.74rem;
+    padding: 0.25rem 0.65rem;
+}
+
+#past .theme-group-head .member-category-title {
+    font-size: 1.15rem;
+}
