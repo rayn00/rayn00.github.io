@@ -2286,3 +2286,356 @@ a.partner-chip i {
 #past .theme-group-head .member-category-title {
     font-size: 1.15rem;
 }
+
+/* =====================================================================
+   研究紹介：研究のつながり（ネットワーク図）
+   ===================================================================== */
+#network {
+    padding-bottom: 0;
+}
+
+.net-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.net-legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.net-dot {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.4rem;
+    border-radius: 50%;
+    vertical-align: -0.08em;
+}
+
+.net-dot.k-domain { background: var(--accent-purple-text); }
+.net-dot.k-topic { background: var(--accent-blue); }
+.net-dot.k-current { background: var(--text-primary); }
+.net-dot.k-past { border: 2px solid var(--text-secondary); }
+
+.net-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.net-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.net-btn:hover,
+.net-btn:focus-visible,
+.net-btn[aria-pressed="true"] {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.net-box {
+    position: relative;
+    height: 560px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(circle at 20% 15%, rgba(0, 242, 254, 0.08), transparent 55%),
+        radial-gradient(circle at 85% 90%, rgba(127, 0, 255, 0.08), transparent 50%),
+        var(--bg-card);
+    overflow: hidden;
+}
+
+.net-status {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.net-error,
+.net-box.is-ready .net-status,
+.net-box.is-error .net-status:not(.net-error) {
+    display: none;
+}
+
+.net-box.is-error .net-error {
+    display: grid;
+}
+
+.net-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+.net-svg:active {
+    cursor: grabbing;
+}
+
+.net-link {
+    stroke: var(--text-muted);
+    stroke-opacity: 0.32;
+    stroke-width: 1.2;
+    transition: opacity 0.2s, stroke 0.2s;
+}
+
+.net-link.k-domain {
+    stroke-dasharray: 2 5;
+    stroke-opacity: 0.12;
+}
+
+.net-node {
+    cursor: grab;
+    touch-action: none;   /* 点の上では指でなぞると点を動かす（ページはスクロールしない） */
+    transition: opacity 0.2s;
+}
+
+.net-node.is-dragging {
+    cursor: grabbing;
+}
+
+/* 動かして固定した点は、外側に細い輪を表示 */
+.net-node.is-pinned circle {
+    stroke: var(--accent-cyan);
+    stroke-dasharray: 2 2;
+}
+
+.net-node circle {
+    stroke: var(--bg-primary);
+    stroke-width: 2;
+}
+
+.net-node.k-domain circle { fill: var(--accent-purple-text); }
+.net-node.k-topic circle { fill: var(--accent-blue); }
+.net-node.k-current circle { fill: var(--text-primary); }
+
+.net-node.k-past circle {
+    fill: var(--bg-secondary);
+    stroke: var(--text-secondary);
+}
+
+.net-label {
+    font-size: calc(10.5px * var(--net-font, 1));
+    fill: var(--text-secondary);
+    paint-order: stroke;
+    stroke: var(--bg-primary);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.net-node.k-domain .net-label {
+    font-size: calc(12.5px * var(--net-font, 1));
+    font-weight: 700;
+    fill: var(--text-primary);
+}
+
+.net-node.k-topic .net-label {
+    font-size: calc(11.5px * var(--net-font, 1));
+    font-weight: 700;
+    fill: var(--accent-blue);
+}
+
+/* 研究の名前は、関連する点を選んだときと「名前をすべて表示」のときだけ出す */
+.net-node.k-current .net-label,
+.net-node.k-past .net-label {
+    display: none;
+}
+
+.net-box.labels-all .net-node .net-label,
+.net-node.is-on .net-label {
+    display: inline;
+}
+
+.net-box.has-focus .net-node:not(.is-on) {
+    opacity: 0.15;
+}
+
+.net-box.has-focus .net-link:not(.is-on) {
+    opacity: 0.06;
+}
+
+.net-link.is-on {
+    stroke: var(--accent-cyan);
+    stroke-opacity: 0.85;
+}
+
+.net-node:focus {
+    outline: none;
+}
+
+.net-node:focus-visible circle,
+.net-node.is-selected circle {
+    stroke: var(--accent-cyan);
+    stroke-width: 3;
+}
+
+.net-hint {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* クリックしたときの説明パネル */
+.net-panel {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    width: 330px;
+    max-height: calc(100% - 2rem);
+    overflow-y: auto;
+    padding: 1.25rem;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.net-panel[hidden] {
+    display: none;
+}
+
+.net-panel-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.net-panel-close:hover,
+.net-panel-close:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.net-badge {
+    display: inline-block;
+    margin-bottom: 0.4rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.net-badge.k-domain { color: var(--accent-purple-text); }
+.net-badge.k-topic { color: var(--accent-blue); }
+
+.net-title {
+    padding-right: 2rem;
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.net-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.net-sub {
+    margin: 0.9rem 0 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.net-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+}
+
+.net-actions .chip-link,
+.net-related button {
+    font-size: 0.75rem;
+}
+
+.net-related {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.net-related button {
+    padding: 0.25rem 0.65rem;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.net-related button:hover,
+.net-related button:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.net-related .is-past {
+    color: var(--text-secondary);
+}
+
+/* 図から移動したカードを一瞬強調 */
+.theme-card.is-flash {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.35), var(--shadow-hover);
+}
+
+@media (max-width: 600px) {
+    .net-box {
+        height: 560px;
+    }
+
+    .net-panel {
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: 0.75rem;
+        width: auto;
+        max-height: 60%;
+    }
+}
