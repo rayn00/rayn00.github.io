@@ -99,6 +99,119 @@
         </div>
     </section>
 
+    <section id="network">
+        <div class="section-header">
+            <span class="section-tag">Research Network</span>
+            <h2 class="section-title"><span class="ja">研究のつながり</span><span class="en" lang="en">Research Network</span></h2>
+            <p class="section-description"><span class="ja">研究テーマとキーワードのつながりを図にしました。点にカーソルを合わせると関連する研究が光り、クリック（タップ）すると詳しい説明が表示されます。</span><span class="en" lang="en">How our research topics and keywords connect. Hover over a point to highlight related research, and click or tap it for details.</span></p>
+        </div>
+        <div class="net-toolbar">
+            <ul class="net-legend"><li><span class="net-dot k-domain" aria-hidden="true"></span><span class="ja">研究分野</span><span class="en" lang="en">Research area</span></li><li><span class="net-dot k-topic" aria-hidden="true"></span><span class="ja">キーワード</span><span class="en" lang="en">Keyword</span></li><li><span class="net-dot k-current" aria-hidden="true"></span><span class="ja">現在の研究</span><span class="en" lang="en">Current research</span></li><li><span class="net-dot k-past" aria-hidden="true"></span><span class="ja">これまでの研究</span><span class="en" lang="en">Past research</span></li></ul>
+            <div class="net-controls">
+                <button type="button" class="net-btn" data-net="in"><i class="fa-solid fa-plus" aria-hidden="true"></i><span class="sr-only"><span class="ja">拡大</span><span class="en" lang="en">Zoom in</span></span></button>
+                <button type="button" class="net-btn" data-net="out"><i class="fa-solid fa-minus" aria-hidden="true"></i><span class="sr-only"><span class="ja">縮小</span><span class="en" lang="en">Zoom out</span></span></button>
+                <button type="button" class="net-btn" data-net="reset"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span class="sr-only"><span class="ja">元の表示に戻す</span><span class="en" lang="en">Reset view</span></span></button>
+                <button type="button" class="net-btn net-btn-text" data-net="labels" aria-pressed="false"><i class="fa-solid fa-tag" aria-hidden="true"></i> <span class="ja">名前をすべて表示</span><span class="en" lang="en">Show all names</span></button>
+            </div>
+        </div>
+        <div class="net-box" data-network role="group" aria-label="研究のネットワーク図 / Research network diagram">
+            <p class="net-status"><span class="ja">ネットワーク図を読み込んでいます…</span><span class="en" lang="en">Loading the network diagram…</span></p>
+            <p class="net-status net-error"><span class="ja">ネットワーク図を読み込めませんでした。下の研究カードをご覧ください。</span><span class="en" lang="en">The network diagram could not be loaded. Please see the research cards below.</span></p>
+        </div>
+        <p class="net-hint"><span class="ja">点はドラッグ（スマホは指でなぞる）で好きな位置に動かせます。動かした点はその場所に留まり、↺ボタンで元の配置に戻ります。拡大・縮小は ＋／− ボタン、Ctrl（Mac は ⌘）を押しながらのホイール、または2本指のピンチで操作できます。</span><span class="en" lang="en">Drag a point (or slide it with your finger) to move it anywhere; it stays where you drop it, and the ↺ button restores the original layout. Zoom with the + / − buttons, Ctrl (⌘ on Mac) + scroll wheel, or a two-finger pinch.</span></p>
+        <script type="application/json" id="networkData">
+{
+  "topics": [
+    {
+      "id": "illusion",
+      "ja": "錯覚",
+      "en": "Illusions",
+      "desc_ja": "知覚や運動の特性を逆手に取り、物理的には与えていない感覚を生み出します。",
+      "desc_en": "Turning perceptual and motor characteristics to advantage to create sensations that are not physically given."
+    },
+    {
+      "id": "pseudo-force",
+      "ja": "擬似力覚",
+      "en": "Pseudo-Force",
+      "desc_ja": "非対称な振動などを用いて、引っ張られる力や重さを感じさせます。",
+      "desc_en": "Conveying pulling forces and weight with asymmetric vibration and other cues."
+    },
+    {
+      "id": "pseudo-haptics",
+      "ja": "Pseudo-haptics",
+      "en": "Pseudo-Haptics",
+      "desc_ja": "VRでの見え方を操作し、重さや抵抗などの触覚を感じさせます。",
+      "desc_en": "Creating haptic sensations such as weight and resistance by manipulating what users see in VR."
+    },
+    {
+      "id": "tendon",
+      "ja": "腱刺激・運動錯覚",
+      "en": "Tendon Stimulation",
+      "desc_ja": "腱への振動や電気刺激で、関節が動いた・身体が傾いたように感じさせます。",
+      "desc_en": "Vibration or electrical stimulation of tendons that makes joints feel as if they moved or the body tilted."
+    },
+    {
+      "id": "locomotion",
+      "ja": "移動感覚・歩行",
+      "en": "Self-Motion & Walking",
+      "desc_ja": "実際に歩かなくても、歩いている・移動しているように感じさせます。",
+      "desc_en": "Creating the feeling of walking or moving without actually doing so."
+    },
+    {
+      "id": "vestibular",
+      "ja": "前庭感覚",
+      "en": "Vestibular Sense",
+      "desc_ja": "平衡感覚をつかさどる前庭への刺激を、移動感覚の提示に活用します。",
+      "desc_en": "Using stimulation of the vestibular system, which governs balance, to convey self-motion."
+    },
+    {
+      "id": "multisensory",
+      "ja": "多感覚・五感",
+      "en": "Multisensory",
+      "desc_ja": "視覚・聴覚・触覚などを組み合わせ、より豊かな体験を作ります。",
+      "desc_en": "Combining vision, hearing, touch and other senses for richer experiences."
+    },
+    {
+      "id": "avatar",
+      "ja": "アバタ・身体性",
+      "en": "Avatars & Embodiment",
+      "desc_ja": "アバタの見た目や動きが、知覚・行動・学習に与える影響を調べます。",
+      "desc_en": "How the appearance and motion of avatars affect perception, behavior and learning."
+    },
+    {
+      "id": "remote",
+      "ja": "遠隔・テレプレゼンス",
+      "en": "Remote & Telepresence",
+      "desc_ja": "離れた場所にいる人どうしの講義やコミュニケーションを支える技術です。",
+      "desc_en": "Technologies that support lectures and communication between people in different places."
+    },
+    {
+      "id": "education",
+      "ja": "講義・学習支援",
+      "en": "Lectures & Learning",
+      "desc_ja": "VR・メタバースを使った講義や、学習者に合わせた支援を研究します。",
+      "desc_en": "Lectures using VR and the metaverse, and support tailored to learners."
+    },
+    {
+      "id": "training",
+      "ja": "VR訓練",
+      "en": "VR Training",
+      "desc_ja": "手術や消防など、現実では練習しにくい技能をVRで訓練します。",
+      "desc_en": "Training skills that are hard to practise in reality, such as surgery and firefighting, in VR."
+    },
+    {
+      "id": "collaboration",
+      "ja": "共同研究",
+      "en": "Industry Collaboration",
+      "desc_ja": "企業・自治体・大学と進めている共同研究です。",
+      "desc_en": "Joint research with companies, public organizations and universities.",
+      "href": "collaboration.html"
+    }
+  ]
+}
+        </script>
+    </section>
+
     <section id="themes">
         <div class="section-header" style="margin-bottom: 3rem;">
             <ul class="keyword-list" style="margin-top: 0;">
@@ -120,7 +233,7 @@
                 <p><span class="ja">錯覚や身体感覚の仕組みを利用して、従来の装置では難しかった力覚・運動感覚・移動感覚を生み出す技術を研究しています。</span><span class="en" lang="en">We use the mechanisms of illusions and bodily sensation to create force, kinesthetic and self-motion sensations that conventional devices struggle to produce.</span></p>
             </div>
             <div class="grid-3">
-                <article class="card theme-card" data-short="Iqp__KuHxxc">
+                <article class="card theme-card" id="card-pseudo-force" data-topics="pseudo-force illusion multisensory" data-short="Iqp__KuHxxc">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-hand-sparkles card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/pseudo-force.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -129,7 +242,7 @@
                     <p class="card-text"><span class="ja">牽引感や重量感といった力感覚は、皮膚や筋などにある受容器への機械的刺激によって生み出されますが、受容器の特性や身体構造の影響を強く受けます。</span><span class="en" lang="en">Force sensations such as being pulled or feeling weight arise from mechanical stimulation of receptors in the skin and muscles, but they are strongly shaped by receptor properties and body structure.</span></p>
                     <p class="card-text"><span class="ja">そのため、知覚・運動特性を逆手に取れば、従来では表現できない力覚を生み出すことができます。本研究では、こうした擬似力覚表現と五感情報を組み合わせた表現技術について研究しています。</span><span class="en" lang="en">By turning these perceptual and motor characteristics to our advantage, we can create force sensations that conventional methods cannot render. We study presentation techniques that combine such pseudo-force cues with multisensory information.</span></p>
                 </article>
-                <article class="card theme-card" data-short="-f6hoiT3QfM">
+                <article class="card theme-card" id="card-tendon-vibration-ui" data-topics="tendon illusion" data-short="-f6hoiT3QfM">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-wave-square card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/tendon-vibration-ui.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -138,7 +251,7 @@
                     <p class="card-text"><span class="ja">腱に対する振動刺激によって生じる運動錯覚を活用し、新しい情報提示手法の実現を目指しています。腱振動刺激は、実際には身体を動かしていないにもかかわらず、関節が動いたように感じさせることができます。</span><span class="en" lang="en">We aim to build new ways of presenting information using the movement illusions produced by vibrating tendons. Tendon vibration can make a joint feel as if it has moved even though the body is still.</span></p>
                     <p class="card-text"><span class="ja">この現象は身体の状態を知覚する固有感覚に作用するため、身体内部に直接働きかける情報提示として利用できる可能性があります。運動錯覚を、方向や強度などの情報を身体感覚として表現する手段と位置づけ、UIへの活用に向けた研究を行っています。</span><span class="en" lang="en">Because it acts on proprioception, the sense of the body's own state, it may enable information display that works directly inside the body. We treat the illusion as a means of expressing information such as direction and intensity through bodily sensation, and study its use in user interfaces.</span></p>
                 </article>
-                <article class="card theme-card" data-short="Hnirx1SFVP0">
+                <article class="card theme-card" id="card-deformation-illusion" data-topics="tendon illusion" data-short="Hnirx1SFVP0">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-arrows-left-right card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/deformation-illusion.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -147,7 +260,7 @@
                     <p class="card-text"><span class="ja">腱振動によって生じる運動錯覚を、棒の擬似的な伸縮を提示する手法に応用する研究を進めています。</span><span class="en" lang="en">We apply movement illusions induced by tendon vibration to a method that makes a rod seem to stretch or shrink.</span></p>
                     <p class="card-text"><span class="ja">両手で物体に外力を加えて変形させるVRインタラクションへの応用や、操作のリアリティを高める可能性を検証しています。</span><span class="en" lang="en">We are examining applications to VR interactions in which users deform objects with both hands, and the potential to make such manipulation feel more real.</span></p>
                 </article>
-                <article class="card theme-card" data-short="dC45fQmQd2w">
+                <article class="card theme-card" id="card-virtual-walking" data-topics="locomotion vestibular multisensory" data-short="dC45fQmQd2w">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-person-walking card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/virtual-walking.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -156,7 +269,7 @@
                     <p class="card-text"><span class="ja">VR空間で歩行した感覚を生むために、実際に歩くことなく歩行したような感覚を生み出す手法の確立を目指しています。</span><span class="en" lang="en">To create the feeling of walking in VR, we aim to establish methods that produce a walking sensation without actually walking.</span></p>
                     <p class="card-text"><span class="ja">着座状態で視覚・前庭感覚・触覚に機械的・電気的刺激を提示し、擬似的な歩行感覚を生み出すVR技術を研究しています。</span><span class="en" lang="en">We study VR techniques that present mechanical and electrical stimulation to the visual, vestibular and tactile senses of a seated user to generate a pseudo-walking sensation.</span></p>
                 </article>
-                <article class="card theme-card" data-short="iBS7FLUZerw">
+                <article class="card theme-card" id="card-pseudo-haptics-drink" data-topics="pseudo-haptics multisensory" data-short="iBS7FLUZerw">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-mug-hot card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/pseudo-haptics-drink.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -165,7 +278,7 @@
                     <p class="card-text"><span class="ja">VRにおける疑似触覚フィードバックが、飲料の知覚にどのような影響を与えるかを調べています。</span><span class="en" lang="en">We investigate how pseudo-haptic feedback in VR affects the perception of beverages.</span></p>
                     <p class="card-text"><span class="ja">実際の手の動きに対してVR内の手の表示を遅らせたり早めたりする視覚操作（Pseudo-haptics）が、飲用課題にどのような影響を及ぼすかを評価しました。</span><span class="en" lang="en">We evaluated how visually delaying or advancing the virtual hand relative to the real hand (pseudo-haptics) influences a drinking task.</span></p>
                 </article>
-                <article class="card theme-card">
+                <article class="card theme-card" id="card-peripersonal-space" data-topics="multisensory locomotion">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-shoe-prints card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/peripersonal-space.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -177,7 +290,7 @@
                         <a href="https://doi.org/10.1177/0956797619869337" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">論文（Psychological Science 2019）</span><span class="en" lang="en">Paper (Psychological Science 2019)</span></a>
                     </div>
                 </article>
-                <article class="card theme-card">
+                <article class="card theme-card" id="card-viewpoint-pseudo-haptics" data-topics="pseudo-haptics collaboration">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-eye card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/viewpoint-pseudo-haptics.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -199,7 +312,7 @@
                 <p><span class="ja">東京大学バーチャルリアリティ教育研究センターでの実践を通じて、VR・メタバースを講義や訓練に活用する方法を研究しています。</span><span class="en" lang="en">Through practice at the UTokyo Virtual Reality Educational Research Center, we study how to use VR and the metaverse in lectures and training.</span></p>
             </div>
             <div class="grid-3">
-                <article class="card theme-card">
+                <article class="card theme-card" id="card-social-vr-lecture" data-topics="education remote">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-vr-cardboard card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/social-vr-lecture.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -212,7 +325,7 @@
                         <a href="https://cluster.mu/w/215f4ad2-0777-45bd-ae32-b8416a763490" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">clusterのワールド 2</span><span class="en" lang="en">cluster world 2</span></a>
                     </div>
                 </article>
-                <article class="card theme-card" data-short="5pOIslKXJyo">
+                <article class="card theme-card" id="card-avatar-lecture" data-topics="education remote avatar" data-short="5pOIslKXJyo">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-masks-theater card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/avatar-lecture.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -221,7 +334,7 @@
                     <p class="card-text"><span class="ja">アバタを使ったライバー（いわゆるVTuber）の登場など、自らの見た目を変えて情報発信をする場が増えています。しかし、見た目を変えた講師が情報を伝えることで、先生側・生徒側にどのような効果が得られるかは、まだ十分に明らかになっていません。</span><span class="en" lang="en">With the rise of avatar-based streamers (so-called VTubers), more people share information with an altered appearance. However, the effects on teachers and students when a lecturer with a changed appearance teaches are not yet well understood.</span></p>
                     <p class="card-text"><span class="ja">東大VRセンターでは、ディープフェイク技術で見た目を変えた状態でZoomによるオンライン授業を実施し、受講生の振る舞いを検証しています。</span><span class="en" lang="en">At the UTokyo VR Center, we run online classes on Zoom with the lecturer's appearance altered by deepfake technology and examine how students behave.</span></p>
                 </article>
-                <article class="card theme-card">
+                <article class="card theme-card" id="card-virtual-omnibus-lecture" data-topics="education remote avatar">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-people-group card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/virtual-omnibus-lecture.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -234,7 +347,7 @@
                         <a href="https://doi.org/10.18974/tvrsj.29.3_109" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">論文（日本VR学会論文誌 2024）</span><span class="en" lang="en">Paper (Trans. VRSJ 2024)</span></a>
                     </div>
                 </article>
-                <article class="card theme-card" data-short="T_i72F27xVs">
+                <article class="card theme-card" id="card-biosignal-learning" data-topics="education" data-short="T_i72F27xVs">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-brain card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/biosignal-learning.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -243,7 +356,7 @@
                     <p class="card-text"><span class="ja">動画や音声コンテンツを倍速で再生する視聴スタイルが広まっています。</span><span class="en" lang="en">Watching videos and listening to audio at increased playback speed has become common.</span></p>
                     <p class="card-text"><span class="ja">本研究では、脳波などの生体信号に基づいて集中度を計測し、音声コンテンツの再生速度を制御する手法の開発を進めています。</span><span class="en" lang="en">We are developing a method that measures concentration from EEG and other biosignals and uses it to control the playback speed of audio content.</span></p>
                 </article>
-                <article class="card theme-card" data-short="vOWZJpiH_sI">
+                <article class="card theme-card" id="card-veterinary-surgery-vr" data-topics="training education" data-short="vOWZJpiH_sI">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-kit-medical card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/veterinary-surgery-vr.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -252,7 +365,7 @@
                     <p class="card-text"><span class="ja">獣医臨床教育において、技能依存度の高い外科手術の教育は、その複雑さと繊細さから常に難しい課題です。</span><span class="en" lang="en">In veterinary clinical education, teaching highly skill-dependent surgery is always challenging because of its complexity and delicacy.</span></p>
                     <p class="card-text"><span class="ja">本研究では、術者の頭部に360度カメラを装着して撮影したVR映像を用い、一人称視点で体験できる獣医学教育用のVRシステムを開発し、従来の映像教材と学習効果を比較しました。</span><span class="en" lang="en">We developed a VR system that lets learners experience surgery from the surgeon's first-person view, using 360° video recorded with a camera mounted on the surgeon's head, and compared its learning effects with conventional video materials.</span></p>
                 </article>
-                <article class="card theme-card">
+                <article class="card theme-card" id="card-firefighter-vr" data-topics="training collaboration">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-fire-extinguisher card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/firefighter-vr.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -279,7 +392,7 @@
                 <h3 class="member-category-title"><span class="ja">身体感覚・錯覚・五感インタフェース</span><span class="en" lang="en">Bodily Sensation, Illusions &amp; Multisensory Interfaces</span></h3>
             </div>
             <div class="past-grid">
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-illusion-synergy" data-topics="tendon pseudo-haptics pseudo-force illusion">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-arrows-to-dot card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/past-illusion-synergy.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -294,7 +407,7 @@
                         <a href="https://doi.org/10.1109/toh.2024.3386199" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> IEEE ToH 2024</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-twist-illusion" data-topics="avatar illusion">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-rotate card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/past-twist-illusion.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -308,7 +421,7 @@
                         <a href="https://doi.org/10.1038/s41598-022-10543-y" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> Scientific Reports 2022</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-passive-walking" data-topics="locomotion vestibular">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-person-walking card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/past-passive-walking.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -323,7 +436,7 @@
                         <a href="https://doi.org/10.1109/toh.2020.2965937" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> IEEE ToH 2020</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-virtual-walking" data-topics="locomotion multisensory avatar">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-film card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/past-virtual-walking.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -339,7 +452,7 @@
                         <a href="https://doi.org/10.1109/access.2021.3136557" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> IEEE Access 2021</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-vestibular" data-topics="vestibular locomotion">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-arrows-spin card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/past-vestibular.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -355,7 +468,7 @@
                         <a href="https://doi.org/10.1109/tvcg.2024.3451565" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> IEEE TVCG 2025</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-ankle-tendon" data-topics="tendon locomotion illusion">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-person-hiking card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/past-ankle-tendon.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -372,7 +485,7 @@
                         <a href="https://doi.org/10.1109/tvcg.2025.3588032" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> IEEE TVCG 2025</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-vertical-motion" data-topics="locomotion vestibular multisensory">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-feather card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/past-vertical-motion.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -387,7 +500,7 @@
                         <a href="https://doi.org/10.1038/s41598-023-42589-x" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> Scientific Reports 2023</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-avatar-behavior" data-topics="avatar">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-person-rays card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/past-avatar-behavior.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -403,7 +516,7 @@
                         <a href="https://doi.org/10.1016/j.chb.2026.109094" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> Computers in Human Behavior 2026</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-shared-movement" data-topics="avatar training">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-people-arrows card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/past-shared-movement.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -419,7 +532,7 @@
                         <a href="https://doi.org/10.1145/3756884.3766054" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> ACM VRST 2025</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-virtual-footbath" data-topics="multisensory collaboration">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-spa card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/past-virtual-footbath.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -442,7 +555,7 @@
                 <h3 class="member-category-title"><span class="ja">VR・メタバースによる教育・訓練</span><span class="en" lang="en">Education &amp; Training with VR and the Metaverse</span></h3>
             </div>
             <div class="past-grid">
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-telepresence" data-topics="remote">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-vr-cardboard card-media-icon icon-blue" aria-hidden="true"></i>
                         <img src="img/research/past-telepresence.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -458,7 +571,7 @@
                         <a href="https://doi.org/10.20965/ijat.2022.p0286" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> IJAT 2022</a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-vr-manzai" data-topics="training avatar collaboration">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-masks-theater card-media-icon icon-purple" aria-hidden="true"></i>
                         <img src="img/research/past-vr-manzai.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -473,7 +586,7 @@
                         <a href="collaboration.html#yoshimoto" class="chip-link"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">共同研究の紹介</span><span class="en" lang="en">About the collaboration</span></a>
                     </div>
                 </article>
-                <article class="card theme-card past-card">
+                <article class="card theme-card past-card" id="card-past-avatar-motion" data-topics="avatar">
                     <figure class="card-media" data-media>
                         <i class="fa-solid fa-wand-magic-sparkles card-media-icon icon-cyan" aria-hidden="true"></i>
                         <img src="img/research/past-avatar-motion.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
