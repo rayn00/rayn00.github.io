@@ -144,6 +144,7 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 - 16:9 からはみ出す部分は切り取られます。グラフや模式図など全体を見せたいものは、該当カードの `<figure class="card-media" data-media>` を `<figure class="card-media fit-contain" data-media>` にします（余白は白）。
 - 動画（`data-short`）があるカードは、画像の右下に再生マークが付きます。
+- ページ下部の「これまでの研究」（`<section id="past">`）のカードも同じ仕組みです。カードを追加するときは、`<article class="card theme-card past-card">` 〜 `</article>` を1件分コピーし、期間（`past-period`）・見出し・説明・論文リンクと画像ファイル名を書き換えます。
 
 ### About の研究紹介動画（index.html）
 
