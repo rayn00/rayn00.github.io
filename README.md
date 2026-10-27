@@ -132,6 +132,17 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 トップページの「配属希望者・企業連携案内」は、「進学を希望する方」と「企業・研究機関の方」の2つのタブで切り替わります。`index.html#industry` のように、タブの中身の ID（`students` または `industry`）を付けたURLで開くと、そのタブが表示されます。
 
+### ニュースに詳しい記事（ポップアップ）を付ける（news.html）
+
+受賞などの一部のニュースには、一覧の項目をクリックするとポップアップで開く詳しい記事を付けられます。記事は news.html の中（`<div class="news-articles" hidden>` の中）にまとめて書きます。
+
+1. `<div class="news-articles" hidden>` の中の `<article class="news-article" id="article-…">` 〜 `</article>` を1件分コピーし、`id`（`article-` で始まる重ならない名前）、日付、見出し、本文、賞・受賞者などの表（`<dl>`）、関連リンクを書き換えます。
+2. ニュース一覧の該当する項目の `<li class="news-card" …>` に `data-article="article-…"` を加え、`</p>` の後に「詳しく読む」のリンク `<a href="#article-…" class="news-more">…</a>` を入れます（ほかの記事付きの項目からコピーできます）。
+3. トップページ（index.html）の新着ニュースにも同じ項目があるときは、「詳しく読む」のリンクを `href="news.html#article-…"` にして入れると、ニュース一覧のページで記事が開きます。
+4. 写真は `img/news/記事のid（article- を除いた部分）.jpg` に置くと記事の上部に表示されます。無いときは写真の枠は表示されません（詳しくは img/news/README.md）。
+
+`news.html#article-…` のURLを共有すると、記事を開いた状態のページを直接見てもらえます。
+
 ### 共同研究・産学連携を更新する（collaboration.html）
 
 - **主な共同研究と成果**：`<article class="collab-project" id="…">` 〜 `</article>` が1件分です。成果は、その中の `<li class="collab-output">` 〜 `</li>` を1件分コピーして書き換えます。DOI などのリンクは論文・発表一覧と同じ書き方です。
@@ -144,7 +155,7 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 - 16:9 からはみ出す部分は切り取られます。グラフや模式図など全体を見せたいものは、該当カードの `<figure class="card-media" data-media>` を `<figure class="card-media fit-contain" data-media>` にします（余白は白）。
 - 動画（`data-short`）があるカードは、画像の右下に再生マークが付きます。
-- ページ下部の「これまでの研究」（`<section id="past">`）のカードも同じ仕組みです。カードを追加するときは、`<article class="card theme-card past-card">` 〜 `</article>` を1件分コピーし、期間（`past-period`）・見出し・説明・論文リンクと画像ファイル名を書き換えます。
+- ページ下部の「これまでの研究」（`<section id="past">`）のカードも同じ仕組みです。カードを追加するときは、`<article class="card theme-card past-card">` 〜 `</article>` を1件分コピーし、期間（`past-period`）・見出し・説明・論文リンクと画像ファイル名を書き換えます。カードは期間の新しい順に並べています。「身体感覚・錯覚・五感インタフェース」は、牽引力錯覚（ぶるなび）のまとまり（`<div class="past-series" id="past-pulling">`）と、そのほかの研究（`id="past-sensation-other"`）の2つに分けています。
 
 ### 研究のつながり（ネットワーク図・research.html）
 
@@ -153,7 +164,7 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - **研究カードの点**：各カードの `<article … id="card-…" data-topics="…">` が1つの点になります。`data-topics` にはつながるキーワードの ID を半角スペース区切りで書きます（例：`data-topics="pseudo-haptics multisensory"`）。新しいカードを図に出すときは、重ならない `id` と `data-topics` を付けてください。付けないカードは図に出ません。
 - **キーワード**：research.html の `<script type="application/json" id="networkData">` の `topics` に、ID・日本語名・英語名・説明があります。キーワードを増やすときはここに1件追加します。
 
-使えるキーワードの ID：`illusion`（錯覚）、`pseudo-force`（擬似力覚）、`pseudo-haptics`、`tendon`（腱刺激・運動錯覚）、`locomotion`（移動感覚・歩行）、`vestibular`（前庭感覚）、`multisensory`（多感覚・五感）、`avatar`（アバタ・身体性）、`remote`（遠隔・テレプレゼンス）、`education`（講義・学習支援）、`training`（VR訓練）、`collaboration`（共同研究）
+使えるキーワードの ID：`illusion`（錯覚）、`pseudo-force`（擬似力覚）、`pseudo-haptics`、`tendon`（腱刺激・運動錯覚）、`locomotion`（移動感覚・歩行）、`vestibular`（前庭感覚）、`multisensory`（多感覚・五感）、`navigation`（歩行支援・ナビゲーション）、`avatar`（アバタ・身体性）、`remote`（遠隔・テレプレゼンス）、`education`（講義・学習支援）、`training`（VR訓練）、`collaboration`（共同研究）
 
 ### About の研究紹介動画（index.html）
 

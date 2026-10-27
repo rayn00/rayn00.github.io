@@ -2263,6 +2263,7 @@ a.partner-chip i {
     color: var(--accent-purple-text);
 }
 
+
 .past-card h4 {
     font-size: 1.02rem;
     line-height: 1.45;
@@ -2281,6 +2282,41 @@ a.partner-chip i {
 .past-card .chip-link {
     font-size: 0.74rem;
     padding: 0.25rem 0.65rem;
+}
+
+/* 「これまでの研究」の中のまとまり（ぶるなび など） */
+.past-series + .past-series {
+    margin-top: 2.75rem;
+}
+
+.past-series-head {
+    margin-bottom: 1.1rem;
+}
+
+.past-series-title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.past-series-desc {
+    max-width: 760px;
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+}
+
+.past-series-desc a {
+    color: var(--accent-cyan);
+    font-weight: 600;
+}
+
+.past-series-desc a:hover {
+    text-decoration: underline;
 }
 
 #past .theme-group-head .member-category-title {
@@ -2637,5 +2673,212 @@ a.partner-chip i {
         bottom: 0.75rem;
         width: auto;
         max-height: 60%;
+    }
+}
+
+/* =====================================================================
+   ニュース：詳しい記事（ポップアップ）
+   ===================================================================== */
+.news-card.has-article {
+    cursor: pointer;
+}
+
+.news-more {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.news-card:hover .news-more,
+.news-more:hover,
+.news-more:focus-visible {
+    border-color: var(--accent-cyan);
+    background: var(--bg-glass);
+}
+
+.news-more i {
+    font-size: 0.72rem;
+    transition: transform 0.2s;
+}
+
+.news-card:hover .news-more i {
+    transform: translateX(2px);
+}
+
+.article-dialog {
+    margin: auto;   /* 全体の margin: 0 を打ち消して画面中央に表示 */
+    width: min(92vw, 720px);
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-primary);
+    overflow: visible;
+}
+
+.article-dialog::backdrop {
+    background: rgba(5, 8, 14, 0.82);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.article-dialog-inner {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+
+.article-dialog-body {
+    max-height: calc(100vh - 3rem);
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 2rem 2.25rem 2rem;
+}
+
+.article-dialog-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 1;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.article-dialog-close:hover,
+.article-dialog-close:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.news-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.85rem;
+    margin-bottom: 0.7rem;
+    padding-right: 2.75rem;
+}
+
+.news-article-meta time {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.news-article-meta .news-badge {
+    min-width: 0;
+}
+
+.news-article-title {
+    font-size: 1.35rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    padding-right: 2.75rem;
+}
+
+.news-article-photo {
+    margin: 0 0 1.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+.news-article-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+.news-article > p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 0.9rem;
+}
+
+.news-article-facts {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.55rem 1.1rem;
+    margin: 1.4rem 0 1.6rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.news-article-facts dt {
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.news-article-facts dd {
+    margin: 0;
+    color: var(--text-secondary);
+    overflow-wrap: anywhere;
+}
+
+.news-article-sub {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.news-article-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.news-article-links .chip-link {
+    font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+    .article-dialog-body {
+        padding: 1.5rem 1.25rem 1.5rem;
+    }
+
+    .news-article-title {
+        font-size: 1.15rem;
+    }
+
+    .news-article-facts {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.1rem;
+    }
+
+    .news-article-facts dd + dt {
+        margin-top: 0.55rem;
     }
 }
