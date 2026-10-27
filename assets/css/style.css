@@ -2714,6 +2714,10 @@ a.partner-chip i {
     transform: translateX(2px);
 }
 
+.news-card:hover .news-more.is-external i {
+    transform: translate(1px, -1px);
+}
+
 .article-dialog {
     margin: auto;   /* 全体の margin: 0 を打ち消して画面中央に表示 */
     width: min(92vw, 720px);
