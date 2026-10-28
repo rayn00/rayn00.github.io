@@ -3174,35 +3174,6 @@ a.partner-chip i {
     text-decoration-thickness: 2px;
 }
 
-/* 進学を希望する方：本郷キャンパスのカードの小さな写真（右上に置き、文章は回り込む） */
-.campus-thumb {
-    float: right;
-    width: 76px;
-    height: auto;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    margin: 0 0 0.5rem 1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-}
-
-.campus-card.has-thumb::after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-/* 写真がアイコンの代わりになるので、写真付きカードではアイコンを出さない */
-.campus-card.has-thumb .campus-title > i {
-    display: none;
-}
-
-@media (max-width: 600px) {
-    .campus-thumb {
-        width: 60px;
-    }
-}
-
 /* 論文・発表の件数（トップページの主要論文。数字は main.js が publications.html から数え直す） */
 .pub-stats {
     display: grid;
@@ -3239,6 +3210,11 @@ a.partner-chip i {
     line-height: 1.1;
     color: var(--accent-cyan);
     font-variant-numeric: tabular-nums;
+}
+
+.pub-stat-plus {
+    font-size: 0.75em;
+    margin-left: 0.05em;
 }
 
 .pub-stat-label {

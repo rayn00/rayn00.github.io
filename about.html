@@ -74,7 +74,7 @@
         .history-when { display: inline-block; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.04em; color: var(--accent-cyan); margin-bottom: 0.3rem; }
         .history-item h3 { font-size: 1.15rem; line-height: 1.5; margin-bottom: 0.6rem; }
         .history-item p { color: var(--text-secondary); line-height: 1.9; font-size: 0.93rem; }
-        .history-photo { margin: 0; max-width: 640px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); }
+        .history-photo { margin: 0; max-width: 480px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); }
         .history-photo img { width: 100%; height: auto; display: block; }
         .history-photo figcaption { padding: 0.5rem 0.8rem; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); }
         .history-roots { margin-top: 2.25rem; padding: 1.2rem 1.4rem; border: 1px dashed var(--border-color); border-radius: var(--radius-md); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
@@ -104,9 +104,12 @@
         .donate-side p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
 
         /* 取材・講演 */
-        .about-contact { text-align: center; padding: 2.25rem 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); }
-        .about-contact > p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.25rem; }
-        .about-sns { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+        .about-contact { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 2rem; align-items: center; padding: 2rem 2rem 2rem 2.25rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); }
+        .about-contact-body > p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.25rem; }
+        .about-contact .theme-links { justify-content: flex-start; }
+        .contact-photo { margin: 0; }
+        .contact-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-secondary); }
+        .about-sns { list-style: none; display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
         .about-sns a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; font-weight: 600; padding: 0.45rem 0.95rem; border-radius: 30px; border: 1px solid var(--border-color); color: var(--text-primary); }
         .about-sns a:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
         .about-sns .fa-youtube { color: #ff3d3d; }
@@ -117,10 +120,13 @@
             .mission-grid, .donate-box { grid-template-columns: minmax(0, 1fr); }
             .history-item { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
             .join-grid { grid-template-columns: minmax(0, 1fr); }
+            .about-contact { grid-template-columns: minmax(0, 1fr) 170px; gap: 1.5rem; }
         }
         @media (max-width: 600px) {
             .donate-box { padding: 1.4rem 1.2rem; }
             .join-card { padding: 1.3rem 1.2rem 1.2rem; }
+            .about-contact { grid-template-columns: minmax(0, 1fr); padding: 1.5rem 1.2rem; }
+            .contact-photo { width: min(100%, 220px); margin: 0 auto; }
         }
     </style>
 
@@ -222,7 +228,7 @@
                         <p><span class="ja">雨宮が東京大学に着任し、それ以前からバーチャルリアリティ教育研究センター（VRセンター）にいた青山とともに、研究グループとして発足しました。工学部2号館8階で廣瀬・葛岡・鳴海研究室と部屋を共有したのち、工学部1号館5階に移りました。</span><span class="en" lang="en">Amemiya joined the University of Tokyo and, together with Aoyama, who was already at the Virtual Reality Educational Research Center (VR Center), founded the lab as a research group. After sharing rooms with the Hirose, Kuzuoka and Narumi labs on the 8th floor of Engineering Building 2, we moved to the 5th floor of Engineering Building 1.</span></p>
                     </div>
                     <figure class="history-photo">
-                        <img src="img/about/history-2019.jpg" alt="発足当時の研究室の表札（工学部2号館）" width="640" height="568" loading="lazy" decoding="async">
+                        <img src="img/about/history-2019.jpg" alt="発足当時の研究室の表札（工学部2号館）" width="480" height="426" loading="lazy" decoding="async">
                     </figure>
                 </li>
                 <li class="history-item" data-photo-item>
@@ -232,7 +238,7 @@
                         <p><span class="ja">2020年度からは、情報理工学系研究科で葛岡・雨宮・鳴海研究室として活動しながら、VRセンターの研究グループとしての運営も進めてきました。</span><span class="en" lang="en">From FY2020, we worked as the Kuzuoka–Amemiya–Narumi Lab in the Graduate School of Information Science and Technology, while continuing to run the lab as a research group of the VR Center.</span></p>
                     </div>
                     <figure class="history-photo">
-                        <img src="img/about/history-2020.jpg" alt="当時の研究室での雨宮" width="640" height="396" loading="lazy" decoding="async">
+                        <img src="img/about/history-2020.jpg" alt="VRセンターの部屋が並ぶフロアの案内板" width="480" height="270" loading="lazy" decoding="async">
                     </figure>
                 </li>
                 <li class="history-item" data-photo-item>
@@ -242,7 +248,7 @@
                         <p><span class="ja">2023年度から、情報基盤センター 情報メディア教育研究部門で、雨宮が独立したPIとして研究室を主宰しています。現在は、総合文化研究科と学際情報学府の大学院生を受け入れています。</span><span class="en" lang="en">Since FY2023, Amemiya has led the lab as an independent PI in the Information Media Education Research Division of the Information Technology Center. We now accept graduate students from the Graduate School of Arts and Sciences and the Graduate School of Interdisciplinary Information Studies.</span></p>
                     </div>
                     <figure class="history-photo">
-                        <img src="img/about/history-2023.jpg" alt="" width="640" height="400" loading="lazy" decoding="async">
+                        <img src="img/about/history-2023.jpg" alt="情報基盤センターの研究室での集合写真" width="480" height="360" loading="lazy" decoding="async">
                     </figure>
                 </li>
                 <li class="history-item history-now" data-photo-item>
@@ -252,7 +258,7 @@
                         <p><span class="ja">情報基盤センター 浅野本館を拠点に、スタッフと学生が日々の研究に取り組んでいます。</span><span class="en" lang="en">Our staff and students carry out their daily research at the Asano Main Building of the Information Technology Center.</span></p>
                     </div>
                     <figure class="history-photo">
-                        <img src="img/about/history-2026.jpg" alt="第31回日本バーチャルリアリティ学会大会での研究室メンバーの集合写真" width="640" height="480" loading="lazy" decoding="async">
+                        <img src="img/about/history-2026.jpg" alt="第31回日本バーチャルリアリティ学会大会での研究室メンバーの集合写真" width="480" height="360" loading="lazy" decoding="async">
                         <figcaption><span class="ja">第31回日本バーチャルリアリティ学会大会にて（2026年9月）</span><span class="en" lang="en">At the 31st Annual Conference of the Virtual Reality Society of Japan (September 2026)</span></figcaption>
                     </figure>
                 </li>
@@ -345,16 +351,22 @@
                 <h2 class="section-title"><span class="ja">取材・講演・執筆のご依頼</span><span class="en" lang="en">Media, Talks &amp; Writing</span></h2>
             </div>
             <div class="about-contact">
-                <p><span class="ja">取材、講演、執筆、コンサルティングなどのご依頼は、下記のアドレスまでご連絡ください。<br>研究室の見学や所在地については、トップページの「アクセス・お問い合わせ」をご覧ください。</span><span class="en" lang="en">For media coverage, talks, writing or consulting, please contact us at the address below.<br>For lab visits and directions, see “Access &amp; Contact” on the top page.</span></p>
-                <div class="theme-links" style="justify-content: center;">
-                    <a href="#inquiry" class="chip-link" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
-                    <a href="index.html#contact" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">アクセス・お問い合わせ</span><span class="en" lang="en">Access &amp; Contact</span></a>
+                <div class="about-contact-body">
+                    <p><span class="ja">取材、講演、執筆、コンサルティングなどのご依頼は、下記のアドレスまでご連絡ください。<br>研究室の見学や所在地については、トップページの「アクセス・お問い合わせ」をご覧ください。</span><span class="en" lang="en">For media coverage, talks, writing or consulting, please contact us at the address below.<br>For lab visits and directions, see “Access &amp; Contact” on the top page.</span></p>
+                    <div class="theme-links">
+                        <a href="#inquiry" class="chip-link" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
+                        <a href="index.html#contact" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">アクセス・お問い合わせ</span><span class="en" lang="en">Access &amp; Contact</span></a>
+                    </div>
+                    <ul class="about-sns" aria-label="SNS">
+                        <li><a href="https://x.com/amelabvr" target="_blank" rel="noopener"><svg class="x-logo" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a></li>
+                        <li><a href="https://www.instagram.com/amelabvr/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube</a></li>
+                    </ul>
                 </div>
-                <ul class="about-sns" aria-label="SNS">
-                    <li><a href="https://x.com/amelabvr" target="_blank" rel="noopener"><svg class="x-logo" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a></li>
-                    <li><a href="https://www.instagram.com/amelabvr/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li>
-                    <li><a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube</a></li>
-                </ul>
+                <!-- 本郷キャンパスの写真（img/campus/） -->
+                <figure class="contact-photo">
+                    <img src="img/campus/hongo-yasuda.jpg" alt="本郷キャンパスの安田講堂" width="450" height="600" loading="lazy" decoding="async">
+                </figure>
             </div>
         </div>
 
