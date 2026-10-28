@@ -2961,3 +2961,203 @@ a.partner-chip i {
     border-color: var(--accent-cyan);
     color: var(--accent-cyan);
 }
+
+/* =====================================================================
+   トップページ：進学を希望する方への募集のお知らせ
+   ===================================================================== */
+.admit-box {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 2.5rem;
+    padding: 1.9rem 2rem 1.8rem 2.25rem;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+}
+
+.admit-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: linear-gradient(var(--accent-cyan), var(--accent-purple));
+}
+
+.admit-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.admit-head h3 {
+    font-size: 1.3rem;
+    line-height: 1.45;
+}
+
+.admit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(0, 242, 254, 0.14);
+    color: var(--accent-cyan);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.admit-lead {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.admit-steps {
+    list-style: none;
+    counter-reset: admit;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+}
+
+.admit-steps li {
+    counter-increment: admit;
+    position: relative;
+    padding: 1rem 1.1rem 1.05rem 3.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+}
+
+.admit-steps li::before {
+    content: counter(admit);
+    position: absolute;
+    left: 1rem;
+    top: 0.95rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    color: var(--on-accent);
+    font-weight: 800;
+    font-size: 0.82rem;
+}
+
+.admit-steps strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.admit-steps em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.admit-note {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+}
+
+.admit-note i {
+    color: var(--accent-cyan);
+}
+
+.admit-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* お問い合わせ欄：見学についての FAQ へのリンク */
+.contact-faq {
+    margin-top: 0.9rem;
+    text-align: center;
+}
+
+/* 企業の方：相談の始め方 */
+.collab-howto {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    max-width: 760px;
+    margin: 1.75rem auto 0;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.collab-howto i {
+    color: var(--accent-cyan);
+}
+
+.collab-howto strong {
+    color: var(--text-primary);
+}
+
+.collab-checklist {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+    max-width: 860px;
+    margin: 1.25rem auto 1.4rem;
+    text-align: left;
+}
+
+.collab-checklist li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.95rem 1.05rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.collab-checklist i {
+    flex: none;
+    margin-top: 0.2rem;
+    color: var(--accent-cyan);
+}
+
+.collab-checklist strong {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+}
+
+@media (max-width: 900px) {
+    .admit-steps,
+    .collab-checklist {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .admit-box {
+        padding: 1.4rem 1.2rem 1.3rem 1.4rem;
+    }
+
+    .admit-head h3 {
+        font-size: 1.12rem;
+    }
+}

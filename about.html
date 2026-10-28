@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究室について | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）について。研究室のあゆみ、大学院生・学生インターン・研究員の募集、研究室へのご寄附、取材・講演のご依頼。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="研究室について | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）について。研究室のあゆみ、大学院生・学生インターン・研究員の募集、研究室へのご寄附、取材・講演のご依頼。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/about.html">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- このページだけで使うスタイル -->
+    <style>
+        .about-jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; list-style: none; margin: 0 auto 1rem; }
+        .about-block { max-width: 1040px; margin: 0 auto; padding-top: 4.5rem; scroll-margin-top: 4rem; }
+        .about-block:first-of-type { padding-top: 2rem; }
+        .about-block > .section-header { margin-bottom: 2.25rem; }
+        .about-lead { font-size: 1.15rem; line-height: 1.9; font-weight: 600; color: var(--text-primary); margin-bottom: 1.25rem; }
+        .about-text p { color: var(--text-secondary); line-height: 1.95; margin-bottom: 1rem; }
+        .mission-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+        .mission-points { list-style: none; display: grid; gap: 0.75rem; }
+        .mission-points li { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 1.15rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-card); }
+        .mission-points i { flex: none; width: 2.3rem; height: 2.3rem; display: grid; place-items: center; border-radius: 50%; background: var(--bg-secondary); color: var(--accent-cyan); }
+        .mission-points strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
+        .mission-points span.desc { display: block; font-size: 0.84rem; line-height: 1.7; color: var(--text-secondary); }
+
+        /* あゆみ（年表） */
+        .history { list-style: none; position: relative; display: grid; gap: 2rem; }
+        .history::before { content: ""; position: absolute; left: 0.55rem; top: 0.6rem; bottom: 0.6rem; width: 2px; background: linear-gradient(var(--accent-cyan), var(--accent-purple)); opacity: 0.55; }
+        .history-item { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; align-items: start; padding-left: 2.4rem; }
+        .history-item::before { content: ""; position: absolute; left: 0.1rem; top: 0.45rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--bg-primary); border: 3px solid var(--accent-cyan); }
+        .history-item.no-photo { grid-template-columns: minmax(0, 1fr); }
+        .history-when { display: inline-block; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.04em; color: var(--accent-cyan); margin-bottom: 0.3rem; }
+        .history-item h3 { font-size: 1.15rem; line-height: 1.5; margin-bottom: 0.6rem; }
+        .history-item p { color: var(--text-secondary); line-height: 1.9; font-size: 0.93rem; }
+        .history-photo { margin: 0; aspect-ratio: 16 / 10; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); }
+        .history-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .history-roots { margin-top: 2.25rem; padding: 1.2rem 1.4rem; border: 1px dashed var(--border-color); border-radius: var(--radius-md); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
+        .history-roots a { color: var(--accent-cyan); font-weight: 600; }
+        .history-roots a:hover { text-decoration: underline; }
+
+        /* 募集 */
+        .join-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+        .join-card { display: flex; flex-direction: column; padding: 1.6rem 1.6rem 1.4rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); scroll-margin-top: 5rem; }
+        .join-card h3 { display: flex; align-items: center; gap: 0.7rem; font-size: 1.12rem; margin-bottom: 0.8rem; }
+        .join-card h3 i { width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: var(--on-accent); font-size: 0.95rem; flex: none; }
+        .join-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; margin-bottom: 0.7rem; }
+        .join-card .theme-links { margin-top: auto; padding-top: 0.6rem; }
+
+        /* 寄附 */
+        .donate-box { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem; padding: 2rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: radial-gradient(circle at 0% 0%, rgba(0, 242, 254, 0.08), transparent 55%), var(--bg-card); }
+        .donate-steps { list-style: none; counter-reset: step; display: grid; gap: 1rem; }
+        .donate-steps li { counter-increment: step; position: relative; padding-left: 2.6rem; color: var(--text-secondary); line-height: 1.8; font-size: 0.93rem; }
+        .donate-steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border-radius: 50%; background: var(--accent-cyan); color: var(--on-accent); font-weight: 800; font-size: 0.85rem; }
+        .donate-steps strong { color: var(--text-primary); }
+        .copy-box { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; padding: 0.55rem 0.55rem 0.55rem 0.9rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-secondary); }
+        .copy-box code { flex: 1; min-width: 0; font-family: inherit; font-weight: 700; color: var(--text-primary); overflow-wrap: anywhere; }
+        .copy-btn { flex: none; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.8rem; border: 1px solid var(--border-color); border-radius: 999px; background: transparent; color: var(--accent-cyan); font: inherit; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: var(--transition); }
+        .copy-btn:hover, .copy-btn:focus-visible { border-color: var(--accent-cyan); }
+        .copy-btn.is-done { background: var(--accent-cyan); color: var(--on-accent); border-color: var(--accent-cyan); }
+        .donate-side { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+        .donate-side p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
+
+        /* 取材・講演 */
+        .about-contact { text-align: center; padding: 2.25rem 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); }
+        .about-contact > p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.25rem; }
+        .about-sns { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+        .about-sns a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; font-weight: 600; padding: 0.45rem 0.95rem; border-radius: 30px; border: 1px solid var(--border-color); color: var(--text-primary); }
+        .about-sns a:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .about-sns .fa-youtube { color: #ff3d3d; }
+        .about-sns .fa-instagram { color: #e1306c; }
+        .x-logo { display: inline-block; vertical-align: -0.125em; }
+
+        @media (max-width: 860px) {
+            .mission-grid, .donate-box { grid-template-columns: minmax(0, 1fr); }
+            .history-item { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+            .join-grid { grid-template-columns: minmax(0, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .donate-box { padding: 1.4rem 1.2rem; }
+            .join-card { padding: 1.3rem 1.2rem 1.2rem; }
+        }
+    </style>
+
+</head>
+<body data-title-ja="研究室について | 雨宮研究室 AME LAB" data-title-en="About the Lab | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）について。研究室のあゆみ、大学院生・学生インターン・研究員の募集、研究室へのご寄附、取材・講演のご依頼。" data-desc-en="About AME LAB (Amemiya Lab), The University of Tokyo: our history, open positions for students, interns and researchers, donations, and media inquiries.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></span>
+            </nav>
+            <span class="section-tag">About the Lab</span>
+            <h1 class="page-title"><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></h1>
+            <p class="hero-subtitle"><span class="ja">研究室のあゆみ、メンバーの募集、研究室へのご支援についてご案内します。</span><span class="en" lang="en">Our history, open positions, and how you can support the lab.</span></p>
+        </div>
+    </section>
+
+    <section id="about-page">
+        <ul class="about-jump" aria-label="このページの内容">
+            <li><a href="#mission" class="chip-link"><span class="ja">AME LAB とは</span><span class="en" lang="en">What is AME LAB</span></a></li>
+            <li><a href="#history" class="chip-link"><span class="ja">研究室のあゆみ</span><span class="en" lang="en">History</span></a></li>
+            <li><a href="#join" class="chip-link"><span class="ja">メンバー募集</span><span class="en" lang="en">Join us</span></a></li>
+            <li><a href="#support" class="chip-link"><span class="ja">ご寄附</span><span class="en" lang="en">Support us</span></a></li>
+            <li><a href="#inquiry" class="chip-link"><span class="ja">取材・講演のご依頼</span><span class="en" lang="en">Media &amp; talks</span></a></li>
+        </ul>
+
+        <div class="about-block" id="mission">
+            <div class="section-header">
+                <span class="section-tag">Mission</span>
+                <h2 class="section-title"><span class="ja">AME LAB とは</span><span class="en" lang="en">What is AME LAB?</span></h2>
+            </div>
+            <div class="mission-grid">
+                <div class="about-text">
+                    <p class="about-lead"><span class="ja">AME LAB（Augmented Multisensory Experience Lab）は、人の知覚や運動の特性に着目し、主観的な現実感を問い直すことを目指す研究室です。</span><span class="en" lang="en">AME LAB (Augmented Multisensory Experience Lab) focuses on the characteristics of human perception and movement, aiming to rethink our subjective sense of reality.</span></p>
+                    <p><span class="ja">VR（バーチャルリアリティ）を幅広く対象とし、五感の情報提示、神経刺激、動作生成の技術を軸に研究しています。あわせて、身近になったVR機器を日常生活、特に教育や訓練の場でどのように活かせるかを研究し、企業とも連携しながら、これからのVRの広がり方を考えています。</span><span class="en" lang="en">We study virtual reality broadly, centering on multisensory display, neural stimulation and motion generation. We also explore how consumer VR devices can be used in everyday life, especially in education and training, and work with companies on how VR will spread in society.</span></p>
+                    <p><span class="ja">民生用のVR機器が普及し始めた2016年を経て、東京大学では2018年2月に、分野を横断する研究組織としてバーチャルリアリティ教育研究センター（VRセンター）が設立されました。研究室はVRセンターの研究グループとして発足し、現在は情報基盤センターを拠点に活動しています。</span><span class="en" lang="en">After consumer VR devices began to spread in 2016, the University of Tokyo established the Virtual Reality Educational Research Center (VR Center) in February 2018 as a cross-disciplinary research organization. Our lab started as a research group of the VR Center and is now based at the Information Technology Center.</span></p>
+                    <div class="theme-links">
+                        <a href="research.html" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a>
+                        <a href="https://vr.u-tokyo.ac.jp/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">VRセンター</span><span class="en" lang="en">VR Center</span></a>
+                        <a href="https://www.itc.u-tokyo.ac.jp/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">情報基盤センター</span><span class="en" lang="en">Information Technology Center</span></a>
+                    </div>
+                </div>
+                <ul class="mission-points">
+                    <li><i class="fa-solid fa-hand-sparkles" aria-hidden="true"></i><span><strong><span class="ja">五感の情報提示</span><span class="en" lang="en">Multisensory display</span></strong><span class="desc"><span class="ja">触覚・力覚・前庭感覚などを組み合わせ、錯覚も活かして感覚を伝えます。</span><span class="en" lang="en">Conveying sensations by combining touch, force and vestibular cues, and by making use of illusions.</span></span></span></li>
+                    <li><i class="fa-solid fa-person-running" aria-hidden="true"></i><span><strong><span class="ja">動作生成</span><span class="en" lang="en">Motion generation</span></strong><span class="desc"><span class="ja">アバタや身体の動きを生み出し、体験を豊かにします。</span><span class="en" lang="en">Generating the motion of avatars and bodies to enrich experiences.</span></span></span></li>
+                    <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span><strong><span class="ja">教育・訓練への応用</span><span class="en" lang="en">Education &amp; training</span></strong><span class="desc"><span class="ja">VR・メタバースを講義や技能訓練に活かします。</span><span class="en" lang="en">Applying VR and the metaverse to lectures and skills training.</span></span></span></li>
+                    <li><i class="fa-solid fa-bolt" aria-hidden="true"></i><span><strong><span class="ja">神経刺激</span><span class="en" lang="en">Neural stimulation</span></strong><span class="desc"><span class="ja">電気刺激などで、感覚や身体の動きの感じ方を変えます。</span><span class="en" lang="en">Changing how we perceive sensations and body movements with electrical and other stimulation.</span></span></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="about-block" id="history">
+            <div class="section-header">
+                <span class="section-tag">History</span>
+                <h2 class="section-title"><span class="ja">研究室のあゆみ</span><span class="en" lang="en">Our History</span></h2>
+            </div>
+            <ol class="history">
+                <li class="history-item" data-photo-item>
+                    <div>
+                        <time class="history-when" datetime="2019.07"><span class="ja">2019年7月</span><span class="en" lang="en">July 2019</span></time>
+                        <h3><span class="ja">研究グループとして発足</span><span class="en" lang="en">Founded as a research group</span></h3>
+                        <p><span class="ja">雨宮が東京大学に着任し、それ以前からバーチャルリアリティ教育研究センター（VRセンター）にいた青山とともに、研究グループとして発足しました。工学部2号館で廣瀬・葛岡・鳴海研究室と部屋を共有したのち、工学部1号館に移りました。</span><span class="en" lang="en">Amemiya joined the University of Tokyo and, together with Aoyama, who was already at the Virtual Reality Educational Research Center (VR Center), founded the lab as a research group. After sharing rooms with the Hirose, Kuzuoka and Narumi labs in Engineering Building 2, we moved to Engineering Building 1.</span></p>
+                    </div>
+                    <figure class="history-photo">
+                        <img src="img/about/history-2019.jpg" alt="" width="1280" height="800" loading="lazy" decoding="async">
+                    </figure>
+                </li>
+                <li class="history-item" data-photo-item>
+                    <div>
+                        <time class="history-when" datetime="2020"><span class="ja">2020年度〜</span><span class="en" lang="en">From FY2020</span></time>
+                        <h3><span class="ja">葛岡・雨宮・鳴海研究室として</span><span class="en" lang="en">As the Kuzuoka–Amemiya–Narumi Lab</span></h3>
+                        <p><span class="ja">2020年度からは、情報理工学系研究科で葛岡・雨宮・鳴海研究室として活動しながら、VRセンターの研究グループとしての運営も進めてきました。</span><span class="en" lang="en">From FY2020, we worked as the Kuzuoka–Amemiya–Narumi Lab in the Graduate School of Information Science and Technology, while continuing to run the lab as a research group of the VR Center.</span></p>
+                    </div>
+                    <figure class="history-photo">
+                        <img src="img/about/history-2020.jpg" alt="" width="1280" height="800" loading="lazy" decoding="async">
+                    </figure>
+                </li>
+                <li class="history-item" data-photo-item>
+                    <div>
+                        <time class="history-when" datetime="2023"><span class="ja">2023年度〜</span><span class="en" lang="en">From FY2023</span></time>
+                        <h3><span class="ja">情報基盤センターへ</span><span class="en" lang="en">To the Information Technology Center</span></h3>
+                        <p><span class="ja">2023年度から、情報基盤センター 情報メディア教育研究部門で、雨宮が独立したPIとして研究室を主宰しています。現在は、総合文化研究科と学際情報学府の大学院生を受け入れています。</span><span class="en" lang="en">Since FY2023, Amemiya has led the lab as an independent PI in the Information Media Education Research Division of the Information Technology Center. We now accept graduate students from the Graduate School of Arts and Sciences and the Graduate School of Interdisciplinary Information Studies.</span></p>
+                    </div>
+                    <figure class="history-photo">
+                        <img src="img/about/history-2023.jpg" alt="" width="1280" height="800" loading="lazy" decoding="async">
+                    </figure>
+                </li>
+            </ol>
+            <p class="history-roots"><i class="fa-solid fa-seedling" aria-hidden="true"></i> <span class="ja">雨宮が東大着任前から続けてきた研究（非対称振動による牽引力錯覚「ぶるなび」など）は、研究紹介ページの<a href="research.html#past-pulling">「これまでの研究」</a>で紹介しています。</span><span class="en" lang="en">Research that Amemiya has continued since before joining the University of Tokyo, such as the pulling illusion from asymmetric vibration (Buru-Navi), is introduced in <a href="research.html#past-pulling">Past Research</a>.</span></p>
+        </div>
+
+        <div class="about-block" id="join">
+            <div class="section-header">
+                <span class="section-tag">Join Us</span>
+                <h2 class="section-title"><span class="ja">メンバー募集</span><span class="en" lang="en">Join Us</span></h2>
+            </div>
+            <div class="join-grid">
+                <article class="join-card" id="join-students">
+                    <h3><i class="fa-solid fa-user-graduate" aria-hidden="true"></i><span class="ja">大学院生（修士・博士）</span><span class="en" lang="en">Graduate students (Master&rsquo;s &amp; Ph.D.)</span></h3>
+                    <p><span class="ja">社会人を含め、修士課程・博士課程の学生を受け入れています。工学・情報だけでなく、心理学・経済学・芸術など、さまざまな分野や他大学からの進学を歓迎します。必要な技術は研究を通じて身につけられます。</span><span class="en" lang="en">We accept Master&rsquo;s and doctoral students, including working professionals. Students from diverse fields such as engineering, information science, psychology, economics and the arts, and from other universities, are welcome. You can learn the skills you need through research.</span></p>
+                    <p><span class="ja">出願の前に、研究したいことや得意なことを添えて雨宮までご連絡ください。研究生は現在受け入れていません。</span><span class="en" lang="en">Before applying, please contact Prof. Amemiya with what you would like to research and your strengths. We currently do not accept research students.</span></p>
+                    <div class="theme-links">
+                        <a href="index.html#prospective" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">進学の案内</span><span class="en" lang="en">Admissions</span></a>
+                        <a href="faq.html" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">大学院進学・出願前の連絡について</span><span class="en" lang="en">Graduate admissions &amp; contacting us before applying</span></a>
+                    </div>
+                </article>
+                <article class="join-card" id="join-intern">
+                    <h3><i class="fa-solid fa-laptop-code" aria-hidden="true"></i><span class="ja">学生インターン</span><span class="en" lang="en">Student internships</span></h3>
+                    <p><span class="ja">VRシステムの開発やインタフェース機器の研究に関心のある学部生・大学院生を、短期インターンとして随時受け入れています。テーマによっては、オンラインでの参加もできます。研究テーマとの相性によっては、お受けできない場合もあります。</span><span class="en" lang="en">We accept undergraduate and graduate students interested in developing VR systems or researching interface devices as short-term interns at any time. Depending on the project, you may be able to take part online. We may not be able to accept you if your interests do not match our current projects.</span></p>
+                    <p><span class="ja">学部生で研究室に関心のある方も、まずはインターンについてご相談ください。</span><span class="en" lang="en">Undergraduates interested in the lab are also welcome to ask about internships first.</span></p>
+                    <div class="theme-links">
+                        <a href="#join-intern" class="chip-link" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
+                    </div>
+                </article>
+                <article class="join-card" id="join-researchers">
+                    <h3><i class="fa-solid fa-flask" aria-hidden="true"></i><span class="ja">研究員（ポスドクなど）</span><span class="en" lang="en">Researchers (postdocs, etc.)</span></h3>
+                    <p><span class="ja">日本学術振興会 特別研究員（PD）の受け入れや、進行中のプロジェクトの特任助教・特任研究員の募集を行うことがあります。所属は情報基盤センターになります。</span><span class="en" lang="en">We may host JSPS Research Fellows (PD) or recruit project assistant professors and project researchers for ongoing projects. The affiliation will be the Information Technology Center.</span></p>
+                    <p><span class="ja">まずは現在募集しているかどうかをお問い合わせください。</span><span class="en" lang="en">Please first ask us whether a position is currently open.</span></p>
+                    <div class="theme-links">
+                        <a href="#join-researchers" class="chip-link" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
+                        <a href="https://www.jsps.go.jp/j-pd/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">日本学術振興会 特別研究員</span><span class="en" lang="en">JSPS Research Fellowship</span></a>
+                    </div>
+                </article>
+                <article class="join-card" id="join-companies">
+                    <h3><i class="fa-solid fa-handshake" aria-hidden="true"></i><span class="ja">企業・研究機関の方</span><span class="en" lang="en">Companies &amp; organizations</span></h3>
+                    <p><span class="ja">企業との共同研究を積極的に進めています。教員へのコンサルティング（兼業）のご依頼も、大学の制度に沿ってお受けしています。</span><span class="en" lang="en">We actively pursue joint research with companies. Consulting requests to faculty members are also accepted under the university&rsquo;s rules for outside work.</span></p>
+                    <p><span class="ja">VRセンターでは、共同研究の前段階の議論の場として、メタバースラウンジの協賛企業を募集しています。</span><span class="en" lang="en">The VR Center also invites corporate sponsors for its Metaverse Lounge, a forum for discussion before starting joint research.</span></p>
+                    <div class="theme-links">
+                        <a href="collaboration.html" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry collaboration</span></a>
+                        <a href="https://www.ducr.u-tokyo.ac.jp/activity/research/index.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">東京大学の共同研究</span><span class="en" lang="en">Joint research at UTokyo</span></a>
+                        <a href="https://www.u-tokyo.ac.jp/ja/research/systems-data/g04.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">兼業のご依頼</span><span class="en" lang="en">Requests for outside work</span></a>
+                        <a href="https://vr.u-tokyo.ac.jp/metaverse-lounge/home/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">メタバースラウンジ</span><span class="en" lang="en">Metaverse Lounge</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="about-block" id="support">
+            <div class="section-header">
+                <span class="section-tag">Support Us</span>
+                <h2 class="section-title"><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support Our Lab</span></h2>
+                <p class="section-description"><span class="ja">研究室へのご寄附は、東京大学基金（東大基金）を通じて受け付けています。</span><span class="en" lang="en">Donations to the lab are accepted through the University of Tokyo Foundation.</span></p>
+            </div>
+            <div class="donate-box">
+                <div>
+                    <ol class="donate-steps ja">
+                        <li>東京大学基金のWebサイトで<strong>「寄付をする」</strong>を選びます。</li>
+                        <li>寄附目的で<strong>「その他」</strong>を選びます。</li>
+                        <li>指定の欄に、次のように入力してください。
+                            <div class="copy-box"><code>情報メディア教育研究（雨宮研究室支援）</code><button type="button" class="copy-btn" data-copy="情報メディア教育研究（雨宮研究室支援）"><i class="fa-regular fa-copy" aria-hidden="true"></i> コピー</button></div>
+                        </li>
+                    </ol>
+                    <ol class="donate-steps en" lang="en">
+                        <li>On the University of Tokyo Foundation website, choose <strong>GIVE NOW</strong>.</li>
+                        <li>As the purpose of your gift, enter the following:
+                            <div class="copy-box"><code>Research on Amemiya Laboratory, Information Technology Center</code><button type="button" class="copy-btn" data-copy="Research on Amemiya Laboratory, Information Technology Center"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copy</button></div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="donate-side">
+                    <p><span class="ja">ご寄附には、税制上の優遇措置があります。詳しくは東京大学の案内をご覧ください。</span><span class="en" lang="en">Donations may be eligible for tax benefits. Please see the University of Tokyo&rsquo;s information for details.</span></p>
+                    <div class="theme-links">
+                        <a href="https://utf.u-tokyo.ac.jp/" target="_blank" rel="noopener" class="btn btn-primary ja"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> 東京大学基金で寄付する</a>
+                        <a href="https://utf.u-tokyo.ac.jp/en" target="_blank" rel="noopener" class="btn btn-primary en" lang="en"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> Give to the UTokyo Foundation</a>
+                        <a href="https://www.u-tokyo.ac.jp/ja/society/funding/d01_10.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">東京大学への寄附について</span><span class="en" lang="en">About donations to UTokyo (Japanese)</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-block" id="inquiry">
+            <div class="section-header">
+                <span class="section-tag">Inquiries</span>
+                <h2 class="section-title"><span class="ja">取材・講演・執筆のご依頼</span><span class="en" lang="en">Media, Talks &amp; Writing</span></h2>
+            </div>
+            <div class="about-contact">
+                <p><span class="ja">取材、講演、執筆、コンサルティングなどのご依頼は、下記のアドレスまでご連絡ください。<br>研究室の見学や所在地については、トップページの「アクセス・お問い合わせ」をご覧ください。</span><span class="en" lang="en">For media coverage, talks, writing or consulting, please contact us at the address below.<br>For lab visits and directions, see “Access &amp; Contact” on the top page.</span></p>
+                <div class="theme-links" style="justify-content: center;">
+                    <a href="#inquiry" class="chip-link" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
+                    <a href="index.html#contact" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">アクセス・お問い合わせ</span><span class="en" lang="en">Access &amp; Contact</span></a>
+                </div>
+                <ul class="about-sns" aria-label="SNS">
+                    <li><a href="https://x.com/amelabvr" target="_blank" rel="noopener"><svg class="x-logo" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a></li>
+                    <li><a href="https://www.instagram.com/amelabvr/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                    <li><a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-links">
+            <a href="members.html" class="btn btn-primary" data-site-link><i class="fa-solid fa-users" aria-hidden="true"></i> <span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a>
+            <a href="index.html#about" class="btn btn-secondary" data-site-link><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="ja">トップページへ戻る</span><span class="en" lang="en">Back to top page</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="collaboration.html" data-site-link><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -995,6 +995,40 @@
         document.body.appendChild(bar);
     }
 
+    /* ---------- 文字をコピーするボタン（data-copy="コピーする文字"） ---------- */
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+        var label = btn.innerHTML;
+        btn.addEventListener('click', function () {
+            var text = btn.getAttribute('data-copy');
+            var done = function () {
+                btn.classList.add('is-done');
+                btn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> ' + (root.lang === 'en' ? 'Copied' : 'コピーしました');
+                setTimeout(function () { btn.classList.remove('is-done'); btn.innerHTML = label; }, 2000);
+            };
+            var fallback = function () {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); done(); } catch (e) {}
+                ta.remove();
+            };
+            if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+            else fallback();
+        });
+    });
+
+    /* ---------- 写真が無いときは写真の枠を出さない（data-photo-item） ---------- */
+    document.querySelectorAll('[data-photo-item] img').forEach(function (img) {
+        var item = img.closest('[data-photo-item]');
+        var fail = function () { var f = img.closest('figure'); if (f) f.remove(); item.classList.add('no-photo'); };
+        if (img.complete) { if (!img.naturalWidth) fail(); }
+        else img.addEventListener('error', fail);
+    });
+
     /* ---------- 初期表示 ---------- */
     applyLang(root.lang === 'en' ? 'en' : 'ja');
     updateThemeUI();
