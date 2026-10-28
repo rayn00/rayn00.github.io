@@ -1021,6 +1021,69 @@
         });
     });
 
+    /* ---------- 論文・発表の件数（data-pub-stats） ---------- */
+    // data-pub-stats に書いたページ（publications.html）の一覧を読み込み、各カードの data-types に
+    // 書いた種類の件数を数えて、画面に入ったら 0 から数え上げる。読み込めないとき
+    // （ファイルを直接開いたときなど）は HTML に書いてある数字を使う
+    document.querySelectorAll('[data-pub-stats]').forEach(function (box) {
+        var cards = Array.prototype.slice.call(box.querySelectorAll('[data-types]'));
+        var nums = cards.map(function (c) { return c.querySelector('[data-count]'); });
+        var fallback = nums.map(function (n) { return parseInt(n.textContent, 10) || 0; });
+        var values = null, visible = false, loading = false, played = false;
+        var animate = !reduceMotion.matches && 'IntersectionObserver' in window && !!window.requestAnimationFrame;
+
+        function show(v) { nums.forEach(function (n, i) { n.textContent = v[i]; }); }
+        function play() {
+            if (played || !values || !visible) return;
+            played = true;
+            if (!animate) { show(values); return; }
+            var t0 = null;
+            var step = function (t) {
+                if (t0 === null) t0 = t;
+                var p = Math.min((t - t0) / 1200, 1);
+                var e = 1 - Math.pow(1 - p, 3);
+                show(values.map(function (v) { return Math.round(v * e); }));
+                if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
+        function finish(v) {
+            if (values) return;
+            values = v;
+            if (!animate) show(values);
+            play();
+        }
+        function load() {
+            if (loading) return;
+            loading = true;
+            var src = box.getAttribute('data-pub-stats');
+            if (!src || !window.fetch || !window.DOMParser || location.protocol === 'file:') { finish(fallback); return; }
+            setTimeout(function () { finish(fallback); }, 4000); // 応答が遅いときは予備の数字で表示
+            fetch(src).then(function (r) {
+                if (!r.ok) throw new Error(r.status);
+                return r.text();
+            }).then(function (html) {
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                var items = Array.prototype.slice.call(doc.querySelectorAll('[data-list] [data-type]'));
+                if (!items.length) throw new Error('no items');
+                finish(cards.map(function (c) {
+                    var types = c.getAttribute('data-types').split(/\s+/);
+                    return items.filter(function (it) { return types.indexOf(it.getAttribute('data-type')) !== -1; }).length;
+                }));
+            })['catch'](function () { finish(fallback); });
+        }
+
+        if (!animate) { visible = true; load(); return; }
+        show(fallback.map(function () { return 0; }));
+        // 近づいたら一覧を読み込み、半分ほど見えたら数え上げる
+        new IntersectionObserver(function (entries, io) {
+            if (entries[0].isIntersecting) { load(); io.disconnect(); }
+        }, { rootMargin: '0px 0px 600px 0px' }).observe(box);
+        new IntersectionObserver(function (entries, io) {
+            if (entries[0].isIntersecting) { visible = true; play(); io.disconnect(); }
+        }, { threshold: 0.5 }).observe(box);
+    });
+
     /* ---------- 写真が無いときは写真の枠を出さない（data-photo-item） ---------- */
     document.querySelectorAll('[data-photo-item] img').forEach(function (img) {
         var item = img.closest('[data-photo-item]');

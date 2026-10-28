@@ -53,7 +53,10 @@
     <style>
         .faq-wrap { max-width: 920px; margin: 0 auto; }
         /* 募集のお知らせ */
-        .faq-notice { position: relative; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); padding: 2rem 2rem 2rem 2.25rem; margin-bottom: 3rem; }
+        .faq-intro { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 1.5rem; align-items: center; margin-bottom: 3rem; }
+        .faq-notice { position: relative; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); padding: 2rem 2rem 2rem 2.25rem; }
+        .campus-photo { margin: 0; }
+        .campus-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius-lg); border: 1px solid var(--border-color); background: var(--bg-card); }
         .faq-notice::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 4px; background: linear-gradient(var(--accent-cyan), var(--accent-purple)); }
         .faq-notice-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin-bottom: 1.25rem; }
         .faq-notice-head h2 { font-size: 1.35rem; line-height: 1.4; }
@@ -101,6 +104,7 @@
         .faq-goals > div { display: grid; grid-template-columns: auto 1fr; gap: 0.9rem; align-items: start; background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
         .faq-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
         .faq-table .data-table th[scope="row"] { white-space: nowrap; }
+        .faq-table .data-table th[scope="col"] { white-space: normal; }
         .faq-table .data-table th small { font-weight: 400; color: var(--text-muted); }
         .faq-item mark { background: rgba(0, 242, 254, 0.22); color: inherit; border-radius: 3px; padding: 0 1px; }
         :root[data-theme="light"] .faq-item mark { background: rgba(3, 105, 161, 0.16); }
@@ -115,6 +119,10 @@
         .faq-sns .fa-youtube { color: #ff3d3d; }
         .faq-sns .fa-instagram { color: #e1306c; }
         .x-logo { display: inline-block; vertical-align: -0.125em; }
+        @media (max-width: 860px) {
+            .faq-intro { grid-template-columns: minmax(0, 1fr); }
+            .campus-photo img { aspect-ratio: 16 / 10; object-position: center 62%; }
+        }
         @media (max-width: 600px) {
             .faq-notice { padding: 1.5rem 1.25rem 1.5rem 1.5rem; }
             .faq-item summary { padding: 1rem; gap: 0.7rem; }
@@ -179,32 +187,36 @@
             </nav>
             <span class="section-tag">FAQ</span>
             <h1 class="page-title"><span class="ja">よくある質問</span><span class="en" lang="en">Frequently Asked Questions</span></h1>
-            <p class="hero-subtitle"><span class="ja">雨宮研究室への進学を希望する方から、よく寄せられる質問と回答をまとめました。</span><span class="en" lang="en">Answers to questions we often receive from prospective graduate students.</span></p>
+            <p class="hero-subtitle"><span class="ja">雨宮研究室への進学を希望する方から、よく寄せられる質問と回答をまとめました。</span><span class="en" lang="en">Answers to common questions from prospective graduate students interested in joining the Amemiya Lab.</span></p>
         </div>
     </section>
 
     <section id="faq">
         <div class="faq-wrap">
 
-            <!-- 募集のお知らせ（年度が変わったら書き換えてください） -->
-            <div class="faq-notice">
-                <div class="faq-notice-head">
-                    <span class="faq-badge badge-cyan"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> <span class="ja">募集中</span><span class="en" lang="en">Now accepting</span></span>
-                    <h2><span class="ja">2027年度入学希望者を受け入れています</span><span class="en" lang="en">Accepting students for April / October 2027 entry</span></h2>
+            <div class="faq-intro">
+                <!-- 募集のお知らせ（年度が変わったら書き換えてください） -->
+                <div class="faq-notice">
+                    <div class="faq-notice-head">
+                        <span class="faq-badge badge-cyan"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> <span class="ja">募集中</span><span class="en" lang="en">Now accepting</span></span>
+                        <h2><span class="ja">2027年度入学希望者を受け入れています</span><span class="en" lang="en">Accepting students for April / October 2027 entry</span></h2>
+                    </div>
+                    <ul class="faq-notice-list">
+                        <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><span><span class="ja">雨宮を第1希望とする場合は、志望する専攻・コースの<strong>入学願書受付開始日の前日まで</strong>に、必ずメールでご連絡ください。事前の面談は必須ではありません。</span><span class="en" lang="en">If Prof. Amemiya is your first-choice supervisor, please be sure to email us <strong>by the day before the application period of your intended program opens</strong>. A prior interview is not required.</span></span></li>
+                        <li><i class="fa-solid fa-paperclip" aria-hidden="true"></i><span><span class="ja">メールには、CV、既発表資料、研究計画（完成していなくてもかまいません）、制作物があればその資料を添付してください。</span><span class="en" lang="en">Please attach your CV, any published work, a research plan (a draft is fine) and materials on anything you have made.</span></span></li>
+                        <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span><span class="ja">博士課程への進学を希望している方は特に歓迎します（修士課程修了後に就職する選択も尊重します）。大学院からの受け入れのため、長期間腰を据えて博士を目指したい方は大歓迎です。</span><span class="en" lang="en">Applicants aiming for a doctorate are especially welcome, though we also respect the choice to start a career after the master&rsquo;s program. As we admit students at the graduate level, those who want to settle in for the long haul toward a PhD are very welcome.</span></span></li>
+                        <li><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span><span class="ja"><a class="inline-link" href="https://www.u-tokyo.ac.jp/adm/inbound/ja/programs-admissions-r.html" target="_blank" rel="noopener">研究生</a>は受け入れていません。</span><span class="en" lang="en">We do not accept non-degree <a class="inline-link" href="https://www.u-tokyo.ac.jp/adm/inbound/en/programs-admissions-r.html" target="_blank" rel="noopener">research students</a> (kenkyusei).</span></span></li>
+                    </ul>
+                    <div class="hero-buttons">
+                        <a href="#faq-contact" class="btn btn-primary btn-sm" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="ja">メールで連絡する</span><span class="en" lang="en">Email us</span></a>
+                        <a href="research.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究内容を見る</span><span class="en" lang="en">Our research</span></a>
+                    </div>
                 </div>
-                <ul class="faq-notice-list">
-                    <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><span><span class="ja">雨宮を第1希望とする場合は、志望する専攻・コースの<strong>入学願書受付開始日の前日まで</strong>に、必ずメールでご連絡ください。事前の面談は必須ではありません。</span><span class="en" lang="en">If Prof. Amemiya is your first-choice supervisor, please be sure to email us <strong>by the day before the application period of your intended program opens</strong>. A prior interview is not required.</span></span></li>
-                    <li><i class="fa-solid fa-paperclip" aria-hidden="true"></i><span><span class="ja">メールには、CV、既発表資料、研究計画（完成していなくてもかまいません）、制作物があればその資料を添付してください。</span><span class="en" lang="en">Please attach your CV, any published work, a research plan (a draft is fine) and materials on anything you have made.</span></span></li>
-                    <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span><span class="ja">博士課程への進学を希望している方は特に歓迎します（修士課程修了後に就職する選択も尊重します）。大学院からの受け入れのため、長期間腰を据えて博士を目指したい方は大歓迎です。</span><span class="en" lang="en">Applicants aiming for a doctorate are especially welcome, though we also respect the choice to start a career after the master&rsquo;s program. As we admit students at the graduate level, those who want to settle in for the long haul toward a PhD are very welcome.</span></span></li>
-                    <li><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span><span class="ja">研究生は受け入れていません。</span><span class="en" lang="en">We do not accept research students (kenkyusei).</span></span></li>
-                </ul>
-                <div class="hero-buttons">
-                    <a href="#faq-contact" class="btn btn-primary btn-sm" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="ja">メールで連絡する</span><span class="en" lang="en">Email us</span></a>
-                    <a href="research.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究内容を見る</span><span class="en" lang="en">Our research</span></a>
-                </div>
+                <!-- キャンパスの写真（img/campus/） -->
+                <figure class="campus-photo">
+                    <img src="img/campus/hongo-ginkgo.jpg" alt="本郷キャンパスのいちょう並木（夜）" width="600" height="800" loading="lazy" decoding="async">
+                </figure>
             </div>
-
-            <p class="lang-note en" lang="en"><i class="fa-solid fa-language" aria-hidden="true"></i> The questions and answers below are available in Japanese only.</p>
 
             <ul class="faq-toc" aria-label="カテゴリ / Categories">
                 <li><a class="chip-link" href="#schools"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> <span class="ja">大学院の違いについて</span><span class="en" lang="en">Graduate Schools</span> <span class="faq-toc-count">2</span></a></li>
@@ -218,7 +230,7 @@
             <div class="list-toolbar faq-toolbar">
                 <label class="search-box">
                     <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <input type="search" id="faqSearch" data-ph-ja="質問・回答を検索" data-ph-en="Search (Japanese)" placeholder="質問・回答を検索" aria-label="質問・回答を検索" autocomplete="off">
+                    <input type="search" id="faqSearch" data-ph-ja="質問・回答を検索" data-ph-en="Search questions and answers" placeholder="質問・回答を検索" aria-label="質問・回答を検索" autocomplete="off">
                 </label>
                 <button type="button" class="btn btn-secondary btn-sm" id="faqToggle" aria-expanded="false" aria-controls="faqGroups"><i class="fa-solid fa-angles-down" aria-hidden="true"></i> <span class="ja">すべて開く</span><span class="en" lang="en">Expand all</span></button>
             </div>
@@ -229,34 +241,34 @@
                 <h2 class="member-category-title"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> <span class="ja">大学院の違いについて</span><span class="en" lang="en">Graduate Schools</span></h2>
                 <div class="faq-list">
                 <details class="faq-item" id="q-apply">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">雨宮研究室に進学したいのですが、どうすればよいですか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">雨宮研究室に進学したいのですが、どうすればよいですか？</span><span class="en" lang="en">How can I join the Amemiya Lab as a graduate student?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>修士課程・博士課程の学生として雨宮研究室への参加を希望する方は、所定の期限までにメールでご連絡ください。面談は必須ではありません。</p>
-                        <p>雨宮研究室の学生は「東京大学大学院 総合文化研究科 広域システム科学系」または「東京大学大学院 情報学環・学際情報学府」に所属します。いずれかの大学院に合格・入学したうえで、指導教員として雨宮を選んでください。</p>
-                        <p>入試の日程や出願要件は年度によって変わります。必ず各大学院のWebサイトで最新の情報を確認してください。</p>
-                        <div class="faq-links"><a class="chip-link" href="https://system.c.u-tokyo.ac.jp/" target="_blank" rel="noopener">総合文化研究科 広域システム科学系 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="chip-link" href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener">情報学環・学際情報学府 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+                        <p><span class="ja">修士課程・博士課程の学生として雨宮研究室への参加を希望する方は、所定の期限までにメールでご連絡ください。面談は必須ではありません。</span><span class="en" lang="en">If you wish to join our lab as a master&rsquo;s or doctoral student, please contact us by email by the specified deadline. A meeting before applying is not required.</span></p>
+                        <p><span class="ja">雨宮研究室の学生は「東京大学大学院 総合文化研究科 広域システム科学系」または「東京大学大学院 情報学環・学際情報学府」に所属します。いずれかの大学院に合格・入学したうえで、指導教員として雨宮を選んでください。</span><span class="en" lang="en">Students in our lab are enrolled in one of the following graduate programs at the University of Tokyo: General Systems Studies, Graduate School of Arts and Sciences; or the Graduate School of Interdisciplinary Information Studies. You will need to gain admission to and enroll in one of these graduate schools, with Prof. Amemiya as your supervisor.</span></p>
+                        <p><span class="ja">入試の日程や出願要件は年度によって変わります。必ず各大学院のWebサイトで最新の情報を確認してください。</span><span class="en" lang="en">Application requirements and examination schedules may change from year to year. Please check the relevant graduate school&rsquo;s website for the latest information.</span></p>
+                        <div class="faq-links"><a class="chip-link" href="https://system.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科 広域システム科学系</span><span class="en" lang="en">General Systems Studies, Graduate School of Arts and Sciences</span> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="chip-link" href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">Graduate School of Interdisciplinary Information Studies</span> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-schools">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究指導は所属する大学院ごとに違いはありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">研究指導は所属する大学院ごとに違いはありますか？</span><span class="en" lang="en">Does research supervision differ depending on which graduate school I enroll in?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>研究指導は、所属する大学院にかかわらず研究室として一体的に行います。ただし、必修科目や修士論文・博士論文の提出スケジュールなどは、大学院ごとに異なる場合があります。</p>
+                        <p><span class="ja">研究指導は、所属する大学院にかかわらず研究室として一体的に行います。ただし、必修科目や修士論文・博士論文の提出スケジュールなどは、大学院ごとに異なる場合があります。</span><span class="en" lang="en">We operate as a single lab and provide research supervision regardless of the graduate school in which you are enrolled. However, required courses and deadlines for master&rsquo;s and doctoral theses may differ between graduate schools.</span></p>
                         <div class="table-wrap faq-table">
                             <table class="data-table">
-                                <thead><tr><th scope="col"></th><th scope="col">総合文化研究科<br><small>広域システム科学系</small></th><th scope="col">情報学環・学際情報学府</th></tr></thead>
+                                <thead><tr><th scope="col"></th><th scope="col"><span class="ja">総合文化研究科<br><small>広域システム科学系</small></span><span class="en" lang="en">Graduate School of Arts and Sciences<br><small>General Systems Studies</small></span></th><th scope="col"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">Graduate School of Interdisciplinary Information Studies</span></th></tr></thead>
                                 <tbody>
-                                    <tr><th scope="row">入学時期</th><td>4月入学・10月入学</td><td>原則4月入学のみ</td></tr>
-                                    <tr><th scope="row">講義の主な開催地</th><td>駒場キャンパス</td><td>本郷キャンパス</td></tr>
-                                    <tr><th scope="row">研究室（研究拠点）</th><td colspan="2">浅野キャンパス 情報基盤センター 浅野本館</td></tr>
+                                    <tr><th scope="row"><span class="ja">入学時期</span><span class="en" lang="en">Entry dates</span></th><td><span class="ja">4月入学・10月入学</span><span class="en" lang="en">April and October</span></td><td><span class="ja">原則4月入学のみ</span><span class="en" lang="en">Normally April only</span></td></tr>
+                                    <tr><th scope="row"><span class="ja">講義の主な開催地</span><span class="en" lang="en">Main location of classes</span></th><td><span class="ja">駒場キャンパス</span><span class="en" lang="en">Komaba Campus</span></td><td><span class="ja">本郷キャンパス</span><span class="en" lang="en">Hongo Campus</span></td></tr>
+                                    <tr><th scope="row"><span class="ja">研究室（研究拠点）</span><span class="en" lang="en">Lab location and research base</span></th><td colspan="2"><span class="ja">本郷地区キャンパス（浅野キャンパス） 情報基盤センター 浅野本館</span><span class="en" lang="en">Information Technology Center, Asano Main Building, Hongo Area Campus (Asano Campus)</span></td></tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p>規則は修正されることがあるため、最新の情報は各大学院で確認してください。</p>
+                        <p><span class="ja">規則は修正されることがあるため、最新の情報は各大学院で確認してください。</span><span class="en" lang="en">Rules may change. Please confirm the latest information with the relevant graduate school.</span></p>
                         </div>
                     </div>
                 </details>
@@ -267,13 +279,13 @@
                 <h2 class="member-category-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> <span class="ja">面談・見学について</span><span class="en" lang="en">Meetings &amp; Lab Visits</span></h2>
                 <div class="faq-list">
                 <details class="faq-item" id="q-interview">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">出願前に面談や研究室見学をする必要はありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">出願前に面談や研究室見学をする必要はありますか？</span><span class="en" lang="en">Do I need to meet with you or visit the lab before applying?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>必須ではありません。連絡はメールで受け付けています。</p>
-                        <p>研究内容が自分の関心に合っているかを相談したい場合は、研究計画の案を添えてご連絡ください。必要に応じて、メールまたはオンライン面談で相談に応じます。ただし、研究計画書の添削や、公開されている情報を超える入試に関する相談には応じられません。</p>
-                        <p>研究室の現地見学は、個別の日程調整による実施は原則として行っていません。各大学院の説明会に合わせて実施する予定で、詳細は本Webサイトなどでお知らせします。</p>
+                        <p><span class="ja">必須ではありません。連絡はメールで受け付けています。</span><span class="en" lang="en">No. Neither a meeting nor a lab visit is required. Please contact us by email.</span></p>
+                        <p><span class="ja">研究内容が自分の関心に合っているかを相談したい場合は、研究計画の案を添えてご連絡ください。必要に応じて、メールまたはオンライン面談で相談に応じます。ただし、研究計画書の添削や、公開されている情報を超える入試に関する相談には応じられません。</span><span class="en" lang="en">If you would like to discuss whether your research interests fit the lab, please include a draft research proposal. We can discuss your interests by email or arrange an online meeting as needed. However, we cannot edit your research proposal or provide information about the entrance examinations beyond what is publicly available.</span></p>
+                        <p><span class="ja">研究室の現地見学は、個別の日程調整による実施は原則として行っていません。各大学院の説明会に合わせて実施する予定で、詳細は本Webサイトなどでお知らせします。</span><span class="en" lang="en">As a rule, we do not arrange individual in-person lab visits. We plan to offer visits in conjunction with the graduate schools&rsquo; information sessions. Details will be announced on this website and through other relevant channels.</span></p>
                         </div>
                     </div>
                 </details>
@@ -284,72 +296,72 @@
                 <h2 class="member-category-title"><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究室における研究について</span><span class="en" lang="en">Research in the Lab</span></h2>
                 <div class="faq-list">
                 <details class="faq-item" id="q-policy">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">大学院生の指導方針を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">大学院生の指導方針を教えて下さい</span><span class="en" lang="en">What is your approach to supervising graduate students?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>研究テーマは、本人の関心や得意分野を尊重し、議論を重ねて決めます。原則として一人一テーマですが、研究室内での共同研究も奨励しています。</p>
-                        <p>心理実験が中心のテーマ、VRシステムの開発が中心のテーマ、企業との共同研究を含むテーマなど、挑戦的な内容も相談できます。必要に応じて教員からテーマを提案することもあり、院試の研究計画書に書いた内容を必ずそのまま行う必要はありません。</p>
-                        <p>研究室でどのような研究・共同研究・受託研究を行っているか、事前に確認しておくとよいでしょう。</p>
+                        <p><span class="ja">研究テーマは、本人の関心や得意分野を尊重し、議論を重ねて決めます。原則として一人一テーマですが、研究室内での共同研究も奨励しています。</span><span class="en" lang="en">Research topics are developed through discussion, taking each student&rsquo;s interests and strengths into account. Students generally lead their own research projects, while collaboration within the lab is also encouraged.</span></p>
+                        <p><span class="ja">心理実験が中心のテーマ、VRシステムの開発が中心のテーマ、企業との共同研究を含むテーマなど、挑戦的な内容も相談できます。必要に応じて教員からテーマを提案することもあり、院試の研究計画書に書いた内容を必ずそのまま行う必要はありません。</span><span class="en" lang="en">We welcome discussions about challenging projects, including those centered on psychological experiments, VR system development, or collaboration with industry. Faculty members may also suggest topics when appropriate. You are not required to pursue exactly the project described in your application research proposal.</span></p>
+                        <p><span class="ja">研究室でどのような研究・共同研究・受託研究を行っているか、事前に確認しておくとよいでしょう。</span><span class="en" lang="en">Before applying, we encourage you to explore the lab&rsquo;s research, including its collaborative and commissioned research projects.</span></p>
                         <div class="faq-links"><a class="chip-link" href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="chip-link" href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-support">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究のサポート体制を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">研究のサポート体制を教えて下さい</span><span class="en" lang="en">What support is available for students&rsquo; research?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>教員とのミーティングを必要に応じて設定しています。また、先輩やスタッフによるメンタリング、学生同士のピアレビューも行っています。</p>
+                        <p><span class="ja">教員とのミーティングを必要に応じて設定しています。また、先輩やスタッフによるメンタリング、学生同士のピアレビューも行っています。</span><span class="en" lang="en">Meetings with faculty members are arranged as needed. Students also receive mentoring from senior students and staff, and we encourage peer review among students.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-meeting">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">ミーティングの頻度を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">ミーティングの頻度を教えて下さい</span><span class="en" lang="en">How often does the lab meet?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>週1回程度、研究室の研究会を開き、議論や進捗確認などのメンタリングを行います。成果が十分に出ていなくても、必ず何らかの報告をします。</p>
-                        <p>このほか、学生が選んだ論文を輪読するジャーナルクラブや、技術・技能の講習会も開いています。</p>
+                        <p><span class="ja">週1回程度、研究室の研究会を開き、議論や進捗確認などのメンタリングを行います。成果が十分に出ていなくても、必ず何らかの報告をします。</span><span class="en" lang="en">We hold lab meetings approximately once a week to discuss research, review progress, and provide guidance. Everyone is expected to give an update, even if they do not yet have substantial results to report.</span></p>
+                        <p><span class="ja">このほか、学生が選んだ論文を輪読するジャーナルクラブや、技術・技能の講習会も開いています。</span><span class="en" lang="en">We also hold journal clubs, in which students take turns presenting and discussing papers they have selected, as well as workshops on technical and practical skills.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-prepare">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究室に入るまでに勉強しておいた方が良いことを教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">研究室に入るまでに勉強しておいた方が良いことを教えて下さい</span><span class="en" lang="en">What should I study before joining the lab?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>メカトロニクス、電気回路、実験心理学、プログラミングなどです。研究の土台となる数学に加え、汎用性の高い統計や情報学の基礎を学んでおくことをおすすめします。</p>
-                        <p>英語は論文の読解や発表に欠かせません。入試の合否とは関係ありませんが、研究を進めるうえで CEFR B2 以上の英語力が必要です。</p>
-                        <p class="faq-sublabel"><i class="fa-solid fa-book-open" aria-hidden="true"></i> 参考書</p>
+                        <p><span class="ja">メカトロニクス、電気回路、実験心理学、プログラミングなどです。研究の土台となる数学に加え、汎用性の高い統計や情報学の基礎を学んでおくことをおすすめします。</span><span class="en" lang="en">Useful areas include mechatronics, electrical circuits, experimental psychology, and programming. In addition to mathematics as a foundation for research, we recommend developing a solid grounding in statistics and information science.</span></p>
+                        <p><span class="ja">英語は論文の読解や発表に欠かせません。入試の合否とは関係ありませんが、研究を進めるうえで CEFR B2 以上の英語力が必要です。</span><span class="en" lang="en">English is essential for reading research papers and presenting your work. Although this is not an admissions criterion, English proficiency at <strong>CEFR B2 or higher</strong> is necessary for conducting research in the lab.</span></p>
+                        <p class="faq-sublabel"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">参考書</span><span class="en" lang="en">Suggested reading (all in Japanese)</span></p>
                         <ul class="faq-books">
-                            <li>日本バーチャルリアリティ学会 編『バーチャルリアリティ学』コロナ社、2011年</li>
-                            <li>雨宮智浩『メタバースの教科書 ―原理・基礎技術から産業応用まで―』オーム社、2023年</li>
-                            <li>岩村吉晃『タッチ（神経心理学コレクション）』医学書院、2001年</li>
+                            <li>日本バーチャルリアリティ学会 編『バーチャルリアリティ学』コロナ社、2011年<span class="en" lang="en"> — A textbook on virtual reality, edited by the Virtual Reality Society of Japan.</span></li>
+                            <li>雨宮智浩『メタバースの教科書 ―原理・基礎技術から産業応用まで―』オーム社、2023年<span class="en" lang="en"> — A textbook on the metaverse, covering principles, foundational technologies, and industrial applications.</span></li>
+                            <li>岩村吉晃『タッチ（神経心理学コレクション）』医学書院、2001年<span class="en" lang="en"> — A book on touch in the Neuropsychology Collection.</span></li>
                         </ul>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-goal">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">学生の修了までの目標はどこに設定されていますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">学生の修了までの目標はどこに設定されていますか？</span><span class="en" lang="en">What research goals are students expected to work toward before graduation?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
                         <dl class="faq-goals">
-                            <div><dt><span class="faq-badge badge-cyan">修士課程</span></dt><dd>一つの研究テーマを主体的に進め、学会発表と論文執筆までを経験することを目指します。修了までに、査読付き国際会議での英語による発表と、査読付き論文への投稿・掲載を目標とします。</dd></div>
-                            <div><dt><span class="faq-badge badge-purple">博士課程</span></dt><dd>指導教員の支援に過度に頼らず、自立して研究テーマを設定し、論文執筆まで完成させることを目指します。3件以上の査読付き国際会議での発表や査読付き論文の掲載を目標とします。</dd></div>
+                            <div><dt><span class="faq-badge badge-cyan"><span class="ja">修士課程</span><span class="en" lang="en">Master&rsquo;s students</span></span></dt><dd><span class="ja">一つの研究テーマを主体的に進め、学会発表と論文執筆までを経験することを目指します。修了までに、査読付き国際会議での英語による発表と、査読付き論文への投稿・掲載を目標とします。</span><span class="en" lang="en">We aim for students to take ownership of a research project and gain experience in presenting their findings and writing research papers. By graduation, the goal is to have presented their work in English at a peer-reviewed international conference and to have submitted a paper for peer review, working toward publication.</span></dd></div>
+                            <div><dt><span class="faq-badge badge-purple"><span class="ja">博士課程</span><span class="en" lang="en">Doctoral students</span></span></dt><dd><span class="ja">指導教員の支援に過度に頼らず、自立して研究テーマを設定し、論文執筆まで完成させることを目指します。3件以上の査読付き国際会議での発表や査読付き論文の掲載を目標とします。</span><span class="en" lang="en">We aim for students to develop the ability to define their own research topics and carry projects through to completed papers without relying excessively on their supervisor&rsquo;s support. The goal is to produce at least three research contributions through presentations at peer-reviewed international conferences and/or peer-reviewed publications.</span></dd></div>
                         </dl>
-                        <p>トップカンファレンスへの採択や論文数だけを唯一のゴールとはしませんが、その水準に耐える研究遂行能力と発信力も重視しています。自ら課題を設定し、研究を主導する経験を通じて博士号の取得を目指します。</p>
+                        <p><span class="ja">トップカンファレンスへの採択や論文数だけを唯一のゴールとはしませんが、その水準に耐える研究遂行能力と発信力も重視しています。自ら課題を設定し、研究を主導する経験を通じて博士号の取得を目指します。</span><span class="en" lang="en">Acceptance at leading conferences and publication counts are not our only goals. We also value the ability to conduct and communicate research that meets those standards. Students work toward a Ph.D. by gaining experience in identifying research questions and leading their own research.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-equipment">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">所有する設備・機器を教えて下さい</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">所有する設備・機器を教えて下さい</span><span class="en" lang="en">What facilities and equipment are available?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>主な設備・機器は次のとおりです。研究内容や予算を踏まえて、適宜整備しています。</p>
-                        <ul class="faq-chips"><li>HMD（Meta Quest シリーズ、HTC Vive シリーズ、Apple Vision Pro、Pico シリーズなど）</li><li>モーションキャプチャーシステム</li><li>フォースプレート</li><li>360度カメラ</li><li>3Dプリンタ</li><li>超音波触覚ディスプレイ</li><li>非対称振動発生装置</li><li>立体視ディスプレイ</li><li>脳波計（簡易型）</li><li>TMS装置</li><li>電気刺激装置</li></ul>
+                        <p><span class="ja">主な設備・機器は次のとおりです。研究内容や予算を踏まえて、適宜整備しています。</span><span class="en" lang="en">Our main equipment includes the following. We maintain and expand these resources according to research needs and available funding.</span></p>
+                        <ul class="faq-chips"><li><span class="ja">HMD（Meta Quest シリーズ、HTC Vive シリーズ、Apple Vision Pro、Pico シリーズなど）</span><span class="en" lang="en">Head-mounted displays, including Meta Quest, HTC Vive, Apple Vision Pro, and PICO devices</span></li><li><span class="ja">モーションキャプチャーシステム</span><span class="en" lang="en">Motion capture systems</span></li><li><span class="ja">フォースプレート</span><span class="en" lang="en">Force plates</span></li><li><span class="ja">360度カメラ</span><span class="en" lang="en">360-degree cameras</span></li><li><span class="ja">3Dプリンタ</span><span class="en" lang="en">3D printers</span></li><li><span class="ja">超音波触覚ディスプレイ</span><span class="en" lang="en">Ultrasonic haptic displays</span></li><li><span class="ja">非対称振動発生装置</span><span class="en" lang="en">Asymmetric vibration devices</span></li><li><span class="ja">立体視ディスプレイ</span><span class="en" lang="en">Stereoscopic displays</span></li><li><span class="ja">脳波計（簡易型）</span><span class="en" lang="en">Compact EEG systems</span></li><li><span class="ja">TMS装置</span><span class="en" lang="en">Transcranial magnetic stimulation (TMS) equipment</span></li><li><span class="ja">電気刺激装置</span><span class="en" lang="en">Electrical stimulation equipment</span></li></ul>
                         </div>
                     </div>
                 </details>
@@ -360,21 +372,21 @@
                 <h2 class="member-category-title"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i> <span class="ja">研究室での生活について</span><span class="en" lang="en">Life in the Lab</span></h2>
                 <div class="faq-list">
                 <details class="faq-item" id="q-coretime">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">コアタイム（研究室にいなければならない時間帯）はありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">コアタイム（研究室にいなければならない時間帯）はありますか？</span><span class="en" lang="en">Are there core hours when students must be in the lab?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>ありません。研究室の外でできる作業は、適切な場所で行ってかまいません。在室時間ではなく、研究の進捗を重視しています。</p>
-                        <p>一方で、対面での情報共有や偶発的な議論、設備の利用も大切にしています。Zoom や Slack も活用しつつ、研究室を積極的に利用することをおすすめします。</p>
+                        <p><span class="ja">ありません。研究室の外でできる作業は、適切な場所で行ってかまいません。在室時間ではなく、研究の進捗を重視しています。</span><span class="en" lang="en">No. Work that can be done outside the lab may be carried out in a suitable location. We focus on research progress rather than the number of hours spent in the lab.</span></p>
+                        <p><span class="ja">一方で、対面での情報共有や偶発的な議論、設備の利用も大切にしています。Zoom や Slack も活用しつつ、研究室を積極的に利用することをおすすめします。</span><span class="en" lang="en">At the same time, we value face-to-face exchanges, spontaneous discussions, and access to shared equipment. We encourage students to make active use of the lab while also using tools such as Zoom and Slack.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-rules">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究室のルールはありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">研究室のルールはありますか？</span><span class="en" lang="en">Does the lab have any rules?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>研究室の歴史が浅いため、必要に応じて学生とスタッフで話し合いながら整備しています。大学・研究室の規則、研究倫理、安全管理を守り、互いを尊重することが前提です。研究室づくりに主体的に関われる方を歓迎します。</p>
+                        <p><span class="ja">研究室の歴史が浅いため、必要に応じて学生とスタッフで話し合いながら整備しています。大学・研究室の規則、研究倫理、安全管理を守り、互いを尊重することが前提です。研究室づくりに主体的に関われる方を歓迎します。</span><span class="en" lang="en">As a relatively young lab, we develop and refine our practices through discussions among students and staff as needs arise. Everyone is expected to follow university and lab rules, uphold research ethics and safety standards, and treat others with respect. We welcome students who are willing to contribute actively to shaping the lab and its community.</span></p>
                         </div>
                     </div>
                 </details>
@@ -386,52 +398,52 @@
             <p class="faq-group-note"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> <span><span class="ja">院試に関しては、公平性の観点から、募集要項など公開されている情報を超える内容について私からお伝えすることは一切できません。</span><span class="en" lang="en">For fairness, I cannot share any information about the entrance examinations beyond what is publicly available, such as the application guidelines.</span></span></p>
                 <div class="faq-list">
                 <details class="faq-item" id="q-proposal">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">研究計画書に関して添削してもらえますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">研究計画書に関して添削してもらえますか？</span><span class="en" lang="en">Can you review and edit my research proposal?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>添削はできません。ただし、研究内容が研究室に合っているかを判断するため、研究計画の案を見ながらメールやオンラインで相談することは可能です。</p>
+                        <p><span class="ja">添削はできません。ただし、研究内容が研究室に合っているかを判断するため、研究計画の案を見ながらメールやオンラインで相談することは可能です。</span><span class="en" lang="en">We cannot edit or revise your application research proposal. However, we can discuss a draft by email or in an online meeting to help determine whether your proposed research fits the lab&rsquo;s interests.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-exam-tips">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">院試で注意することはありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">院試で注意することはありますか？</span><span class="en" lang="en">What should I keep in mind when preparing my application?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>志望する専攻・コースのWebサイトをよく確認してください。英語試験の種類・有効期限・提出方法は募集要項で確認できます。</p>
-                        <p>スコアの発行には時間がかかる場合があるので、余裕をもって準備してください。スコアは高いほどよいです。</p>
+                        <p><span class="ja">志望する専攻・コースのWebサイトをよく確認してください。英語試験の種類・有効期限・提出方法は募集要項で確認できます。</span><span class="en" lang="en">Read the website of your intended department or program carefully. The official application guidelines specify which English-language tests are accepted, how long scores remain valid, and how to submit them.</span></p>
+                        <p><span class="ja">スコアの発行には時間がかかる場合があるので、余裕をもって準備してください。スコアは高いほどよいです。</span><span class="en" lang="en">Allow enough time for test scores to be issued. Aim for the highest score you can achieve.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-multiple">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">複数の大学院・専攻を併願することはできますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">複数の大学院・専攻を併願することはできますか？</span><span class="en" lang="en">Can I apply to more than one graduate school or program?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>試験日程が重ならなければ可能です。日程や出願条件は年度によって変わるので、必ず確認してください。</p>
-                        <p>併願先や進学の希望順位は、コンタクトの際に伝えていただいてかまいません。他の大学院が第一志望の場合や未定の場合でも、不利益に扱うことはありません。</p>
-                        <p>他の大学院への進学が決まり、雨宮研究室への進学の意思がなくなった場合は、できるだけ早くご連絡ください。</p>
+                        <p><span class="ja">試験日程が重ならなければ可能です。日程や出願条件は年度によって変わるので、必ず確認してください。</span><span class="en" lang="en">Yes, provided that the examination schedules do not conflict. Schedules and application requirements may change each year, so please check them carefully.</span></p>
+                        <p><span class="ja">併願先や進学の希望順位は、コンタクトの際に伝えていただいてかまいません。他の大学院が第一志望の場合や未定の場合でも、不利益に扱うことはありません。</span><span class="en" lang="en">When contacting us, you are welcome to tell us where else you are applying and how you rank your preferences. You will not be disadvantaged if another graduate school is your first choice or if you have not yet decided.</span></p>
+                        <p><span class="ja">他の大学院への進学が決まり、雨宮研究室への進学の意思がなくなった場合は、できるだけ早くご連絡ください。</span><span class="en" lang="en">If you decide to enroll elsewhere and no longer intend to join the Amemiya Lab, please let us know as soon as possible.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-working">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">社会人を受け入れていますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">社会人を受け入れていますか？</span><span class="en" lang="en">Do you accept students who are working professionals?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>修士課程・博士課程ともに、多様なバックグラウンドの方を歓迎しています。現在も社会人ドクターが在籍しています。</p>
-                        <p>一部の授業は対面で行われるため、仕事との両立の条件は個別に確認し、履修については事前にご相談ください。制度を適用できるかどうかは所属先の規則によります。長期履修制度を活用することもできます。</p>
+                        <p><span class="ja">修士課程・博士課程ともに、多様なバックグラウンドの方を歓迎しています。現在も社会人ドクターが在籍しています。</span><span class="en" lang="en">Yes. We welcome applicants from diverse backgrounds to both our master&rsquo;s and doctoral programs. We currently have doctoral students who are also working professionals.</span></p>
+                        <p><span class="ja">一部の授業は対面で行われるため、仕事との両立の条件は個別に確認し、履修については事前にご相談ください。制度を適用できるかどうかは所属先の規則によります。長期履修制度を活用することもできます。</span><span class="en" lang="en">Some courses require in-person attendance, so please consider how you would balance your studies with your work and discuss course attendance with us in advance. An extended study arrangement may also be available, subject to the rules of your graduate school or program.</span></p>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-other-lab">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">他の研究室に所属したまま、雨宮研究室で研究指導を受けることはできますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">他の研究室に所属したまま、雨宮研究室で研究指導を受けることはできますか？</span><span class="en" lang="en">Can I receive research supervision from the Amemiya Lab while remaining affiliated with another lab?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>共同研究や助言を行うことはあります。正式な指導教員・副指導教員になれるかどうかは、研究科・学府の制度、研究内容、関係する教員の判断によります。まずは所属先の指導教員に相談してください。</p>
-                        <p>博士課程への進学時に雨宮を第1希望とする場合は、その時点の募集要項を確認し、所定の期限までにご連絡ください。</p>
+                        <p><span class="ja">共同研究や助言を行うことはあります。正式な指導教員・副指導教員になれるかどうかは、研究科・学府の制度、研究内容、関係する教員の判断によります。まずは所属先の指導教員に相談してください。</span><span class="en" lang="en">We may collaborate on research or provide advice. Whether Prof. Amemiya can formally serve as your supervisor or co-supervisor depends on the rules of your graduate school, the research topic, and agreement among the faculty members involved. Please consult your current supervisor first.</span></p>
+                        <p><span class="ja">博士課程への進学時に雨宮を第1希望とする場合は、その時点の募集要項を確認し、所定の期限までにご連絡ください。</span><span class="en" lang="en">If you later apply to a doctoral program with Prof. Amemiya as your first-choice supervisor, check the application guidelines in effect at that time and contact us by the specified deadline.</span></p>
                         </div>
                     </div>
                 </details>
@@ -442,25 +454,25 @@
                 <h2 class="member-category-title"><i class="fa-solid fa-route" aria-hidden="true"></i> <span class="ja">これまでの学生の進路や成果など</span><span class="en" lang="en">Student Outcomes</span></h2>
                 <div class="faq-list">
                 <details class="faq-item" id="q-venues">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">学生の主な発表先はどこですか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">学生の主な発表先はどこですか？</span><span class="en" lang="en">Where do students usually present their research?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>投稿したい国際会議があれば、相談して決めます。主な発表先は次のとおりです。</p>
-                        <p class="faq-sublabel">国際会議</p>
-                        <ul class="faq-chips"><li>IEEE World Haptics</li><li>IEEE VR</li><li>IEEE ISMAR</li><li>EuroHaptics</li><li>Augmented Humans</li><li>ACM SIGGRAPH</li><li>AsiaHaptics</li><li>SfN (Society for Neuroscience)</li></ul>
-                        <p class="faq-sublabel">国内</p>
-                        <ul class="faq-chips"><li>日本バーチャルリアリティ学会</li><li>ヒューマンインタフェースシンポジウム</li><li>電子情報通信学会 研究会</li></ul>
+                        <p><span class="ja">投稿したい国際会議があれば、相談して決めます。主な発表先は次のとおりです。</span><span class="en" lang="en">If there is an international conference you would like to submit to, we will discuss it together. Common venues include the following.</span></p>
+                        <p class="faq-sublabel"><span class="ja">国際会議</span><span class="en" lang="en">International conferences</span></p>
+                        <ul class="faq-chips"><li><span class="ja">IEEE World Haptics</span><span class="en" lang="en">IEEE World Haptics Conference</span></li><li>IEEE VR</li><li>IEEE ISMAR</li><li>EuroHaptics</li><li>Augmented Humans</li><li>ACM SIGGRAPH</li><li>AsiaHaptics</li><li><span class="ja">SfN (Society for Neuroscience)</span><span class="en" lang="en">The Society for Neuroscience (SfN) annual meeting</span></li></ul>
+                        <p class="faq-sublabel"><span class="ja">国内</span><span class="en" lang="en">Conferences and technical meetings in Japan</span></p>
+                        <ul class="faq-chips"><li><span class="ja">日本バーチャルリアリティ学会</span><span class="en" lang="en">The annual conference of the Virtual Reality Society of Japan</span></li><li><span class="ja">ヒューマンインタフェースシンポジウム</span><span class="en" lang="en">Human Interface Symposium</span></li><li><span class="ja">電子情報通信学会 研究会</span><span class="en" lang="en">Technical meetings of the Institute of Electronics, Information and Communication Engineers (IEICE)</span></li></ul>
                         <div class="faq-links"><a class="chip-link" href="publications.html"><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
                         </div>
                     </div>
                 </details>
                 <details class="faq-item" id="q-careers">
-                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question">修了後の進路例はありますか？</span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
+                    <summary><span class="faq-mark q" aria-hidden="true">Q</span><span class="faq-question"><span class="ja">修了後の進路例はありますか？</span><span class="en" lang="en">What career paths have former students taken?</span></span><i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i></summary>
                     <div class="faq-answer">
                         <span class="faq-mark a" aria-hidden="true">A</span>
                         <div class="faq-body">
-                        <p>研究室の歴史が浅いため、前の研究室での指導学生も含みます。修士課程の修了者は大手IT系企業・メーカー、コンサルティングファームなど、博士課程の修了者は大学や企業の研究者などです。</p>
+                        <p><span class="ja">研究室の歴史が浅いため、前の研究室での指導学生も含みます。修士課程の修了者は大手IT系企業・メーカー、コンサルティングファームなど、博士課程の修了者は大学や企業の研究者などです。</span><span class="en" lang="en">Because the lab is relatively young, these examples also include students supervised in our previous labs. Master&rsquo;s graduates have joined major IT companies, manufacturers, and consulting firms, among other organizations. Doctoral graduates have pursued research careers at universities and in industry.</span></p>
                         </div>
                     </div>
                 </details>
@@ -472,7 +484,7 @@
             <!-- お問い合わせ -->
             <div class="card faq-contact" id="faq-contact">
                 <h2><i class="fa-solid fa-envelope icon-purple" aria-hidden="true"></i> <span class="ja">ご連絡・お問い合わせ</span><span class="en" lang="en">Contact</span></h2>
-                <p><span class="ja">進学のご相談はメールで受け付けています。上記のよくある質問もあわせてご確認ください。</span><span class="en" lang="en">Inquiries about admission are accepted by email.</span></p>
+                <p><span class="ja">進学のご相談はメールで受け付けています。上記のよくある質問もあわせてご確認ください。</span><span class="en" lang="en">Please contact us by email with questions about joining the lab. Before writing, please also review the FAQ above.</span></p>
                 <div class="hero-buttons">
                     <a href="#faq-contact" class="btn btn-primary" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> info [at] vr.u-tokyo.ac.jp</a>
                     <a href="index.html#contact" class="btn btn-secondary"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> <span class="ja">アクセス</span><span class="en" lang="en">Access</span></a>
@@ -483,7 +495,7 @@
                     <li><a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube</a></li>
                 </ul>
                 <address>
-                    <span class="ja">〒113-8658 東京都文京区弥生2-11-16<br>東京大学 浅野キャンパス 情報基盤センター 浅野本館 雨宮研究室</span><span class="en" lang="en">Amemiya Lab, Information Technology Center, Asano Main Building<br>2-11-16 Yayoi, Bunkyo-ku, Tokyo 113-8658, Japan</span>
+                    <span class="ja">〒113-8658 東京都文京区弥生2-11-16<br>東京大学 本郷地区キャンパス（浅野キャンパス） 情報基盤センター 浅野本館 雨宮研究室</span><span class="en" lang="en">Amemiya Lab, Information Technology Center, Asano Main Building<br>2-11-16 Yayoi, Bunkyo-ku, Tokyo 113-8658, Japan</span>
                 </address>
             </div>
         </div>

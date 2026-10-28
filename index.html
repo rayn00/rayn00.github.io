@@ -558,7 +558,7 @@
 
         <div class="more-btn-container">
             <a href="members.html" class="btn btn-secondary" data-site-link>
-                <i class="fa-solid fa-users" aria-hidden="true"></i> <span class="ja">メンバー一覧・OB/OGを見る</span><span class="en" lang="en">Members &amp; alumni</span>
+                <i class="fa-solid fa-users" aria-hidden="true"></i> <span class="ja">メンバー一覧・Alumniを見る</span><span class="en" lang="en">Members &amp; alumni</span>
             </a>
         </div>
     </section>
@@ -569,57 +569,36 @@
             <span class="section-tag">Publications</span>
             <h2 class="section-title"><span class="ja">主要論文・学会発表</span><span class="en" lang="en">Selected Publications</span></h2>
             <p class="section-description">
-                <span class="ja">学術論文誌、国際会議、国内学会・研究会、招待講演の最近の成果から抜粋しています。</span>
-                <span class="en" lang="en">Recent selections from journals, international conferences, domestic conferences and invited talks.</span>
+                <span class="ja">最近の主要な論文を紹介します。すべての論文・発表は一覧をご覧ください。</span>
+                <span class="en" lang="en">Selected recent papers. See the full list for all our publications and presentations.</span>
             </p>
         </div>
 
-        <!-- Subcategory Filter Tabs -->
-        <div class="pub-tabs" role="group" aria-label="Filter">
-            <button type="button" class="pub-tab active" data-type="all" aria-pressed="true"><span class="ja">すべて</span><span class="en" lang="en">All</span></button>
-            <button type="button" class="pub-tab" data-type="journal" aria-pressed="false"><span class="ja">学術論文誌</span><span class="en" lang="en">Journals</span></button>
-            <button type="button" class="pub-tab" data-type="intl" aria-pressed="false"><span class="ja">査読付き国際会議</span><span class="en" lang="en">International Conferences</span></button>
-            <button type="button" class="pub-tab" data-type="dom" aria-pressed="false"><span class="ja">国内学会・研究会</span><span class="en" lang="en">Domestic Conferences</span></button>
-            <button type="button" class="pub-tab" data-type="talk" aria-pressed="false"><span class="ja">招待講演</span><span class="en" lang="en">Invited Talks</span></button>
+        <!-- 論文・発表の件数。publications.html の一覧を読み込んで data-types に書いた種類の件数を
+             自動で数え直すので、通常は手で更新しなくてよい（ここに書いた数字は読み込めなかったときの予備） -->
+        <div class="pub-stats" data-pub-stats="publications.html">
+            <a class="pub-stat" href="publications.html" data-types="journal intl dom talk">
+                <span class="pub-stat-num" data-count>132</span>
+                <span class="pub-stat-label"><span class="ja">論文・発表</span><span class="en" lang="en">Papers &amp; Talks</span></span>
+            </a>
+            <a class="pub-stat" href="publications.html#journal" data-types="journal">
+                <span class="pub-stat-num" data-count>46</span>
+                <span class="pub-stat-label"><span class="ja">学術論文誌</span><span class="en" lang="en">Journal Papers</span></span>
+            </a>
+            <a class="pub-stat" href="publications.html#intl" data-types="intl">
+                <span class="pub-stat-num" data-count>22</span>
+                <span class="pub-stat-label"><span class="ja">国際会議</span><span class="en" lang="en">International Conferences</span></span>
+            </a>
+            <a class="pub-stat" href="publications.html#award" data-types="award">
+                <span class="pub-stat-num" data-count>19</span>
+                <span class="pub-stat-label"><span class="ja">受賞</span><span class="en" lang="en">Awards</span></span>
+            </a>
         </div>
+        <p class="pub-stats-note"><span class="ja">2019年以降の件数（論文・発表一覧より集計）</span><span class="en" lang="en">Counts since 2019, from our publication list</span></p>
 
         <ol class="pub-list" id="pubContainer">
-            <li class="pub-item" data-type="intl">
+            <li class="pub-item">
                 <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
-                    <time class="pub-year" datetime="2026-07">2026.07</time>
-                </div>
-                <p class="pub-title">FEM-Based Optimal Electrode Configuration for Combined Transcutaneous Electrical Nerve Stimulation</p>
-                <p class="pub-authors">Takashi Ota, Tomohiro Amemiya, Hideaki Kuzuoka, Kazuma Aoyama</p>
-                <p class="pub-venue">Human Interface and the Management of Information (HIMI 2026), held as part of the 28th HCI International Conference, Montreal, Canada, pp. 63–78, July 2026.</p>
-                <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1007/978-3-032-29175-2_6" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1007/978-3-032-29175-2_6</a></p>
-            </li>
-
-            <li class="pub-item" data-type="intl">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
-                    <time class="pub-year" datetime="2026-07">2026.07</time>
-                </div>
-                <p class="pub-title">Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object</p>
-                <p class="pub-authors">Keigo Ushiyama*, Tsukihi Sasao*, Tomohiro Amemiya</p>
-                <p class="pub-venue">Proceedings of Eurohaptics 2026, Siena, Italy, July 2026.</p>
-                <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1007/978-3-032-32230-2_15" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1007/978-3-032-32230-2_15</a></p>
-            </li>
-
-            <li class="pub-item" data-type="intl">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[国際会議]</span><span class="en" lang="en">[Intl. Conference]</span></span>
-                    <time class="pub-year" datetime="2026-07">2026.07</time>
-                    <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Best Demo Award Honorable Mention</span>
-                </div>
-                <p class="pub-title">Demonstration of Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object</p>
-                <p class="pub-authors">Keigo Ushiyama*, Tsukihi Sasao*, Tomohiro Amemiya</p>
-                <p class="pub-venue">Proceedings of Eurohaptics 2026, Siena, Italy, July 2026.</p>
-            </li>
-
-            <li class="pub-item" data-type="journal">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
                     <time class="pub-year" datetime="2026-06">2026.06</time>
                 </div>
                 <p class="pub-title">Combining Intergroup Contact and Outgroup Embodiment in Virtual Reality: An Exploratory Test of Backfire and Secondary Transfer Effects of Outgroup Embodiment</p>
@@ -628,91 +607,26 @@
                 <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1016/j.chb.2026.109094" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1016/j.chb.2026.109094</a></p>
             </li>
 
-            <li class="pub-item" data-type="journal">
+            <li class="pub-item">
                 <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
-                    <time class="pub-year" datetime="2026-06">2026.06</time>
-                </div>
-                <p class="pub-title">Waterless Virtual Footbath Using Airflow and Thermal Contrast: Design and Exploratory Evaluation of Relaxation-Oriented VR Experience</p>
-                <p class="pub-authors">Zi Xin, Hiroaki Yano, Kazuhiro Fujitsuka, Tomohiro Amemiya, Vibol Yem</p>
-                <p class="pub-venue">Frontiers in Virtual Reality, 7:1826083, June 2026.</p>
-                <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.3389/frvir.2026.1826083" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.3389/frvir.2026.1826083</a></p>
-            </li>
-
-            <li class="pub-item" data-type="dom">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[国内学会・研究会]</span><span class="en" lang="en">[Domestic]</span></span>
-                    <time class="pub-year" datetime="2026-03">2026.03</time>
-                    <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> MVE賞</span>
-                </div>
-                <p class="pub-title">架空都市展示「ない街」における参加型イマーシブ展示の実践報告 ～ 展示構成と来場者アンケートから得られた示唆</p>
-                <p class="pub-authors">渡邉政紀, 牛山奎悟, 雨宮智浩</p>
-                <p class="pub-venue">電子情報通信学会研究会, IMQ2025-48 IE2025-125 MVE2025-55, 2026.03</p>
-            </li>
-
-            <li class="pub-item" data-type="talk">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
-                    <time class="pub-year" datetime="2025-11">2025.11</time>
-                </div>
-                <p class="pub-title">錯覚が生み出す心と身体の変革</p>
-                <p class="pub-authors">雨宮智浩</p>
-                <p class="pub-venue">第123回テレコム技術情報セミナー, 一般財団法人テレコム先端技術研究支援センター, Nov. 2025.</p>
-            </li>
-
-            <li class="pub-item" data-type="journal">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[論文誌]</span><span class="en" lang="en">[Journal]</span></span>
-                    <time class="pub-year" datetime="2025-10">2025.10</time>
-                </div>
-                <p class="pub-title">Effects of Ankle Tendon Electrical Stimulation on Detection Threshold and Applicability of Redirected Walking</p>
-                <p class="pub-authors">Takashi Ota, Keigo Matsumoto, Kazuma Aoyama, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka</p>
-                <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, Vol. 31, No. 10, pp. 8956–8968, Oct. 2025.</p>
-                <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1109/tvcg.2025.3588032" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/tvcg.2025.3588032</a></p>
-            </li>
-
-            <li class="pub-item" data-type="dom">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[国内学会・研究会]</span><span class="en" lang="en">[Domestic]</span></span>
-                    <time class="pub-year" datetime="2025-09">2025.09</time>
-                    <span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 学術奨励賞</span>
-                </div>
-                <p class="pub-title">Modulating Perceived Properties of Beverages Through Visuomotor Distortion in Virtual Reality</p>
-                <p class="pub-authors">王禄廷, 牛山奎悟, 雨宮智浩</p>
-                <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
-            </li>
-
-            <li class="pub-item" data-type="dom">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[国内学会・研究会]</span><span class="en" lang="en">[Domestic]</span></span>
                     <time class="pub-year" datetime="2025-09">2025.09</time>
                 </div>
-                <p class="pub-title">腱への非対称振動刺激を用いた指先非拘束型力覚提示手法の提案</p>
-                <p class="pub-authors">福田光輝, 中村拓人, 青山一真, 鳴海拓志, 雨宮智浩, 葛岡英明</p>
-                <p class="pub-venue">第30回日本バーチャルリアリティ学会大会, 2025.09</p>
+                <p class="pub-title">Pseudo-walking Sensation by Anteroposterior or Lateral Galvanic Vestibular Stimulation and Synchronous Foot-sole Vibrations</p>
+                <p class="pub-authors">Taiga Oyama, Kazuma Aoyama, Tomohiro Amemiya</p>
+                <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics, Vol. 31, No. 9, pp. 5435–5446, Sep. 2025.</p>
+                <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1109/tvcg.2024.3451565" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/tvcg.2024.3451565</a></p>
             </li>
 
-            <li class="pub-item" data-type="talk">
+            <li class="pub-item">
                 <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
-                    <time class="pub-year" datetime="2024-10">2024.10</time>
+                    <time class="pub-year" datetime="2024-04">2024.04</time>
                 </div>
-                <p class="pub-title">【基調講演】メタバース/VRによる教育訓練の可能性</p>
-                <p class="pub-authors">雨宮智浩</p>
-                <p class="pub-venue">特定非営利活動法人 M2M･IoT研究会 専門部会セミナー, 藤沢, Oct. 2024.</p>
-            </li>
-
-            <li class="pub-item" data-type="talk">
-                <div class="pub-meta">
-                    <span class="pub-type"><span class="ja">[招待講演]</span><span class="en" lang="en">[Invited Talk]</span></span>
-                    <time class="pub-year" datetime="2024-10">2024.10</time>
-                </div>
-                <p class="pub-title">【特別講演】メタバース/VRで変容する心技体</p>
-                <p class="pub-authors">雨宮智浩</p>
-                <p class="pub-venue">IDW’24 メタバース技術研究会, 東京, Oct. 2024.</p>
+                <p class="pub-title">Synergistic Illusions: Enhancing Perceptual Effects of Pseudo-Attraction Force by Kinesthetic Illusory Hand Movement</p>
+                <p class="pub-authors">Takuya Noto, Takuto Nakamura, Tomohiro Amemiya</p>
+                <p class="pub-venue">IEEE Transactions on Haptics, Vol. 17, No. 4, pp. 729–741, 2024.</p>
+                <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.1109/toh.2024.3386199" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/toh.2024.3386199</a></p>
             </li>
         </ol>
-        <p class="pub-note"><span class="ja">* 共同第一著者</span><span class="en" lang="en">* Equal contribution</span></p>
 
         <div class="more-btn-container">
             <a href="publications.html" class="btn btn-secondary" data-site-link>
@@ -751,7 +665,7 @@
                 <li><strong><span class="ja">出願前にメールで連絡する</span><span class="en" lang="en">Email us before applying</span></strong><span><span class="ja">雨宮を第1希望とする場合は、志望する専攻・コースの<em>入学願書受付開始日の前日まで</em>に、必ずご連絡ください。CV、既発表資料、研究計画（完成していなくてもかまいません）、制作物があればその資料を添付してください。</span><span class="en" lang="en">If Prof. Amemiya is your first-choice supervisor, be sure to email us <em>by the day before the application period of your intended program opens</em>. Please attach your CV, any published work, a research plan (a draft is fine) and materials on anything you have made.</span></span></li>
                 <li><strong><span class="ja">志望する大学院に出願する</span><span class="en" lang="en">Apply to your graduate school</span></strong><span><span class="ja">入試の日程や出願要件は年度によって変わります。必ず各大学院のWebサイトで確認してください。</span><span class="en" lang="en">Exam schedules and requirements change every year, so always check each graduate school&rsquo;s website.</span></span></li>
             </ol>
-            <p class="admit-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span class="ja">事前の面談や研究室見学は必須ではありません。研究生は受け入れていません。</span><span class="en" lang="en">A prior interview or lab visit is not required. We do not accept research students (kenkyusei).</span></p>
+            <p class="admit-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span class="ja">事前の面談や研究室見学は必須ではありません。<a class="inline-link" href="https://www.u-tokyo.ac.jp/adm/inbound/ja/programs-admissions-r.html" target="_blank" rel="noopener">研究生</a>は受け入れていません。</span><span class="en" lang="en">A prior interview or lab visit is not required. We do not accept non-degree <a class="inline-link" href="https://www.u-tokyo.ac.jp/adm/inbound/en/programs-admissions-r.html" target="_blank" rel="noopener">research students</a> (kenkyusei).</span></p>
             <div class="admit-actions">
                 <a href="faq.html" class="btn btn-primary" data-site-link><i class="fa-solid fa-circle-question" aria-hidden="true"></i> <span class="ja">大学院進学・出願前の連絡について</span><span class="en" lang="en">Graduate admissions &amp; contacting us before applying</span></a>
                 <a href="#contact" class="btn btn-secondary" data-mail="aW5mb0B2ci51LXRva3lvLmFjLmpw"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="ja">メールで連絡する</span><span class="en" lang="en">Email us</span></a>
@@ -770,10 +684,10 @@
                     <i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i>
                 </h3>
                 <p class="campus-desc">
-                    <span class="ja"><strong>浅野キャンパス</strong><br>
-                    研究室の実験環境、デスク、プロトタイピング機器はすべて浅野キャンパスに集約されています。日々の研究活動の拠点となります。</span>
-                    <span class="en" lang="en"><strong>Asano Campus</strong><br>
-                    All of the lab's experimental spaces, desks and prototyping equipment are on the Asano Campus, the base of our day-to-day research.</span>
+                    <span class="ja"><strong>本郷地区キャンパス（浅野キャンパス）</strong><br>
+                    研究室の実験環境、デスク、プロトタイピング機器はすべて本郷地区キャンパス（浅野キャンパス）に集約されています。日々の研究活動の拠点となります。</span>
+                    <span class="en" lang="en"><strong>Hongo Area Campus (Asano Campus)</strong><br>
+                    All of the lab's experimental spaces, desks and prototyping equipment are on the Hongo Area Campus (Asano Campus), the base of our day-to-day research.</span>
                 </p>
             </div>
 
@@ -791,7 +705,8 @@
                 </p>
             </div>
 
-            <div class="campus-card">
+            <div class="campus-card has-thumb">
+                <img class="campus-thumb" src="img/campus/hongo-yasuda.jpg" alt="本郷キャンパスの安田講堂" width="600" height="800" loading="lazy" decoding="async">
                 <span class="campus-badge badge-blue"><span class="ja">大学院受入（学際情報）</span><span class="en" lang="en">Graduate Admissions (III)</span></span>
                 <h3 class="campus-title">
                     <span><span class="ja">学際情報学府</span><span class="en" lang="en">Graduate School of Interdisciplinary Information Studies</span></span>
@@ -904,7 +819,7 @@
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
             <div class="map-footer">
                 <span><i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i>
-                    <span class="ja">東京大学 浅野キャンパス 情報基盤センター 浅野本館</span><span class="en" lang="en">Information Technology Center, Asano Main Building, Asano Campus</span></span>
+                    <span class="ja">東京大学 本郷地区キャンパス（浅野キャンパス） 情報基盤センター 浅野本館</span><span class="en" lang="en">Information Technology Center, Asano Main Building, Hongo Area Campus (Asano Campus)</span></span>
                 <a class="btn btn-secondary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16" target="_blank" rel="noopener">
                     <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> <span class="ja">Google マップで開く</span><span class="en" lang="en">Open in Google Maps</span>
                 </a>
