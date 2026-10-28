@@ -2849,6 +2849,32 @@ a.partner-chip i {
     overflow-wrap: anywhere;
 }
 
+.news-article-works {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0 0 1.6rem;
+    padding-left: 1.4rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.news-article-works li::marker {
+    color: var(--accent-cyan);
+    font-weight: 700;
+}
+
+.work-title {
+    display: block;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.work-authors {
+    display: block;
+    font-size: 0.82rem;
+}
+
 .news-article-sub {
     font-size: 0.85rem;
     font-weight: 700;
@@ -2885,4 +2911,53 @@ a.partner-chip i {
     .news-article-facts dd + dt {
         margin-top: 0.55rem;
     }
+}
+
+/* =====================================================================
+   旧サイトの記事へのリンクで来た人への案内
+   ===================================================================== */
+.old-site-bar {
+    position: fixed;
+    left: 50%;
+    bottom: 1.25rem;
+    z-index: 1000;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    padding: 0.75rem 0.75rem 0.75rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.old-site-bar a {
+    color: var(--accent-cyan);
+    font-weight: 700;
+}
+
+.old-site-bar a:hover {
+    text-decoration: underline;
+}
+
+.old-site-bar button {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.old-site-bar button:hover,
+.old-site-bar button:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
 }

@@ -82,6 +82,27 @@
             border-color: var(--cyan);
             color: var(--cyan);
         }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .actions a[hidden] {
+            display: none;
+        }
+
+        .note {
+            max-width: 34em;
+            margin: -1rem auto 2rem;
+            font-size: 0.9rem;
+        }
+
+        .note[hidden] {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +111,13 @@
         <h1>ページが見つかりません</h1>
         <p>お探しのページは移動または削除された可能性があります。<br>
             <span lang="en">The page you are looking for could not be found.</span></p>
-        <a id="homeLink" href="/">AME LAB トップへ戻る / Back to top</a>
+        <p class="note" id="oldNote" hidden>2026年10月にWebサイトを新しくしました。以前のページは旧サイトでご覧いただけます。<br>
+            <span lang="en">We launched a new website in October 2026. Earlier pages are still available on the previous site.</span></p>
+        <div class="actions">
+            <a id="newLink" href="/" hidden></a>
+            <a id="oldLink" href="https://wwwold.amelab.vr.u-tokyo.ac.jp/" hidden>旧サイトで見る / Previous site</a>
+            <a id="homeLink" href="/">AME LAB トップへ戻る / Back to top</a>
+        </div>
     </main>
     <script>
         // GitHub Pages のプロジェクトサイト（ユーザー名.github.io/リポジトリ名/）では、
@@ -98,10 +125,51 @@
         // 独自ドメインや「ユーザー名.github.io」リポジトリで公開する場合は SITE_ROOT = '/' にする。
         //var SITE_ROOT = null;
         var SITE_ROOT = '/';
+
+        // 旧サイト（Google サイト）。以前のURL（例：/about-us、/openlab2026）で来た人を案内する
+        var OLD_SITE = 'https://wwwold.amelab.vr.u-tokyo.ac.jp';
+        // 旧サイトのページ名 → 新しいサイトのページ
+        var MOVED = {
+            'home': ['index.html', 'トップページ', 'Top page'],
+            'news': ['news.html', 'ニュース', 'News'],
+            'members': ['members.html', 'メンバー', 'Members'],
+            'member': ['members.html', 'メンバー', 'Members'],
+            'publications': ['publications.html', '論文・発表一覧', 'Publications'],
+            'publication': ['publications.html', '論文・発表一覧', 'Publications'],
+            'research': ['research.html', '研究紹介', 'Research'],
+            'about-us': ['index.html#about', '研究室概要', 'About'],
+            'about': ['index.html#about', '研究室概要', 'About'],
+            'access': ['index.html#contact', 'アクセス・問い合わせ', 'Contact'],
+            'contact': ['index.html#contact', 'アクセス・問い合わせ', 'Contact'],
+            'faq': ['faq.html', 'よくある質問', 'FAQ'],
+            'collaboration': ['collaboration.html', '共同研究・産学連携', 'Collaboration']
+        };
         (function () {
             var parts = location.pathname.split('/').filter(Boolean);
             var home = SITE_ROOT || ((/\.github\.io$/.test(location.hostname) && parts.length) ? '/' + parts[0] + '/' : '/');
             document.getElementById('homeLink').setAttribute('href', home);
+            if (!SITE_ROOT && /\.github\.io$/.test(location.hostname)) parts.shift();
+            if (!parts.length) return;
+
+            var first = decodeURIComponent(parts[0]).toLowerCase().replace(/\.html?$/, '');
+            var to = MOVED[first] || (/^openlab/.test(first) ? ['index.html#prospective', '配属・連携案内', 'Admissions'] : null);
+            // 旧サイトの見出しへのリンク（#h.…）は、旧サイトのその記事を開けるように残す
+            var oldAnchor = /^#h\./.test(location.hash);
+            if (to && parts.length === 1 && !oldAnchor) {
+                location.replace(home + to[0]);
+                return;
+            }
+            if (to) {
+                var a = document.getElementById('newLink');
+                a.href = home + to[0];
+                a.textContent = '新しいサイトの「' + to[1] + '」 / ' + to[2];
+                a.hidden = false;
+            }
+            var old = document.getElementById('oldLink');
+            old.href = OLD_SITE + location.pathname + location.search + location.hash;
+            old.textContent = '旧サイトの同じページを開く / Open on the previous site';
+            old.hidden = false;
+            document.getElementById('oldNote').hidden = false;
         })();
     </script>
 </body>

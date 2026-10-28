@@ -15,3 +15,4 @@
 | 2026.03.27 日本バーチャルリアリティ学会 学術奨励賞を受賞 | `vrsj-encouragement2026.jpg` |
 | 2025.09.18 日本バーチャルリアリティ学会 論文賞を受賞 | `vrsj-paper2025.jpg` |
 | 2025.09.12 SICHI2025 学生コンテストで奨励賞を受賞 | `sichi2025.jpg` |
+| 2026.12.02 SIGGRAPH Asia 2026 Emerging Technologies で3件の展示発表 | `siggraphasia2026.jpg` |

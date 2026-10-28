@@ -979,6 +979,22 @@
         });
     });
 
+    /* ---------- 旧サイトの記事へのリンクで来た人への案内 ---------- */
+    // 旧サイト（Google サイト）の見出しへのリンク（例：/news#h.xxxx）は新しいサイトには無いので、旧サイトで開けるようにする
+    var OLD_SITE = 'https://wwwold.amelab.vr.u-tokyo.ac.jp';
+    if (/^#h\./.test(location.hash)) {
+        var oldPath = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+        var bar = document.createElement('div');
+        bar.className = 'old-site-bar';
+        bar.setAttribute('role', 'status');
+        bar.innerHTML = '<span><span class="ja">以前のサイトの記事へのリンクです。</span><span class="en" lang="en">This link points to an article on our previous site.</span></span> ' +
+            '<a target="_blank" rel="noopener"><span class="ja">旧サイトで開く</span><span class="en" lang="en">Open on the previous site</span> <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>' +
+            '<button type="button"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span class="sr-only"><span class="ja">閉じる</span><span class="en" lang="en">Close</span></span></button>';
+        bar.querySelector('a').href = OLD_SITE + oldPath + location.hash;
+        bar.querySelector('button').addEventListener('click', function () { bar.remove(); });
+        document.body.appendChild(bar);
+    }
+
     /* ---------- 初期表示 ---------- */
     applyLang(root.lang === 'en' ? 'en' : 'ja');
     updateThemeUI();

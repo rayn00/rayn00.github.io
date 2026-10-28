@@ -1,6 +1,6 @@
 # AME LAB 雨宮研究室 Webサイト
 
-東京大学 雨宮研究室（AME LAB）のWebサイトです。GitHub Pages で https://rayn00.github.io/ に公開しています。
+東京大学 雨宮研究室（AME LAB）のWebサイトです。GitHub Pages で公開し、独自ドメイン https://www.amelab.vr.u-tokyo.ac.jp/ を設定しています（https://rayn00.github.io/ にアクセスした場合も、自動でこちらに転送されます）。
 
 ## フォルダ構成
 
@@ -74,8 +74,9 @@ img/
 
 ## 公開後に設定すること
 
-- **SNS共有時の表示（OGP）**：各HTMLファイルの `<head>` にある `og:url` と `og:image` は `https://rayn00.github.io/` に設定済みです。公開URLが変わったら、全ページのこの2行を書き換えてください。
-- **独自ドメイン（任意）**：「Settings」→「Pages」→「Custom domain」に設定し、DNS に CNAME レコードを追加します。`404.html` の `SITE_ROOT` は、ユーザーサイト（`rayn00.github.io`）用に `'/'` に設定済みです。
+- **SNS共有時の表示（OGP）**：各HTMLファイルの `<head>` にある `og:url` と `og:image` は `https://www.amelab.vr.u-tokyo.ac.jp/` に設定済みです。公開URLが変わったら、全ページのこの2行を書き換えてください。
+- **独自ドメイン**：`www.amelab.vr.u-tokyo.ac.jp` を「Settings」→「Pages」→「Custom domain」に設定済みです（リポジトリ直下の `CNAME` ファイルに書かれています。このファイルは消さないでください）。証明書が発行されたら、同じ画面の「Enforce HTTPS」にチェックを入れてください。`404.html` の `SITE_ROOT` は `'/'` に設定済みです。
+- **旧サイト**：以前のサイト（Google サイト）は https://wwwold.amelab.vr.u-tokyo.ac.jp/ に残しています。以前のURL（例：`/about-us`、`/openlab2026`）で来た人には、`404.html` が新しいサイトの対応するページへ自動で移動させます（対応表は `404.html` の `MOVED`）。対応するページが無いURLや、旧サイトの記事の見出し（`#h.…`）へのリンクのときは、「旧サイトの同じページを開く」ボタンを表示します。
 
 ## 更新のしかた
 
