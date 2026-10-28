@@ -205,6 +205,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - 動画IDは `https://youtube.com/shorts/` の後ろの部分です（例：`https://youtube.com/shorts/-jkH-vsxufw` なら `-jkH-vsxufw`）。
 - トップページは「研究テーマ」の `<div class="card">` を `<div class="card" data-short="動画ID">` に、研究紹介ページは `<article class="card theme-card">` を `<article class="card theme-card" data-short="動画ID">` にします。
 - `data-short` を付けていないカードは、これまでどおりクリックしても何も起きません。
+- 動画は原則として1枚のカードに1本です（研究ごとにカードを分けています）。どうしても1枚に複数付けたいときは、`data-short="ID1 ID2"` のように半角スペースで区切ります。ボタンが「動画を見る（2本）」になり、ポップアップの矢印（またはキーボードの ← →）で切り替えられます。
+- `data-short-titles="動画1の題名|動画2の題名"` を付けると、ポップアップの見出しの下に各動画の題名が出ます（`|` で区切り、`data-short` と同じ順番）。
 
 ### よくある質問を更新する（faq.html）
 

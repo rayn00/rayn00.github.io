@@ -463,10 +463,37 @@
     });
 
     /* ---------- 研究テーマのショート動画 ---------- */
-    // カードに data-short="YouTubeの動画ID" を付けると、カードのクリックで縦長の動画をポップアップ再生する
+    // カードに data-short="YouTubeの動画ID" を付けると、カードのクリックで縦長の動画をポップアップ再生する。
+    // 動画が複数あるときは data-short="ID1 ID2" のように空白で区切る（ポップアップ内の矢印で切り替え）。
+    // data-short-titles="題名1|題名2" を付けると、ポップアップに各動画の題名を表示する
     var shortCards = Array.prototype.slice.call(document.querySelectorAll('[data-short]'));
     if (shortCards.length) {
-        var dlg = null, dlgFrame, dlgTitle, dlgLink, dlgClose, lastFocus = null;
+        var dlg = null, dlgFrame, dlgTitle, dlgSub, dlgNav, dlgPrev, dlgNext, dlgCount, dlgLink, dlgClose, lastFocus = null;
+        var cur = { ids: [], titles: [], i: 0, label: '' };
+        var shortIds = function (card) {
+            return (card.getAttribute('data-short') || '').trim().split(/\s+/).filter(Boolean);
+        };
+        var show = function (i) {
+            var en = root.lang === 'en';
+            var n = cur.ids.length;
+            cur.i = ((i % n) + n) % n;   // 最後の次は最初に戻る
+            var id = cur.ids[cur.i], multi = cur.ids.length > 1;
+            var sub = (cur.titles[cur.i] || '').trim();
+            dlgSub.textContent = sub;
+            dlgSub.hidden = !sub;
+            dlg.classList.toggle('has-sub', !!sub);
+            dlgNav.hidden = !multi;
+            dlgCount.textContent = (cur.i + 1) + ' / ' + cur.ids.length;
+            dlgLink.href = 'https://youtube.com/shorts/' + encodeURIComponent(id);
+            dlgFrame.innerHTML = '';
+            var f = document.createElement('iframe');
+            f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1';
+            f.title = (sub || cur.label) + (en ? ' (video)' : '（動画）');
+            f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            f.setAttribute('allowfullscreen', '');
+            dlgFrame.appendChild(f);
+        };
         var buildDialog = function () {
             dlg = document.createElement('dialog');
             dlg.className = 'short-dialog';
@@ -474,15 +501,34 @@
             dlg.innerHTML = '<div class="short-dialog-inner">' +
                 '<div class="short-dialog-head"><p class="short-dialog-title" id="shortDialogTitle"></p>' +
                 '<button type="button" class="short-dialog-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>' +
+                '<p class="short-dialog-sub" lang="en" hidden></p>' +
                 '<div class="short-frame"></div>' +
+                '<div class="short-dialog-nav" hidden>' +
+                '<button type="button" class="short-nav-btn" data-step="-1"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>' +
+                '<span class="short-nav-count" aria-live="polite"></span>' +
+                '<button type="button" class="short-nav-btn" data-step="1"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button></div>' +
                 '<p class="short-dialog-foot"><a target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> ' +
                 '<span class="ja">YouTubeで見る</span><span class="en" lang="en">Watch on YouTube</span></a></p></div>';
             document.body.appendChild(dlg);
             dlgFrame = dlg.querySelector('.short-frame');
             dlgTitle = dlg.querySelector('.short-dialog-title');
+            dlgSub = dlg.querySelector('.short-dialog-sub');
+            dlgNav = dlg.querySelector('.short-dialog-nav');
+            dlgPrev = dlgNav.querySelector('[data-step="-1"]');
+            dlgNext = dlgNav.querySelector('[data-step="1"]');
+            dlgCount = dlgNav.querySelector('.short-nav-count');
             dlgLink = dlg.querySelector('.short-dialog-foot a');
             dlgClose = dlg.querySelector('.short-dialog-close');
             dlgClose.addEventListener('click', function () { dlg.close(); });
+            [dlgPrev, dlgNext].forEach(function (b) {
+                b.addEventListener('click', function () { show(cur.i + Number(b.getAttribute('data-step'))); });
+            });
+            // 左右の矢印キーでも前後の動画に切り替える
+            dlg.addEventListener('keydown', function (e) {
+                if (cur.ids.length < 2) return;
+                if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur.i - 1); }
+                if (e.key === 'ArrowRight') { e.preventDefault(); show(cur.i + 1); }
+            });
             // 動画の外側（背景）をクリックしたら閉じる
             dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
             // 閉じたら動画を止める
@@ -492,34 +538,39 @@
             });
         };
         var openShort = function (card, opener) {
-            var id = card.getAttribute('data-short');
-            var watch = 'https://youtube.com/shorts/' + encodeURIComponent(id);
-            if (typeof HTMLDialogElement !== 'function') { window.open(watch, '_blank', 'noopener'); return; }
+            var ids = shortIds(card);
+            if (!ids.length) return;
+            if (typeof HTMLDialogElement !== 'function') {
+                window.open('https://youtube.com/shorts/' + encodeURIComponent(ids[0]), '_blank', 'noopener');
+                return;
+            }
             if (!dlg) buildDialog();
+            var en = root.lang === 'en';
             lastFocus = opener || null;
             var h = card.querySelector('h3, h4');
             dlgTitle.innerHTML = h ? h.innerHTML : '';
-            var label = h ? (h.querySelector(root.lang === 'en' ? '.en' : '.ja') || h).textContent : '';
-            dlgClose.setAttribute('aria-label', root.lang === 'en' ? 'Close' : '閉じる');
-            dlgLink.href = watch;
-            var f = document.createElement('iframe');
-            f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1';
-            f.title = label + (root.lang === 'en' ? ' (video)' : '（動画）');
-            f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-            f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-            f.setAttribute('allowfullscreen', '');
-            dlgFrame.appendChild(f);
+            cur.label = h ? (h.querySelector(en ? '.en' : '.ja') || h).textContent : '';
+            cur.ids = ids;
+            cur.titles = (card.getAttribute('data-short-titles') || '').split('|');
+            dlgClose.setAttribute('aria-label', en ? 'Close' : '閉じる');
+            dlgPrev.setAttribute('aria-label', en ? 'Previous video' : '前の動画');
+            dlgNext.setAttribute('aria-label', en ? 'Next video' : '次の動画');
+            dlg.classList.toggle('is-multi', ids.length > 1);
+            show(0);
             dlg.showModal();
             dlgClose.focus();
         };
         shortCards.forEach(function (card) {
             card.classList.add('has-short');
+            var n = shortIds(card).length;
             var btn = card.querySelector('.play-badge');
             if (!btn) {
                 btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'play-badge';
-                btn.innerHTML = '<i class="fa-solid fa-circle-play" aria-hidden="true"></i> <span class="ja">動画を見る</span><span class="en" lang="en">Watch video</span>';
+                btn.innerHTML = '<i class="fa-solid fa-circle-play" aria-hidden="true"></i> ' + (n > 1
+                    ? '<span class="ja">動画を見る（' + n + '本）</span><span class="en" lang="en">Watch videos (' + n + ')</span>'
+                    : '<span class="ja">動画を見る</span><span class="en" lang="en">Watch video</span>');
                 card.appendChild(btn);
             }
             card.addEventListener('click', function (e) {

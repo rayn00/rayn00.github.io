@@ -1916,6 +1916,63 @@ a.partner-chip i {
     margin: 0 auto;
 }
 
+/* 動画の題名（data-short-titles）と、複数の動画の切り替え */
+.short-dialog-sub {
+    margin: -0.25rem 0 0.75rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.short-dialog.has-sub .short-frame {
+    width: min(100%, calc((100vh - 13.5rem) * 9 / 16));
+    width: min(100%, calc((100dvh - 13.5rem) * 9 / 16));
+}
+
+.short-dialog.is-multi .short-frame {
+    width: min(100%, calc((100vh - 16.5rem) * 9 / 16));
+    width: min(100%, calc((100dvh - 16.5rem) * 9 / 16));
+}
+
+.short-dialog-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.short-dialog-nav[hidden] {
+    display: none;
+}
+
+.short-nav-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.short-nav-btn:hover,
+.short-nav-btn:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.short-nav-count {
+    min-width: 3.5em;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+}
+
 .short-dialog-foot {
     margin-top: 0.75rem;
     text-align: center;
