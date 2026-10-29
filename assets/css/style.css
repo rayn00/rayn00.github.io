@@ -3219,6 +3219,11 @@ a.partner-chip i {
     }
 }
 
+/* メールアドレスの表示：狭い画面でも「u-tokyo」のハイフンで折り返さず、「[at]」の後で折り返す */
+.mail-domain {
+    white-space: nowrap;
+}
+
 /* 文中のリンク（例：研究生の制度へのリンク） */
 .inline-link {
     color: var(--accent-cyan);
