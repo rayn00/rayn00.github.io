@@ -580,6 +580,161 @@
         });
     }
 
+    /* ---------- 研究のショート動画をランダムに1本ずつ紹介（research.html の data-shorts） ---------- */
+    // 動画の一覧は <script type="application/json" id="shortsData">。最初は動画の画像だけを表示し、
+    // 「再生する」を押したときに YouTube の再生画面を読み込む。一度再生したあとは、次・前の動画もそのまま再生する
+    var shortsBox = document.querySelector('[data-shorts]');
+    var shortsDataEl = document.getElementById('shortsData');
+    if (shortsBox && shortsDataEl) (function () {
+        var videos;
+        try { videos = JSON.parse(shortsDataEl.textContent); } catch (e) { return; }
+        if (!videos || !videos.length) return;
+        var q = function (sel) { return shortsBox.querySelector(sel); };
+        var section = shortsBox.closest('section') || document;
+        var cover = q('.shorts-cover'), poster = q('.shorts-poster'), stage = q('.shorts-video');
+        var elNo = q('.shorts-no'), elTitle = q('.shorts-title'), elCite = q('.shorts-citation');
+        var related = q('.shorts-related'), relatedLink = related.querySelector('a'), relatedLabel = q('.shorts-related-label');
+        var btnNext = q('.shorts-next'), btnPrev = q('.shorts-prev');
+        var lnkPaper = q('.shorts-paper'), lnkYT = q('.shorts-youtube'), btnList = q('.shorts-open-list');
+        var catalog = section.querySelector('.shorts-catalog');
+        var listEl = catalog.querySelector('.shorts-catalog-list'), countEl = catalog.querySelector('.shorts-catalog-count');
+        var search = catalog.querySelector('input[type="search"]');
+        var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+        var closeCatalog = function () { if (typeof catalog.close === 'function') catalog.close(); else catalog.removeAttribute('open'); };
+
+        // 各動画に関係する研究カード（同じ DOI の論文リンクを持つカード → 同じ動画を付けたカード の順に探す）
+        var cards = Array.prototype.slice.call(document.querySelectorAll('.theme-card[id]'));
+        videos.forEach(function (v, i) {
+            v.no = i + 1;
+            var doi = (v.doi || '').toLowerCase();
+            v.card = cards.filter(function (c) {
+                return doi && Array.prototype.some.call(c.querySelectorAll('a[href*="doi.org/"]'), function (a) {
+                    return a.getAttribute('href').toLowerCase().indexOf('doi.org/' + doi) !== -1;
+                });
+            })[0] || cards.filter(function (c) {
+                return (' ' + (c.getAttribute('data-short') || '') + ' ').indexOf(' ' + v.id + ' ') !== -1;
+            })[0] || null;
+            var h = v.card && v.card.querySelector('h3, h4');
+            v.heading = h ? h.innerHTML : '';
+            v.search = (v.title + ' ' + (v.citation || '') + ' ' + (h ? h.textContent : '')).toLowerCase();
+        });
+
+        var bag = [], hist = [], pos = -1, cur = null, playing = false;
+        var shuffled = function () {
+            var a = videos.map(function (v) { return v.id; });
+            for (var i = a.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+            }
+            // 直前と同じ動画が続かないようにする
+            if (cur && a.length > 1 && a[a.length - 1] === cur.id) { var t2 = a[0]; a[0] = a[a.length - 1]; a[a.length - 1] = t2; }
+            return a;
+        };
+        var byId = function (id) { return videos.filter(function (v) { return v.id === id; })[0]; };
+        var loadPlayer = function () {
+            var old = stage.querySelector('iframe');
+            if (old) old.remove();
+            var f = document.createElement('iframe');
+            f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(cur.id) + '?autoplay=1&rel=0&playsinline=1';
+            f.title = cur.title + (root.lang === 'en' ? ' (video)' : '（動画）');
+            f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            f.setAttribute('allowfullscreen', '');
+            stage.appendChild(f);
+            cover.hidden = true;
+        };
+        var show = function (id) {
+            cur = byId(id);
+            elNo.textContent = pad(cur.no);
+            elTitle.textContent = cur.title;
+            elCite.textContent = cur.citation || '';
+            lnkPaper.hidden = !cur.doi;
+            if (cur.doi) lnkPaper.href = 'https://doi.org/' + cur.doi;
+            lnkYT.href = 'https://youtube.com/shorts/' + encodeURIComponent(cur.id);
+            related.hidden = !cur.card;
+            if (cur.card) { relatedLink.href = '#' + cur.card.id; relatedLabel.innerHTML = cur.heading; }
+            btnPrev.disabled = pos <= 0;
+            poster.hidden = false;
+            poster.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(cur.id) + '/hqdefault.jpg';
+            cover.setAttribute('aria-label', (root.lang === 'en' ? 'Play: ' : '再生：') + cur.title);
+            if (playing) loadPlayer();
+            else {
+                var old = stage.querySelector('iframe');
+                if (old) old.remove();
+                cover.hidden = false;
+            }
+        };
+        var next = function () {
+            if (pos < hist.length - 1) { pos++; show(hist[pos]); return; }
+            if (!bag.length) bag = shuffled();
+            var id = bag.pop();
+            hist.push(id); pos = hist.length - 1;
+            show(id);
+        };
+        var choose = function (id) {
+            bag = bag.filter(function (x) { return x !== id; });
+            hist = hist.slice(0, pos + 1); hist.push(id); pos = hist.length - 1;
+            show(id);
+        };
+
+        poster.addEventListener('error', function () { poster.hidden = true; });
+        cover.addEventListener('click', function () { playing = true; loadPlayer(); });
+        btnNext.addEventListener('click', next);
+        btnPrev.addEventListener('click', function () { if (pos > 0) { pos--; show(hist[pos]); } });
+        // 関係する研究カードへ移動したら、カードを少しのあいだ光らせる
+        relatedLink.addEventListener('click', function () {
+            var c = cur && cur.card;
+            if (!c) return;
+            c.classList.remove('is-flash');
+            void c.offsetWidth;
+            c.classList.add('is-flash');
+            setTimeout(function () { c.classList.remove('is-flash'); }, 2400);
+        });
+
+        // 動画一覧（検索つき）
+        var renderList = function () {
+            var term = search.value.trim().toLowerCase();
+            var hits = videos.filter(function (v) { return !term || v.search.indexOf(term) !== -1; });
+            listEl.innerHTML = '';
+            hits.forEach(function (v) {
+                var li = document.createElement('li');
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'shorts-item' + (cur && v.id === cur.id ? ' is-current' : '');
+                var no = document.createElement('span'); no.className = 'shorts-item-no'; no.textContent = pad(v.no);
+                var tx = document.createElement('span'); tx.className = 'shorts-item-text';
+                var tt = document.createElement('span'); tt.className = 'shorts-item-title'; tt.lang = 'en'; tt.textContent = v.title;
+                tx.appendChild(tt);
+                if (v.heading) { var hd = document.createElement('span'); hd.className = 'shorts-item-topic'; hd.innerHTML = v.heading; tx.appendChild(hd); }
+                b.appendChild(no); b.appendChild(tx);
+                b.addEventListener('click', function () { choose(v.id); closeCatalog(); });
+                li.appendChild(b);
+                listEl.appendChild(li);
+            });
+            updateCatalogCount(hits.length);
+        };
+        var lastHits = videos.length;
+        var updateCatalogCount = function (n) {
+            if (typeof n === 'number') lastHits = n;
+            countEl.textContent = root.lang === 'en'
+                ? lastHits + ' / ' + videos.length + ' videos'
+                : lastHits + ' / ' + videos.length + '本';
+            if (!lastHits) countEl.textContent += root.lang === 'en' ? ' — no matching videos' : '（該当する動画がありません）';
+        };
+        listCounters.push(function () { updateCatalogCount(); });
+        btnList.addEventListener('click', function () {
+            renderList();
+            if (typeof catalog.showModal === 'function') catalog.showModal(); else catalog.setAttribute('open', '');
+        });
+        search.addEventListener('input', renderList);
+        catalog.querySelector('.shorts-catalog-close').addEventListener('click', closeCatalog);
+        catalog.addEventListener('click', function (e) { if (e.target === catalog) closeCatalog(); });
+
+        var fallback = section.querySelector('.shorts-fallback');
+        if (fallback) fallback.hidden = true;
+        shortsBox.hidden = false;
+        next();
+    })();
+
     /* ---------- About の研究紹介動画 ---------- */
     // <figure data-youtube="動画ID" data-ratio="16:9 または 9:16">。最初はサムネイルだけを表示し、
     // クリックしたときに YouTube の再生画面を読み込む（ページの表示を軽くするため）

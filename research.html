@@ -63,7 +63,7 @@
             <nav id="siteNav" aria-label="メインメニュー">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
-                    <li><a href="research.html" class="nav-link active" aria-current="page"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="research.html" class="nav-link active" aria-current="page"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
                     <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
                     <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
                     <li><a href="publications.html" class="nav-link"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
@@ -97,6 +97,248 @@
             <h1 class="page-title"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></h1>
             <p class="hero-subtitle"><span class="ja">身体感覚・錯覚・五感インタフェースの基礎研究から、VR/メタバースを活用した教育・訓練まで、研究室の取り組みを紹介します。</span><span class="en" lang="en">From fundamental research on bodily sensation, illusions and multisensory interfaces to education and training with VR and the metaverse.</span></p>
         </div>
+    </section>
+
+    <!-- 研究のショート動画（ランダムに1本ずつ紹介）。動画は下の shortsData に書く（id は https://youtube.com/shorts/ の後ろ、doi は論文のDOI）。
+         関連する研究カードは、DOI が同じリンクを持つカード、または data-short が同じカードを自動で探してつなぐ -->
+    <section id="shorts">
+        <div class="section-header">
+            <span class="section-tag">Shorts</span>
+            <h2 class="section-title" lang="en">Research in Shorts</h2>
+            <p class="section-description"><span class="ja">研究を紹介する短い動画から、ランダムに1本ずつ紹介します。「次の動画」で、新しい研究に出会ってください。</span><span class="en" lang="en">Short videos on our research, one at a time in random order. Press &ldquo;Next video&rdquo; to discover another study.</span></p>
+        </div>
+        <div class="shorts-box" data-shorts hidden>
+            <div class="shorts-screen">
+                <div class="shorts-video">
+                    <button type="button" class="shorts-cover">
+                        <img class="shorts-poster" alt="" width="480" height="360" decoding="async" referrerpolicy="strict-origin-when-cross-origin">
+                        <span class="shorts-play"><i class="fa-solid fa-play" aria-hidden="true"></i><b><span class="ja">再生する</span><span class="en" lang="en">Play</span></b></span>
+                    </button>
+                </div>
+            </div>
+            <div class="shorts-info">
+                <p class="shorts-count"><i class="fa-solid fa-shuffle" aria-hidden="true"></i> No. <span class="shorts-no">01</span> / 31</p>
+                <div class="shorts-text" aria-live="polite">
+                    <h3 class="shorts-title" lang="en"></h3>
+                    <p class="shorts-citation" lang="en"></p>
+                </div>
+                <p class="shorts-related"><a class="chip-link" href="#themes"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> <span class="shorts-related-label"></span></a></p>
+                <div class="shorts-actions">
+                    <button type="button" class="btn btn-primary btn-sm shorts-next"><i class="fa-solid fa-shuffle" aria-hidden="true"></i> <span class="ja">次の動画</span><span class="en" lang="en">Next video</span></button>
+                    <button type="button" class="btn btn-secondary btn-sm shorts-prev"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span class="ja">前の動画</span><span class="en" lang="en">Previous</span></button>
+                </div>
+                <div class="shorts-links">
+                    <a class="chip-link shorts-paper" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">論文を読む</span><span class="en" lang="en">Read the paper</span></a>
+                    <a class="chip-link shorts-youtube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> <span class="ja">YouTubeで開く</span><span class="en" lang="en">Open on YouTube</span></a>
+                    <button type="button" class="chip-link shorts-open-list"><i class="fa-solid fa-list" aria-hidden="true"></i> <span class="ja">動画一覧（31本）</span><span class="en" lang="en">All videos (31)</span></button>
+                </div>
+            </div>
+        </div>
+        <p class="shorts-fallback"><a class="chip-link" href="https://www.youtube.com/@amelabvr/shorts" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> <span class="ja">研究のショート動画をYouTubeで見る</span><span class="en" lang="en">Watch our research shorts on YouTube</span></a></p>
+        <dialog class="shorts-catalog" aria-labelledby="shortsCatalogTitle">
+            <div class="shorts-catalog-inner">
+                <div class="shorts-catalog-head">
+                    <h3 id="shortsCatalogTitle"><span class="ja">動画一覧</span><span class="en" lang="en">All videos</span></h3>
+                    <button type="button" class="article-dialog-close shorts-catalog-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span class="sr-only"><span class="ja">閉じる</span><span class="en" lang="en">Close</span></span></button>
+                </div>
+                <label class="search-box shorts-search">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" data-ph-ja="題名・著者・研究で検索" data-ph-en="Search by title, author or topic" placeholder="題名・著者・研究で検索" aria-label="題名・著者・研究で検索">
+                </label>
+                <p class="shorts-catalog-count" aria-live="polite"></p>
+                <ol class="shorts-catalog-list"></ol>
+            </div>
+        </dialog>
+        <script type="application/json" id="shortsData">
+[
+  {
+    "id": "vOWZJpiH_sI",
+    "title": "Effectiveness comparison of surgical training for veterinary students using 360-degree VR and conventional video materials",
+    "citation": "Daiki Kato, Kiyosu Maeda, Kazuma Aoyama, Kenichiro Ito, Takayuki Nakagawa, Tomohiro Amemiya, Transactions of the Virtual Reality Society of Japan, Vol. 29, No. 4, 2024.",
+    "doi": "10.18974/tvrsj.29.4_303"
+  },
+  {
+    "id": "chhpsacFF9g",
+    "title": "NON STYLE VR Manzai Training: Virtual embodied experiences of Manzai performer",
+    "citation": "Dohjin Miyamoto, Akira Ishida, Riku Fukaya, Tomohiro Tanikawa, Natsuo Kanai, Sota Tanaka, Yang Hongil, Michitaka Hirose, Tomohiro Amemiya, Transactions of the Virtual Reality Society of Japan, Vol. 29, No. 3, 2024.",
+    "doi": "10.18974/tvrsj.29.3_139"
+  },
+  {
+    "id": "QqkMYJAQs5M",
+    "title": "Influence of Modulation of Heaviness Perception by Pseudo-haptics on Product Evaluation in Virtual Environments",
+    "citation": "Naoya Okura, Akimi Oyanagi, Takuji Narumi, Hideaki Kuzuoka, Tomohiro Amemiya, Transactions of the Virtual Reality Society of Japan, Vol. 29, No. 3, 2024.",
+    "doi": "10.18974/tvrsj.29.3_165"
+  },
+  {
+    "id": "zZyy1HoZRG8",
+    "title": "TeleParallax: Low-motion-blur Stereoscopic System with Correct Interpupillary Distance for 3D Head Rotations",
+    "citation": "Tomohiro Amemiya, Kazuma Aoyama, Michitaka Hirose, Frontiers in Virtual Reality, Vol. 2, 726285, 2021.",
+    "doi": "10.3389/frvir.2021.726285"
+  },
+  {
+    "id": "TtbHJsYJCXY",
+    "title": "Wearable Tactile Interface for Way-Finding Deaf-Blind People using Verbal and Nonverbal Mode",
+    "citation": "Tomohiro Amemiya, Koichi Hirota, Michitaka Hirose, Transactions of the Virtual Reality Society of Japan, Vol. 9, No. 3, 2004.",
+    "doi": "10.18974/tvrsj.9.3_207"
+  },
+  {
+    "id": "OUoPiEZA1po",
+    "title": "Perceived topographic surface modulated by pitch rotation of motorized motion chair",
+    "citation": "Tomohiro Amemiya, Koichi Hirota, Yasushi Ikei, Transactions of the Virtual Reality Society of Japan, Vol. 21, No. 2, 2016.",
+    "doi": "10.18974/tvrsj.21.2_359"
+  },
+  {
+    "id": "AgjJckVWm9o",
+    "title": "Event-based Transient Visual and Tactile Feedback Produces a Sensation of Impact",
+    "citation": "Tomohiro Amemiya, Transactions of the Virtual Reality Society of Japan, Vol. 21, No. 2, 2016.",
+    "doi": "10.18974/tvrsj.21.2_381"
+  },
+  {
+    "id": "gcBKJ6uqrbY",
+    "title": "Modulation of walking speed by the change in motion and shape of the virtual avatar moving alongside",
+    "citation": "Mitsuru Tanizaki, Keigo Matsumoto, Takuji Narumi, Hideaki Kuzuoka, Tomohiro Amemiya, Transactions of the Virtual Reality Society of Japan, Vol. 26, No. 3, 2021.",
+    "doi": "10.18974/tvrsj.26.3_208"
+  },
+  {
+    "id": "5pOIslKXJyo",
+    "title": "Effect of Instructor’s Popularity Changed by Avatar’s Appearance on Active Participation in Live Online Lectures",
+    "citation": "Tomohiro Amemiya, Kazuma Aoyama, Kenichiro Ito, Transactions of the Virtual Reality Society of Japan, Vol. 26, No. 1, 2021.",
+    "doi": "10.18974/tvrsj.26.1_86"
+  },
+  {
+    "id": "9xpN1R6C6SE",
+    "title": "Virtual Omnibus Lecture: Effects of Remote Lecturing Using Various Lecturer Avatars on Students Memory",
+    "citation": "Takato Mizuho, Tomohiro Amemiya, Takuji Narumi, Hideaki Kuzuoka, Transactions of the Virtual Reality Society of Japan, Vol. 29, No. 3, 2024.",
+    "doi": "10.18974/tvrsj.29.3_109"
+  },
+  {
+    "id": "Md1SVcJe8B4",
+    "title": "Remapping Peripersonal Space by Using Foot-Sole Vibrations Without Any Body Movement",
+    "citation": "Tomohiro Amemiya, Yasushi Ikei, Michiteru Kitazaki, Psychological Science, Vol. 30, No. 10, 2019.",
+    "doi": "10.1177/0956797619869337"
+  },
+  {
+    "id": "AzMPmldoT8M",
+    "title": "Pseudo-sensation of walking generated by passive whole-body motions in heave and yaw directions",
+    "citation": "Tomohiro Amemiya, Michiteru Kitazaki, Yasushi Ikei, IEEE Transactions on Haptics, Vol. 13, No. 1, 2020.",
+    "doi": "10.1109/toh.2020.2965937"
+  },
+  {
+    "id": "x9bbbFX8CfM",
+    "title": "Tactile Apparent Motion on the Torso Modulates Perceived Forward Self-Motion Velocity",
+    "citation": "Tomohiro Amemiya, Koichi Hirota, Yasushi Ikei, IEEE Transactions on Haptics, Vol. 9, No. 4, 2016.",
+    "doi": "10.1109/TOH.2016.2598332"
+  },
+  {
+    "id": "xrXMfPVP9-M",
+    "title": "Orienting Kinesthetically: A Haptic Handheld Wayfinder for People with Visual Impairments",
+    "citation": "Tomohiro Amemiya, Hisashi Sugiyama, ACM Transactions on Accessible Computing, Vol. 3, No. 2, 2010.",
+    "doi": "10.1145/1857920.1857923"
+  },
+  {
+    "id": "8fXAwY_8LQc",
+    "title": "Asymmetric Oscillation Distorts the Perceived Heaviness of Handheld Objects",
+    "citation": "Tomohiro Amemiya, Taro Maeda, IEEE Transactions on Haptics, Vol. 1, No. 1, 2008.",
+    "doi": "10.1109/TOH.2008.5"
+  },
+  {
+    "id": "CKvEVX2Kqbs",
+    "title": "Waterless Virtual Footbath Using Airflow and Thermal Contrast: Design and Exploratory Evaluation of Relaxation-Oriented VR Experience",
+    "citation": "Zi Xin, Hiroaki Yano, Kazuhiro Fujitsuka, Tomohiro Amemiya, Vibol Yem, Frontiers in Virtual Reality, Vol. 7, 1826083, 2026.",
+    "doi": "10.3389/frvir.2026.1826083"
+  },
+  {
+    "id": "-f6hoiT3QfM",
+    "title": "Synergistic Illusions: Enhancing Perceptual Effects of Pseudo-Attraction Force by Kinesthetic Illusory Hand Movement",
+    "citation": "Takuya Noto, Takuto Nakamura, Tomohiro Amemiya, IEEE Transactions on Haptics, Vol. 17, No. 4, 2024.",
+    "doi": "10.1109/TOH.2024.3386199"
+  },
+  {
+    "id": "PIVX4NLbUBU",
+    "title": "Being an older person: Modulation of walking speed with geriatric walking motion avatars",
+    "citation": "Yusuke Koseki, Tomohiro Amemiya, Frontiers in Virtual Reality, Vol. 5, 1363043, 2024.",
+    "doi": "10.3389/frvir.2024.1363043"
+  },
+  {
+    "id": "Hnirx1SFVP0",
+    "title": "Bimanual Tendon Vibration Alters Perceived Length of a Statically Held Object",
+    "citation": "Keigo Ushiyama, Tsukihi Sasao, Tomohiro Amemiya, EuroHaptics 2026, 2027 (online publication: 2026).",
+    "doi": "10.1007/978-3-032-32230-2_15"
+  },
+  {
+    "id": "-GDpghiTRy4",
+    "title": "Effects of Bone-Conducted Vibration Stimulation of Various Frequencies on the Vertical Vection",
+    "citation": "Tetsuta Kondo, Yutaro Hirao, Takuji Narumi, Tomohiro Amemiya, Scientific Reports, Vol. 13, 15759, 2023.",
+    "doi": "10.1038/s41598-023-42589-x"
+  },
+  {
+    "id": "kunJcHyQ2RE",
+    "title": "AsymDrive: Fingertip-Free Force Illusions Induced by Asymmetric Vibrations on Dorsal-Palmar Tendons",
+    "citation": "Koki Fukuda, Kazuma Aoyama, Hideaki Kuzuoka, Takuji Narumi, Tomohiro Amemiya, IEEE Conference on Virtual Reality and 3D User Interfaces (IEEE VR), 2026.",
+    "doi": "10.1109/vr67842.2026.00060"
+  },
+  {
+    "id": "YPM12boB6UU",
+    "title": "Enhancing Pseudo-Haptics on the Hand by Viewpoint Shifts in VR",
+    "citation": "Riku Watanabe, Mitsuru Ito, Akifumi Takahashi, Tomohiro Amemiya, Yuki Ban, IEEE International Symposium on Mixed and Augmented Reality (ISMAR), 2025.",
+    "doi": "10.1109/ismar67309.2025.00058"
+  },
+  {
+    "id": "Rc4V5bj6YSQ",
+    "title": "Combining Intergroup Contact and Outgroup Embodiment in Virtual Reality: An Exploratory Test of Backfire and Secondary Transfer Effects of Outgroup Embodiment",
+    "citation": "Matilde Tassinari, Akimi Oyanagi, Tomohiro Amemiya, Computers in Human Behavior, Vol. 185, 109094, 2026.",
+    "doi": "10.1016/j.chb.2026.109094"
+  },
+  {
+    "id": "wUZM3hOjtOI",
+    "title": "Active Manual Movement Improves Directional Perception of Illusory Force",
+    "citation": "Tomohiro Amemiya, Hiroaki Gomi, IEEE Transactions on Haptics, Vol. 9, No. 4, 2016.",
+    "doi": "10.1109/TOH.2016.2587624"
+  },
+  {
+    "id": "Iqp__KuHxxc",
+    "title": "Distinct Pseudo-Attraction Force Sensation by a Thumb-Sized Vibrator that Oscillates Asymmetrically",
+    "citation": "Tomohiro Amemiya, Hiroaki Gomi, EuroHaptics 2014, pp. 88–95, 2014.",
+    "doi": "10.1007/978-3-662-44196-1_12"
+  },
+  {
+    "id": "fcOmFX3iNkM",
+    "title": "Lead-Me Interface for a Pulling Sensation from Hand-held Devices",
+    "citation": "Tomohiro Amemiya, Hideyuki Ando, Taro Maeda, ACM Transactions on Applied Perception, Vol. 5, No. 3, 2008.",
+    "doi": "10.1145/1402236.1402239"
+  },
+  {
+    "id": "dC45fQmQd2w",
+    "title": "Pseudo-Walking Sensation by Anteroposterior or Lateral Galvanic Vestibular Stimulation and Synchronous Foot-Sole Vibrations",
+    "citation": "Taiga Oyama, Kazuma Aoyama, Tomohiro Amemiya, IEEE Transactions on Visualization and Computer Graphics, Vol. 31, No. 9, 2025.",
+    "doi": "10.1109/tvcg.2024.3451565"
+  },
+  {
+    "id": "iBS7FLUZerw",
+    "title": "ThickSip: Pseudo-Haptic Augmentation of Liquid Weight and Thickness in Perceived Mouthfeel",
+    "citation": "Luting Wang, Keigo Ushiyama, Tomohiro Amemiya, Augmented Humans International Conference (AHs), 2026.",
+    "doi": "10.1145/3795011.3795026"
+  },
+  {
+    "id": "O_TlNpJf2L0",
+    "title": "The Possibility of Inducing the Proteus Effect for Social VR Users",
+    "citation": "Akimi Oyanagi, Takuji Narumi, Jean-Luc Lugrin, Kazuma Aoyama, Kenichiro Ito, Tomohiro Amemiya, Michitaka Hirose, HCI International 2022 – Late Breaking Papers: Interacting with eXtended Reality and Artificial Intelligence, 2022.",
+    "doi": "10.1007/978-3-031-21707-4_11"
+  },
+  {
+    "id": "4vGsaLjRPdY",
+    "title": "Directional Torque Perception with Brief, Asymmetric Net Rotation of a Flywheel",
+    "citation": "Tomohiro Amemiya, Hiroaki Gomi, IEEE Transactions on Haptics, Vol. 6, No. 3, 2013.",
+    "doi": "10.1109/TOH.2012.38"
+  },
+  {
+    "id": "-Sz87SxYsXk",
+    "title": "Impact of Long-Term Use of an Avatar to IVBO in the Social VR",
+    "citation": "Akimi Oyanagi, Takuji Narumi, Kazuma Aoyama, Kenichiro Ito, Tomohiro Amemiya, Michitaka Hirose, HCI International 2021: Human Interface and the Management of Information. Information Presentation and Visualization, 2021.",
+    "doi": "10.1007/978-3-030-78321-1_25"
+  }
+]
+        </script>
     </section>
 
     <section id="network">
@@ -1154,7 +1396,7 @@
                 <h2 class="footer-title">Navigation</h2>
                 <ul class="footer-links">
                     <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
-                    <li><a href="index.html#research"><span class="ja">研究テーマ</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
                     <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
                     <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
                     <li><a href="index.html#publications"><span class="ja">主要論文</span><span class="en" lang="en">Publications</span></a></li>
