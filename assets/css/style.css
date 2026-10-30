@@ -781,6 +781,9 @@ section {
 
 /* 論文の DOI リンク */
 .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;   /* 予稿PDFと受賞者一覧など、リンクが2つあるときの間隔 */
     margin-top: 0.45rem;
 }
 

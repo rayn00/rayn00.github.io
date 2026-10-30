@@ -377,10 +377,15 @@
                 ? shown + (shown === 1 ? ' item' : ' items')
                 : shown + '件';
         }
+        // 「受賞」は、受賞の項目に加えて、受賞バッジ（data-award）の付いた論文・発表も表示する
+        function isType(it, type) {
+            return type === 'all' || it.getAttribute('data-type') === type ||
+                (type === 'award' && it.hasAttribute('data-award'));
+        }
         function apply() {
             shown = 0;
             items.forEach(function (it) {
-                var okType = state.type === 'all' || it.getAttribute('data-type') === state.type;
+                var okType = isType(it, state.type);
                 var okText = !state.q || it.textContent.toLowerCase().indexOf(state.q) !== -1;
                 it.hidden = !(okType && okText);
                 if (!it.hidden) shown++;
@@ -394,8 +399,7 @@
         tabs.forEach(function (tab) {
             var type = tab.getAttribute('data-filter');
             var c = tab.querySelector('.count');
-            if (c) c.textContent = type === 'all' ? items.length
-                : items.filter(function (it) { return it.getAttribute('data-type') === type; }).length;
+            if (c) c.textContent = items.filter(function (it) { return isType(it, type); }).length;
             tab.addEventListener('click', function () {
                 state.type = type;
                 tabs.forEach(function (tb) {
@@ -1274,7 +1278,10 @@
                 if (!items.length) throw new Error('no items');
                 finish(cards.map(function (c) {
                     var types = c.getAttribute('data-types').split(/\s+/);
-                    return items.filter(function (it) { return types.indexOf(it.getAttribute('data-type')) !== -1; }).length;
+                    return items.filter(function (it) {
+                        return types.indexOf(it.getAttribute('data-type')) !== -1 ||
+                            (types.indexOf('award') !== -1 && it.hasAttribute('data-award'));
+                    }).length;
                 }));
             })['catch'](function () { finish(fallback); });
         }
