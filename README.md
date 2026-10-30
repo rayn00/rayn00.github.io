@@ -116,6 +116,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 <p class="pub-links"><a class="pub-doi" href="https://doi.org/10.xxxx/xxxxx" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.xxxx/xxxxx</a></p>
 ```
 
+論文・発表のリンクは、`<p class="pub-links"><a class="pub-doi" href="…" target="_blank" rel="noopener">…</a></p>` を `</li>` の直前に入れます。DOI があるものは DOI、日本VR学会大会は大会サイトの予稿PDF（例：`https://conference.vrsj.org/ac2023/program/doc/2A1-09.pdf`）、講演・メディア掲載・受賞は、公開されていて今も開けるページだけにリンクしています。
+
 絞り込みタブの件数は自動で数えます。トップページの「主要論文・学会発表」に載せたい場合は、`index.html` にも追加してください。
 
 トップページの「主要論文・学会発表」にある件数（論文・発表／学術論文誌／国際会議／受賞）も、`publications.html` の一覧から自動で数え直します（`index.html` の `.pub-stat` の `data-types` に、数える種類を空白区切りで書きます。「論文・発表」は `journal intl dom talk` の合計です）。`index.html` に書いてある数字は、一覧を読み込めなかったとき（ファイルを直接開いたときなど）の予備なので、ときどき実際の件数に合わせておくと安心です。
