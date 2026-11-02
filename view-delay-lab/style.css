@@ -1,0 +1,960 @@
+/* 視点遅延体験（View Delay Lab）— このページ専用のスタイル
+   色・文字・角丸は研究室サイト共通の assets/css/style.css の変数を使い、
+   ライト／ダークの切替にも追従する。3Dシーン上の表示は、シーンの明るい背景に合わせた固定色。 */
+
+.vdl {
+    --vdl-num: 'Inter', 'Noto Sans JP', sans-serif;
+    --vdl-error: #fca5a5;
+    --vdl-error-dot: #f87171;
+    --vdl-glow: 0 4px 20px rgba(0, 242, 254, 0.3);
+    /* グラフの色（app.js が読み取って描画する） */
+    --trace-grid: rgba(255, 255, 255, 0.08);
+    --trace-input: var(--accent-purple-text);
+    --trace-output: var(--accent-cyan);
+}
+
+[data-theme="light"] .vdl {
+    --vdl-error: #b91c1c;
+    --vdl-error-dot: #dc2626;
+    --vdl-glow: 0 4px 16px rgba(3, 105, 161, 0.25);
+    --trace-grid: rgba(15, 23, 42, 0.1);
+}
+
+.vdl-hero-buttons {
+    margin-top: 2rem;
+}
+
+/* 見出しを語句の切れ目で折り返す */
+.vdl-phrase {
+    display: inline-block;
+}
+
+.vdl button {
+    font: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vdl button:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.vdl .stage:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 4px;
+}
+
+/* ---------- レイアウト ---------- */
+.vdl .lab {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.vdl .visual-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+}
+
+/* ---------- 3Dシーン ---------- */
+.vdl .stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background: #bdccd2;
+    min-height: 460px;
+    flex: 1;
+    touch-action: none;
+    outline: none;
+    box-shadow: var(--shadow-hover);
+}
+
+.vdl .stage canvas#scene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.vdl .stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    border-radius: inherit;
+    z-index: 3;
+}
+
+.vdl .scene-top,
+.vdl .scene-bottom {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.vdl .scene-top {
+    top: 19px;
+    align-items: flex-start;
+}
+
+.vdl .scene-label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #1e3a48;
+    text-shadow: 0 1px 8px rgba(232, 242, 242, 0.5);
+}
+
+.vdl .scene-label small {
+    flex-basis: 100%;
+    margin-left: 14px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #3f5865;
+}
+
+.vdl .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0369a1;
+    box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.18);
+}
+
+.vdl .scene-tools {
+    display: flex;
+    gap: 8px;
+    pointer-events: auto;
+}
+
+.vdl .icon-button {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9px;
+    background: rgba(247, 252, 253, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #1e3a48;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.vdl .icon-button:hover {
+    background: #fff;
+    color: #0369a1;
+}
+
+.vdl .crosshair {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(49, 78, 107, 0.45);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.vdl .crosshair::after {
+    content: "";
+    position: absolute;
+    left: 5.5px;
+    top: 5.5px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #3b5569;
+}
+
+.vdl .scene-bottom {
+    bottom: 19px;
+    align-items: flex-end;
+    color: #1e3a48;
+}
+
+.vdl .scene-bottom > span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9px;
+    background: rgba(247, 252, 253, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.vdl .scene-bottom > span i {
+    color: #0369a1;
+}
+
+.vdl .scene-delay {
+    text-align: right;
+    line-height: 1.25;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 9px rgba(239, 247, 236, 0.9);
+}
+
+.vdl .scene-delay > span {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.vdl .scene-delay strong {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.vdl .scene-delay small {
+    margin-left: 2px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.vdl .stage-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+    width: max-content;
+    max-width: 90%;
+    padding: 0.9rem 1.5rem;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    border-radius: var(--radius-md);
+    background: rgba(10, 13, 20, 0.9);
+    color: #f0f4f8;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* 全画面 */
+.vdl .fullscreen-controls {
+    display: none;
+}
+
+.vdl .stage:fullscreen,
+.vdl .stage.fullscreen-fallback {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: #bdccd2;
+}
+
+/* サイト共通ヘッダー（z-index: 1000）より手前に出す */
+.vdl .stage.fullscreen-fallback {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+}
+
+.vdl .stage:fullscreen .fullscreen-controls,
+.vdl .stage.fullscreen-fallback .fullscreen-controls {
+    display: flex;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    gap: 6px;
+    padding: 7px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    background: rgba(10, 13, 20, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.vdl .fullscreen-controls button {
+    padding: 0.6rem 0.9rem;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #f0f4f8;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.vdl .fullscreen-controls button[aria-pressed="true"] {
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    color: #000;
+}
+
+/* ---------- 応答グラフ ---------- */
+.vdl .trace-panel {
+    padding: 1rem 1.25rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.vdl .trace-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.vdl .trace-heading > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.vdl .tiny-label {
+    color: var(--accent-cyan);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.vdl .trace-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.vdl .trace-title small {
+    margin-left: 6px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.vdl .trace-legend {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.vdl .trace-legend > span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.vdl .trace-legend i {
+    width: 14px;
+    height: 0;
+    border-top: 2px solid;
+}
+
+.vdl .input-dot {
+    border-top-style: dashed !important;
+    border-color: var(--trace-input);
+}
+
+.vdl .output-dot {
+    border-color: var(--trace-output);
+}
+
+.vdl .trace-window {
+    color: var(--text-muted);
+}
+
+.vdl .trace-panel canvas {
+    display: block;
+    width: 100%;
+    height: 72px;
+    margin-top: 0.6rem;
+}
+
+.vdl .trace-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 0.3rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 操作パネル ---------- */
+.vdl .controls {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.35rem 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.vdl .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vdl .section-num {
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--on-accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.vdl .section-heading h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.vdl .unit-tag {
+    margin-left: auto;
+    padding: 2px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    background: var(--bg-glass);
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.vdl .control-description {
+    margin: 0.7rem 0 1rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.vdl .delay-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.vdl .delay-option {
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    text-align: left;
+    transition: var(--transition);
+}
+
+.vdl .delay-option:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+}
+
+.vdl .delay-option.selected {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--on-accent);
+    box-shadow: var(--vdl-glow);
+}
+
+.vdl .option-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    color: var(--text-muted);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.vdl .option-top i {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--text-muted);
+    border-radius: 50%;
+}
+
+.vdl .selected .option-top {
+    color: inherit;
+    opacity: 0.75;
+}
+
+.vdl .selected .option-top i {
+    border-color: currentColor;
+    background: currentColor;
+    box-shadow: inset 0 0 0 2px var(--accent-cyan);
+}
+
+.vdl .delay-option strong {
+    display: block;
+    margin: 4px 0 0;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+}
+
+.vdl .delay-option strong small {
+    margin-left: 4px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.vdl .selected strong small {
+    color: inherit;
+    opacity: 0.7;
+}
+
+.vdl .option-caption {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+}
+
+.vdl .selected .option-caption {
+    color: inherit;
+    opacity: 0.8;
+}
+
+.vdl .input-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.vdl .input-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 1rem;
+    padding: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-glass);
+}
+
+.vdl .input-tabs button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 50%;
+    padding: 0.55rem 0.25rem;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.vdl .input-tabs button:hover {
+    color: var(--accent-cyan);
+}
+
+.vdl .input-tabs button.active {
+    border-color: var(--border-glow);
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--accent-cyan);
+}
+
+[data-theme="light"] .vdl .input-tabs button.active {
+    background: rgba(3, 105, 161, 0.08);
+}
+
+.vdl .mode-help {
+    min-height: 42px;
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.8;
+}
+
+.vdl .mode-help p {
+    margin: 0 0 0.6rem;
+}
+
+.vdl .sensor-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--on-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    box-shadow: var(--vdl-glow);
+    transition: var(--transition);
+}
+
+.vdl .sensor-button:hover {
+    transform: translateY(-2px);
+}
+
+.vdl .input-status {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    min-height: 18px;
+    margin: 0.7rem 0 1rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+.vdl .input-status > span {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: 0.4rem;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+}
+
+.vdl .input-status.error {
+    color: var(--vdl-error);
+}
+
+.vdl .input-status.error > span {
+    background: var(--vdl-error-dot);
+}
+
+.vdl .recenter {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+    transition: var(--transition);
+}
+
+.vdl .recenter:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.vdl .recenter > i {
+    color: var(--accent-cyan);
+}
+
+.vdl .recenter > span {
+    margin-left: auto;
+    padding: 0 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+}
+
+.vdl .performance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+}
+
+.vdl .performance > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.vdl .performance i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+.vdl .performance i.ready {
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.vdl .performance strong {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.vdl .performance small {
+    margin-left: 3px;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+}
+
+.vdl .latency-note {
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    line-height: 1.8;
+}
+
+/* ---------- 遊び方 ---------- */
+.vdl .guide {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+    padding: 4.5rem 0 2rem;
+}
+
+.vdl .guide-title {
+    align-self: center;
+}
+
+.vdl .guide h2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+}
+
+.vdl .guide-step {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transition);
+}
+
+.vdl .guide-step:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.vdl .step-number {
+    display: inline-block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.vdl .guide-step h3 {
+    margin: 0.75rem 0 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+.vdl .guide-step p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.8;
+}
+
+/* ---------- 仕組み・操作方法 ---------- */
+.vdl .technical {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.vdl .technical[open] {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-hover);
+}
+
+.vdl .technical summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+}
+
+.vdl .technical summary::-webkit-details-marker {
+    display: none;
+}
+
+.vdl .technical summary > span i {
+    margin-right: 0.6rem;
+    color: var(--accent-cyan);
+}
+
+.vdl .technical summary:hover {
+    color: var(--accent-cyan);
+}
+
+.vdl .technical-chevron {
+    color: var(--text-muted);
+    transition: transform 0.25s, color 0.25s;
+}
+
+.vdl .technical[open] .technical-chevron {
+    transform: rotate(180deg);
+    color: var(--accent-cyan);
+}
+
+.vdl .technical > div {
+    margin: 0 1.25rem;
+    padding: 1.1rem 0 1.35rem;
+    border-top: 1px dashed var(--border-color);
+    line-height: 1.85;
+}
+
+.vdl .technical p + p {
+    margin-top: 0.75rem;
+}
+
+.vdl .source-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+}
+
+.vdl .source-links a {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.vdl .source-links a i {
+    font-size: 0.75em;
+}
+
+.vdl .vdl-credit {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (min-width: 1450px) {
+    .vdl .stage { min-height: 520px; }
+    .vdl .lab { grid-template-columns: minmax(0, 1fr) 340px; }
+}
+
+@media (max-width: 1100px) {
+    .vdl .lab { grid-template-columns: minmax(0, 1fr) 290px; gap: 1rem; }
+    .vdl .controls { padding: 1.25rem 1rem 1rem; }
+    .vdl .trace-heading > div:first-child { display: block; }
+    .vdl .trace-title { display: block; margin-top: 2px; }
+    .vdl .trace-legend { gap: 10px; }
+    .vdl .trace-window { display: none !important; }
+    .vdl .stage { min-height: 440px; }
+    .vdl .delay-option strong { font-size: 1.75rem; }
+    .vdl .guide { grid-template-columns: 1fr 1fr 1fr; }
+    .vdl .guide-title { grid-column: 1 / -1; }
+    .vdl .guide h2 br { display: none; }
+}
+
+@media (max-width: 780px) {
+    .vdl .lab { display: flex; flex-direction: column; gap: 0.9rem; }
+    .vdl .visual-column { gap: 0.75rem; }
+    .vdl .stage { flex: none; height: 49vh; min-height: 0; max-height: 520px; }
+    .vdl .scene-top, .vdl .scene-bottom { left: 14px; right: 14px; }
+    .vdl .scene-top { top: 14px; }
+    .vdl .scene-bottom { bottom: 14px; }
+    .vdl .scene-label { font-size: 0.62rem; letter-spacing: 0.08em; }
+    .vdl .scene-label small { font-size: 0.65rem; }
+    .vdl .scene-bottom > span { padding: 0.4rem 0.6rem; font-size: 0.68rem; }
+    .vdl .scene-delay strong { font-size: 1.4rem; }
+    .vdl .trace-panel { padding: 0.75rem 0.9rem 0.6rem; }
+    .vdl .trace-heading > div:first-child { display: flex; gap: 10px; }
+    .vdl .trace-title { margin: 0; font-size: 0.8rem; }
+    .vdl .trace-title small { display: none; }
+    .vdl .trace-panel canvas { height: 56px; }
+    .vdl .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; padding: 1.25rem; }
+    .vdl .input-section { margin-top: 0; padding-top: 0; border-top: none; }
+    .vdl .performance { grid-column: 1 / -1; margin: 0; padding-top: 0.75rem; }
+    .vdl .latency-note { grid-column: 1 / -1; margin-top: -0.75rem; }
+    .vdl .guide { grid-template-columns: 1fr; gap: 0.9rem; padding-top: 3.5rem; }
+    .vdl .stage:fullscreen .scene-bottom, .vdl .stage.fullscreen-fallback .scene-bottom { bottom: 86px; }
+}
+
+@media (max-width: 600px) {
+    .vdl-hero-buttons { margin-top: 1.5rem; }
+    .page-hero + .vdl { padding-top: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .vdl .controls { display: flex; gap: 0; padding: 1.1rem; }
+    .vdl .delay-options { grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
+    .vdl .delay-option { padding: 0.55rem 0.4rem; }
+    .vdl .delay-option:hover { transform: none; }
+    .vdl .delay-option strong { font-size: 1.4rem; letter-spacing: -0.03em; }
+    .vdl .delay-option strong small { margin-left: 1px; font-size: 0.6rem; }
+    .vdl .option-top { font-size: 0.5rem; letter-spacing: 0; }
+    .vdl .option-top i { display: none; }
+    .vdl .option-caption { font-size: 0.6rem; white-space: nowrap; }
+    .vdl .input-section { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); }
+    .vdl .input-tabs button { padding: 0.6rem; font-size: 0.82rem; }
+    .vdl .mode-help { min-height: 0; font-size: 0.82rem; }
+    .vdl .mode-help br { display: none; }
+    .vdl .performance { margin-top: 1rem; }
+    .vdl .latency-note { margin-top: 0.5rem; }
+    .vdl .trace-heading .tiny-label { font-size: 0.6rem; }
+    .vdl .trace-legend { gap: 8px; }
+    .vdl .scene-delay { display: none; }
+    .vdl .stage { height: 43vh; min-height: 270px; }
+    .vdl .fullscreen-controls { white-space: nowrap; }
+    .vdl .fullscreen-controls button { padding: 0.55rem 0.65rem; font-size: 0.8rem; }
+    .vdl .technical { font-size: 0.85rem; }
+}

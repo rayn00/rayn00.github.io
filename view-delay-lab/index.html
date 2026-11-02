@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!-- アクセス解析（Google アナリティクス。測定IDは assets/js/analytics.js） -->
+    <script src="../assets/js/analytics.js" async></script>
+    <title>視点遅延体験 View Delay Lab | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="マウスやスマートフォンの姿勢で3D空間を見回し、0・50・100・200msの視点遅延を比較するインタラクティブデモ。東京大学 雨宮研究室（AME LAB）。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="視点遅延体験 View Delay Lab | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="マウスやスマートフォンの姿勢で3D空間を見回し、0・50・100・200msの視点遅延を比較するインタラクティブデモ。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/view-delay-lab/">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- このページ専用のスタイル（視点遅延体験） -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body data-title-ja="視点遅延体験 View Delay Lab | 雨宮研究室 AME LAB" data-title-en="View Delay Lab | AME LAB, The University of Tokyo" data-desc-ja="マウスやスマートフォンの姿勢で3D空間を見回し、0・50・100・200msの視点遅延を比較するインタラクティブデモ。東京大学 雨宮研究室（AME LAB）。" data-desc-en="An interactive demo for comparing 0, 50, 100 and 200 ms of added view latency in a 3D space, using a mouse or your smartphone's orientation. AME LAB, The University of Tokyo.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="../index.html" class="brand-logo" data-logo-wrap>
+                <img src="../img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="../research.html" class="nav-link"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="../news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="../members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="../publications.html" class="nav-link"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="../index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="../index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">視点遅延体験</span><span class="en" lang="en">View Delay Lab</span></span>
+            </nav>
+            <span class="section-tag">View Delay Lab · Visual Latency</span>
+            <h1 class="page-title"><span class="ja"><span class="vdl-phrase">視点の遅れを、</span><span class="vdl-phrase">体感する。</span></span><span class="en" lang="en">Feel the Lag in Your View</span></h1>
+            <p class="hero-subtitle"><span class="ja">動かした瞬間と、世界が動く瞬間。そのわずかな差を、3D空間で。</span><span class="en" lang="en">The moment you move, and the moment the world follows. Experience that tiny gap in a 3D space.</span></p>
+            <div class="hero-buttons vdl-hero-buttons">
+                <a href="#how-it-works" class="btn btn-secondary"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span class="ja">このデモについて</span><span class="en" lang="en">About this demo</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="vdl" id="demo" aria-label="視点遅延デモ">
+        <div class="lab">
+            <div class="visual-column">
+                <div id="stage" class="stage" tabindex="0" aria-label="3D空間。マウスを動かすか、タッチでドラッグして見回します。矢印キーでも操作できます。">
+                    <canvas id="scene" aria-label="奥行きのある3Dギャラリー"></canvas>
+                    <div class="scene-top">
+                        <div class="scene-label"><span class="live-dot"></span> SPATIAL GALLERY <small>固定視点 / 回転</small></div>
+                        <div class="scene-tools">
+                            <button id="reset-view" class="icon-button" title="正面に戻す (R)" aria-label="正面に戻す"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></button>
+                            <button id="fullscreen" class="icon-button" title="全画面表示" aria-label="全画面表示"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="crosshair" aria-hidden="true"></div>
+                    <div id="stage-message" class="stage-message" role="status">3Dシーンを読み込み中…</div>
+                    <div class="scene-bottom">
+                        <span id="scene-hint"><i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>シーン内でマウスを動かす</span>
+                        <div class="scene-delay"><span>ADDED DELAY</span><strong id="scene-delay">0 <small>ms</small></strong></div>
+                    </div>
+                    <div class="fullscreen-controls" aria-label="全画面の遅延選択"><button data-full-delay="0">0 ms</button><button data-full-delay="50">50 ms</button><button data-full-delay="100">100 ms</button><button data-full-delay="200">200 ms</button></div>
+                </div>
+
+                <div class="trace-panel">
+                    <div class="trace-heading">
+                        <div><span class="tiny-label">Response Trace</span><span class="trace-title">視点の応答 <small>左右の回転</small></span></div>
+                        <div class="trace-legend"><span><i class="input-dot"></i>入力</span><span><i class="output-dot"></i>表示</span><span class="trace-window">直近4秒</span></div>
+                    </div>
+                    <canvas id="trace" aria-label="直近4秒間の入力と表示の左右角度を比較するグラフ"></canvas>
+                    <div class="trace-bottom"><span>−4 s</span><span>動かした軌跡と、表示された軌跡を比較</span><span>NOW</span></div>
+                </div>
+            </div>
+
+            <aside class="controls">
+                <div class="control-section delay-section">
+                    <div class="section-heading"><span class="section-num">01</span><h2>遅延を選ぶ</h2><span class="unit-tag">ms</span></div>
+                    <p class="control-description">視点に加える遅延時間</p>
+                    <div id="delay-options" class="delay-options" role="radiogroup" aria-label="追加遅延">
+                        <button type="button" class="delay-option selected" role="radio" aria-checked="true" tabindex="0" data-delay="0"><span class="option-top">BASELINE<i></i></span><strong>0<small>ms</small></strong><span class="option-caption">追加なし</span></button>
+                        <button type="button" class="delay-option" role="radio" aria-checked="false" tabindex="-1" data-delay="50"><span class="option-top">SLIGHT<i></i></span><strong>50<small>ms</small></strong><span class="option-caption">わずかな遅れ</span></button>
+                        <button type="button" class="delay-option" role="radio" aria-checked="false" tabindex="-1" data-delay="100"><span class="option-top">NOTICEABLE<i></i></span><strong>100<small>ms</small></strong><span class="option-caption">はっきりした遅れ</span></button>
+                        <button type="button" class="delay-option" role="radio" aria-checked="false" tabindex="-1" data-delay="200"><span class="option-top">PRONOUNCED<i></i></span><strong>200<small>ms</small></strong><span class="option-caption">大きな遅れ</span></button>
+                    </div>
+                </div>
+
+                <div class="control-section input-section">
+                    <div class="section-heading"><span class="section-num">02</span><h2>視点を動かす</h2></div>
+                    <div class="input-tabs" role="group" aria-label="入力方法">
+                        <button id="mouse-mode" class="active" aria-pressed="true"><i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>マウス・タッチ</button>
+                        <button id="sensor-mode" aria-pressed="false"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i>端末の姿勢</button>
+                    </div>
+                    <div id="mouse-help" class="mode-help">マウスを左右・上下に動かして見回します。<br>タッチ操作はドラッグに対応。</div>
+                    <div id="sensor-help" class="mode-help" hidden><p>画面を正面に向けて開始し、端末をゆっくり回してください。</p><button id="enable-sensor" class="sensor-button">端末の姿勢を有効にする <span>↗</span></button></div>
+                    <p id="input-status" class="input-status" role="status"><span></span>マウス入力を待っています</p>
+                    <button id="recenter" class="recenter"><i class="fa-solid fa-crosshairs" aria-hidden="true"></i>今の向きを正面にする<span>R</span></button>
+                </div>
+
+                <div class="performance"><span><i id="render-dot"></i> <span id="render-status">準備中</span></span><span><strong id="fps">—</strong> <small>FPS</small></span></div>
+                <p class="latency-note">数値は追加する遅延です。端末・ブラウザ・画面が持つ遅延は含みません。</p>
+            </aside>
+        </div>
+
+        <div class="guide" id="how-it-works">
+            <div class="guide-title">
+                <span class="section-tag">A Small Shift in Time</span>
+                <h2>わずか0.1秒で、<br>操作の感覚は変わる。</h2>
+            </div>
+            <div class="guide-step"><span class="step-number">01</span><h3>まずは、0msで</h3><p>空間の中をゆっくり見回して、通常の視点操作を確かめます。</p></div>
+            <div class="guide-step"><span class="step-number">02</span><h3>遅延を切り替える</h3><p>同じ動きを繰り返しながら、50・100・200msの違いを比べます。</p></div>
+            <div class="guide-step"><span class="step-number">03</span><h3>動きを止めてみる</h3><p>入力を止めた後も視点が追いかけてくる感覚を、グラフと一緒に観察します。</p></div>
+        </div>
+
+        <details class="technical">
+            <summary><span><i class="fa-solid fa-gear" aria-hidden="true"></i>遅延の仕組み・操作方法</span><i class="fa-solid fa-chevron-down technical-chevron" aria-hidden="true"></i></summary>
+            <div>
+                <p>入力の姿勢と受信時刻を記録し、描画時刻から指定時間を引いた時点までに受信した、最新の姿勢を表示します。0msでは最新の入力を直接反映します。減衰や平滑化による見かけの遅れは加えていません。</p>
+                <p>描画と入力は離散的なため、指定値に加えて描画周期・入力周期による誤差が生じます。このページのFPSは描画処理の頻度で、実際の画面表示までの遅延を測定したものではありません。静止した空間で、カメラの向きだけが変化します。</p>
+                <p>スマートフォンは「端末の姿勢」を選び、ボタンからセンサーの使用を許可してください。センサーが利用できない場合はタッチでドラッグできます。縦横を切り替えた際は正面を再設定します。</p>
+                <p>キーボード：シーンにフォーカスして矢印キーで視点操作、Rで正面を再設定。遅延の選択肢は矢印キーでも切り替えられます。全画面中も下部のボタンから遅延を変更できます。</p>
+                <p class="source-links">実装参考：<a href="https://threejs.org/docs/pages/Quaternion.html" target="_blank" rel="noopener">three.js Quaternion <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a href="https://developer.mozilla.org/en-US/docs/Web/API/Device_orientation_events/Detecting_device_orientation" target="_blank" rel="noopener">MDN Device orientation <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></p>
+                <p class="vdl-credit">Built with three.js · Explore the space between action &amp; perception.</p>
+            </div>
+        </details>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="../img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="../index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="../index.html#research"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="../index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="../index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="../index.html#publications"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="../index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="../index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="../about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="../research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="../members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="../publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="../news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="../faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="../collaboration.html" data-site-link><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <!-- 視点遅延デモ本体（three.js） -->
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
