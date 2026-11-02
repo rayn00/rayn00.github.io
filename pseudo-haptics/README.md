@@ -18,10 +18,6 @@
 
 ## 研究室サイトへの配置
 
-研究室サイト（AME LAB）のリポジトリ直下に、このフォルダを**`pseudo-haptics`という名前で**置きます。公開URLは次のとおりです。
-
-https://www.amelab.vr.u-tokyo.ac.jp/pseudo-haptics/
-
 ```
 （リポジトリ直下）
 ├─ index.html ほか研究室サイトのファイル
