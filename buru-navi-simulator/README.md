@@ -16,10 +16,6 @@
 
 ## 研究室サイトへの配置
 
-研究室サイト（AME LAB）のリポジトリ直下に、このフォルダを**`buru-navi-simulator`という名前のまま**置きます。公開URLは次のとおりです。
-
-https://www.amelab.vr.u-tokyo.ac.jp/buru-navi-simulator/
-
 ```
 （リポジトリ直下）
 ├─ index.html ほか研究室サイトのファイル
@@ -98,5 +94,3 @@ npm test
 - Takuya Noto, Takuto Nakamura, Tomohiro Amemiya. [Synergistic Illusions: Enhancing Perceptual Effects of Pseudo-Attraction Force by Kinesthetic Illusory Hand Movement](https://doi.org/10.1109/TOH.2024.3386199). IEEE Transactions on Haptics, 17(4), pp. 729–741, 2024.
 - Koki Fukuda, Kazuma Aoyama, Hideaki Kuzuoka, Takuji Narumi, Tomohiro Amemiya. [AsymDrive: Fingertip-Free Force Illusions Induced by Asymmetric Vibrations on Dorsal-Palmar Tendons](https://doi.org/10.1109/VR67842.2026.00060). IEEE Conference on Virtual Reality and 3D User Interfaces (VR), 2026.
 - Amemiya, Ando & Maeda. [Lead-Me Interface for a Pulling Sensation from Hand-held Devices](https://doi.org/10.1145/1402236.1402239). ACM Transactions on Applied Perception, 2008.
-
-資料は2026年11月3日に確認。模式図と波形はコードで新規描画しています。
