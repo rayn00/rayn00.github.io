@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- アクセス解析（Google アナリティクス。測定IDは assets/js/analytics.js） -->
+    <script src="../assets/js/analytics.js" async></script>
+    <title>ぶるなび 非対称振動シミュレーター Buru-Navi Lab | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="ぶるなびの非対称振動を、動く質量・反力・波形で観察するインタラクティブ教材。対称振動との比較、方向反転、スロー再生に対応。東京大学 雨宮研究室（AME LAB）。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="ぶるなび 非対称振動シミュレーター Buru-Navi Lab | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="ぶるなびの非対称振動を、動く質量・反力・波形で観察するインタラクティブ教材。対称振動との比較、方向反転、スロー再生に対応。東京大学 雨宮研究室（AME LAB）。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/buru-navi-simulator/">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- このページ専用のスタイル（ぶるなび 非対称振動シミュレーター） -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body data-title-ja="ぶるなび 非対称振動シミュレーター Buru-Navi Lab | 雨宮研究室 AME LAB" data-title-en="Buru-Navi Lab: Asymmetric Vibration Simulator | AME LAB, The University of Tokyo" data-desc-ja="ぶるなびの非対称振動を、動く質量・反力・波形で観察するインタラクティブ教材。対称振動との比較、方向反転、スロー再生に対応。東京大学 雨宮研究室（AME LAB）。" data-desc-en="An interactive explainer for the asymmetric vibration behind Buru-Navi: watch the moving mass, reaction force and waveforms, compare with symmetric vibration, reverse the direction and slow down playback. AME LAB, The University of Tokyo.">
+
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="../index.html" class="brand-logo" data-logo-wrap>
+                <img src="../img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="../research.html" class="nav-link"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="../news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="../members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="../publications.html" class="nav-link"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="../index.html#prospective" class="nav-link"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="../index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">ぶるなび 非対称振動シミュレーター</span><span class="en" lang="en">Buru-Navi Simulator</span></span>
+            </nav>
+            <span class="section-tag">Buru-Navi Lab · Asymmetric Vibration Explorer</span>
+            <h1 class="page-title"><span class="ja"><span class="bnv-phrase">往復する振動が、</span><span class="bnv-phrase">一方向の感覚に。</span></span><span class="en" lang="en">Back-and-Forth Vibration, One-Way Sensation</span></h1>
+            <p class="hero-subtitle"><span class="ja">ぶるなびの仕組みを、動きと波形から読み解く。<br class="br-wide">対称と非対称を切り替えて、力の時間的な偏りを観察してみましょう。</span><span class="en" lang="en">Understand how Buru-Navi works through motion and waveforms. Switch between symmetric and asymmetric vibration to see how force is distributed over time.</span></p>
+            <div class="hero-note">
+                <span class="note-number">∫ F dt = 0</span>
+                <p>1周期の力積はゼロ。<br>それでも、知覚は同じとは限らない。</p>
+                <small>画面で学ぶ振動モデル / 触覚刺激は出力しません</small>
+            </div>
+            <div class="hero-buttons bnv-hero-buttons">
+                <a href="#research-notes" class="btn btn-secondary"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">関連論文</span><span class="en" lang="en">Research notes</span></a>
+                <a href="../research.html" class="btn btn-secondary" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">雨宮研究室の研究を見る</span><span class="en" lang="en">Our research</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bnv" id="simulator-section" aria-label="ぶるなび 非対称振動シミュレーター">
+        <div class="simulator" role="region" aria-label="非対称振動シミュレーター">
+            <div class="sim-heading">
+                <div><span class="eyebrow">01 / Observe</span><h2>振動の中を、見てみる。</h2></div>
+                <div class="mode-buttons" role="group" aria-label="波形の比較"><button id="symmetric" aria-pressed="false">対称振動</button><button id="asymmetric" class="selected" aria-pressed="true">非対称振動</button></div>
+            </div>
+            <div class="workspace">
+                <div class="visual-column">
+                    <div class="mechanism">
+                        <div class="scene-top"><span><i></i> IDEAL MASS MODEL</span><span id="speed-badge">1/20 スロー再生</span></div>
+                        <canvas id="mechanism" aria-label="内部質量の往復運動と、逆方向に働く筐体への反力の模式図"></canvas>
+                        <div class="scene-bottom"><span>右方向を ＋ とする</span><span>運動・矢印は見やすく拡大</span></div>
+                    </div>
+                    <div class="transport">
+                        <button id="play" class="play-button" aria-label="一時停止">Ⅱ <span>一時停止</span></button>
+                        <button id="step" class="plain-button" title="停止して1周期の1/48だけ進める">1コマ進む</button>
+                        <button id="reset" class="icon-button" aria-label="位相を0に戻す" title="位相を0に戻す">↺</button>
+                        <label for="speed">表示速度</label>
+                        <select id="speed"><option value="0.02">1/50</option><option value="0.05" selected>1/20</option><option value="0.1">1/10</option><option value="1">実時間</option></select>
+                    </div>
+                    <div class="phase-line"><label for="phase">位相 <output id="phase-value">0°</output></label><input id="phase" type="range" min="0" max="1000" value="0" step="1" aria-label="1周期の位相。操作すると一時停止"><span>1周期</span></div>
+                    <div class="wave-heading">
+                        <div><span class="eyebrow">Synchronized Waveforms</span><h3>1周期の動きと反力</h3></div>
+                        <label class="check"><input id="compare" type="checkbox" checked><span>対称振動を重ねる</span></label>
+                    </div>
+                    <canvas id="waves" aria-label="変位・速度・筐体への反力の1周期の波形。縦線は現在の位相"></canvas>
+                    <div class="wave-caption"><span><i class="dot positive"></i>右向きの反力 <i class="dot negative"></i>左向きの反力 <i class="dash"></i>対称振動</span><span id="period-label">1周期 100 ms</span></div>
+                    <p class="display-note" id="display-note">表示速度だけを落としています。波形の数値は設定した振動周波数で計算します。</p>
+                </div>
+                <aside class="controls">
+                    <div class="control-title"><span class="eyebrow">02 / Adjust</span><h3>波形をつくる</h3></div>
+                    <div class="control"><label for="asymmetry">非対称性 <output id="asymmetry-value">0.50</output></label><input id="asymmetry" type="range" min="0" max="0.5" step="0.01" value="0.5"><div class="range-labels"><span>対称</span><span>非対称</span></div><p>反力に含まれる第2高調波の比率 r</p></div>
+                    <div class="control"><span class="control-label">強い反力の向き</span><div class="direction-buttons" role="group" aria-label="非対称性の向き"><button id="left" aria-pressed="false">← 左</button><button id="right" class="selected" aria-pressed="true">右 →</button></div><p>おもりの加速度は、反力と逆向きです。</p></div>
+                    <div class="control"><label for="frequency">振動周波数 <output><span id="frequency-value">20</span><small> Hz</small></output></label><input id="frequency" type="range" min="3" max="50" step="1" value="20"></div>
+                    <div class="control"><label for="amplitude">変位振幅 <output><span id="amplitude-value">1.0</span><small> mm</small></output></label><input id="amplitude" type="range" min="0.1" max="2.5" step="0.1" value="1"><p>片振幅 A。全ストロークは 2A。</p></div>
+                    <div class="control"><label for="mass">動く質量 <output><span id="mass-value">20</span><small> g</small></output></label><input id="mass" type="range" min="5" max="50" step="1" value="20"></div>
+                    <div class="metrics"><span>反力のピーク比</span><strong id="peak-ratio">2.00<small> : 1</small></strong><div><span>右向きピーク</span><b id="positive-peak">+0.118 N</b></div><div><span>左向きピーク</span><b id="negative-peak">−0.059 N</b></div><div><span>1周期の平均反力</span><b id="mean-force">0.000 N</b></div><p>ピーク比は知覚強度の比ではありません。</p></div>
+                    <button id="export" class="export-button">1周期の波形をCSVで保存 <i class="fa-solid fa-download" aria-hidden="true"></i></button>
+                    <p class="model-note">数値はこのデモ独自の教材用モデルです。特定の論文の数式や実機の波形を再現したものではありません。</p>
+                </aside>
+            </div>
+            <div class="balance">
+                <div><span class="eyebrow">Impulse Balance</span><h3>強さは違っても、面積はつり合う。</h3><p>反力の正負の面積（力積）は等しく、1周期の平均反力はゼロになります。</p></div>
+                <div class="impulses"><div><span>右向きの力積</span><b id="positive-impulse">+2.770</b><small>mN·s</small></div><span class="equals">＋</span><div><span>左向きの力積</span><b id="negative-impulse">−2.770</b><small>mN·s</small></div><span class="equals">＝</span><div class="total"><span>1周期の合計</span><b>0</b><small>mN·s</small></div></div>
+            </div>
+            <div id="status" class="sr-only" aria-live="polite"></div>
+        </div>
+
+        <div class="learn">
+            <div class="learn-title">
+                <span class="section-tag">03 / Understand</span>
+                <h2>平均力と、<br>感じる力の違い。</h2>
+                <a href="https://www.amelab.vr.u-tokyo.ac.jp/research.html" target="_blank" rel="noopener">ぶるなびの研究を見る <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </div>
+            <div class="learn-content">
+                <article><span>01</span><div><h3>非対称なのは、加速度の波形。</h3><p>短く強い反力と、長く弱い逆向きの反力を繰り返します。ここでは正弦波に第2高調波を加えて、その違いを表しました。単に「行きだけ速い」移動を描くモデルではありません。</p></div></article>
+                <article><span>02</span><div><h3>物理的な平均力は、ゼロ。</h3><p>内部のおもりが1周期で元の位置・速度に戻るため、反力の力積も1周期でゼロになります。画面では手で保持された筐体を固定し、内部質量の慣性による反力 F = −ma を示しています。</p></div></article>
+                <article><span>03</span><div><h3>牽引感は、人の知覚を通して生じる。</h3><p>ぶるなびは、非対称な振動によって一方向に引かれる感覚を生み出す装置です。実際の感じ方は波形・周波数・接触条件などに依存します。このページは原理の視覚教材で、知覚強度や牽引方向を予測するシミュレーターではありません。</p></div></article>
+            </div>
+        </div>
+
+        <details class="details">
+            <summary><span><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i>計算モデルと表示について</span><i class="fa-solid fa-chevron-down details-chevron" aria-hidden="true"></i></summary>
+            <div class="details-body"><p><strong>この計算式の出典について：</strong>このページのために定義した教材用の調和波モデルです。特定の論文の数式を採用したものではありません。基本波と第2高調波を合成した変位を微分して速度・加速度を求め、筐体反力を F = −ma で計算しています。Research Notesの文献は牽引力錯覚の研究背景を示すもので、この式の出典や妥当性を示すものではありません。</p><p>θ = 2πft、方向 d = ±1、片振幅 A、質量 m、非対称性 r（0〜0.5）として、次の周期運動を計算します。Aはm、mはkgへ換算します。</p><pre>x(t) = d A [cos θ + (r/4) cos 2θ − r/4]
+v(t) = −d A (2πf) [sin θ + (r/2) sin 2θ]
+a(t) = −d A (2πf)² [cos θ + r cos 2θ]
+F_case(t) = −m a(t)</pre><p>変位の範囲は常に −A〜+A、周期平均速度・加速度・反力は0です。変位の平均値は −dAr/4 ですが、ストロークの中心は0です。表示は筐体を固定した理想化であり、筐体・手のコンプライアンス、摩擦、共振、アクチュエーターの伝達特性は含みません。</p><p>破線は同じ振幅・質量・周波数で r=0 とした対称波形です。グラフの縦軸は設定に合わせて変わるため、条件間の強度は数値も比較してください。ピーク・力積は1周期4096点の中点則で数値計算します。波形の色は筐体への反力の符号を表します。</p><p>スロー再生と位相スライダーは表示時刻だけを変えます。実時間では画面の更新周期によるエイリアシングが起きるため、運動の観察にはスロー再生を使ってください。機構図は変位・力・加速度を見やすく拡大した模式図で、実寸や実機の構造ではありません。</p><p>CSVは1周期を1000区間に分けた1001点です。時間・位相・変位・速度・加速度・筐体反力・対称条件の反力をSI単位で出力します。最初と最後の行は同じ周期境界です。ブラウザ内で計算し、入力データは送信・保存しません。スマートフォンのバイブレーターや外部機器は駆動しません。</p><p>操作：Spaceで再生／一時停止（ボタンやスライダーの操作中を除く）、位相スライダーで任意位置を観察、「1コマ進む」で1/48周期進めます。タブが非表示になると停止します。</p></div>
+        </details>
+
+        <div class="references" id="research-notes">
+            <div><span class="section-tag">Research Notes</span><h2>関連論文</h2></div>
+            <div class="reference-list">
+                <a href="https://doi.org/10.1007/978-3-662-44196-1_12" target="_blank" rel="noopener"><b>Distinct Pseudo-Attraction Force Sensation by a Thumb-Sized Vibrator that Oscillates Asymmetrically</b><span>Tomohiro Amemiya, Hiroaki Gomi</span><span>EuroHaptics 2014, LNCS 8619, pp. 88–95, 2014</span><span>DOI: 10.1007/978-3-662-44196-1_12 ↗</span></a>
+                <a href="https://doi.org/10.18974/tvrsj.25.4_291" target="_blank" rel="noopener"><b>非対称振動刺激による牽引力錯覚の研究動向</b><span>田辺 健, 雨宮 智浩, 遠藤 博史, 井野 秀一</span><span>日本バーチャルリアリティ学会論文誌, 25(4), pp. 291–301, 2020（総説論文）</span><span>DOI: 10.18974/tvrsj.25.4_291 ↗</span></a>
+                <a href="https://doi.org/10.1109/TOH.2024.3386199" target="_blank" rel="noopener"><b>Synergistic Illusions: Enhancing Perceptual Effects of Pseudo-Attraction Force by Kinesthetic Illusory Hand Movement</b><span>Takuya Noto, Takuto Nakamura, Tomohiro Amemiya</span><span>IEEE Transactions on Haptics, 17(4), pp. 729–741, 2024</span><span>DOI: 10.1109/TOH.2024.3386199 ↗</span></a>
+                <a href="https://doi.org/10.1109/VR67842.2026.00060" target="_blank" rel="noopener"><b>AsymDrive: Fingertip-Free Force Illusions Induced by Asymmetric Vibrations on Dorsal-Palmar Tendons</b><span>Koki Fukuda, Kazuma Aoyama, Hideaki Kuzuoka, Takuji Narumi, Tomohiro Amemiya</span><span>IEEE Conference on Virtual Reality and 3D User Interfaces (VR), 2026</span><span>DOI: 10.1109/VR67842.2026.00060 ↗</span></a>
+                <a href="https://doi.org/10.1145/1402236.1402239" target="_blank" rel="noopener"><b>Lead-Me Interface for a Pulling Sensation from Hand-held Devices</b><span>Amemiya, Ando &amp; Maeda · ACM TAP, 2008 ↗</span></a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="../img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students from the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="../index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="../index.html#research"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="../index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="../index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="../index.html#publications"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="../index.html#prospective"><span class="ja">配属・連携案内</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="../index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="../about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="../research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="../members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="../publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="../news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="../faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="../collaboration.html" data-site-link><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <!-- ぶるなび シミュレーター本体 -->
+    <script type="module" src="./app.js"></script>
+</body>
+</html>

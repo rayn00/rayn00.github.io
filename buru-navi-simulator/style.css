@@ -1,0 +1,953 @@
+/* ぶるなび 非対称振動シミュレーター（Buru-Navi Lab）— このページ専用のスタイル
+   色・文字・角丸は研究室サイト共通の assets/css/style.css の変数を使い、
+   ライト／ダークの切替にも追従する。機構図（canvas）は両テーマとも濃紺。 */
+
+.bnv,
+.page-hero {
+    /* 反力の向きの色（右向き＝オレンジ、左向き＝青）。app.js の波形グラフもこの色を読み取る */
+    --force-pos: #ff9a5c;
+    --force-neg: #4facfe;
+    --force-pos-fill: rgba(255, 154, 92, 0.14);
+    --force-neg-fill: rgba(79, 172, 254, 0.14);
+}
+
+[data-theme="light"] .bnv,
+[data-theme="light"] .page-hero {
+    --force-pos: #ea6a1f;
+    --force-neg: #2563eb;
+    --force-pos-fill: rgba(234, 106, 31, 0.1);
+    --force-neg-fill: rgba(37, 99, 235, 0.1);
+}
+
+.bnv {
+    --bnv-stage: #0d1422;
+    --bnv-glow: 0 4px 20px rgba(0, 242, 254, 0.3);
+    /* 波形グラフの色（app.js が読み取って描画する） */
+    --wv-label: var(--text-secondary);
+    --wv-value: var(--text-primary);
+    --wv-grid: rgba(255, 255, 255, 0.06);
+    --wv-axis: rgba(255, 255, 255, 0.18);
+    --wv-tick: var(--text-muted);
+    --wv-reference: rgba(148, 163, 184, 0.7);
+    --wv-x: var(--accent-cyan);
+    --wv-v: var(--accent-purple-text);
+    --wv-cursor: rgba(240, 244, 248, 0.55);
+    --wv-dot: var(--text-primary);
+}
+
+[data-theme="light"] .bnv {
+    --bnv-glow: 0 4px 16px rgba(3, 105, 161, 0.25);
+    --wv-grid: rgba(15, 23, 42, 0.07);
+    --wv-axis: rgba(15, 23, 42, 0.2);
+    --wv-reference: rgba(100, 116, 139, 0.75);
+    --wv-cursor: rgba(15, 23, 42, 0.45);
+}
+
+/* ---------- ページ見出し ---------- */
+.bnv-phrase {
+    display: inline-block;
+}
+
+.page-hero .hero-note {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.25rem;
+    max-width: 640px;
+    margin-top: 1.75rem;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: left;
+}
+
+.page-hero .note-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    white-space: nowrap;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.page-hero .hero-note p {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.page-hero .hero-note small {
+    flex-basis: 100%;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    text-align: center;
+}
+
+.bnv-hero-buttons {
+    margin-top: 1.75rem;
+}
+
+/* ---------- 共通部品 ---------- */
+.bnv button,
+.bnv input,
+.bnv select {
+    font: inherit;
+}
+
+.bnv button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bnv .eyebrow {
+    color: var(--accent-cyan);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.bnv h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+}
+
+.bnv h3 {
+    margin-top: 0.3rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.bnv input[type="range"] {
+    width: 100%;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--accent-cyan);
+    cursor: pointer;
+}
+
+.bnv input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent-cyan);
+}
+
+.bnv select {
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+}
+
+/* ---------- シミュレーター ---------- */
+.bnv .simulator {
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.bnv .sim-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.bnv .mode-buttons,
+.bnv .direction-buttons {
+    display: flex;
+    gap: 3px;
+    padding: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-glass);
+}
+
+.bnv .mode-buttons button,
+.bnv .direction-buttons button {
+    padding: 0.55rem 1.3rem;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: none;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.bnv .mode-buttons button:hover,
+.bnv .direction-buttons button:hover {
+    color: var(--accent-cyan);
+}
+
+.bnv .mode-buttons button.selected {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--on-accent);
+    box-shadow: var(--bnv-glow);
+}
+
+.bnv .direction-buttons button {
+    width: 50%;
+    padding: 0.5rem;
+}
+
+.bnv .direction-buttons button.selected {
+    border-color: var(--border-glow);
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--accent-cyan);
+}
+
+[data-theme="light"] .bnv .direction-buttons button.selected {
+    background: rgba(3, 105, 161, 0.08);
+}
+
+.bnv .workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 1.75rem;
+    padding: 1.75rem;
+}
+
+.bnv .visual-column {
+    min-width: 0;
+}
+
+/* 機構図 */
+.bnv .mechanism {
+    position: relative;
+    overflow: hidden;
+    height: 290px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    background: var(--bnv-stage);
+}
+
+.bnv .mechanism canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bnv .scene-top,
+.bnv .scene-bottom {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #94a3b8;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+}
+
+.bnv .scene-top {
+    top: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.bnv .scene-top i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #00f2fe;
+    box-shadow: 0 0 8px #00f2fe;
+}
+
+.bnv .scene-top > span:last-child {
+    color: #00f2fe;
+}
+
+.bnv .scene-bottom {
+    bottom: 13px;
+    letter-spacing: 0;
+}
+
+/* 再生操作 */
+.bnv .transport {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 0.9rem;
+}
+
+.bnv .transport button {
+    height: 36px;
+    border-radius: 9px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.bnv .play-button {
+    min-width: 112px;
+    border: 0;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--on-accent);
+    box-shadow: var(--bnv-glow);
+}
+
+.bnv .play-button:hover {
+    transform: translateY(-1px);
+}
+
+.bnv .play-button span {
+    margin-left: 6px;
+}
+
+.bnv .plain-button,
+.bnv .icon-button {
+    padding: 0 0.8rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+}
+
+.bnv .plain-button:hover,
+.bnv .icon-button:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.bnv .icon-button {
+    min-width: 36px;
+    padding: 0;
+    font-size: 1.15rem !important;
+}
+
+.bnv .transport label {
+    margin-left: auto;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.bnv .phase-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 1rem 0 1.75rem;
+}
+
+.bnv .phase-line label {
+    min-width: 76px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+}
+
+.bnv .phase-line output {
+    margin-left: 4px;
+    color: var(--accent-cyan);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.bnv .phase-line input {
+    flex: 1;
+    min-width: 40px;
+}
+
+.bnv .phase-line > span {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* 波形 */
+.bnv .wave-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bnv .check {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+.bnv #waves {
+    display: block;
+    width: 100%;
+    height: 330px;
+    margin-top: 1rem;
+    padding: 0;
+}
+
+.bnv .wave-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 0.25rem;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+}
+
+.bnv .wave-caption > span:last-child {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.bnv .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border-radius: 50%;
+}
+
+.bnv .dot.positive {
+    background: var(--force-pos);
+}
+
+.bnv .dot.negative {
+    margin-left: 10px;
+    background: var(--force-neg);
+}
+
+.bnv .dash {
+    display: inline-block;
+    width: 16px;
+    margin: 0 4px 3px 10px;
+    border-top: 2px dashed var(--wv-reference);
+}
+
+.bnv .display-note {
+    margin-top: 0.9rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.7;
+}
+
+/* ---------- 設定 ---------- */
+.bnv .controls {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-color);
+}
+
+.bnv .control-title {
+    margin-bottom: 1.4rem;
+}
+
+.bnv .control {
+    margin-bottom: 1.4rem;
+}
+
+.bnv .control label,
+.bnv .control-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.65rem;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.bnv .control output {
+    color: var(--accent-cyan);
+    font-size: 1rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.bnv .control small {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.bnv .control p,
+.bnv .range-labels,
+.bnv .model-note {
+    margin-top: 0.45rem;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.7;
+}
+
+.bnv .range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+}
+
+.bnv .metrics {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 1rem 0.9rem 1.15rem;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    background: var(--bg-glass);
+}
+
+.bnv .metrics::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    background: linear-gradient(var(--accent-cyan), var(--accent-purple));
+}
+
+.bnv .metrics > span {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.bnv .metrics strong {
+    display: block;
+    margin: 0.2rem 0 0.75rem;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bnv .metrics strong small {
+    font-size: 0.9rem;
+    letter-spacing: 0;
+}
+
+.bnv .metrics > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 0.45rem 0;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+}
+
+.bnv .metrics b {
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.bnv .metrics p {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    line-height: 1.5;
+}
+
+.bnv .export-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.bnv .export-button:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.bnv .export-button i {
+    color: var(--accent-cyan);
+}
+
+.bnv .model-note {
+    margin-top: 0.75rem;
+    font-size: 0.68rem;
+}
+
+/* ---------- 力積のつり合い ---------- */
+.bnv .balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 1.5rem 1.75rem;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-glass);
+}
+
+.bnv .balance p {
+    max-width: 340px;
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.8;
+}
+
+.bnv .impulses {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.bnv .impulses > div {
+    min-width: 110px;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    text-align: center;
+}
+
+.bnv .impulses div > span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+}
+
+.bnv .impulses b {
+    color: var(--force-pos);
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.bnv .impulses > div:nth-of-type(2) b {
+    color: var(--force-neg);
+}
+
+.bnv .impulses small {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+}
+
+.bnv .impulses .equals {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.bnv .impulses .total {
+    border-color: var(--border-glow);
+}
+
+.bnv .impulses .total b {
+    font-size: 1.75rem;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ---------- 解説 ---------- */
+.bnv .learn {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 4.5rem 0 2.5rem;
+}
+
+.bnv .learn-title h2 {
+    margin: 0.2rem 0 1rem;
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+    line-height: 1.5;
+}
+
+.bnv .learn-title a {
+    color: var(--accent-cyan);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.bnv .learn-title a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.bnv .learn-title a i {
+    margin-left: 0.25rem;
+    font-size: 0.75em;
+}
+
+.bnv .learn-content {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.bnv .learn-content article {
+    display: flex;
+    gap: 1.1rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    transition: var(--transition);
+}
+
+.bnv .learn-content article:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: var(--shadow-hover);
+}
+
+.bnv .learn-content article > span {
+    flex-shrink: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bnv .learn-content h3 {
+    margin-top: 0.1rem;
+}
+
+.bnv .learn-content p {
+    margin-top: 0.45rem;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.85;
+}
+
+/* ---------- 計算モデル ---------- */
+.bnv .details {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bnv .details[open] {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-hover);
+}
+
+.bnv .details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+}
+
+.bnv .details summary::-webkit-details-marker {
+    display: none;
+}
+
+.bnv .details summary:hover {
+    color: var(--accent-cyan);
+}
+
+.bnv .details summary > span i {
+    margin-right: 0.6rem;
+    color: var(--accent-cyan);
+}
+
+.bnv .details-chevron {
+    color: var(--text-muted);
+    transition: transform 0.25s, color 0.25s;
+}
+
+.bnv .details[open] .details-chevron {
+    transform: rotate(180deg);
+    color: var(--accent-cyan);
+}
+
+.bnv .details-body {
+    margin: 0 1.25rem;
+    padding: 1.1rem 0 1.35rem;
+    border-top: 1px dashed var(--border-color);
+    line-height: 1.85;
+}
+
+.bnv .details-body p + p,
+.bnv .details-body pre + p,
+.bnv .details-body p + pre {
+    margin-top: 0.75rem;
+}
+
+.bnv .details-body strong {
+    color: var(--text-primary);
+}
+
+.bnv .details-body pre {
+    overflow: auto;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font: 0.85rem/1.8 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+/* ---------- 関連論文 ---------- */
+.bnv .references {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 4rem 0 1rem;
+}
+
+.bnv .references h2 {
+    margin-top: 0.2rem;
+}
+
+.bnv .reference-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.bnv .reference-list a {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    transition: var(--transition);
+}
+
+.bnv .reference-list a:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.bnv .reference-list b {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.bnv .reference-list a span {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+.bnv .reference-list a span:last-child {
+    color: var(--accent-cyan);
+    font-weight: 600;
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (min-width: 1500px) {
+    .bnv .mechanism { height: 320px; }
+}
+
+@media (max-width: 1050px) {
+    .bnv .workspace { grid-template-columns: minmax(0, 1fr) 230px; gap: 1.25rem; padding: 1.5rem; }
+    .bnv .controls { padding-left: 1.25rem; }
+    .bnv .sim-heading { padding: 1.5rem; }
+    .bnv .balance { align-items: flex-start; padding: 1.5rem; }
+    .bnv .balance > div:first-child { max-width: 260px; }
+    .bnv .impulses { gap: 10px; }
+    .bnv .impulses > div { min-width: 0; padding: 0.6rem 0.7rem; }
+    .bnv .impulses b { font-size: 1.15rem; }
+    .bnv .learn, .bnv .references { gap: 2rem; }
+    .bnv .transport { flex-wrap: wrap; }
+    .bnv .wave-caption { flex-wrap: wrap; }
+}
+
+@media (max-width: 760px) {
+    .page-hero .hero-note { padding: 0.8rem 1rem; }
+    .page-hero .note-number { font-size: 1.35rem; }
+    .page-hero .hero-note p { font-size: 0.82rem; }
+    .bnv-hero-buttons { margin-top: 1.5rem; }
+    .bnv-hero-buttons .btn { padding: 0.7rem 1.25rem; font-size: 0.88rem; }
+    .page-hero + .bnv { padding-top: 1.5rem; }
+    .bnv .simulator { border-radius: var(--radius-md); }
+    .bnv .sim-heading { display: block; padding: 1.25rem 1rem; }
+    .bnv .sim-heading h2 { font-size: 1.25rem; }
+    .bnv .mode-buttons { width: 100%; margin-top: 1rem; }
+    .bnv .mode-buttons button { width: 50%; }
+    .bnv .workspace { display: block; padding: 1rem; }
+    .bnv .mechanism { height: 245px; }
+    .bnv .scene-top, .bnv .scene-bottom { left: 12px; right: 12px; font-size: 0.6rem; }
+    .bnv .transport { gap: 6px; }
+    .bnv .transport .play-button { min-width: 100px; }
+    .bnv .transport .plain-button { padding: 0 0.6rem; }
+    .bnv .transport label { font-size: 0.7rem; }
+    .bnv .transport select { padding: 0.4rem 0.2rem; font-size: 0.75rem; }
+    .bnv .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.25rem; margin-top: 1.25rem; padding: 1.25rem 0 0; border-left: 0; border-top: 1px solid var(--border-color); }
+    .bnv .control-title, .bnv .metrics, .bnv .export-button, .bnv .model-note { grid-column: 1 / -1; }
+    .bnv .control-title { margin-bottom: 1.1rem; }
+    .bnv .control { margin-bottom: 1.25rem; }
+    .bnv .control:nth-of-type(2) { grid-column: 1 / -1; }
+    .bnv .control label, .bnv .control-label { font-size: 0.8rem; }
+    .bnv .control output { font-size: 0.9rem; }
+    .bnv .metrics strong { font-size: 1.75rem; }
+    .bnv .wave-heading { gap: 8px; }
+    .bnv .wave-heading h3 { font-size: 0.95rem; }
+    .bnv .wave-heading .eyebrow { font-size: 0.6rem; letter-spacing: 0.06em; }
+    .bnv .check { gap: 5px; font-size: 0.7rem; }
+    .bnv .wave-caption { font-size: 0.68rem; }
+    .bnv #waves { height: 320px; }
+    .bnv .balance { display: block; padding: 1.25rem 1rem; }
+    .bnv .balance > div:first-child, .bnv .balance p { max-width: none; }
+    .bnv .impulses { justify-content: space-between; gap: 6px; margin-top: 1.25rem; }
+    .bnv .impulses > div { flex: 1; padding: 0.55rem 0.3rem; }
+    .bnv .impulses div > span { font-size: 0.62rem; }
+    .bnv .impulses b { font-size: 1rem; }
+    .bnv .impulses .total b { font-size: 1.25rem; }
+    .bnv .impulses .equals { font-size: 0.85rem; }
+    .bnv .learn { display: block; padding-top: 3.5rem; }
+    .bnv .learn-title h2 br { display: none; }
+    .bnv .learn-content { margin-top: 1.5rem; }
+    .bnv .learn-content article { gap: 0.9rem; padding: 1.1rem 1rem; }
+    .bnv .learn-content article > span { font-size: 1.3rem; }
+    .bnv .learn-content p { font-size: 0.85rem; }
+    .bnv .details { font-size: 0.85rem; }
+    .bnv .details-body pre { font-size: 0.75rem; }
+    .bnv .references { display: block; padding-top: 3.5rem; }
+    .bnv .reference-list { margin-top: 1.25rem; }
+}
+
+/* 狭い画面では再生ボタンを記号だけにして、表示速度まで1行に収める（読み上げは aria-label） */
+@media (max-width: 480px) {
+    .bnv .transport .play-button { min-width: 52px; }
+    .bnv .play-button span { display: none; }
+}

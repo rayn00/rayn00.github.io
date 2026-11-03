@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {sample,stats,advancePhase,csv} from '../model.js';
+const p={amplitude:1,mass:20,frequency:10,asymmetry:.5,direction:1};
+const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
+test('motion, velocity and acceleration return to initial values after a cycle',()=>{for(const r of [0,.12,.5])for(const d of [-1,1]){const q={...p,asymmetry:r,direction:d};for(const k of ['x','v','a','force'])near(sample(0,q)[k],sample(1,q)[k]);}});
+test('stroke is exactly 2A for all allowed asymmetry values',()=>{for(const r of [0,.25,.5]){const q={...p,asymmetry:r};near(sample(0,q).x,.001);near(sample(.5,q).x,-.001);for(let i=0;i<=1000;i++)assert.ok(Math.abs(sample(i/1000,q).x)<=.001+1e-10);}});
+test('analytic derivatives agree with finite differences',()=>{const h=1e-5,dt=h/p.frequency;for(const phase of [.1,.24,.51,.8]){const s=sample(phase,p),prev=sample(phase-h,p),next=sample(phase+h,p);near((next.x-prev.x)/(2*dt),s.v,1e-8);near((next.v-prev.v)/(2*dt),s.a,2e-8);}});
+test('force on case is opposite to the mass acceleration',()=>{for(let i=0;i<100;i++){const s=sample(i/100,p);near(s.force,-p.mass/1000*s.a);}});
+test('symmetric peaks and positive/negative durations match',()=>{const s=stats({...p,asymmetry:0});near(s.max,-s.min);near(s.ratio,1);near(s.positiveFraction,.5);});
+test('r=0.5 gives two-to-one force peaks and a shorter strong phase',()=>{const s=stats(p);near(s.ratio,2,1e-5);assert.ok(s.positiveFraction<.5);});
+test('mean force and signed impulse cancel across parameter grid',()=>{for(const r of [0,.1,.5])for(const f of [3,10,50])for(const d of [-1,1]){const s=stats({...p,frequency:f,asymmetry:r,direction:d});near(s.mean,0,1e-12);near(s.positiveImpulse+s.negativeImpulse,0,1e-12);}});
+test('direction reversal negates every physical output and swaps impulses',()=>{for(let i=0;i<50;i++){const a=sample(i/50,p),b=sample(i/50,{...p,direction:-1});for(const k of ['x','v','a','force'])near(a[k],-b[k]);}const a=stats(p),b=stats({...p,direction:-1});near(a.positiveImpulse,-b.negativeImpulse);});
+test('frequency scales velocity linearly and force quadratically',()=>{const a=sample(.12,p),b=sample(.12,{...p,frequency:20});near(a.x,b.x);near(b.v,2*a.v);near(b.force,4*a.force);});
+test('amplitude and mass scale force independently',()=>{const a=sample(.2,p),b=sample(.2,{...p,mass:40,amplitude:2});near(b.force,4*a.force);near(b.x,2*a.x);});
+test('slow playback changes phase advance but not physical model',()=>{near(advancePhase(.9,1,10,.05),.4);near(advancePhase(.2,0,10,1),.2);near(advancePhase(.2,-1,10,1),.2);assert.ok(advancePhase(.9,100,50,1)<1);});
+test('CSV has 1001 finite samples and one exact physical period',()=>{const rows=csv(p).split('\n');assert.equal(rows.length,1002);const first=rows[1].split(',').map(Number),last=rows.at(-1).split(',').map(Number);near(first[0],0);near(last[0],.1);near(last[1],1);for(let i=2;i<7;i++)near(first[i],last[i]);for(const row of rows.slice(1))assert.ok(row.split(',').map(Number).every(Number.isFinite));});
