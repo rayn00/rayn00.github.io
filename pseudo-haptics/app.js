@@ -71,8 +71,10 @@ function reset(announce=true) {
   drag=null;previousPointer=null;targetIndex=0;hits=0;lifts=0;reachedTop=false;resetMotion();
   if(announce)status('リセットしました。'+DEMOS[mode].tip);
 }
+// Only accept the five demo keys (ignore '#constructor', '#__proto__' etc. in the URL).
+const isDemo = key => Object.prototype.hasOwnProperty.call(DEMOS, key);
 function setDemo(key) {
-  if(!DEMOS[key])return; mode=key;config=Object.fromEntries(DEMOS[key].params.map(p=>[p.key,p.value]));
+  if(!isDemo(key))return; mode=key;config=Object.fromEntries(DEMOS[key].params.map(p=>[p.key,p.value]));
   baseline=false;spaceHeld=false;running=false;inStage=false;stage.classList.remove('active');
   $('start-overlay').hidden=false;$('start-button').textContent='体験をはじめる ↗';$('stop-button').disabled=true;
   const d=DEMOS[key];
@@ -235,4 +237,4 @@ function fallbackFullscreen(enabled){stage.classList.toggle('expanded',enabled);
 async function exitFullscreen(){if(document.fullscreenElement)await document.exitFullscreen();fallbackFullscreen(false);$('fullscreen').setAttribute('aria-label','全画面表示');}
 $('fullscreen').addEventListener('click',async()=>{if(document.fullscreenElement||stage.classList.contains('expanded'))return exitFullscreen();try{if(stage.requestFullscreen)await stage.requestFullscreen();else fallbackFullscreen(true);}catch{fallbackFullscreen(true);}$('fullscreen').setAttribute('aria-label','全画面を終了');});
 $('fs-close').addEventListener('click',exitFullscreen);document.addEventListener('fullscreenchange',()=>{resize();if(!document.fullscreenElement)$('fullscreen').setAttribute('aria-label','全画面表示');});
-const initial=location.hash.slice(1);setDemo(DEMOS[initial]?initial:'delay');resize();requestAnimationFrame(tick);
+const initial=location.hash.slice(1);setDemo(isDemo(initial)?initial:'delay');resize();requestAnimationFrame(tick);
