@@ -6,7 +6,7 @@ const C = { bg:'#0d1422', grid:'#2a3240', ink:'#f0f4f8', muted:'#7d8ba1', lime:'
 const researchURL = 'https://www.amelab.vr.u-tokyo.ac.jp/research.html';
 const DEMOS = {
   delay: {n:'01',title:'遅れてくるカーソル',en:'CURSOR DELAY',category:'TEMPORAL MAPPING',description:'マウスを止めても、カーソルが少し遅れてついてくる。動きの「重さ」は変わるでしょうか。',tip:'オレンジのカーソルで、円の的をクリック',try:'素早く左右に動かしてから止めてみましょう。最後に0msに戻して、感覚の違いを比べます。',overlay:'マウスを動かして、カーソルの遅れを体験。',trace:'左右の位置',tag:'基礎デモ',research:'動きと視覚フィードバックの関係',researchText:'手の運動と画面上の応答に時間のずれを加える、疑似触覚の基礎デモです。AMELabが扱う、手やアバターの見え方を操作する研究への導入として使えます。',url:researchURL,scope:'このカーソル課題は説明用に作成したものです。AMELabの論文中の課題を再現したものではなく、重さや抵抗の感じ方には個人差があります。',params:[{key:'delay',label:'カーソルの遅延',unit:'ms',min:0,max:400,step:10,value:100,presets:[0,50,100,200]}]},
-  resistance: {n:'02',title:'抵抗を感じる領域',en:'RESISTANCE FIELD',category:'SPATIAL MAPPING',description:'中央の帯の中だけ、カーソルの移動量が変わる。同じマウスでも、通り抜けにくく感じるでしょうか。',tip:'中央の帯を横切り、左右の的を交互にクリック',try:'倍率0.25で帯を通り抜けてから、1.00に戻して比較。画面の端に届いたら、領域の外に出て入り直せます。',overlay:'中央の帯を横切って、移動倍率の違いを体験。',trace:'左右の位置',tag:'基礎デモ / 移動倍率',research:'動きの倍率から、抵抗を考える',researchText:'表示の移動量を入力の移動量より小さくする、空間的な対応付けのデモです。手や視点の動きを操作するAMELabの疑似触覚研究と共通する考え方を、カーソル操作で試します。',url:researchURL,scope:'領域内の倍率は「表示移動量 ÷ ブラウザが受信した入力移動量」です。物理的な摩擦や力は発生させていません。この課題は研究テーマに着想を得た教材です。',params:[{key:'gain',label:'領域内の移動倍率',unit:'×',min:.2,max:1.5,step:.05,value:.35,presets:[.25,.5,1,1.5],note:'小さいほど、同じ入力に対する表示の移動が小さくなります。'}]},
+  resistance: {n:'02',title:'抵抗を感じる領域',en:'RESISTANCE FIELD',category:'SPATIAL MAPPING',description:'中央の帯の中だけ、カーソルの移動量が変わる。同じマウスでも、通り抜けにくく感じるでしょうか。',tip:'中央の帯を横切り、左右の的を交互にクリック',try:'倍率0.25で帯を通り抜けてから、1.00に戻して比較。PCでは画面内をクリックして相対移動を開始（Escで解除）。非対応時はShiftを押してマウスを戻し、離して続行。タッチ操作は指を置き直して続行できます。',overlay:'中央の帯を横切って、移動倍率の違いを体験。',trace:'左右の位置',tag:'基礎デモ / 移動倍率',research:'動きの倍率から、抵抗を考える',researchText:'表示の移動量を入力の移動量より小さくする、空間的な対応付けのデモです。手や視点の動きを操作するAMELabの疑似触覚研究と共通する考え方を、カーソル操作で試します。',url:researchURL,scope:'領域内の倍率は「表示移動量 ÷ ブラウザが受信した入力移動量」です。物理的な摩擦や力は発生させていません。この課題は研究テーマに着想を得た教材です。',params:[{key:'gain',label:'領域内の移動倍率',unit:'×',min:.2,max:1.5,step:.05,value:.35,presets:[.25,.5,1,1.5],note:'小さいほど、同じ入力に対する表示の移動が小さくなります。'}]},
   cup: {n:'03',title:'持ち上げが遅れるカップ',en:'LIFT & DELAY',category:'ACTION PHASE',description:'カップを持ち上げるときの見え方を遅らせる。上げる動作と、下ろす動作を比べてみましょう。',tip:'画面内を押したまま上下にドラッグ',try:'上げる→止める→下ろす、を繰り返します。「持ち上げだけ」をオフにすると、下ろすときにも同じ遅延がかかります。',overlay:'押したまま上下にドラッグして、カップを持ち上げる。',trace:'持ち上げ高さ',tag:'関連研究 / 飲料体験',research:'ThickSipと、飲料体験のPseudo-haptics',researchText:'ThickSipは、VRでの手の見え方を操作して飲料体験を調べる研究です。このデモではカップの上下動に置き換え、持ち上げ中の時間的なずれを観察できます。',url:'https://doi.org/10.1145/3795011.3795026',scope:'飲用や口腔内の感覚、VRでの身体所有感は再現していません。研究条件そのものではなく、上昇・下降で視覚応答を変える説明用デモです。',params:[{key:'delay',label:'カップの遅延',unit:'ms',min:0,max:500,step:10,value:200,presets:[0,100,200,400]},{key:'liftOnly',label:'持ち上げだけ遅らせる',type:'toggle',value:true,note:'下ろす際は、上向きの跳びを防ぎながら入力の高さに合わせます。'}]},
   viewpoint: {n:'04',title:'視点が変える持ち上げ',en:'HAND × VIEWPOINT',category:'COUPLED MAPPING',description:'物体だけでなく、それを見る視点も動かす。手と背景の相対的な動きは、どう変わるでしょうか。',tip:'画面内を押したまま上下にドラッグ',try:'手の倍率を固定して、視点の倍率だけを変えてみましょう。床と物体の距離、画面上の持ち上がり方を見比べます。',overlay:'箱を持ち上げ、手と視点の倍率を比較。',trace:'手の上昇量',tag:'関連研究 / IEEE ISMAR 2025',research:'視点変化によるPseudo-haptics',researchText:'AMELabでは、仮想の手に加えて視点の上下移動も操作し、重さの知覚を変える研究を行っています。ここではマウスで箱を持ち上げながら、手と視点の倍率を独立に変更します。',url:'https://doi.org/10.1109/ismar67309.2025.00058',scope:'マウス操作を用いた投影図のデモです。頭部運動の計測やVR提示は行わず、元の実験の重さ知覚を再現・保証するものではありません。',params:[{key:'handGain',label:'手の移動倍率',unit:'×',min:.25,max:1.5,step:.05,value:.6,presets:[.5,1,1.5]},{key:'viewGain',label:'視点の移動倍率',unit:'×',min:-.5,max:.75,step:.05,value:.3,presets:[-.3,0,.3],note:'正：手と同じ方向に視点が上がる。負：逆方向に視点が動く。'}]},
   avatar: {n:'05',title:'手の回転とアバター',en:'AVATAR ROTATION',category:'BODY REPRESENTATION',description:'動かしたつもりの手と、見えている手の間に時間差がある。回転を切り返したときのずれを観察します。',tip:'押したまま左右にドラッグして、手を回す',try:'左右へ回し、止めてから反対向きに。入力ガイドを表示すると、入力とアバターの角度差を確認できます。',overlay:'押したまま左右にドラッグして、手の回転を操作。',trace:'回転角度',tag:'関連研究 / Scientific Reports 2022',research:'自己アバタの遅延と「ねじれ」の錯覚',researchText:'AMELabの関連研究では、手や腕の自己アバタの表示遅延が、ねじれの錯覚の方向に与える影響を調べています。このデモは、回転操作とアバター表示の時間差を可視化します。',url:'https://doi.org/10.1038/s41598-022-10543-y',scope:'マウスの左右移動を手の回転に対応付けた視覚デモです。腱への振動刺激は行わないため、研究で扱った運動錯覚そのものは再現しません。',params:[{key:'delay',label:'アバターの表示遅延',unit:'ms',min:0,max:500,step:10,value:200,presets:[0,100,200,400]},{key:'rotationGain',label:'回転の移動倍率',unit:'×',min:.5,max:1.5,step:.1,value:1,presets:[.5,1,1.5]}]}
@@ -74,7 +74,7 @@ function reset(announce=true) {
 // Only accept the five demo keys (ignore '#constructor', '#__proto__' etc. in the URL).
 const isDemo = key => Object.prototype.hasOwnProperty.call(DEMOS, key);
 function setDemo(key) {
-  if(!isDemo(key))return; mode=key;config=Object.fromEntries(DEMOS[key].params.map(p=>[p.key,p.value]));
+  if(!isDemo(key))return; releaseResistanceLock(); mode=key;config=Object.fromEntries(DEMOS[key].params.map(p=>[p.key,p.value]));
   baseline=false;spaceHeld=false;running=false;inStage=false;stage.classList.remove('active');
   $('start-overlay').hidden=false;$('start-button').textContent='体験をはじめる ↗';$('stop-button').disabled=true;
   const d=DEMOS[key];
@@ -89,15 +89,53 @@ function start() {
   running=true;inStage=false;$('start-overlay').hidden=true;$('stop-button').disabled=false;
   $('run-status').textContent='EXPERIMENT ACTIVE';stage.classList.add('active');stage.focus({preventScroll:true});reset(false);status(DEMOS[mode].tip+'。Spaceで基準と比較できます。');
 }
-function stop() {running=false;drag=null;spaceHeld=false;stage.classList.remove('active');$('start-overlay').hidden=false;$('start-button').textContent='もう一度体験する ↗';$('stop-button').disabled=true;$('run-status').textContent='PAUSED';updateLabels();status('体験を終了しました。通常のカーソルに戻りました。');}
+function stop() {releaseResistanceLock();running=false;drag=null;spaceHeld=false;stage.classList.remove('active');$('start-overlay').hidden=false;$('start-button').textContent='もう一度体験する ↗';$('stop-button').disabled=true;$('run-status').textContent='PAUSED';updateLabels();status('体験を終了しました。通常のカーソルに戻りました。');}
 function setBaseline(value) {baseline=value; resetMotion(); updateLabels();status(value?'基準条件：遅延なし・倍率1・視点移動なし。':'設定した効果に戻りました。');}
 
+let resistanceLockUnavailable=false, lockReleasedAt=-Infinity;
+// Browsers refuse a new lock for about a second after the user exits it with Esc.
+// Treat a failure right after a release as temporary; otherwise fall back to the Shift clutch.
+function lockFailed() {
+  if(performance.now()-lockReleasedAt<2000){if(running&&mode==='resistance')status('少し待ってから、もう一度画面内をクリックしてください。');return;}
+  resistanceLockUnavailable=true;
+  if(running&&mode==='resistance')status('相対移動を開始できませんでした。Shiftを押してマウスを戻し、離して続けてください。');
+}
+function releaseResistanceLock() {
+  if(document.pointerLockElement===canvas)document.exitPointerLock();
+}
+function requestResistanceLock() {
+  if(!canvas.requestPointerLock){status('Shiftを押してマウスを戻し、離して続けてください。');return;}
+  try {
+    const request=canvas.requestPointerLock();
+    if(request?.catch)request.catch(lockFailed);
+  } catch { lockFailed(); }
+}
+document.addEventListener('pointerlockchange',()=>{
+  previousPointer=null;inStage=false;drag=null;
+  if(document.pointerLockElement===canvas){
+    if(!running||mode!=='resistance'){releaseResistanceLock();return;}
+    status('相対移動中：左右の的をクリック。Escで解除して設定を変更できます。');
+  } else {lockReleasedAt=performance.now();if(running&&mode==='resistance')status('相対移動を解除しました。画面内をクリックして再開できます。');}
+});
+document.addEventListener('pointerlockerror',lockFailed);
+// Locked mouse coordinates are fixed; integrate movement deltas instead.
+document.addEventListener('mousemove',event=>{
+  if(!running||mode!=='resistance'||document.pointerLockElement!==canvas)return;
+  const dx=event.movementX/transform.scale,dy=event.movementY/transform.scale;
+  if(!Number.isFinite(dx)||!Number.isFinite(dy))return;
+  lastInputAt=performance.now();
+  output=advanceWithZone(output,dx,dy,effective()?config.gain:1);
+  pointer={x:clamp(pointer.x+dx,30,970),y:clamp(pointer.y+dy,70,490)};
+});
 function position(event) {
   const r=canvas.getBoundingClientRect();
   return {x:clamp((event.clientX-r.left-transform.x)/transform.scale,30,970),y:clamp((event.clientY-r.top-transform.y)/transform.scale,70,490)};
 }
 function acceptPointer(event) {
+  if(document.pointerLockElement===canvas&&mode==='resistance')return;
   const p=position(event), now=performance.now();lastInputAt=now;
+  // Clutch: reposition the physical pointer without moving the display cursor.
+  if(mode==='resistance'&&event.shiftKey){previousPointer=p;pointer={...p};inStage=true;return;}
   if(!inStage){inStage=true;previousPointer=p;pointer={...p};if(mode==='delay'){output={...p};pointerHistory.reset(now-1500,p);}}
   if(mode==='delay') {pointer=p;pointerHistory.push(now,p);}
   else if(mode==='resistance') {
@@ -121,6 +159,11 @@ canvas.addEventListener('pointermove',e=>{if(!running)return;if(e.pointerType!==
 canvas.addEventListener('pointerleave',()=>{if(!drag){inStage=false;previousPointer=null;}});
 canvas.addEventListener('pointerdown',e=>{
   if(!running)return;e.preventDefault();stage.focus({preventScroll:true});
+  if(mode==='resistance'&&e.pointerType==='mouse'){
+    if(document.pointerLockElement===canvas){hitTarget();return;}
+    if(!e.shiftKey&&!resistanceLockUnavailable&&canvas.requestPointerLock){requestResistanceLock();return;}
+  }
+  if(mode==='resistance'&&e.pointerType!=='mouse'){inStage=false;previousPointer=null;}
   if(!inStage)acceptPointer(e);
   const p=position(e);drag={id:e.pointerId,x:p.x,y:p.y,h:inputHeight,angle:inputAngle};
   canvas.setPointerCapture(e.pointerId);
@@ -221,7 +264,7 @@ document.addEventListener('keydown',e=>{
   if(e.target.matches('input,select,textarea')||e.ctrlKey||e.metaKey||e.altKey)return;
   if(e.code==='Space'&&running&&e.target===stage){e.preventDefault();if(!spaceHeld){spaceHeld=true;resetMotion();updateLabels();}}
   if(e.key.toLowerCase()==='r'&&running){e.preventDefault();reset();}
-  if(e.key==='Escape'){if(document.fullscreenElement||stage.classList.contains('expanded')){exitFullscreen();}else if(running)stop();}
+  if(e.key==='Escape'){if(document.pointerLockElement===canvas){releaseResistanceLock();return;}if(document.fullscreenElement||stage.classList.contains('expanded')){exitFullscreen();}else if(running)stop();}
 });
 document.addEventListener('keyup',e=>{if(e.code==='Space'&&spaceHeld){spaceHeld=false;resetMotion();updateLabels();}});
 window.addEventListener('blur',()=>{if(spaceHeld){spaceHeld=false;resetMotion();updateLabels();}drag=null;});
