@@ -157,9 +157,11 @@
 }
 
 .php .demo-name b {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    white-space: nowrap;
+    line-height: 1.4;
+    /* 長い名前は語句の切れ目で折り返す（対応ブラウザのみ。非対応では通常の折り返し） */
+    word-break: auto-phrase;
 }
 
 .php .demo-name small {
@@ -1189,3 +1191,16 @@
     .php .details { font-size: 0.85rem; }
     .php .fullscreen-bar button { padding: 0.5rem 0.6rem; font-size: 0.75rem; }
 }
+
+/* 設定値のないデモ（02 テクスチャ）では、空の設定欄を詰めて1列に並べる */
+.php #parameters:empty {
+    display: none;
+}
+
+@media (max-width: 620px) {
+    .php .settings:has(#parameters:empty) > * {
+        grid-column: 1 / -1;
+        grid-row: auto;
+    }
+}
+

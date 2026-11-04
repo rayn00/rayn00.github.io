@@ -113,7 +113,7 @@
             <nav class="demo-nav" aria-label="デモを選択">
                 <div class="nav-caption">Choose an Experiment <span>05</span></div>
                 <button class="demo-card active" data-demo="delay" aria-current="true"><span class="demo-num">01</span><span class="demo-icon"><i class="fa-solid fa-arrow-pointer" aria-hidden="true"></i></span><span class="demo-name"><b>遅れてくるカーソル</b><small>CURSOR DELAY</small></span><span class="demo-arrow"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></button>
-                <button class="demo-card" data-demo="resistance"><span class="demo-num">02</span><span class="demo-icon"><i class="fa-solid fa-grip-lines-vertical" aria-hidden="true"></i></span><span class="demo-name"><b>抵抗を感じる領域</b><small>RESISTANCE FIELD</small></span><span class="demo-arrow"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></button>
+                <button class="demo-card" data-demo="resistance"><span class="demo-num">02</span><span class="demo-icon"><i class="fa-solid fa-grip-lines-vertical" aria-hidden="true"></i></span><span class="demo-name"><b>テクスチャを感じるカーソル</b><small>TEXTURE</small></span><span class="demo-arrow"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></button>
                 <button class="demo-card" data-demo="cup"><span class="demo-num">03</span><span class="demo-icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span><span class="demo-name"><b>持ち上げが遅れるカップ</b><small>LIFT &amp; DELAY</small></span><span class="demo-arrow"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></button>
                 <button class="demo-card" data-demo="viewpoint"><span class="demo-num">04</span><span class="demo-icon"><i class="fa-solid fa-cube" aria-hidden="true"></i></span><span class="demo-name"><b>視点が変える持ち上げ</b><small>HAND × VIEWPOINT</small></span><span class="demo-arrow"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></button>
                 <button class="demo-card" data-demo="avatar"><span class="demo-num">05</span><span class="demo-icon"><i class="fa-solid fa-hand" aria-hidden="true"></i></span><span class="demo-name"><b>手の回転とアバター</b><small>AVATAR ROTATION</small></span><span class="demo-arrow"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></button>
@@ -187,11 +187,11 @@
         <details class="details">
             <summary><span><i class="fa-solid fa-gear" aria-hidden="true"></i>操作・実装・動作環境について</span><i class="fa-solid fa-chevron-down details-chevron" aria-hidden="true"></i></summary>
             <div>
-                <p>マウス入力を画面内のカーソルや物体へ対応付け、時間遅延や移動倍率を変更しています。操作中はデモ領域内だけOSのカーソルを隠し、描画したカーソルを表示します。領域の外に出ると通常のカーソルに戻ります。Escで体験を終了できます。デモ02（抵抗を感じる領域）では、PCで画面内をクリックするとポインターロックを使い、マウスの移動量（相対移動）で操作します。Escで解除でき、使えない環境ではShiftキーを押している間にマウスを戻して続けられます。</p>
+                <p>マウス入力を画面内のカーソルや物体へ対応付け、時間遅延や移動倍率を変更しています。操作中はデモ領域内だけOSのカーソルを隠し、描画したカーソルを表示します。領域の外に出ると通常のカーソルに戻ります。Escで体験を終了できます。デモ02（テクスチャを感じるカーソル）では、白黒の縞の境界で表示カーソルが約55ms止まり、その後入力位置に追いつきます。移動量の倍率は変えず、ポインターロックも使いません。</p>
                 <p>遅延は受信時刻を付けた入力の履歴から取り出します。表示の平滑化による疑似的な遅れは使いません。実際の反映時刻には描画周期・入力周期による誤差が加わります。マウスの物理移動量は測定せず、ブラウザが受信した座標を入力として扱います。</p>
-                <p>効果なしは遅延0ms、移動倍率1、視点移動0の基準条件です。デモ03は上昇方向だけ遅延を設定できます。下げる動作に切り替える際は上向きの跳びを防ぐため、表示が入力に追いつくまで高さを保持する場合があります。切り返しを含む動作全体が純粋な固定遅延になるわけではありません。</p>
+                <p>効果なしは遅延0ms、移動倍率1、視点移動0、縞の境界での停止なしの基準条件です（縞の表示は同じです）。デモ03は上昇方向だけ遅延を設定できます。下げる動作に切り替える際は上向きの跳びを防ぐため、表示が入力に追いつくまで高さを保持する場合があります。切り返しを含む動作全体が純粋な固定遅延になるわけではありません。</p>
                 <p>マウス・トラックパッド・タッチに対応します。タッチの指の位置やガイド表示は効果の感じ方に影響します。画面内の動きだけを試すページで、計測用の実験装置ではありません。センサーやカメラの許可、追加機器、外部ライブラリは不要です。入力データは送信・保存しません。</p>
-                <p>ショートカット：Spaceで基準条件に一時切替、Rでリセット、Escでポインターロックを解除（解除後は全画面を終了、通常表示中は体験を終了）。シーンにフォーカスして矢印キーで補助操作、Enterで的を選択できます。</p>
+                <p>ショートカット：Spaceで基準条件に一時切替、Rでリセット、Escで全画面を終了（通常表示中は体験を終了）。シーンにフォーカスして矢印キーで補助操作、Enterで的を選択できます。</p>
             </div>
         </details>
     </section>
