@@ -29,14 +29,6 @@ img/
   research/         研究紹介ページのカード画像（ファイル名は research/README.md）
 ```
 
-## 公開手順
-
-1. GitHub で新しいリポジトリを作る（公開設定は Public）。
-2. 「Add file」→「Upload files」で、このフォルダの中身をすべてアップロードして「Commit changes」。
-   - `.nojekyll` は隠しファイルのため、Finder やエクスプローラーで見えないことがあります。アップロードされなかった場合は「Add file」→「Create new file」で、名前を `.nojekyll`、中身を空にして作成してください。
-3. リポジトリの「Settings」→「Pages」で、Source を「Deploy from a branch」、Branch を「main」「/ (root)」にして「Save」。
-4. 数分後に `https://ユーザー名.github.io/リポジトリ名/` で公開されます。
-
 ## 顔写真の差し替え
 
 `img/members/` の同じ名前のファイルを、本物の写真で上書きしてください。
