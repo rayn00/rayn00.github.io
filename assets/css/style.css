@@ -1781,7 +1781,8 @@ a.partner-chip i {
 }
 
 .collab-photo {
-    flex: 0 0 300px;
+    flex: 0 0 260px;
+    max-width: 260px;
     aspect-ratio: 4 / 3;
     margin: 0;
     border-radius: var(--radius-md);
@@ -1810,6 +1811,7 @@ a.partner-chip i {
     .collab-photo {
         flex-basis: auto;
         width: 100%;
+        max-width: 360px;
     }
 }
 
