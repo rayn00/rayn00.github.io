@@ -262,6 +262,10 @@
         langBtn.setAttribute('lang', t('langLabelLang'));
         siteNav.setAttribute('aria-label', t('nav'));
         if (pubTabsGroup) pubTabsGroup.setAttribute('aria-label', t('filter'));
+        // 写真の説明（data-alt-ja / data-alt-en）
+        document.querySelectorAll('[data-alt-ja]').forEach(function (el) {
+            el.setAttribute('alt', el.getAttribute(lang === 'en' ? 'data-alt-en' : 'data-alt-ja'));
+        });
         // 入力欄の案内文（data-ph-ja / data-ph-en）
         document.querySelectorAll('[data-ph-ja]').forEach(function (el) {
             var ph = el.getAttribute(lang === 'en' ? 'data-ph-en' : 'data-ph-ja');
@@ -395,6 +399,21 @@
             });
             if (empty) empty.hidden = shown !== 0;
             updateCount();
+            updateYears();
+        }
+        // 年ごとの件数（publications.html）：年の見出しの横に、いまの絞り込み・検索で
+        // 表示されている件数を出す。data-year-counts を付けた一覧だけで動く
+        var yearCounts = list.hasAttribute('data-year-counts');
+        function updateYears() {
+            if (!yearCounts) return;
+            groups.forEach(function (g) {
+                var h = g.querySelector('.year-heading');
+                if (!h) return;
+                var n = g.querySelectorAll('[data-type]:not([hidden])').length;
+                var b = h.querySelector('.year-count');
+                if (!b) { b = document.createElement('span'); b.className = 'year-count'; h.appendChild(b); }
+                b.textContent = root.lang === 'en' ? n + (n === 1 ? ' item' : ' items') : n + '件';
+            });
         }
         tabs.forEach(function (tab) {
             var type = tab.getAttribute('data-filter');
@@ -420,7 +439,7 @@
         var hashType = location.hash.slice(1);
         var hashTab = tabs.filter(function (tb) { return tb.getAttribute('data-filter') === hashType; })[0];
         if (hashTab) hashTab.click(); else apply();
-        listCounters.push(updateCount);
+        listCounters.push(function () { updateCount(); updateYears(); });
     });
 
     /* ---------- タブ（配属・連携案内） ---------- */

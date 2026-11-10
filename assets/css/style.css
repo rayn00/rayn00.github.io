@@ -1278,6 +1278,19 @@ footer {
     background: var(--border-color);
 }
 
+/* 年ごとの件数（論文・発表一覧の見出しの横） */
+.year-count {
+    order: 1;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--text-muted);
+}
+
+.year-heading::after {
+    order: 2;
+}
+
 .empty-state {
     text-align: center;
     color: var(--text-muted);
@@ -1750,8 +1763,54 @@ a.partner-chip i {
     line-height: 1.4;
 }
 
-.collab-project > .pub-links {
+.collab-intro > .pub-links {
     margin-top: 0.6rem;
+}
+
+/* 各共同研究の写真（img/collaboration/<id>.jpg）。写真が無いときは枠ごと表示しない */
+.collab-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.collab-intro {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.collab-photo {
+    flex: 0 0 300px;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.collab-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.collab-photo.is-empty {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .collab-top {
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+
+    .collab-photo {
+        flex-basis: auto;
+        width: 100%;
+    }
 }
 
 .collab-outputs {

@@ -115,6 +115,8 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 
 - `<li class="pub-item" data-type="dom">` を `<li class="pub-item" data-type="dom" data-award>` にし、`<time …>…</time>` の次の行に `<span class="pub-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i> 日本バーチャルリアリティ学会 学術奨励賞（2026年）</span>` を入れます（発表と受賞の年が違うときは受賞年を添えます）。
 - `data-award` を付けた項目は、「受賞」タブにも表示され、トップページの受賞の件数にも数えられます。
+
+**年ごとの件数**：各年の見出しの横の件数は、項目から自動で数えます（手で直す必要はありません）。絞り込みタブや検索に合わせて数え直します。
 - 一覧に論文・発表が無い賞（本や研究全体への賞など）だけ、`data-type="award"` の項目にします。
 
 DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の1行を入れると DOI のリンクが表示されます（DOI の部分を2か所書き換えます）。DOI が無いもの（国内学会の予稿、招待講演など）は不要です。
