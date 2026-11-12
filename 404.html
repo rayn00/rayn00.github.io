@@ -154,7 +154,7 @@
             if (!parts.length) return;
 
             var first = decodeURIComponent(parts[0]).toLowerCase().replace(/\.html?$/, '');
-            var to = MOVED[first] || (/^openlab/.test(first) ? ['index.html#prospective', '配属・連携案内', 'Admissions'] : null);
+            var to = MOVED[first] || (/^openlab/.test(first) ? ['index.html#prospective', '研究室配属', 'Admissions'] : null);
             // 旧サイトの見出しへのリンク（#h.…）は、旧サイトのその記事を開けるように残す
             var oldAnchor = /^#h\./.test(location.hash);
             if (to && parts.length === 1 && !oldAnchor) {
