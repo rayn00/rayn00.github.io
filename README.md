@@ -27,6 +27,7 @@ img/
   ogp.png           SNSで共有したときの画像（1200×630）
   members/          メンバーの顔写真（伊藤・佐久間の2名は仮の画像）
   research/         研究紹介ページのカード画像（ファイル名は research/README.md）
+  collaboration/    共同研究・産学連携ページの写真（ファイル名は collaboration/README.md）
 ```
 
 ## 顔写真の差し替え
@@ -176,8 +177,10 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 ### 共同研究・産学連携を更新する（collaboration.html）
 
 - **主な共同研究と成果**：`<article class="collab-project" id="…">` 〜 `</article>` が1件分です。成果は、その中の `<li class="collab-output">` 〜 `</li>` を1件分コピーして書き換えます。DOI などのリンクは論文・発表一覧と同じ書き方です。
-- **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「企業・研究機関の方」タブにも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
-- トップページのタブにあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
+- **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「産学連携」の欄にも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
+- トップページの「産学連携」の欄にあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
+- 各共同研究の写真は `img/collaboration/` に入れます（ファイル名は `img/collaboration/README.md`）。
+- 「技術顧問・学術指導」の案内文は、collaboration.html の上部（`id="advisory"`）と、トップページの「産学連携」の欄（`advisory-box`）の2か所にあります。
 
 ### 研究紹介のカードに図・写真を入れる（research.html）
 
