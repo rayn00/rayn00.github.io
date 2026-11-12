@@ -24,7 +24,6 @@
 | 2014–2016 ぶるなび3 | `buru-navi3-2.jpg` | バーチャル釣りのデモ（EuroHaptics 2014） |
 | 東京大学での発展：総説論文 | `dev-review.jpg` | 総説論文の図など（横長 16:9、以下同じ） |
 | 東京大学での発展：VR空間での力の表現 | `dev-vr.jpg` | VRでの応用の様子 |
-| 東京大学での発展：重さの錯覚 | `dev-heaviness.jpg` | 指先でつまむ実験の様子 |
 | 東京大学での発展：運動錯覚との組み合わせ | `dev-synergy.jpg` | 腱振動と非対称振動を組み合わせた装置 |
 | 東京大学での発展：TractFree | `dev-tractfree.jpg` | TractFree の装置 |
 | 東京大学での発展：座面 | `dev-seat.jpg` | 振動子を並べた座面 |
@@ -38,7 +37,7 @@
 
 ## 報道のスクリーンショット（`img/buru-navi/media/`）
 
-「報道・紹介記事」の欄の、上に並ぶカード（区分ごとに4枚）に表示されます。横長 16:10（800×500px 程度）、150KB 以下を推奨します。
+「報道・紹介記事」の欄の、新聞・テレビ・雑誌の上に並ぶカード（区分ごとに4枚）に表示されます。Webニュースには画像を入れません。横長 16:10（800×500px 程度）、150KB 以下を推奨します。
 
 - スクリーンショットや紙面・誌面の画像を載せるときは、あらかじめ権利者（新聞社・放送局・出版社など）の了承を得てください。クレジット表記だけでは、掲載の許諾にはなりません。
 - 画像の下のクレジット（例：`© NHK`）は仮のものです。buru-navi.html の該当カードの `<p class="bn-credit">` を、権利者の指定する表記に書き換えてください。
@@ -48,17 +47,17 @@
 | --- | --- | --- | --- |
 | 2006.07.15 | New Scientist, No. 2560 | `media/newscientist-2006.jpg` | © New Scientist |
 | 2006.07.25 | 朝日新聞 夕刊3面 | `media/asahi-2006.jpg` | © 朝日新聞社 |
-| 2006.08.02 | NewScientist.com | `media/newscientist-web-2006.jpg` | © New Scientist |
 | 2006.08.28 | 日経エレクトロニクス No. 933, pp. 32–33 | `media/nikkei-electronics-2006.jpg` | © 日経BP |
 | 2007.02.01 | テレビ東京 ワールドビジネスサテライト「トレンドたまご」 | `media/wbs-2007.jpg` | © テレビ東京 |
 | 2009.10.17 | 朝日新聞 7面（土曜版Be「ナントカ学」） | `media/asahi-2009.jpg` | © 朝日新聞社 |
 | 2011.06.10 | 日本経済新聞 朝刊11面 | `media/nikkei-2011.jpg` | © 日本経済新聞社 |
-| 2011.06.21 | CNET News | `media/cnet-2011.jpg` | © CNET |
 | 2012.09.01 | フジテレビ あらゆる世界を見学せよ！リアルスコープＺ | `media/realscope-2012.jpg` | © フジテレビ |
 | 2014.01.30 | 日本経済新聞 夕刊1面 | `media/nikkei-2014.jpg` | © 日本経済新聞社 |
 | 2014.03.04 | テレビ東京 ワールドビジネスサテライト「トレンドたまご」 | `media/wbs-2014.jpg` | © テレビ東京 |
 | 2014.07 | 小学館「ドラえもん もっと！ふしぎのサイエンス Vol.4」 | `media/doraemon-2014.jpg` | © 藤子プロ・小学館 |
-| 2014.07.21 | MIT Technology Review | `media/mit-2014.jpg` | © MIT Technology Review |
-| 2014.07.22 | Mashable | `media/mashable-2014.jpg` | © Mashable |
 | 2016.04.28 | NHK World（国際放送） | `media/nhkworld-2016.jpg` | © NHK |
 | 2020.04 | 情報処理（情報処理学会誌）2020年4月号 | `media/ipsj-2020.jpg` | © 情報処理学会 |
+
+## 動画
+
+「東京大学での発展」の「重さの錯覚を、指先でつまんだ物へ」のカードには、写真の代わりに YouTube の動画（`SJzutYl1yaE`）を埋め込んでいます。別の動画にするときは、buru-navi.html の `youtube-nocookie.com/embed/SJzutYl1yaE` の動画IDを書き換えてください。
