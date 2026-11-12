@@ -987,7 +987,7 @@ footer {
     }
 }
 
-/* 1100px以下はハンバーガーメニュー（7項目が1行に収まらないため） */
+/* 1100px以下はハンバーガーメニュー（8項目が1行に収まらないため） */
 @media (max-width: 1100px) {
     .nav-container {
         gap: 0.5rem;
@@ -1593,55 +1593,10 @@ footer {
 }
 
 /* =====================================================================
-   配属・連携案内のタブ
+   研究室配属・産学連携（トップページの2つの案内）
    ===================================================================== */
-.tab-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.4rem;
-    width: fit-content;
-    max-width: 100%;
-    margin: -1.5rem auto 2.25rem;
-    padding: 0.35rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-}
-
-.tab-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.4rem;
-    border: 0;
-    border-radius: 10px;
-    background: transparent;
-    color: var(--text-secondary);
-    font: inherit;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.tab-btn:hover {
-    color: var(--accent-cyan);
-}
-
-.tab-btn[aria-selected="true"] {
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-    color: var(--on-accent);
-}
-
-.tab-btn:focus-visible {
-    outline: 2px solid var(--accent-cyan);
-    outline-offset: 2px;
-}
-
-.tab-panel[hidden] {
-    display: none;
+.section-panel + .section-panel {
+    margin-top: 2rem;
 }
 
 .tab-lead {
@@ -1860,16 +1815,6 @@ a.partner-chip i {
 }
 
 @media (max-width: 600px) {
-    .tab-list {
-        width: 100%;
-    }
-
-    .tab-btn {
-        flex: 1 1 auto;
-        padding: 0.6rem 0.9rem;
-        font-size: 0.85rem;
-    }
-
     .collab-project {
         padding: 1.5rem;
     }
@@ -3209,6 +3154,41 @@ a.partner-chip i {
 .contact-faq {
     margin-top: 0.9rem;
     text-align: center;
+}
+
+/* 企業の方：技術顧問・学術指導の案内 */
+.advisory-box {
+    max-width: 860px;
+    margin: 2.5rem auto 0;
+    padding: 1.5rem 1.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.advisory-box h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.05rem;
+}
+
+.advisory-box p {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+}
+
+.advisory-box .pub-links {
+    margin-top: 0.6rem;
+}
+
+/* 共同研究・産学連携ページの上部（4つの案内を2列で） */
+@media (min-width: 640px) {
+    .ways-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* 企業の方：相談の始め方 */

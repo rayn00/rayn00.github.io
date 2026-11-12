@@ -442,49 +442,6 @@
         listCounters.push(function () { updateCount(); updateYears(); });
     });
 
-    /* ---------- タブ（配属・連携案内） ---------- */
-    // <div data-tabs> の中の [role="tab"]（aria-controls でパネルを指定）で切り替える。
-    // index.html#industry のようにパネルのIDを付けたURLで開くと、そのタブを表示する
-    document.querySelectorAll('[data-tabs]').forEach(function (box) {
-        var tabs = Array.prototype.slice.call(box.querySelectorAll('[role="tab"]'));
-        var panels = tabs.map(function (tb) { return document.getElementById(tb.getAttribute('aria-controls')); });
-        function select(i, focus) {
-            tabs.forEach(function (tb, j) {
-                var on = i === j;
-                tb.setAttribute('aria-selected', String(on));
-                tb.tabIndex = on ? 0 : -1;
-                if (panels[j]) panels[j].hidden = !on;
-            });
-            if (focus) tabs[i].focus();
-        }
-        tabs.forEach(function (tb, i) {
-            tb.addEventListener('click', function () { select(i); });
-            tb.addEventListener('keydown', function (e) {
-                var n = tabs.length;
-                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    select((i + (e.key === 'ArrowRight' ? 1 : n - 1)) % n, true);
-                } else if (e.key === 'Home') { e.preventDefault(); select(0, true); }
-                else if (e.key === 'End') { e.preventDefault(); select(n - 1, true); }
-            });
-        });
-        function fromHash() {
-            var id = decodeURIComponent(location.hash.slice(1));
-            var target = id && document.getElementById(id);
-            if (!target) return;
-            for (var i = 0; i < panels.length; i++) {
-                if (panels[i] && (panels[i] === target || panels[i].contains(target))) {
-                    select(i);
-                    if (panels[i] === target) box.scrollIntoView({ block: 'start' });
-                    return;
-                }
-            }
-        }
-        select(0);
-        fromHash();
-        window.addEventListener('hashchange', fromHash);
-    });
-
     /* ---------- 研究テーマのショート動画 ---------- */
     // カードに data-short="YouTubeの動画ID" を付けると、カードのクリックで縦長の動画をポップアップ再生する。
     // 動画が複数あるときは data-short="ID1 ID2" のように空白で区切る（ポップアップ内の矢印で切り替え）。
