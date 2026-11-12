@@ -7,6 +7,7 @@
 - 16:9 からはみ出す部分は、上下または左右が切り取られて表示されます。
 - グラフや模式図など、切り取らずに全体を見せたい画像は、research.html の該当カードの
   `<figure class="card-media" data-media>` を `<figure class="card-media fit-contain" data-media>` にしてください（余白は白で表示）。
+- 写真や図を入れたら、research.html の該当カードの `<img>` に、内容の説明を `alt`・`data-alt-ja`（日本語）と `data-alt-en`（英語）で書いてください（画面を読み上げて使う方のための説明です）。
 - PNG を使うときは、research.html の該当カードの `.jpg` を `.png` に書き換えてください。
 
 | カードの見出し | ファイル名 |
@@ -16,7 +17,7 @@
 | 腱振動による物体の変形錯覚 | `deformation-illusion.jpg` |
 | VR空間の移動感覚に関する研究 | `virtual-walking.jpg` |
 | Pseudo-hapticsによる飲料体験変調の研究 | `pseudo-haptics-drink.jpg` |
-| 身体近傍空間のremappingの研究 | `peripersonal-space.jpg` |
+| 身体近傍空間のリマッピングの研究 | `peripersonal-space.jpg` |
 | 視点変化によるPseudo-haptics | `viewpoint-pseudo-haptics.jpg` |
 | ソーシャルVR空間でのVR講義 | `social-vr-lecture.jpg` |
 | アバタ技術を使った効果的な遠隔講義の研究 | `avatar-lecture.jpg` |
