@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- アクセス解析（Google アナリティクス。測定IDは assets/js/analytics.js） -->
+    <script src="assets/js/analytics.js" async></script>
+    <title>ぶるなびの歩み | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="非対称な振動で「引っ張られる」感覚を生み出す「ぶるなび」。2004年の最初の発表からぶるなび3までの系譜と、東京大学での発展を、論文・受賞・報道などの公開資料をもとに紹介します。">
+    <!-- 試作ページ：公開の準備ができたら、次の1行を消してください（検索エンジンに載せないための指定） -->
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="ぶるなびの歩み | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="非対称な振動で「引っ張られる」感覚を生み出す「ぶるなび」。2004年の最初の発表からぶるなび3までの系譜と、東京大学での発展を、論文・受賞・報道などの公開資料をもとに紹介します。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/buru-navi.html">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- このページ専用のスタイル（ぶるなびの歩み） -->
+    <style>
+        .bn-wrap { max-width: 1040px; margin: 0 auto; }
+        .bn-lead { max-width: 820px; margin: 0 auto 2.5rem; font-size: 1.05rem; line-height: 2; color: var(--text-secondary); }
+        .bn-lead strong { color: var(--text-primary); }
+        /* 数字で見る */
+        .bn-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+        .bn-stat { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1rem; text-align: center; }
+        .bn-stat b { display: block; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .bn-stat > span { font-size: 0.85rem; color: var(--text-secondary); }
+        .bn-stats-note { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-bottom: 3rem; }
+        /* 写真の枠（写真が無いあいだは、入れる写真の説明を表示） */
+        .bn-photo { position: relative; margin: 0; aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-secondary); }
+        .bn-photo.wide { aspect-ratio: 16 / 9; }
+        .bn-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .bn-photo .bn-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; padding: 1rem; text-align: center; font-size: 0.82rem; color: var(--text-muted); border: 2px dashed var(--border-color); border-radius: var(--radius-md); }
+        .bn-photo .bn-ph i { font-size: 1.6rem; opacity: 0.6; }
+        .bn-photo .bn-ph code { font-size: 0.75rem; }
+        .bn-photo.has-image .bn-ph { display: none; }
+        .bn-cap { margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+        /* 原理 */
+        .bn-principle { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 2rem; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 3.5rem; }
+        .bn-principle h2 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .bn-principle p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.75rem; }
+        /* 年表 */
+        .bn-timeline { position: relative; display: grid; gap: 2rem; padding-left: 1.75rem; border-left: 2px solid var(--border-color); margin-bottom: 3.5rem; }
+        .bn-era { position: relative; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; }
+        .bn-era::before { content: ''; position: absolute; left: calc(-1.75rem - 8px); top: 2.3rem; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 0 4px var(--bg-primary); }
+        .bn-era:target { border-color: var(--accent-cyan); }
+        .bn-era-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .bn-era > p { max-width: 820px; }
+        .bn-years { display: inline-block; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.04em; color: var(--accent-cyan); margin-bottom: 0.25rem; }
+        .bn-era h3 { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1rem; }
+        .bn-era p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.75rem; }
+        .bn-evidence { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .bn-evidence h4 { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.6rem; }
+        .bn-evidence .theme-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .bn-jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; list-style: none; margin: 0 0 2.5rem; padding: 0; }
+        /* 受賞・報道 */
+        .bn-list { list-style: none; display: grid; gap: 0.6rem; margin: 0 0 3rem; padding: 0; }
+        .bn-list li { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 1rem; align-items: baseline; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.9rem 1.1rem; }
+        .bn-list time { font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); font-variant-numeric: tabular-nums; }
+        .bn-list .bn-item-title { font-weight: 700; }
+        .bn-list .bn-item-sub { font-size: 0.88rem; color: var(--text-secondary); }
+        .bn-list .theme-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+        /* 開発チーム */
+        .bn-team { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem; }
+        .bn-team h2 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .bn-team p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.9rem; }
+        .bn-members { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1rem; padding: 0; }
+        .bn-members li { padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 30px; background: var(--bg-glass); font-weight: 700; font-size: 0.95rem; }
+        .bn-members small { display: block; font-weight: 500; font-size: 0.75rem; color: var(--text-muted); }
+        /* 系譜の流れ */
+        .bn-flow { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.6rem; margin: 0 0 2.5rem; padding: 0; }
+        .bn-flow li { position: relative; }
+        .bn-flow a { display: block; height: 100%; padding: 0.9rem 0.8rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-card); text-decoration: none; color: var(--text-primary); text-align: center; transition: var(--transition); }
+        .bn-flow a:hover { border-color: var(--accent-cyan); }
+        .bn-flow b { display: block; font-size: 0.8rem; color: var(--accent-cyan); }
+        .bn-flow span.t { font-size: 0.9rem; font-weight: 700; line-height: 1.5; }
+        .bn-flow li:not(:last-child)::after { content: '\203A'; position: absolute; right: -0.48rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; z-index: 1; }
+        .bn-flow li.next a { border-color: var(--accent-purple-text); }
+        .bn-flow li.next b { color: var(--accent-purple-text); }
+        /* 東京大学での発展 */
+        .bn-dev-head { max-width: 860px; margin-bottom: 1.75rem; }
+        .bn-dev-head p { color: var(--text-secondary); line-height: 1.9; }
+        .bn-dev { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem; }
+        .bn-dev-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; }
+        .bn-from { display: inline-flex; align-items: baseline; gap: 0.4rem; align-self: flex-start; margin-bottom: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 30px; border: 1px solid var(--border-color); background: var(--bg-glass); font-size: 0.78rem; font-weight: 700; color: var(--accent-cyan); text-decoration: none; }
+        .bn-from:hover { border-color: var(--accent-cyan); }
+        .bn-dev-photo { margin-bottom: 1rem; }
+        .bn-dev-card h3 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.5rem; }
+        .bn-dev-card > p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.8; margin-bottom: 0.9rem; }
+        .bn-ref { margin-top: auto; padding-top: 0.9rem; border-top: 1px solid var(--border-color); font-size: 0.85rem; }
+        .bn-ref .pub-title { font-weight: 700; font-size: 0.9rem; }
+        .bn-ref .pub-authors, .bn-ref .pub-venue { color: var(--text-secondary); }
+        .bn-ref .theme-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .bn-talk { background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 3.5rem; font-size: 0.92rem; color: var(--text-secondary); }
+        .bn-talk strong { color: var(--text-primary); }
+        /* 報道（スクリーンショットの枠つき） */
+        .bn-media-cat { font-size: 1.05rem; margin: 1.75rem 0 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+        .bn-media-cat::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
+        .bn-media-cat small { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+        .bn-media { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+        .bn-press { list-style: none; margin: 0 0 2.5rem; padding: 0; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-card); }
+        .bn-press li { display: grid; grid-template-columns: 6.2rem minmax(0, 15rem) minmax(0, 1fr); gap: 0.9rem; align-items: baseline; padding: 0.6rem 1rem; border-bottom: 1px solid var(--border-color); font-size: 0.86rem; line-height: 1.6; }
+        .bn-press li:last-child { border-bottom: 0; }
+        .bn-press time { font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); font-variant-numeric: tabular-nums; }
+        .bn-press-outlet { font-weight: 700; }
+        .bn-press-title { color: var(--text-secondary); }
+        .bn-press-title a { color: var(--text-secondary); text-decoration: underline; text-decoration-color: var(--border-color); text-underline-offset: 3px; }
+        .bn-press-title a:hover { color: var(--accent-cyan); }
+        .bn-press-title a i { font-size: 0.7em; opacity: 0.7; }
+        .bn-media-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.8rem; }
+        .bn-media-card.todo { border-style: dashed; }
+        .bn-media-card .bn-photo { aspect-ratio: 16 / 10; }
+        .bn-credit { margin: 0.35rem 0 0.75rem; font-size: 0.72rem; color: var(--text-muted); text-align: right; }
+        .bn-media-card time { font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); font-variant-numeric: tabular-nums; }
+        .bn-media-card h4 { font-size: 0.9rem; line-height: 1.5; margin: 0.15rem 0 0.35rem; }
+        .bn-media-card .bn-ph code { word-break: break-all; }
+        .bn-media-card p.bn-media-title { font-size: 0.82rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 0.75rem; }
+        .bn-media-card .theme-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .bn-scope { display: flex; gap: 0.7rem; align-items: baseline; margin: -1.5rem 0 3.5rem; padding: 1.1rem 1.3rem; border: 1px solid var(--border-color); border-left: 3px solid var(--accent-cyan); border-radius: var(--radius-md); background: var(--bg-glass); font-size: 0.92rem; line-height: 1.9; color: var(--text-secondary); }
+        .bn-scope strong { color: var(--text-primary); }
+        .bn-scope i { color: var(--accent-cyan); }
+        .bn-award-picks { margin-bottom: 1.25rem; }
+        .bn-h2 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+        .bn-h2-note { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .bn-notes { font-size: 0.85rem; line-height: 1.9; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+        .bn-notes li { margin-left: 1.2rem; }
+        @media (min-width: 601px) and (max-width: 1100px) { .bn-media { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 600px) { .bn-media { grid-template-columns: 1fr; } }
+        @media (max-width: 860px) {
+            .bn-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .bn-principle, .bn-team, .bn-dev { grid-template-columns: 1fr; }
+            .bn-era-photos { grid-template-columns: 1fr; }
+            .bn-flow { grid-template-columns: 1fr 1fr; }
+            .bn-press li { grid-template-columns: 1fr; gap: 0.1rem; }
+            .bn-flow li::after { display: none; }
+            .bn-era { padding: 1.5rem; }
+            .bn-timeline { padding-left: 1.1rem; }
+            .bn-era::before { left: calc(-1.1rem - 8px); }
+            .bn-list li { grid-template-columns: 1fr; gap: 0.2rem; }
+        }
+    </style>
+</head>
+<body data-title-ja="ぶるなびの歩み | 雨宮研究室 AME LAB" data-title-en="The Story of Buru-Navi | AME LAB, The University of Tokyo" data-desc-ja="非対称な振動で「引っ張られる」感覚を生み出す「ぶるなび」。2004年の最初の発表からぶるなび3までの系譜と、東京大学での発展を、論文・受賞・報道などの公開資料をもとに紹介します。" data-desc-en="Buru-Navi creates the sensation of being pulled with asymmetric vibration. Its lineage from the first presentation in 2004 to Buru-Navi3, and how the work has developed at the University of Tokyo, told through papers, awards and press coverage.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#prospective" class="nav-link"><span class="ja">研究室配属</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#industry" class="nav-link"><span class="ja">産学連携</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <a href="research.html#past-pulling"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">ぶるなびの歩み</span><span class="en" lang="en">The Story of Buru-Navi</span></span>
+            </nav>
+            <span class="section-tag">Buru-Navi</span>
+            <h1 class="page-title"><span class="ja">ぶるなびの歩み</span><span class="en" lang="en">The Story of Buru-Navi</span></h1>
+            <p class="hero-subtitle"><span class="ja">非対称な振動で「引っ張られる」感覚を生み出す。2004年の最初の発表から、現在の研究まで。</span><span class="en" lang="en">Creating the sensation of being pulled with asymmetric vibration: from the first presentation in 2004 to today’s research.</span></p>
+        </div>
+    </section>
+
+    <section id="story">
+        <div class="bn-wrap">
+            <p class="bn-lead"><span class="ja">「ぶるなび」は、手に持った装置を非対称に振動させることで、<strong>どこにも固定していないのに、一方向へ引っ張られるように感じさせる</strong>技術です（牽引力錯覚）。雨宮智浩は、安藤英由樹・前田太郎とともに、<strong>2004年9月の日本バーチャルリアリティ学会 第9回大会でこの手法を初めて発表</strong>し、この発表により2005年3月に同学会の学術奨励賞を受賞しました。その後、初号機からぶるなび3まで装置の小型化を進め、知覚の仕組みの解明や歩行ナビゲーションへの応用に取り組みました。2019年に東京大学へ移ってからは、この研究をVRや新しい提示部位へと発展させています。このページでは、論文・受賞・報道などの公開されている資料をもとに、その歩みを紹介します。</span><span class="en" lang="en">Buru-Navi is a technique that vibrates a handheld device asymmetrically so that it <strong>feels as if it is pulling in one direction even though it is not fixed to anything</strong> (the pulling illusion). Together with Hideyuki Ando and Taro Maeda, Tomohiro Amemiya <strong>first presented the method at the 9th Annual Conference of the Virtual Reality Society of Japan in September 2004</strong>, and for this presentation he received the society’s presentation award in March 2005. He went on to make the device smaller, from the first model to Buru-Navi3, while studying how the sensation is perceived and applying it to pedestrian navigation. Since moving to the University of Tokyo in 2019, he has extended this research to VR and to new parts of the body. This page tells that story through publicly available papers, awards and press coverage.</span></p>
+
+            <div class="bn-stats">
+                <div class="bn-stat"><b>2004</b><span class="ja">最初の発表（日本VR学会 第9回大会）</span><span class="en" lang="en">First presentation (9th VRSJ Annual Conference)</span></div>
+                <div class="bn-stat"><b>250 g → 42 g</b><span class="ja">初号機（2007年）からぶるなび3（2014年）へ</span><span class="en" lang="en">From the first model (2007) to Buru-Navi3 (2014)</span></div>
+                <div class="bn-stat"><b>34</b><span class="ja">このページで参照している論文の数</span><span class="en" lang="en">Papers cited on this page</span></div>
+                <div class="bn-stat"><b>68</b><span class="ja">新聞・テレビ・雑誌・Webでの紹介（下の一覧）</span><span class="en" lang="en">Items of press coverage (listed below)</span></div>
+            </div>
+            <p class="bn-stats-note"><span class="ja">それぞれの根拠は、下の各欄の「根拠となる論文・発表資料」に示しています。</span><span class="en" lang="en">The evidence for each figure is given under “Papers and presentation records” in the sections below.</span></p>
+
+            <div class="bn-team" id="team">
+                <div>
+                    <h2><span class="ja">初期開発チーム</span><span class="en" lang="en">The original development team</span></h2>
+                    <p><span class="ja">ぶるなびは、NTTコミュニケーション科学基礎研究所の3名の研究チームから生まれました。2004年の最初の発表から、2006年の論文誌、2007年の Laval Virtual での受賞まで、この3名で発表しています。</span><span class="en" lang="en">Buru-Navi was born from a team of three researchers at NTT Communication Science Laboratories. From the first presentation in 2004 through the journal paper in 2006 to the award at Laval Virtual in 2007, the work was presented by these three.</span></p>
+                    <ul class="bn-members">
+                        <li><span class="ja">雨宮 智浩</span><span class="en" lang="en">Tomohiro Amemiya</span><small><span class="ja">現 東京大学 教授</span><span class="en" lang="en">Now Professor, The University of Tokyo</span></small></li>
+                        <li><span class="ja">安藤 英由樹</span><span class="en" lang="en">Hideyuki Ando</span><small><span class="ja">現 大阪芸術大学 教授</span><span class="en" lang="en">Now Professor, Osaka University of Arts</span></small></li>
+                        <li><span class="ja">前田 太郎</span><span class="en" lang="en">Taro Maeda</span><small><span class="ja">現 大阪大学 教授</span><span class="en" lang="en">Now Professor, Osaka University</span></small></li>
+                    </ul>
+                    <div class="theme-links">
+                        <a href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=200902293880279504" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">日本VR学会 第9回大会 論文集（2004年、J-GLOBAL）</span><span class="en" lang="en">Proc. 9th VRSJ Annual Conference (2004; J-GLOBAL, Japanese)</span></a>
+                        <a href="https://doi.org/10.18974/tvrsj.11.1_47" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">日本VR学会論文誌 2006</span><span class="en" lang="en">Trans. VRSJ 2006</span></a>
+                        <a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a>
+                    </div>
+                </div>
+                <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/team.jpg</code></span>
+                            <img src="img/buru-navi/team.jpg" alt="初期開発チーム（2004〜2006年ごろ）" data-alt-ja="初期開発チーム（2004〜2006年ごろ）" data-alt-en="The original development team (c. 2004–2006)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">初期開発チーム（2004〜2006年ごろ）</span><span class="en" lang="en">The original development team (c. 2004–2006)</span></p>
+                    </div>
+            </div>
+
+            <div class="bn-principle" id="principle">
+                <div>
+                    <h2><span class="ja">引っ張られる感覚の仕組み</span><span class="en" lang="en">How the pulling sensation works</span></h2>
+                    <p><span class="ja">ぶるなびは、装置内部のおもりの往復運動を利用し、手に伝わる振動の加速度波形を非対称にする装置です。振動による力は1周期で平均すると釣り合っていても、持っている人には、一方向に引っ張られるように感じられます。この「牽引力錯覚」には、人が刺激の強さや時間的な変化を感じ取る際の非線形な特性が関係すると考えられています。</span><span class="en" lang="en">Buru-Navi uses the back-and-forth motion of a weight inside the device to make the acceleration waveform of the vibration transmitted to the hand asymmetric. Even though the force of the vibration balances out when averaged over one cycle, the person holding the device feels as if it is pulling in one direction. This “pulling illusion” is thought to involve the nonlinear characteristics with which people perceive the intensity and temporal change of stimuli.</span></p>
+                    <p><span class="ja">この錯覚が生じる生理学的な仕組みには、まだ解明されていない点が残されています。</span><span class="en" lang="en">Parts of the physiological mechanism behind the illusion remain to be clarified.</span></p>
+                    <div class="bn-evidence" style="margin: 0 0 1rem; padding-top: 0.9rem;">
+                        <h4><span class="ja">根拠となる論文</span><span class="en" lang="en">Papers</span></h4>
+                        <div class="theme-links"><a href="https://doi.org/10.1007/978-3-662-44196-1_12" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> EuroHaptics 2014</a><a href="https://doi.org/10.18974/tvrsj.25.4_291" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">日本VR学会論文誌 2020（解説論文）</span><span class="en" lang="en">Trans. VRSJ 2020 (review)</span></a></div>
+                    </div>
+                    <div class="theme-links">
+                        <a href="buru-navi-simulator/" class="chip-link"><i class="fa-solid fa-wave-square" aria-hidden="true"></i> <span class="ja">非対称振動シミュレーターで確かめる</span><span class="en" lang="en">Try the asymmetric vibration simulator</span></a>
+                        <a href="research.html#past-pulling" class="chip-link"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">研究紹介で各研究を見る</span><span class="en" lang="en">See each study on the Research page</span></a>
+                    </div>
+                </div>
+                <div>
+                        <figure class="bn-photo wide" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/principle.jpg</code></span>
+                            <img src="img/buru-navi/principle.jpg" alt="非対称振動の原理の図" data-alt-ja="非対称振動の原理の図" data-alt-en="Diagram of the principle of asymmetric vibration" width="960" height="540" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">非対称振動の原理の図</span><span class="en" lang="en">Diagram of the principle of asymmetric vibration</span></p>
+                    </div>
+            </div>
+
+            <h2 class="bn-h2" id="timeline"><span class="ja">ぶるなびの系譜（2004–2016）</span><span class="en" lang="en">The Buru-Navi lineage (2004–2016)</span></h2>
+            <p class="bn-h2-note"><span class="ja">最初の発表からぶるなび3までを、できごとと、その根拠となる論文・発表資料で示します。報道などの紹介記事は、当時どのように紹介されたかを示す資料として、分けて載せています。</span><span class="en" lang="en">From the first presentation to Buru-Navi3: what happened, with the papers and presentation records that support it. Press and other articles are listed separately, as a record of how the work was introduced at the time.</span></p>
+            <ol class="bn-flow">
+                <li><a href="#origin"><b>2004</b><span class="t"><span class="ja">原理の提案と最初の発表</span><span class="en" lang="en">Principle and first presentation</span></span></a></li>
+                <li><a href="#bn1"><b>2007</b><span class="t"><span class="ja">ぶるなび 初号機</span><span class="en" lang="en">First Buru-Navi</span></span></a></li>
+                <li><a href="#bn2"><b>2009</b><span class="t"><span class="ja">ぶるなび2</span><span class="en" lang="en">Buru-Navi2</span></span></a></li>
+                <li><a href="#bn3"><b>2014</b><span class="t"><span class="ja">ぶるなび3</span><span class="en" lang="en">Buru-Navi3</span></span></a></li>
+                <li class="next"><a href="#utokyo"><b>2019–</b><span class="t"><span class="ja">東京大学での発展</span><span class="en" lang="en">At the University of Tokyo</span></span></a></li>
+            </ol>
+
+            <div class="bn-timeline">
+            <article class="bn-era" id="origin">
+                <span class="bn-years">2004–2006</span>
+                <h3><span class="ja">原理の提案</span><span class="en" lang="en">Proposing the principle</span></h3>
+                        <p><span class="ja">2004年9月、雨宮智浩・安藤英由樹・前田太郎（いずれも当時 NTTコミュニケーション科学基礎研究所）の3名は、日本バーチャルリアリティ学会 第9回大会で「偏加速度周期運動による把持型方向誘導デバイスの開発」を発表しました。これが、この手法の最初の発表です。この発表により、雨宮は2005年3月に同学会の学術奨励賞（口頭発表部門）を受賞しました。</span><span class="en" lang="en">In September 2004, Tomohiro Amemiya, Hideyuki Ando and Taro Maeda (all then at NTT Communication Science Laboratories) presented “Development of Direction Guidance Device using Biased Acceleration in Periodic Motion” at the 9th Annual Conference of the Virtual Reality Society of Japan (VRSJ). This was the first presentation of the method. For this presentation, Amemiya received the society’s presentation award (oral presentation category) in March 2005.</span></p>
+                        <p><span class="ja">装置内部のおもりの往復運動を利用して、手に伝わる振動の加速度波形を非対称にすると、どこにも固定していない装置でも、一方向に引っ張られるように感じられることを示しました。人が刺激の強さや時間的な変化を感じ取る際の、非線形な特性に着目した手法です。</span><span class="en" lang="en">Using the back-and-forth motion of a weight inside the device to make the acceleration waveform of the vibration transmitted to the hand asymmetric, the team showed that even an ungrounded device is felt to pull in one direction. The method focuses on the nonlinear characteristics with which people perceive the intensity and temporal change of stimuli.</span></p>
+                        <p><span class="ja">2005年3月には World Haptics（イタリア・ピサ）で国際会議の論文として発表し、2006年8月には SIGGRAPH の Emerging Technologies で展示しました。同じ年、3名による論文が日本バーチャルリアリティ学会論文誌に掲載されました。「ぶるなび」という名前も、この年から使っています。この年の展示は、朝日新聞や英国の New Scientist などで報じられています。</span><span class="en" lang="en">In March 2005 the work was presented internationally at World Haptics in Pisa, Italy, and in August 2006 the device was exhibited at SIGGRAPH Emerging Technologies. A journal paper by the three authors appeared in the Transactions of the VRSJ the same year. The name “Buru-Navi” has also been in use since that year. The 2006 exhibition was reported by the Asahi Shimbun in Japan and by New Scientist in the UK, among others.</span></p>
+                <div class="bn-era-photos">
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/origin-1.jpg</code></span>
+                            <img src="img/buru-navi/origin-1.jpg" alt="最初の試作機（2004年ごろ）" data-alt-ja="最初の試作機（2004年ごろ）" data-alt-en="The first prototype (c. 2004)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">最初の試作機（2004年ごろ）</span><span class="en" lang="en">The first prototype (c. 2004)</span></p>
+                    </div>
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/origin-2.jpg</code></span>
+                            <img src="img/buru-navi/origin-2.jpg" alt="SIGGRAPH 2006 Emerging Technologies での展示" data-alt-ja="SIGGRAPH 2006 Emerging Technologies での展示" data-alt-en="Exhibit at SIGGRAPH 2006 Emerging Technologies" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">SIGGRAPH 2006 Emerging Technologies での展示</span><span class="en" lang="en">Exhibit at SIGGRAPH 2006 Emerging Technologies</span></p>
+                    </div>
+                </div>
+                <div class="bn-evidence">
+                    <h4><span class="ja">根拠となる論文・発表資料</span><span class="en" lang="en">Papers and presentation records</span></h4>
+                    <div class="theme-links">
+                            <a href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=200902293880279504" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">日本VR学会 第9回大会 論文集（2004年、J-GLOBAL）</span><span class="en" lang="en">Proc. 9th VRSJ Annual Conference (2004; J-GLOBAL, Japanese)</span></a>
+                            <a href="https://vrsj.org/awards/best_presentions/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-trophy" aria-hidden="true"></i> <span class="ja">日本VR学会 学術奨励賞 受賞者一覧</span><span class="en" lang="en">VRSJ presentation award list (Japanese)</span></a>
+                            <a href="https://doi.org/10.1109/WHC.2005.146" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> World Haptics 2005</a>
+                            <a href="https://doi.org/10.1145/1179133.1179160" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> SIGGRAPH 2006 Emerging Technologies</a>
+                            <a href="https://doi.org/10.18974/tvrsj.11.1_47" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">日本VR学会論文誌 2006</span><span class="en" lang="en">Trans. VRSJ 2006</span></a>
+                    </div>
+                    <h4 style="margin-top: 0.9rem;"><span class="ja">当時の紹介記事</span><span class="en" lang="en">Coverage at the time</span></h4>
+                    <div class="theme-links">
+                            <a href="https://www.technologyreview.com/2014/07/21/171986/could-force-illusions-help-wearables-catch-on/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">MIT Technology Review（2014年7月）</span><span class="en" lang="en">MIT Technology Review (July 2014)</span></a>
+                    </div>
+                </div>
+            </article>
+            <article class="bn-era" id="bn1">
+                <span class="bn-years">2007–2009</span>
+                <h3><span class="ja">「ぶるなび」初号機</span><span class="en" lang="en">The first Buru-Navi</span></h3>
+                        <p><span class="ja">2007年には、手に持って使う「ぶるなび」初号機を公開しました。コードレス電話ほどの大きさの箱形で、重さは約250 g。筒の中のおもりを、スライダクランク機構で非対称に往復させます。</span><span class="en" lang="en">In 2007, the first handheld Buru-Navi was shown to the public: a box about the size of a cordless phone, weighing about 250 g, in which a slider-crank mechanism moves a weight back and forth asymmetrically inside a cylinder.</span></p>
+                        <p><span class="ja">同年2月にはテレビ東京「ワールドビジネスサテライト」で紹介され、4月にはフランスのVRの祭典 Laval Virtual で審査員グランプリ（Grand Prix du Jury）を受賞しました。</span><span class="en" lang="en">In February 2007 it was featured on TV Tokyo’s “World Business Satellite”, and in April it received the Grand Prix du Jury at Laval Virtual in France.</span></p>
+                        <p><span class="ja">この時期に、引っ張られる感覚が生じる条件や、方向をどの程度正しく感じ取れるかといった知覚特性を明らかにし、非対称振動で物の重さの感じ方が変わることも示しました。非対称な加速度を効率よく生み出す機構の設計や、初心者のウェイターに客の場所を伝えるお盆などの応用にも取り組みました。</span><span class="en" lang="en">In this period, the perceptual characteristics of the sensation were clarified, including the conditions under which it arises and how accurately its direction is perceived, and asymmetric oscillation was shown to change the perceived heaviness of an object. Work also covered mechanisms that generate asymmetric acceleration efficiently, and applications such as a tray that tells novice waiters where a customer is.</span></p>
+                <div class="bn-era-photos">
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi1-1.jpg</code></span>
+                            <img src="img/buru-navi/buru-navi1-1.jpg" alt="「ぶるなび」初号機（2007年、約250 g）" data-alt-ja="「ぶるなび」初号機（2007年、約250 g）" data-alt-en="The first Buru-Navi (2007, about 250 g)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">「ぶるなび」初号機（2007年、約250 g）</span><span class="en" lang="en">The first Buru-Navi (2007, about 250 g)</span></p>
+                    </div>
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi1-2.jpg</code></span>
+                            <img src="img/buru-navi/buru-navi1-2.jpg" alt="Laval Virtual 2007 での展示・受賞" data-alt-ja="Laval Virtual 2007 での展示・受賞" data-alt-en="Exhibit and award at Laval Virtual 2007" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">Laval Virtual 2007 での展示・受賞</span><span class="en" lang="en">Exhibit and award at Laval Virtual 2007</span></p>
+                    </div>
+                </div>
+                <div class="bn-evidence">
+                    <h4><span class="ja">根拠となる論文・発表資料</span><span class="en" lang="en">Papers and presentation records</span></h4>
+                    <div class="theme-links">
+                            <a href="https://doi.org/10.1145/1402236.1402239" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> ACM Trans. Applied Perception 2008</a>
+                            <a href="https://doi.org/10.1109/toh.2008.5" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> IEEE Trans. Haptics 2008</a>
+                            <a href="https://doi.org/10.1109/WHC.2007.62" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> World Haptics 2007</a>
+                            <a href="https://doi.org/10.1109/iros.2007.4399211" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> IEEE/RSJ IROS 2007</a>
+                            <a href="https://doi.org/10.1115/1.3072900" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> J. Comput. Inf. Sci. Eng. 2009</a>
+                            <a href="https://doi.org/10.1109/ICAT.2007.10" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> ICAT 2007</a>
+                            <a href="https://doi.org/10.1007/s00779-008-0198-z" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Personal and Ubiquitous Computing 2009</a>
+                            <a href="https://www.ntt-review.jp/archive/ntttechnical.php?contents=ntr201411fa4.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">NTT Technical Review 2014年11月号</span><span class="en" lang="en">NTT Technical Review, Nov. 2014</span></a>
+                    </div>
+                    <h4 style="margin-top: 0.9rem;"><span class="ja">当時の紹介記事</span><span class="en" lang="en">Coverage at the time</span></h4>
+                    <div class="theme-links">
+                            <a href="https://www.nttdata.com/jp/ja/data-insight/2016/122101/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">NTTデータ DATA INSIGHT（2016年）</span><span class="en" lang="en">NTT DATA “DATA INSIGHT” (2016, Japanese)</span></a>
+                    </div>
+                </div>
+            </article>
+            <article class="bn-era" id="bn2">
+                <span class="bn-years">2008–2011</span>
+                <h3><span class="ja">ぶるなび2：視覚障害者の歩行ナビゲーション</span><span class="en" lang="en">Buru-Navi2: wayfinding for visually impaired people</span></h3>
+                        <p><span class="ja">2008年には、緊急時に視覚障害者を避難誘導する装置の研究を、京都市消防局と始めました。</span><span class="en" lang="en">In 2008, research began with the Kyoto City Fire Department on a device for guiding visually impaired people to safety in emergencies.</span></p>
+                        <p><span class="ja">続いて開発した「ぶるなび2」は、DVDと同じ直径の円盤形（約260 g）で、360度の好きな方向に引っ張る感覚を出せます。京都市消防局・京都府立盲学校と行った歩行実験では、体育館内に設けた経路で、23名中21名が、途中の進路修正を含めて歩行課題を完了しました。この研究は、総務省消防庁の競争的研究費（消防防災科学技術研究推進制度）にも採択されました。</span><span class="en" lang="en">Buru-Navi2, developed next, is a disc with the same diameter as a DVD (about 260 g) that can pull in any direction through 360 degrees. In a walking experiment with the Kyoto City Fire Department and the Kyoto Prefectural School for the Blind, 21 of 23 participants completed the walking task along a route set up in a gymnasium, including trials in which they corrected their course along the way. The work was also selected for competitive research funding from Japan’s Fire and Disaster Management Agency.</span></p>
+                        <p><span class="ja">複数のパルスを組み合わせてなめらかに引っ張る装置など、提示手法の研究も進めました。2011年6月には、日本経済新聞などが「次世代ナビ」として報じ、米国の CNET News も取り上げました。</span><span class="en" lang="en">Presentation methods were also studied, such as a device that combines multiple pulses to pull smoothly. In June 2011, the Nikkei and other Japanese newspapers reported it as a “next-generation navigation system”, and CNET News in the US also covered it.</span></p>
+                <div class="bn-era-photos">
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi2-1.jpg</code></span>
+                            <img src="img/buru-navi/buru-navi2-1.jpg" alt="ぶるなび2（約260 g）" data-alt-ja="ぶるなび2（約260 g）" data-alt-en="Buru-Navi2 (about 260 g)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">ぶるなび2（約260 g）</span><span class="en" lang="en">Buru-Navi2 (about 260 g)</span></p>
+                    </div>
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi2-2.jpg</code></span>
+                            <img src="img/buru-navi/buru-navi2-2.jpg" alt="京都市消防局・京都府立盲学校との歩行実験" data-alt-ja="京都市消防局・京都府立盲学校との歩行実験" data-alt-en="Walking experiment with the Kyoto City Fire Department and the Kyoto Prefectural School for the Blind" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">京都市消防局・京都府立盲学校との歩行実験</span><span class="en" lang="en">Walking experiment with the Kyoto City Fire Department and the Kyoto Prefectural School for the Blind</span></p>
+                    </div>
+                </div>
+                <div class="bn-evidence">
+                    <h4><span class="ja">根拠となる論文・発表資料</span><span class="en" lang="en">Papers and presentation records</span></h4>
+                    <div class="theme-links">
+                            <a href="https://doi.org/10.1007/978-3-540-70540-6_171" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> ICCHP 2008</a>
+                            <a href="https://doi.org/10.1145/1639642.1639662" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> ACM ASSETS 2009</a>
+                            <a href="https://doi.org/10.1109/icsmc.2009.5346355" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">IEEE SMC 2009（歩行ナビ）</span><span class="en" lang="en">IEEE SMC 2009 (wayfinding)</span></a>
+                            <a href="https://doi.org/10.1145/1857920.1857923" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> ACM Trans. Accessible Computing 2010</a>
+                            <a href="https://doi.org/10.1007/978-3-540-69057-3_75" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> EuroHaptics 2008</a>
+                            <a href="https://doi.org/10.1109/icsmc.2009.5346927" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">IEEE SMC 2009（パルス提示）</span><span class="en" lang="en">IEEE SMC 2009 (pulse stimuli)</span></a>
+                            <a href="https://doi.org/10.1109/roman.2010.5598717" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> IEEE RO-MAN 2010</a>
+                            <a href="https://www.fdma.go.jp/mission/develop/items/H22-H23_seika_jirei.pdf" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> <span class="ja">消防庁 消防防災科学技術研究推進制度 成果事例集</span><span class="en" lang="en">FDMA research program: collection of results (Japanese)</span></a>
+                    </div>
+                    <h4 style="margin-top: 0.9rem;"><span class="ja">当時の紹介記事</span><span class="en" lang="en">Coverage at the time</span></h4>
+                    <div class="theme-links">
+                            <a href="https://www.nttdata.com/jp/ja/data-insight/2016/122101/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">NTTデータ DATA INSIGHT（2016年）</span><span class="en" lang="en">NTT DATA “DATA INSIGHT” (2016, Japanese)</span></a>
+                    </div>
+                </div>
+            </article>
+            <article class="bn-era" id="nav">
+                <span class="bn-years">2011–2013</span>
+                <h3><span class="ja">歩行者の経路案内と、ねじる力の錯覚</span><span class="en" lang="en">Pedestrian navigation and a torque illusion</span></h3>
+                        <p><span class="ja">手を動かして引っ張られる方向を確かめながら進む、歩行者向けの経路案内を提案し、SIGGRAPH 2012 と IEEE VR 2013 で発表しました。</span><span class="en" lang="en">Route navigation for pedestrians, in which users check the pulling direction by moving their hands, was proposed and presented at SIGGRAPH 2012 and IEEE VR 2013.</span></p>
+                        <p><span class="ja">回転するおもり（フライホイール）を短く非対称に回すことで、ねじるような力（トルク）を感じさせられることも示しました。2012年には、フジテレビやテレビ朝日の番組でも紹介されました。</span><span class="en" lang="en">Brief, asymmetric rotation of a flywheel was also shown to convey a twisting force (torque). In 2012, the work was also featured on programs on Fuji TV and TV Asahi.</span></p>
+                <div class="bn-era-photos">
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/navigation-1.jpg</code></span>
+                            <img src="img/buru-navi/navigation-1.jpg" alt="歩行者ナビゲーションの実験（2012年ごろ）" data-alt-ja="歩行者ナビゲーションの実験（2012年ごろ）" data-alt-en="Pedestrian navigation experiment (c. 2012)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">歩行者ナビゲーションの実験（2012年ごろ）</span><span class="en" lang="en">Pedestrian navigation experiment (c. 2012)</span></p>
+                    </div>
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/navigation-2.jpg</code></span>
+                            <img src="img/buru-navi/navigation-2.jpg" alt="フライホイールでねじる力を感じさせる装置" data-alt-ja="フライホイールでねじる力を感じさせる装置" data-alt-en="Device that conveys a twisting force with a flywheel" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">フライホイールでねじる力を感じさせる装置</span><span class="en" lang="en">Device that conveys a twisting force with a flywheel</span></p>
+                    </div>
+                </div>
+                <div class="bn-evidence">
+                    <h4><span class="ja">根拠となる論文・発表資料</span><span class="en" lang="en">Papers and presentation records</span></h4>
+                    <div class="theme-links">
+                            <a href="https://doi.org/10.1145/2342896.2342979" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> SIGGRAPH 2012 Posters</a>
+                            <a href="https://doi.org/10.1109/vr.2013.6549403" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> IEEE VR 2013</a>
+                            <a href="https://doi.org/10.1109/toh.2012.38" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> IEEE Trans. Haptics 2013</a>
+                    </div>
+                </div>
+            </article>
+            <article class="bn-era" id="bn3">
+                <span class="bn-years">2014–2016</span>
+                <h3><span class="ja">ぶるなび3：親指サイズへ</span><span class="en" lang="en">Buru-Navi3: down to the size of a thumb</span></h3>
+                        <p><span class="ja">2014年に公開した「ぶるなび3」は、クランク機構をやめ、親指ほどの大きさの振動子を非対称に振動させます。初号機の約250 gから約42 gへと小型軽量化しました。指先でつまむだけで、はっきりと引っ張られる感覚が得られます。</span><span class="en" lang="en">Buru-Navi3, shown in 2014, drops the crank mechanism and instead drives a thumb-sized vibrator asymmetrically. It is smaller and lighter, down from about 250 g for the first model to about 42 g. Simply pinching it between the fingers gives a distinct sensation of being pulled.</span></p>
+                        <p><span class="ja">同年6月の EuroHaptics 2014 で Best Demonstration Award を受賞。8月には SIGGRAPH 2014 の Emerging Technologies（カナダ・バンクーバー）で展示し、9月には経済産業省の Innovative Technologies 2014 に選ばれました。</span><span class="en" lang="en">In June, it received the Best Demonstration Award at EuroHaptics 2014. In August it was exhibited at SIGGRAPH 2014 Emerging Technologies in Vancouver, Canada, and in September it was selected for Innovative Technologies 2014 by Japan’s Ministry of Economy, Trade and Industry.</span></p>
+                        <p><span class="ja">日本経済新聞（夕刊1面）やテレビ東京「ワールドビジネスサテライト」で紹介されたほか、MIT Technology Review は、SIGGRAPH を前にぶるなび3を「力の錯覚（force illusions）」として取り上げました。</span><span class="en" lang="en">It was featured on the front page of the Nikkei evening edition and on TV Tokyo’s “World Business Satellite”, and ahead of SIGGRAPH, MIT Technology Review covered Buru-Navi3 under the heading of “force illusions”.</span></p>
+                        <p><span class="ja">ぶるなび3を使って、知覚の仕組みの研究も進めました。細かな突起が並んだ面に軽く触れると方向がわかりやすくなること（SIGGRAPH Asia 2015）、装置を持った手を自分で動かすと力の方向を正しく感じやすくなること（IEEE Transactions on Haptics 2016）を示しています。2016年4月には、NHKワールドの番組「The Wonder of Senses」で、雨宮のインタビューとぶるなびの開発の歴史が紹介されました。</span><span class="en" lang="en">Buru-Navi3 was also used to study how the sensation is perceived: lightly touching a surface with an array of small pillars makes the direction easier to perceive (SIGGRAPH Asia 2015), and moving the hand that holds the device improves perception of the force direction (IEEE Transactions on Haptics, 2016). In April 2016, the NHK World program “The Wonder of Senses” featured an interview with Amemiya and the history of Buru-Navi’s development.</span></p>
+                <div class="bn-era-photos">
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi3-1.jpg</code></span>
+                            <img src="img/buru-navi/buru-navi3-1.jpg" alt="指先でつまむ「ぶるなび3」（2014年、約42 g）" data-alt-ja="指先でつまむ「ぶるなび3」（2014年、約42 g）" data-alt-en="Buru-Navi3 pinched between the fingers (2014, about 42 g)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">指先でつまむ「ぶるなび3」（2014年、約42 g）</span><span class="en" lang="en">Buru-Navi3 pinched between the fingers (2014, about 42 g)</span></p>
+                    </div>
+                    <div>
+                        <figure class="bn-photo" data-media>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi3-2.jpg</code></span>
+                            <img src="img/buru-navi/buru-navi3-2.jpg" alt="ぶるなび3を使ったデモ（EuroHaptics 2014）" data-alt-ja="ぶるなび3を使ったデモ（EuroHaptics 2014）" data-alt-en="A demo using Buru-Navi3 (EuroHaptics 2014)" width="960" height="720" loading="lazy" decoding="async">
+                        </figure>
+                        <p class="bn-cap"><span class="ja">ぶるなび3を使ったデモ（EuroHaptics 2014）</span><span class="en" lang="en">A demo using Buru-Navi3 (EuroHaptics 2014)</span></p>
+                    </div>
+                </div>
+                <div class="bn-evidence">
+                    <h4><span class="ja">根拠となる論文・発表資料</span><span class="en" lang="en">Papers and presentation records</span></h4>
+                    <div class="theme-links">
+                            <a href="https://doi.org/10.1007/978-3-662-44196-1_12" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> EuroHaptics 2014</a>
+                            <a href="https://doi.org/10.1145/2614066.2614087" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> SIGGRAPH 2014 Emerging Technologies</a>
+                            <a href="https://history.siggraph.org/experience/buru-navi3-behavioral-navigations-using-illusory-pulled-sensation-created-by-thumb-sized-vibrator-by-amemiya-and-gomi/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-landmark" aria-hidden="true"></i> ACM SIGGRAPH History Archives</a>
+                            <a href="https://doi.org/10.1145/2818384.2818404" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> SIGGRAPH Asia 2015</a>
+                            <a href="https://doi.org/10.1109/toh.2016.2587624" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> IEEE Trans. Haptics 2016</a>
+                            <a href="https://www.ntt-review.jp/archive/ntttechnical.php?contents=ntr201411fa4.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">NTT Technical Review 2014年11月号</span><span class="en" lang="en">NTT Technical Review, Nov. 2014</span></a>
+                    </div>
+                    <h4 style="margin-top: 0.9rem;"><span class="ja">当時の紹介記事</span><span class="en" lang="en">Coverage at the time</span></h4>
+                    <div class="theme-links">
+                            <a href="https://www.nttdata.com/jp/ja/data-insight/2016/122101/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">NTTデータ DATA INSIGHT（2016年）</span><span class="en" lang="en">NTT DATA “DATA INSIGHT” (2016, Japanese)</span></a>
+                            <a href="https://www.technologyreview.com/2014/07/21/171986/could-force-illusions-help-wearables-catch-on/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">MIT Technology Review（2014年7月）</span><span class="en" lang="en">MIT Technology Review (July 2014)</span></a>
+                            <a href="https://physicstoday.aip.org/news/new-handheld-devices-provide-haptic-feedback" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">Physics Today（2014年7月）</span><span class="en" lang="en">Physics Today (July 2014)</span></a>
+                            <a href="https://eetimes.itmedia.co.jp/ee/articles/1402/13/news125.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> <span class="ja">EE Times Japan（2014年2月）</span><span class="en" lang="en">EE Times Japan (Feb. 2014, Japanese)</span></a>
+                            <a href="https://www.amemiya.ecc.u-tokyo.ac.jp/english" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト</span><span class="en" lang="en">Tomohiro Amemiya’s website</span></a>
+                    </div>
+                </div>
+            </article>
+            </div>
+
+            <p class="bn-scope" id="scope"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span><span class="ja"><strong>この系譜の範囲</strong>　ここに示したのは、雨宮が筆頭で発表してきた、2004年の最初の発表からぶるなび3（2014年）までの研究です。原理の提案（2004年）、「ぶるなび」の名前（2006年）、初号機からぶるなび3までの開発と知覚の仕組みの解明は、上に示した論文・発表資料と受賞の記録で確かめられます。その後にNTTから発表された「ぶるなび4」以降の装置は、雨宮の研究とは別に進められたもので、この系譜には含めていません。</span><span class="en" lang="en"><strong>Scope of this lineage</strong>　This lineage covers the research that Amemiya presented as first author, from the first presentation in 2004 to Buru-Navi3 (2014). The proposal of the principle (2004), the name “Buru-Navi” (2006), and the development from the first model to Buru-Navi3, together with the studies of how the sensation is perceived, can all be confirmed in the papers, presentation records and award records cited above. Devices announced by NTT after that, from “Buru-Navi4” onward, were developed separately from Amemiya’s research and are not included in this lineage.</span></span></p>
+
+            <h2 class="bn-h2" id="utokyo"><span class="ja">東京大学での発展（2019–）</span><span class="en" lang="en">Developments at the University of Tokyo (2019–)</span></h2>
+            <div class="bn-dev-head">
+                <p><span class="ja">2019年7月、雨宮は東京大学に移りました。ぶるなびで培った「非対称振動による牽引力錯覚」を出発点に、VRでの力の表現、ほかの錯覚との組み合わせ、指先以外の部位への提示へと研究を広げています。それぞれの研究が、ぶるなびの系譜の何を受け継いでいるかを、カードの上のリンクで示しました。</span><span class="en" lang="en">In July 2019, Amemiya moved to the University of Tokyo. Starting from the pulling illusion from asymmetric vibration developed through Buru-Navi, the research has expanded to force presentation in VR, combinations with other illusions, and presentation to parts of the body other than the fingertips. The link at the top of each card shows which part of the Buru-Navi lineage the study builds on.</span> <a href="https://www.amemiya.ecc.u-tokyo.ac.jp/english" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト</span><span class="en" lang="en">Tomohiro Amemiya’s website</span></a></p>
+            </div>
+            <div class="bn-dev">
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-review.jpg</code></span>
+                        <img src="img/buru-navi/dev-review.jpg" alt="広がった研究を、総説論文にまとめる" data-alt-ja="広がった研究を、総説論文にまとめる" data-alt-en="A review of a growing field" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#origin"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：2004年からの研究の全体</span><span class="en" lang="en">Builds on: The whole body of research since 2004</span></a>
+                    <h3><span class="ja">広がった研究を、総説論文にまとめる</span><span class="en" lang="en">A review of a growing field</span></h3>
+                    <p><span class="ja">牽引力錯覚の研究は、ほかの研究グループにも広がりました。2015年ごろから筑波大学でこの研究を始めた田辺健氏らとともに、牽引力錯覚の特性を、提示手法・知覚の仕組み・応用の観点から整理しました。</span><span class="en" lang="en">Research on the pulling illusion has spread to other groups. Together with Takeshi Tanabe, who began studying it at the University of Tsukuba around 2015, and colleagues, this review organizes the characteristics of the pulling illusion in terms of presentation methods, perceptual mechanisms and applications.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">非対称振動刺激による牽引力錯覚の研究動向</p>
+                        <p class="pub-authors">田辺健, 雨宮智浩, 遠藤博史, 井野秀一</p>
+                        <p class="pub-venue">日本バーチャルリアリティ学会論文誌, Vol. 25, No. 4, pp. 291–301, 2020.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.18974/tvrsj.25.4_291" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.18974/tvrsj.25.4_291</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-vr.jpg</code></span>
+                        <img src="img/buru-navi/dev-vr.jpg" alt="VR空間での力の表現へ" data-alt-ja="VR空間での力の表現へ" data-alt-en="Force presentation in VR" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：ぶるなび3の引っ張られる感覚</span><span class="en" lang="en">Builds on: The pulling sensation of Buru-Navi3</span></a>
+                    <h3><span class="ja">VR空間での力の表現へ</span><span class="en" lang="en">Force presentation in VR</span></h3>
+                    <p><span class="ja">非対称振動による引っ張られる感覚を、VR空間での力の表現に応用する方法を検討しました。</span><span class="en" lang="en">Explores ways to apply the pulling sensation from asymmetric oscillation to force presentation in VR.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">Virtual Reality Applications Using Pseudo-attraction Force by Asymmetric Oscillation</p>
+                        <p class="pub-authors">Tomohiro Amemiya</p>
+                        <p class="pub-venue">HCI International 2020 (HIMI 2020), LNCS 12184, pp. 331–340, July 2020.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1007/978-3-030-50020-7_23" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1007/978-3-030-50020-7_23</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-heaviness.jpg</code></span>
+                        <img src="img/buru-navi/dev-heaviness.jpg" alt="重さの錯覚を、指先でつまんだ物へ" data-alt-ja="重さの錯覚を、指先でつまんだ物へ" data-alt-en="A heaviness illusion for pinched objects" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#bn1"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：非対称振動による重さの錯覚（2008年）</span><span class="en" lang="en">Builds on: The heaviness illusion from asymmetric oscillation (2008)</span></a>
+                    <h3><span class="ja">重さの錯覚を、指先でつまんだ物へ</span><span class="en" lang="en">A heaviness illusion for pinched objects</span></h3>
+                    <p><span class="ja">指先に重力の向きの非対称振動を与えると、指でつまんだ物体が重く感じられることを示しました。</span><span class="en" lang="en">Shows that asymmetric oscillation in the direction of gravity on the fingertips increases the perceived heaviness of a pinched object.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">Asymmetric Gravitational Oscillation on Fingertips Increased the Perceived Heaviness of a Pinched Object</p>
+                        <p class="pub-authors">Tomohiro Amemiya</p>
+                        <p class="pub-venue">HCI International 2021 (HIMI 2021), LNCS 12765, pp. 247–256, July 2021.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1007/978-3-030-78321-1_19" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1007/978-3-030-78321-1_19</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-synergy.jpg</code></span>
+                        <img src="img/buru-navi/dev-synergy.jpg" alt="運動錯覚と組み合わせて、感覚を強める" data-alt-ja="運動錯覚と組み合わせて、感覚を強める" data-alt-en="Strengthening the illusion with a kinesthetic illusion" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#origin"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：牽引力錯覚そのもの</span><span class="en" lang="en">Builds on: The pulling illusion itself</span></a>
+                    <h3><span class="ja">運動錯覚と組み合わせて、感覚を強める</span><span class="en" lang="en">Strengthening the illusion with a kinesthetic illusion</span></h3>
+                    <p><span class="ja">腱振動によって手が動いたように感じる運動錯覚を、非対称振動による牽引力錯覚と組み合わせることで、知覚される力の感覚が強まることを示しました。関連する国内発表（2023年）は、日本バーチャルリアリティ学会の学術奨励賞を受賞しています。</span><span class="en" lang="en">Shows that combining a kinesthetic illusion of hand movement induced by tendon vibration with the pulling illusion strengthens the perceived force. A related presentation in Japan (2023) received the presentation award of the Virtual Reality Society of Japan.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">Synergistic Illusions: Enhancing Perceptual Effects of Pseudo-Attraction Force by Kinesthetic Illusory Hand Movement</p>
+                        <p class="pub-authors">Takuya Noto, Takuto Nakamura, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE Transactions on Haptics, Vol. 17, No. 4, pp. 729–741, 2024.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1109/toh.2024.3386199" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/toh.2024.3386199</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-tractfree.jpg</code></span>
+                        <img src="img/buru-navi/dev-tractfree.jpg" alt="指を空けたまま、引っ張られる感覚と重さを" data-alt-ja="指を空けたまま、引っ張られる感覚と重さを" data-alt-en="Traction and weight with the fingers left free" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：指先でつまむ、ぶるなび3</span><span class="en" lang="en">Builds on: Buru-Navi3, pinched between the fingers</span></a>
+                    <h3><span class="ja">指を空けたまま、引っ張られる感覚と重さを</span><span class="en" lang="en">Traction and weight with the fingers left free</span></h3>
+                    <p><span class="ja">薬指・小指と手のひらに巻くバンドに2つの振動子を組み込み、親指や人差し指をふさがずに、上下方向に引っ張られる感覚や重さを提示する装置「TractFree」を開発しました。VRのコントローラやハンドトラッキングと一緒に使えます。三菱電機との共同研究です。</span><span class="en" lang="en">Develops TractFree, a band worn on the ring finger, little finger and palm with two vibrators that presents vertical pulling and weight sensations without occupying the thumb or index finger, so it can be used together with VR controllers and hand tracking. Joint research with Mitsubishi Electric.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">TractFree: Finger-Free Grip for Traction and Weight</p>
+                        <p class="pub-authors">Mitsuru Ito, Yuta Itoh, Kazuma Aoyama, Tomohiro Amemiya</p>
+                        <p class="pub-venue">SIGGRAPH Asia 2024 Emerging Technologies, 2024.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1145/3681755.3688948" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1145/3681755.3688948</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-seat.jpg</code></span>
+                        <img src="img/buru-navi/dev-seat.jpg" alt="手から、座面へ" data-alt-ja="手から、座面へ" data-alt-en="From the hand to the seat" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：手に持つ装置での提示</span><span class="en" lang="en">Builds on: Presentation with a handheld device</span></a>
+                    <h3><span class="ja">手から、座面へ</span><span class="en" lang="en">From the hand to the seat</span></h3>
+                    <p><span class="ja">座面に複数の振動子を並べて非対称振動を与えることで、座っている身体が引っ張られるような力を感じさせる手法を研究しました。</span><span class="en" lang="en">Applies asymmetric vibrations through vibrators distributed across a seat so that a seated person feels as if the body is being pulled.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">Pulling Illusions on Seating Surfaces: Force Feedback Induced by Distributed Asymmetric Vibrations on Seats</p>
+                        <p class="pub-authors">Koki Fukuda, Kazuma Aoyama, Takuto Nakamura, Tomohiro Amemiya, Takuji Narumi</p>
+                        <p class="pub-venue">ACM Symposium on Applied Perception (SAP ’25), Aug. 2025.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1145/3736702.3744353" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1145/3736702.3744353</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-asymdrive.jpg</code></span>
+                        <img src="img/buru-navi/dev-asymdrive.jpg" alt="指先を空けて、手の腱へ" data-alt-ja="指先を空けて、手の腱へ" data-alt-en="Leaving the fingertips free: onto the hand tendons" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：指先でつまむ、ぶるなび3</span><span class="en" lang="en">Builds on: Buru-Navi3, pinched between the fingers</span></a>
+                    <h3><span class="ja">指先を空けて、手の腱へ</span><span class="en" lang="en">Leaving the fingertips free: onto the hand tendons</span></h3>
+                    <p><span class="ja">手の甲側と手のひら側の腱に非対称振動を与えることで、指先に何も着けずに力の錯覚を生み出す手法「AsymDrive」を提案しました。</span><span class="en" lang="en">Proposes AsymDrive, which creates force illusions without anything on the fingertips by applying asymmetric vibrations to the tendons on the back and palm sides of the hand.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">AsymDrive: Fingertip-Free Force Illusions Induced by Asymmetric Vibrations on Dorsal-Palmar Tendons</p>
+                        <p class="pub-authors">Koki Fukuda, Kazuma Aoyama, Hideaki Kuzuoka, Takuji Narumi, Tomohiro Amemiya</p>
+                        <p class="pub-venue">IEEE VR 2026, Daegu, South Korea, Mar. 2026.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1109/vr67842.2026.00060" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/vr67842.2026.00060</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-visual.jpg</code></span>
+                        <img src="img/buru-navi/dev-visual.jpg" alt="視覚の動きと組み合わせる" data-alt-ja="視覚の動きと組み合わせる" data-alt-en="Combining it with visual motion cues" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#origin"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：牽引力錯覚そのもの</span><span class="en" lang="en">Builds on: The pulling illusion itself</span></a>
+                    <h3><span class="ja">視覚の動きと組み合わせる</span><span class="en" lang="en">Combining it with visual motion cues</span></h3>
+                    <p><span class="ja">非対称振動による牽引力錯覚に、視覚的な動きの手がかりを組み合わせたときの効果を調べました。</span><span class="en" lang="en">Examines the effects of combining visual motion cues with the pulling illusion from asymmetric vibration.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">Pulling Illusion Induced by Asymmetric Vibration with Visual Motion Cues</p>
+                        <p class="pub-authors">Keigo Hattori, Satoshi Hashiguchi, Takeshi Tanabe, Tomohiro Amemiya, Fumihisa Shibata, Asako Kimura</p>
+                        <p class="pub-venue">IEEE VR 2026 Workshops, Daegu, South Korea, Mar. 2026.</p>
+                        <div class="theme-links"><a href="https://doi.org/10.1109/vrw70859.2026.00398" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> DOI: 10.1109/vrw70859.2026.00398</a></div>
+                    </div>
+                </article>
+                <article class="bn-dev-card">
+                    <figure class="bn-photo wide bn-dev-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-iss.jpg</code></span>
+                        <img src="img/buru-navi/dev-iss.jpg" alt="VRで移動する速さの感じ方を変える" data-alt-ja="VRで移動する速さの感じ方を変える" data-alt-en="Changing how fast self-motion feels in VR" width="960" height="540" loading="lazy" decoding="async">
+                    </figure>
+                    <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：手に持つ装置の引っ張られる感覚</span><span class="en" lang="en">Builds on: The pulling sensation from a handheld device</span></a>
+                    <h3><span class="ja">VRで移動する速さの感じ方を変える</span><span class="en" lang="en">Changing how fast self-motion feels in VR</span></h3>
+                    <p><span class="ja">どこにも固定しない手持ちの装置による擬似的な牽引力が、VR空間で自分が移動する速さの評価を変えることを示しました。</span><span class="en" lang="en">Shows that pseudo-traction from an ungrounded handheld device changes ratings of self-motion speed in VR.</span></p>
+                    <div class="bn-ref">
+                        <p class="pub-title">Ungrounded Handheld Pseudo-Traction Changes Self-Motion-Speed Ratings in VR</p>
+                        <p class="pub-authors">Riku Watanabe, Mitsuru Ito, Yusuke Kawashima, Keigo Ushiyama, Akifumi Takahashi, Weiya Chen, Yuki Ban, Tomohiro Amemiya</p>
+                        <p class="pub-venue">ACM Interactive Surfaces and Spaces (ISS 2026), Turin, Italy, Nov. 2026.</p>
+                        <div class="theme-links"><a href="https://programs.sigchi.org/iss/2026/program/content/278582" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> <span class="ja">プログラム</span><span class="en" lang="en">Program</span></a></div>
+                    </div>
+                </article>
+            </div>
+            <p class="bn-talk"><i class="fa-solid fa-microphone" aria-hidden="true"></i> <strong><span class="ja">招待講演（2020年12月）</span><span class="en" lang="en">Invited talk (Dec. 2020)</span></strong>　<span class="ja">雨宮智浩「身体感覚インタフェースのデザイン ～ぶるなび誕生秘話とVR応用展開～」自動車技術会 ヒューマンファクター部門委員会</span><span class="en" lang="en">Tomohiro Amemiya, “Designing body-sense interfaces: the untold story of how Buru-Navi was born and its VR applications” (in Japanese), Human Factors Committee, Society of Automotive Engineers of Japan</span></p>
+
+            <h2 class="bn-h2" id="awards"><span class="ja">受賞・選定</span><span class="en" lang="en">Awards and selections</span></h2>
+            <p class="bn-h2-note"><span class="ja">ぶるなびと、そこから発展した研究に関する受賞・ノミネートです。</span><span class="en" lang="en">Awards and nominations for Buru-Navi and the research that grew out of it.</span></p>
+            <div class="bn-media bn-award-picks">
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-vrsj-2005.jpg</code></span>
+                        <img src="img/buru-navi/award-vrsj-2005.jpg" alt="日本バーチャルリアリティ学会 学術奨励賞" data-alt-ja="日本バーチャルリアリティ学会 学術奨励賞" data-alt-en="Presentation Award, Virtual Reality Society of Japan" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <time style="margin-top: 0.75rem;">2005.03</time>
+                    <h4><span class="ja">日本バーチャルリアリティ学会 学術奨励賞</span><span class="en" lang="en">Presentation Award, Virtual Reality Society of Japan</span></h4>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-laval-2007.jpg</code></span>
+                        <img src="img/buru-navi/award-laval-2007.jpg" alt="Laval Virtual 2007 Grand Prix du Jury" data-alt-ja="Laval Virtual 2007 Grand Prix du Jury" data-alt-en="Grand Prix du Jury, Laval Virtual 2007" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <time style="margin-top: 0.75rem;">2007.04</time>
+                    <h4><span class="ja">Laval Virtual 2007 Grand Prix du Jury</span><span class="en" lang="en">Grand Prix du Jury, Laval Virtual 2007</span></h4>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-eurohaptics-2014.jpg</code></span>
+                        <img src="img/buru-navi/award-eurohaptics-2014.jpg" alt="EuroHaptics 2014 Best Demonstration Award" data-alt-ja="EuroHaptics 2014 Best Demonstration Award" data-alt-en="Best Demonstration Award, EuroHaptics 2014" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <time style="margin-top: 0.75rem;">2014.06</time>
+                    <h4><span class="ja">EuroHaptics 2014 Best Demonstration Award</span><span class="en" lang="en">Best Demonstration Award, EuroHaptics 2014</span></h4>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-meti-2014.jpg</code></span>
+                        <img src="img/buru-navi/award-meti-2014.jpg" alt="経済産業省 Innovative Technologies 2014" data-alt-ja="経済産業省 Innovative Technologies 2014" data-alt-en="Innovative Technologies 2014 (METI, Japan)" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <time style="margin-top: 0.75rem;">2014.09</time>
+                    <h4><span class="ja">経済産業省 Innovative Technologies 2014</span><span class="en" lang="en">Innovative Technologies 2014 (METI, Japan)</span></h4>
+                </article>
+            </div>
+            <ul class="bn-list">
+            <li><time>2005.03</time><div><span class="bn-item-title"><span class="ja">日本バーチャルリアリティ学会 学術奨励賞（口頭発表部門）</span><span class="en" lang="en">Presentation Award (oral presentation category), Virtual Reality Society of Japan</span></span><div class="bn-item-sub">偏加速度周期運動による把持型方向誘導デバイスの開発（第9回大会、2004年9月）</div><div class="theme-links"><a href="https://vrsj.org/awards/best_presentions/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-trophy" aria-hidden="true"></i> <span class="ja">日本VR学会 学術奨励賞 受賞者一覧</span><span class="en" lang="en">VRSJ presentation award list (Japanese)</span></a><a href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=200902293880279504" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">日本VR学会 第9回大会 論文集（2004年、J-GLOBAL）</span><span class="en" lang="en">Proc. 9th VRSJ Annual Conference (2004; J-GLOBAL, Japanese)</span></a></div></div></li>
+            <li><time>2005.09</time><div><span class="bn-item-title"><span class="ja">ヒューマンインタフェースシンポジウム2005 優秀プレゼンテーション賞</span><span class="en" lang="en">Best Presentation Award, Human Interface Symposium 2005</span></span><div class="bn-item-sub">知覚の非線形性を利用した非接地型力覚インタフェース</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a></div></div></li>
+            <li><time>2005.12</time><div><span class="bn-item-title"><span class="ja">ICAT 2005 Best Paper Award ノミネート</span><span class="en" lang="en">Best Paper Award nominee, ICAT 2005</span></span><div class="bn-item-sub">Phantom-DRAWN: Direction Guidance using Rapid and Asymmetric Acceleration Weighted by Nonlinearity of Perception</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a></div></div></li>
+            <li><time>2007.03</time><div><span class="bn-item-title"><span class="ja">World Haptics 2007 Best Poster Award ノミネート</span><span class="en" lang="en">Best Poster Award nominee, World Haptics 2007</span></span><div class="bn-item-sub">Hand-held Force Display with Spring-Cam Mechanism for Generating Asymmetric Acceleration</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a><a href="https://doi.org/10.1109/WHC.2007.62" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> World Haptics 2007</a></div></div></li>
+            <li><time>2007.04</time><div><span class="bn-item-title"><span class="ja">Laval Virtual 2007 Grand Prix du Jury（審査員グランプリ）、Interfaces de réalité virtuelle 部門賞</span><span class="en" lang="en">Grand Prix du Jury and the “Interfaces de réalité virtuelle” category award, Laval Virtual 2007 (France)</span></span><div class="bn-item-sub">Buru-Navi</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a><a href="https://www.ntt-review.jp/archive/ntttechnical.php?contents=ntr201411fa4.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">NTT Technical Review 2014年11月号</span><span class="en" lang="en">NTT Technical Review, Nov. 2014</span></a></div></div></li>
+            <li><time>2009.03</time><div><span class="bn-item-title"><span class="ja">ヒューマンインタフェース学会 第5回研究会賞</span><span class="en" lang="en">5th Research Meeting Award, Human Interface Society</span></span><div class="bn-item-sub">牽引力錯覚を利用した視覚障がい者避難用コンパスの設計</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a></div></div></li>
+            <li><time>2009.12</time><div><span class="bn-item-title"><span class="ja">電子情報通信学会 ヒューマンコミュニケーション賞</span><span class="en" lang="en">Human Communication Award, IEICE</span></span><div class="bn-item-sub">牽引力錯覚を利用した牽引式羅針盤による視覚障がい者の歩行誘導の評価</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a></div></div></li>
+            <li><time>2014.06</time><div><span class="bn-item-title"><span class="ja">EuroHaptics 2014 Best Demonstration Award（1位）、Best Paper Award ノミネート</span><span class="en" lang="en">Best Demonstration Award (1st place) and Best Paper Award nominee, EuroHaptics 2014</span></span><div class="bn-item-sub">Distinct pseudo-attraction force sensation by a thumb-sized vibrator that oscillates asymmetrically</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a><a href="https://doi.org/10.1007/978-3-662-44196-1_12" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> EuroHaptics 2014</a><a href="https://www.ntt-review.jp/archive/ntttechnical.php?contents=ntr201411fa4.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span class="ja">NTT Technical Review 2014年11月号</span><span class="en" lang="en">NTT Technical Review, Nov. 2014</span></a></div></div></li>
+            <li><time>2014.09</time><div><span class="bn-item-title"><span class="ja">経済産業省 Innovative Technologies 2014</span><span class="en" lang="en">Innovative Technologies 2014, Ministry of Economy, Trade and Industry (METI), Japan</span></span><div class="bn-item-sub">指でつまむと引っ張られる感覚：ぶるなび３</div><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a></div></div></li>
+            <li><time>2014.11</time><div><span class="bn-item-title"><span class="ja">第3回 位置モノ ガジェット＆アプリ大賞 ガジェット部門</span><span class="en" lang="en">Gadget category, 3rd “Ichi-mono Gadget & Appli” Grand Prize</span></span><div class="theme-links"><a href="https://www.amemiya.ecc.u-tokyo.ac.jp/publications" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-user" aria-hidden="true"></i> <span class="ja">雨宮智浩のWebサイト（受賞一覧）</span><span class="en" lang="en">Tomohiro Amemiya’s website (list of awards)</span></a></div></div></li>
+            <li><time>2024.03</time><div><span class="bn-item-title"><span class="ja">日本バーチャルリアリティ学会 学術奨励賞（口頭発表部門）：納藤拓哉（東京大学）</span><span class="en" lang="en">Presentation Award (oral presentation category), Virtual Reality Society of Japan: Takuya Noto (The University of Tokyo)</span></span><div class="bn-item-sub">異なる力覚錯覚の刺激間時間差が知覚強度に与える影響（納藤拓哉・中村拓人・雨宮智浩、第28回大会、2023年9月）</div><div class="theme-links"><a href="https://vrsj.org/awards/best_presentions/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-trophy" aria-hidden="true"></i> <span class="ja">日本VR学会 学術奨励賞 受賞者一覧</span><span class="en" lang="en">VRSJ presentation award list (Japanese)</span></a><a href="https://conference.vrsj.org/ac2023/program/doc/2A1-09.pdf" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span class="ja">第28回日本VR学会大会 予稿（2023年）</span><span class="en" lang="en">Proc. 28th VRSJ Annual Conference (2023, Japanese)</span></a></div></div></li>
+            </ul>
+
+            <h2 class="bn-h2" id="media"><span class="ja">報道・紹介記事</span><span class="en" lang="en">Press coverage and articles</span></h2>
+            <p class="bn-h2-note"><span class="ja">2006年から、国内外の新聞・テレビ・雑誌・Webニュースで紹介されてきました。見出しは掲載時のものです。画像の著作権は、それぞれの権利者にあります。</span><span class="en" lang="en">Since 2006, Buru-Navi has been covered by newspapers, television, magazines and news sites in Japan and abroad. Headlines are as published (most are in Japanese). Copyright in each image belongs to its respective owner.</span></p>
+            
+            <h3 class="bn-media-cat" id="media-paper"><span class="ja">新聞</span><span class="en" lang="en">Newspapers</span> <small><span class="ja">17件</span><span class="en" lang="en">17 items</span></small></h3>
+            <div class="bn-media">
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/asahi-2006.jpg</code></span>
+                        <img src="img/buru-navi/media/asahi-2006.jpg" alt="朝日新聞 夕刊3面" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 朝日新聞社</p>
+                    <time>2006.07.25</time>
+                    <h4>朝日新聞 夕刊3面</h4>
+                    <p class="bn-media-title" lang="ja">ケータイ手を引き道案内!?　重りブルブル、錯覚利用</p>
+                    
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/asahi-2009.jpg</code></span>
+                        <img src="img/buru-navi/media/asahi-2009.jpg" alt="朝日新聞 7面（土曜版Be「ナントカ学」）" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 朝日新聞社</p>
+                    <time>2009.10.17</time>
+                    <h4>朝日新聞 7面（土曜版Be「ナントカ学」）</h4>
+                    <p class="bn-media-title" lang="ja">体感で誘う 優しいナビ</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/Asahi20091017.jpg" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nikkei-2011.jpg</code></span>
+                        <img src="img/buru-navi/media/nikkei-2011.jpg" alt="日本経済新聞 朝刊11面" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 日本経済新聞社</p>
+                    <time>2011.06.10</time>
+                    <h4>日本経済新聞 朝刊11面</h4>
+                    <p class="bn-media-title" lang="ja">次世代ナビ　手“引いて”目的地に　NTT試作 視覚障害者の案内など想定</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/110610_Nikkei_ShimbunL.png" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nikkei-2014.jpg</code></span>
+                        <img src="img/buru-navi/media/nikkei-2014.jpg" alt="日本経済新聞 夕刊1面" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 日本経済新聞社</p>
+                    <time>2014.01.30</time>
+                    <h4>日本経済新聞 夕刊1面</h4>
+                    <p class="bn-media-title" lang="ja">脳の錯覚、ビジネスに活用　[東大]小皿に盛って満腹感　[ＮＴＴ]「手引っ張り」道案内</p>
+                    
+                </article>
+            </div>
+            <ol class="bn-press">
+                <li><time>2006.06.19</time><span class="bn-press-outlet">映像新聞</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.eizoshimbun.com/bb/1764/top.html" target="_blank" rel="noopener" lang="ja">ＮＴＴコミュニケーション科学基礎研究所「未来想論2006」レポート <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.07.25</time><span class="bn-press-outlet">朝日新聞 夕刊3面</span><span class="bn-press-title"><span lang="ja">ケータイ手を引き道案内!?　重りブルブル、錯覚利用</span></span></li>
+                <li><time>2007.06.25</time><span class="bn-press-outlet">電経新聞 2面</span><span class="bn-press-title"><span lang="ja">研究派(72)：雨宮智浩</span></span></li>
+                <li><time>2007.11.13</time><span class="bn-press-outlet">京都新聞 2面</span><span class="bn-press-title"><span lang="ja">振動で方角お知らせ　視覚障害者に避難用コンパス</span></span></li>
+                <li><time>2007.11.21</time><span class="bn-press-outlet">日経産業新聞 11面</span><span class="bn-press-title"><span lang="ja">トレーが引っ張り客席に店員誘導　NTT科学研　新ナビ装置開発</span></span></li>
+                <li><time>2009.03.16</time><span class="bn-press-outlet">フジサンケイ ビジネスアイ</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.business-i.jp/news/ind-page/news/200903160009a.nwc" target="_blank" rel="noopener" lang="ja">【２２世紀ビジネス】第２部　生命再考　体と“つながる”通信サービス <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2009.10.17</time><span class="bn-press-outlet">朝日新聞 7面（土曜版Be「ナントカ学」）</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/Asahi20091017.jpg" target="_blank" rel="noopener" lang="ja">体感で誘う 優しいナビ <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2010.07.19</time><span class="bn-press-outlet">Ming Pao Daily News（明報）A19</span><span class="bn-press-title"><span lang="zh-Hant">行路充電 環保新發明</span></span></li>
+                <li><time>2010.07.28</time><span class="bn-press-outlet">Hong Kong Economic Times（香港經濟日報）A39</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/20100728_HKET_A39.jpg" target="_blank" rel="noopener" lang="zh-Hant">NTT輸出新科技 圖引領亞洲 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2011.06.10</time><span class="bn-press-outlet">日本経済新聞 朝刊11面</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/110610_Nikkei_ShimbunL.png" target="_blank" rel="noopener" lang="ja">次世代ナビ　手“引いて”目的地に　NTT試作 視覚障害者の案内など想定 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2011.06.10</time><span class="bn-press-outlet">京都新聞 朝刊15面</span><span class="bn-press-title"><span lang="ja">錯覚利用し経路誘導　行動を遠隔地で把握　安心社会へ最新研究を公開</span></span></li>
+                <li><time>2011.06.10</time><span class="bn-press-outlet">毎日新聞 朝刊27面（地方版）</span><span class="bn-press-title"><span lang="ja">振動で方向示し聴覚障害者誘導　学研都市　ＮＴＴ研究所で披露</span></span></li>
+                <li><time>2011.06.16</time><span class="bn-press-outlet">日経産業新聞 朝刊11面</span><span class="bn-press-title"><span lang="ja">NTT研の次世代ナビ　振動で手を引っ張る　視覚障害者を誘導</span></span></li>
+                <li><time>2013.02.27</time><span class="bn-press-outlet">日経産業新聞 朝刊1面</span><span class="bn-press-title"><span lang="ja">脳ビジネス（Techフロンティア）　念じて機器操作／持つだけで案内</span></span></li>
+                <li><time>2014.01.30</time><span class="bn-press-outlet">日本経済新聞 夕刊1面</span><span class="bn-press-title"><span lang="ja">脳の錯覚、ビジネスに活用　[東大]小皿に盛って満腹感　[ＮＴＴ]「手引っ張り」道案内</span></span></li>
+                <li><time>2014.02.19</time><span class="bn-press-outlet">日刊工業新聞 11面</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.nikkan.co.jp/news/nkx0220140219bjab.html" target="_blank" rel="noopener" lang="ja">振動で錯覚、道案内 －ＮＴＴ、歩行支援システム開発－ <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2015.01.13</time><span class="bn-press-outlet">日本経済新聞 9面</span><span class="bn-press-title"><span lang="ja">錯覚生かし生活支援　スマホ手をひき案内　飛び出すLED文字</span></span></li>
+            </ol>
+            <h3 class="bn-media-cat" id="media-tv"><span class="ja">テレビ・ラジオ</span><span class="en" lang="en">Television and radio</span> <small><span class="ja">11件</span><span class="en" lang="en">11 items</span></small></h3>
+            <div class="bn-media">
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/wbs-2007.jpg</code></span>
+                        <img src="img/buru-navi/media/wbs-2007.jpg" alt="テレビ東京 ワールドビジネスサテライト「トレンドたまご」" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© テレビ東京</p>
+                    <time>2007.02.01</time>
+                    <h4>テレビ東京 ワールドビジネスサテライト「トレンドたまご」</h4>
+                    <p class="bn-media-title" lang="ja">ブルっとナビゲーション</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://www.tv-tokyo.co.jp/wbs/2007/02/01/toretama/tt.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/realscope-2012.jpg</code></span>
+                        <img src="img/buru-navi/media/realscope-2012.jpg" alt="フジテレビ あらゆる世界を見学せよ！リアルスコープＺ" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© フジテレビ</p>
+                    <time>2012.09.01</time>
+                    <h4>フジテレビ あらゆる世界を見学せよ！リアルスコープＺ</h4>
+                    <p class="bn-media-title" lang="ja">潜入！携帯電話の未来～ぶるなび～</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/RealScopeZ20120910Buru_c.png" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/wbs-2014.jpg</code></span>
+                        <img src="img/buru-navi/media/wbs-2014.jpg" alt="テレビ東京 ワールドビジネスサテライト「トレンドたまご」" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© テレビ東京</p>
+                    <time>2014.03.04</time>
+                    <h4>テレビ東京 ワールドビジネスサテライト「トレンドたまご」</h4>
+                    <p class="bn-media-title" lang="ja">【トレたま】未来の“ナビ”</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://www.tv-tokyo.co.jp/mv/wbs/trend_tamago/post_61477/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nhkworld-2016.jpg</code></span>
+                        <img src="img/buru-navi/media/nhkworld-2016.jpg" alt="NHK World（国際放送）" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© NHK</p>
+                    <time>2016.04.28</time>
+                    <h4>NHK World（国際放送）</h4>
+                    <p class="bn-media-title" lang="en">The Wonder of Senses: Illusion and Communication</p>
+                    <div class="theme-links"><a href="http://player.jibtv.com/embed/283" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+            </div>
+            <ol class="bn-press">
+                <li><time>2007.02.01</time><span class="bn-press-outlet">テレビ東京 ワールドビジネスサテライト「トレンドたまご」</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.tv-tokyo.co.jp/wbs/2007/02/01/toretama/tt.html" target="_blank" rel="noopener" lang="ja">ブルっとナビゲーション <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2007.12.05</time><span class="bn-press-outlet">Channel NewsAsia（MediaCorp News、シンガポール）</span><span class="bn-press-title"><span lang="en">MDA, Science Centre to promote interactive &amp; digital media</span></span></li>
+                <li><time>2011.06.09</time><span class="bn-press-outlet">テレビ大阪 ニュースBIZ</span><span class="bn-press-title"><span lang="ja">錯覚を利用した新技術とは</span></span></li>
+                <li><time>2011.06.23</time><span class="bn-press-outlet">SBS静岡放送ラジオ 朝だす「情報三枚おろし」</span><span class="bn-press-title"><span lang="ja">手を引っ張るナビ！？</span></span></li>
+                <li><time>2011.08.04</time><span class="bn-press-outlet">テレビ東京 おはスタ645</span><span class="bn-press-title"><span lang="ja">近未来の電話サービス</span></span></li>
+                <li><time>2012.07.16</time><span class="bn-press-outlet">テレビ朝日 モーニングバード！「アカデミヨシズミ」</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.tv-asahi.co.jp/onair/info.php?b=morning&amp;id=2970" target="_blank" rel="noopener" lang="ja">触覚の錯覚を利用した誘導システム ～五感をだまして便利な生活！　最先端“錯覚”テクノロジー～ <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2012.09.01</time><span class="bn-press-outlet">フジテレビ あらゆる世界を見学せよ！リアルスコープＺ</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/RealScopeZ20120910Buru_c.png" target="_blank" rel="noopener" lang="ja">潜入！携帯電話の未来～ぶるなび～ <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2013.03.21</time><span class="bn-press-outlet">BSジャパン 地球★アステク</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.bs-j.co.jp/asuteku/" target="_blank" rel="noopener" lang="ja">近未来に登場！ペタの光ファイバと光メモリ／NTT先端技術総合研究所 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.03.04</time><span class="bn-press-outlet">テレビ東京 ワールドビジネスサテライト「トレンドたまご」</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.tv-tokyo.co.jp/mv/wbs/trend_tamago/post_61477/" target="_blank" rel="noopener" lang="ja">【トレたま】未来の“ナビ” <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.06.13</time><span class="bn-press-outlet">KBS京都 京bizS「ビジタネ」</span><span class="bn-press-title"><span lang="ja">つながる最新技術を公開　「あったらいいな」が大集合　－ＮＴＴ CS研オープンハウス－</span></span></li>
+                <li><time>2016.04.28</time><span class="bn-press-outlet">NHK World（国際放送）</span><span class="bn-press-title"><a href="http://player.jibtv.com/embed/283" target="_blank" rel="noopener" lang="en">The Wonder of Senses: Illusion and Communication <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+            </ol>
+            <h3 class="bn-media-cat" id="media-mag"><span class="ja">雑誌・書籍</span><span class="en" lang="en">Magazines and books</span> <small><span class="ja">18件</span><span class="en" lang="en">18 items</span></small></h3>
+            <div class="bn-media">
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/newscientist-2006.jpg</code></span>
+                        <img src="img/buru-navi/media/newscientist-2006.jpg" alt="New Scientist, No. 2560" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© New Scientist</p>
+                    <time>2006.07.15</time>
+                    <h4>New Scientist, No. 2560</h4>
+                    <p class="bn-media-title" lang="en">Gadgets get the feel of the tactile world</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://www.newscientisttech.com/channel/tech/mg19125606.000.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nikkei-electronics-2006.jpg</code></span>
+                        <img src="img/buru-navi/media/nikkei-electronics-2006.jpg" alt="日経エレクトロニクス No. 933, pp. 32–33" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 日経BP</p>
+                    <time>2006.08.28</time>
+                    <h4>日経エレクトロニクス No. 933, pp. 32–33</h4>
+                    <p class="bn-media-title" lang="ja">引っ張るインタフェース　NTTがケータイ向けに</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://techon.nikkeibp.co.jp/article/HONSHI/20060822/120334/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/doraemon-2014.jpg</code></span>
+                        <img src="img/buru-navi/media/doraemon-2014.jpg" alt="小学館「ドラえもん もっと！ふしぎのサイエンス Vol.4」" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 藤子プロ・小学館</p>
+                    <time>2014.07</time>
+                    <h4>小学館「ドラえもん もっと！ふしぎのサイエンス Vol.4」</h4>
+                    <p class="bn-media-title" lang="ja">脳をだます、優れた発明！</p>
+                    <div class="theme-links"><a href="http://www.shogakukan.co.jp/books/detail/_isbn_9784091068248" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/ipsj-2020.jpg</code></span>
+                        <img src="img/buru-navi/media/ipsj-2020.jpg" alt="情報処理（情報処理学会誌）2020年4月号" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© 情報処理学会</p>
+                    <time>2020.04</time>
+                    <h4>情報処理（情報処理学会誌）2020年4月号</h4>
+                    <p class="bn-media-title" lang="ja">連載漫画「IT紀行」その7「VRセンター三銃士に会ってきた！　どうなるVRの未来!?」</p>
+                    <div class="theme-links"><a href="https://www.ipsj.or.jp/magazine/ittravelogmanga/07.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+            </div>
+            <ol class="bn-press">
+                <li><time>2006.07</time><span class="bn-press-outlet">週刊ファミ通 7/14増刊号 No. 917, p. 70</span><span class="bn-press-title"><span lang="ja">ゲームの未来</span></span></li>
+                <li><time>2006.07.15</time><span class="bn-press-outlet">New Scientist, No. 2560</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.newscientisttech.com/channel/tech/mg19125606.000.html" target="_blank" rel="noopener" lang="en">Gadgets get the feel of the tactile world <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.08.28</time><span class="bn-press-outlet">日経エレクトロニクス No. 933, pp. 32–33</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://techon.nikkeibp.co.jp/article/HONSHI/20060822/120334/" target="_blank" rel="noopener" lang="ja">引っ張るインタフェース　NTTがケータイ向けに <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.09.01</time><span class="bn-press-outlet">AXIS Vol. 123, p. 62</span><span class="bn-press-title"><span lang="ja">21世紀のID － インダストリアルデザインからインタラクションデザインへ</span></span></li>
+                <li><time>2006.10</time><span class="bn-press-outlet">新建築 2006年10月号, pp. 200–201</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://book.japandesign.ne.jp/magazine/shin-k/142/" target="_blank" rel="noopener" lang="ja">先端技術探偵団がゆく　第10回「脳を震わせる指先の案内人」－ぶるなび：知覚の非線形性を利用した力覚インタフェース <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.10</time><span class="bn-press-outlet">CG WORLD Vol. 98, p. 36</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://book.japandesign.ne.jp/magazine/cgworld/98/" target="_blank" rel="noopener" lang="ja">SIGGRAPH2006 ハイライト <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.11</time><span class="bn-press-outlet">Nikkei Electronics Asia</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://neasia.nikkeibp.com/neasia/005530" target="_blank" rel="noopener" lang="en">NTT Brings “Lead-Me” Interface to Mobile Phone <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2007.04</time><span class="bn-press-outlet">月刊ビジネスコミュニケーション Vol. 44, No. 4, p. 17</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.bcm.co.jp/site/2007/04/ntt-rd/0704-ntt-rd01.pdf" target="_blank" rel="noopener" lang="ja">「ＮＴＴ Ｒ＆Ｄフォーラム２００７」レポート：牽引力錯覚を利用した力覚インタフェース「ぶるなび」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2007.08.04</time><span class="bn-press-outlet">日経TRENDY 2007年9月号</span><span class="bn-press-title"><span lang="ja">次のヒットを生む先端技術</span></span></li>
+                <li><time>2010</time><span class="bn-press-outlet">NTT Group Magazine 365° Vol. 29</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.ntt.co.jp/365/book_data/book_vol29/02-special/index.html" target="_blank" rel="noopener" lang="ja">特集 グラハム・ベルから「光」 そして……。：地図がいらない、ふるえるナビゲーションシステム <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2012.05</time><span class="bn-press-outlet">書籍『つくるしごと－研究・開発・生産・保守（会社のしごと2）』松井大助著、ぺりかん社</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/www.kecl.ntt.co.jp/people/amemiya.tomohiro/img/tsukuru_shigoto20120.jpg" target="_blank" rel="noopener" lang="ja">情報通信会社の技術研究　雨宮智浩さん <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2013.01.21</time><span class="bn-press-outlet">日経エレクトロニクス Vol. 1100, pp. 50–57</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://techon.nikkeibp.co.jp/article/HONSHI/20130117/260632/" target="_blank" rel="noopener" lang="ja">特集 やさしい機械 第３部＜人を動かす＞　感覚器へ直接訴えて－人機一体化を目指す <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.03.03</time><span class="bn-press-outlet">日経エレクトロニクス 2014年3月3日号, p. 18</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://techon.nikkeibp.co.jp/article/MAG/20140228/337055" target="_blank" rel="noopener" lang="ja">指でつまむだけで力覚を提示　ＮＴＴが「ぶるなび３」を初披露 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.07</time><span class="bn-press-outlet">小学館「ドラえもん もっと！ふしぎのサイエンス Vol.4」</span><span class="bn-press-title"><a href="http://www.shogakukan.co.jp/books/detail/_isbn_9784091068248" target="_blank" rel="noopener" lang="ja">脳をだます、優れた発明！ <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2015.01.16</time><span class="bn-press-outlet">monoマガジン 2015年2月2日号</span><span class="bn-press-title"><span lang="ja">錯覚の力でご案内？ 小型インターフェース開発中</span></span></li>
+                <li><time>2016.12</time><span class="bn-press-outlet">INFORIUM No. 6（NTTデータ）</span><span class="bn-press-title"><a href="http://www.nttdata.com/jp/ja/corporate/profile/pr/magazine/pdf/inforium/magazine_inforium_vol06.pdf" target="_blank" rel="noopener" lang="ja">特集・身体へ！「牽引力」で感覚を拡張する 力覚インターフェース「ぶるなび」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2017.07</time><span class="bn-press-outlet">EKISUMER Vol. 33</span><span class="bn-press-title"><a href="http://www.jeki.co.jp/ekishoken/upload/docs/EKISUMER_vol_33.pdf" target="_blank" rel="noopener" lang="ja">マーケティングトレンドCatch Up!：多様化するナビゲーションシステムの新時代　触覚を利用した情報伝達で広がるナビの選択肢 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2020.04</time><span class="bn-press-outlet">情報処理（情報処理学会誌）2020年4月号</span><span class="bn-press-title"><a href="https://www.ipsj.or.jp/magazine/ittravelogmanga/07.html" target="_blank" rel="noopener" lang="ja">連載漫画「IT紀行」その7「VRセンター三銃士に会ってきた！　どうなるVRの未来!?」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+            </ol>
+            <h3 class="bn-media-cat" id="media-web"><span class="ja">Webニュース</span><span class="en" lang="en">Web news</span> <small><span class="ja">22件</span><span class="en" lang="en">22 items</span></small></h3>
+            <div class="bn-media">
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/newscientist-web-2006.jpg</code></span>
+                        <img src="img/buru-navi/media/newscientist-web-2006.jpg" alt="NewScientist.com" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© New Scientist</p>
+                    <time>2006.08.02</time>
+                    <h4>NewScientist.com</h4>
+                    <p class="bn-media-title" lang="en">Sensory illusions dazzle at graphics conference</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://www.newscientisttech.com/article/dn9664-sensory-illusions-dazzle-at-graphics-conference.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/cnet-2011.jpg</code></span>
+                        <img src="img/buru-navi/media/cnet-2011.jpg" alt="CNET News" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© CNET</p>
+                    <time>2011.06.21</time>
+                    <h4>CNET News</h4>
+                    <p class="bn-media-title" lang="en">GPS device guides you by pulling your hand</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://news.cnet.com/8301-17938_105-20073059-1/gps-device-guides-you-by-pulling-your-hand/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/mit-2014.jpg</code></span>
+                        <img src="img/buru-navi/media/mit-2014.jpg" alt="MIT Technology Review" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© MIT Technology Review</p>
+                    <time>2014.07.21</time>
+                    <h4>MIT Technology Review</h4>
+                    <p class="bn-media-title" lang="en">Could “Force Illusions” Help Wearables Catch On?</p>
+                    <div class="theme-links"><a href="https://www.technologyreview.com/2014/07/21/171986/could-force-illusions-help-wearables-catch-on/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+                <article class="bn-media-card">
+                    <figure class="bn-photo" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/mashable-2014.jpg</code></span>
+                        <img src="img/buru-navi/media/mashable-2014.jpg" alt="Mashable" width="800" height="500" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="bn-credit">© Mashable</p>
+                    <time>2014.07.22</time>
+                    <h4>Mashable</h4>
+                    <p class="bn-media-title" lang="en">Haptic Feedback Could Give Wearables a Push (or Pull)</p>
+                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://mashable.com/2014/07/22/haptic-interface-wearables/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
+                </article>
+            </div>
+            <ol class="bn-press">
+                <li><time>2006.04.26</time><span class="bn-press-outlet">DCC Cafe.com</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/https://secure.ibsystems.com/DCC/nbc/articles/index.php?section=CorpNews&amp;articleid=265112" target="_blank" rel="noopener" lang="en">Pioneering Leaps in Technology: From Heart Surgery to Virtual Reality <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.07.25</time><span class="bn-press-outlet">asahi.com</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.asahi.com/digital/mobile/TKY200607250322.html" target="_blank" rel="noopener" lang="ja">携帯が押したり引いたり道案内、新装置を試作　ＮＴＴ研 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.08.02</time><span class="bn-press-outlet">NewScientist.com</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.newscientisttech.com/article/dn9664-sensory-illusions-dazzle-at-graphics-conference.html" target="_blank" rel="noopener" lang="en">Sensory illusions dazzle at graphics conference <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.08.03</time><span class="bn-press-outlet">textually.org</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.textually.org/textually/archives/2006/08/013111.htm" target="_blank" rel="noopener" lang="en">Holding hands <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2006.08.10</time><span class="bn-press-outlet">MYCOM</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://journal.mycom.co.jp/articles/2006/08/10/siggraph05/004.html" target="_blank" rel="noopener" lang="ja">SIGGRAPH 2006 －「EMERGING TECHNOLOGIES」展示セクションをレポート(2)：よくわからないけど引っ張られちゃうモジュール <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2007.02.08</time><span class="bn-press-outlet">ITpro（日経BP）</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://itpro.nikkeibp.co.jp/article/NEWS/20070208/261493/" target="_blank" rel="noopener" lang="ja">【NTT R&amp;Dフォーラム】携帯電話が手を引いて道案内，錯覚を利用した技術「ぶるなび」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2007.02.09</time><span class="bn-press-outlet">INTERNET Watch</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://internet.watch.impress.co.jp/cda/event/2007/02/09/14737.html" target="_blank" rel="noopener" lang="ja">将来はGPS携帯電話がユーザーの手を“引っ張って”道案内!? <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2008.09.16</time><span class="bn-press-outlet">Robot Watch</span><span class="bn-press-title"><a href="http://robot.watch.impress.co.jp/cda/news/2008/09/16/1303.html" target="_blank" rel="noopener" lang="ja">脳と機械を直結するBMI技術は身体観や人間観を変える ～「日本生理学会若手の会 サイエンスカフェ 身体と機械の境界」レポート <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2009.03.16</time><span class="bn-press-outlet">ITmedia News</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.itmedia.co.jp/news/articles/0903/16/news024.html" target="_blank" rel="noopener" lang="ja">「手を引っ張る携帯」も──NTT、五感・脳研究で新通信サービス模索 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2011.06.09</time><span class="bn-press-outlet">日本経済新聞 Web刊</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.nikkei.com/news/category/article/g=96958A9C93819696E2EBE295938DE2EBE2E4E0E2E3E38698E3E2E2E2" target="_blank" rel="noopener" lang="ja">ＮＴＴが次世代ナビ試作　手を引いて目的地に案内 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2011.06.21</time><span class="bn-press-outlet">CNET News</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://news.cnet.com/8301-17938_105-20073059-1/gps-device-guides-you-by-pulling-your-hand/" target="_blank" rel="noopener" lang="en">GPS device guides you by pulling your hand <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2013.11.01</time><span class="bn-press-outlet">NTT西日本</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.ntt-west.co.jp/ikouze/future_technology/sota_report.html" target="_blank" rel="noopener" lang="ja">こんな未来は実現するの？研究者に聞いてみた「NTT最先端研究レポート」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.02.12</time><span class="bn-press-outlet">産経アプリスタ</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://aplista.iza.ne.jp/f-iphone/151396" target="_blank" rel="noopener" lang="ja">業界最前線 手を引いて道案内する新技術「ぶるなび」に驚いた <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.02.13</time><span class="bn-press-outlet">EE Times Japan</span><span class="bn-press-title"><a href="https://eetimes.itmedia.co.jp/ee/articles/1402/13/news125.html" target="_blank" rel="noopener" lang="ja">振動を利用して“手を引かれる感覚”を再現、歩行ナビに応用 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.06.03</time><span class="bn-press-outlet">INTERNET Watch</span><span class="bn-press-title"><a href="http://internet.watch.impress.co.jp/docs/news/20140603_651569.html" target="_blank" rel="noopener" lang="ja">NTT、犬の散歩で引っ張られる感じを発生させる装置「ぶるなび」が劇的小型化 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.07.21</time><span class="bn-press-outlet">MIT Technology Review</span><span class="bn-press-title"><a href="https://www.technologyreview.com/2014/07/21/171986/could-force-illusions-help-wearables-catch-on/" target="_blank" rel="noopener" lang="en">Could “Force Illusions” Help Wearables Catch On? <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.07.22</time><span class="bn-press-outlet">Mashable</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://mashable.com/2014/07/22/haptic-interface-wearables/" target="_blank" rel="noopener" lang="en">Haptic Feedback Could Give Wearables a Push (or Pull) <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.07.22</time><span class="bn-press-outlet">Physics Today</span><span class="bn-press-title"><a href="https://physicstoday.aip.org/news/new-handheld-devices-provide-haptic-feedback" target="_blank" rel="noopener" lang="en">New handheld devices provide haptic feedback <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.07.30</time><span class="bn-press-outlet">IDG Connect</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.idgconnect.com/abstract/8600/-force-illusions-could-help-visually-impaired" target="_blank" rel="noopener" lang="en">“Force Illusions” Could Help the Visually Impaired <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2014.09.01</time><span class="bn-press-outlet">4Gamer.net</span><span class="bn-press-title"><a href="http://www.4gamer.net/games/999/G999902/20140901112/" target="_blank" rel="noopener" lang="ja">なぜか引っ張られちゃう不思議な振動モジュールBuru-Navi3（SIGGRAPH 2014 展示会場レポート） <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2015.02.20</time><span class="bn-press-outlet">RBB Today</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.rbbtoday.com/article/2015/02/20/128576.html" target="_blank" rel="noopener" lang="ja">バーチャル犬で散歩――振動で人を誘導する技術「ぶるなび3」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+                <li><time>2016.12.21</time><span class="bn-press-outlet">NTTデータ DATA INSIGHT（INFORIUM No. 6）</span><span class="bn-press-title"><a href="https://www.nttdata.com/jp/ja/data-insight/2016/122101/" target="_blank" rel="noopener" lang="ja">Foresight 触覚デバイス「ぶるなび」の展望 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
+            </ol>
+
+            <div class="hero-buttons" style="justify-content: center; margin-bottom: 3rem;">
+                <a href="publications.html" class="btn btn-primary"><i class="fa-solid fa-book" aria-hidden="true"></i> <span class="ja">論文・発表一覧（2019年以降）</span><span class="en" lang="en">Publications (since 2019)</span></a>
+                <a href="about.html#inquiry" class="btn btn-secondary"><i class="fa-solid fa-microphone" aria-hidden="true"></i> <span class="ja">取材・講演のご依頼</span><span class="en" lang="en">Media & talks</span></a>
+            </div>
+
+            <ul class="bn-notes">
+                <li><span class="ja">「ぶるなび」は、日本電信電話株式会社の登録商標です。</span><span class="en" lang="en">“Buru-Navi” (ぶるなび) is a registered trademark of Nippon Telegraph and Telephone Corporation.</span></li>
+                <li><span class="ja">2004年から2019年6月までの研究は、雨宮がNTTコミュニケーション科学基礎研究所に在籍していたときのものです。</span><span class="en" lang="en">The research from 2004 to June 2019 was carried out while Amemiya was at NTT Communication Science Laboratories.</span></li>
+                <li><span class="ja">各項目の根拠は、それぞれの欄に示した論文・発表資料と受賞の記録です。報道・紹介記事は、当時どのように紹介されたかを示す資料として載せています。</span><span class="en" lang="en">Each item is supported by the papers, presentation records and award records shown in its section. Press coverage and other articles are included as a record of how the work was introduced at the time.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students through the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="index.html#research"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="index.html#news"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="index.html#members"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="index.html#publications"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="index.html#prospective"><span class="ja">研究室配属</span><span class="en" lang="en">Admissions</span></a></li>
+                    <li><a href="index.html#industry"><span class="ja">産学連携</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="index.html#contact"><span class="ja">アクセス・問合せ</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="collaboration.html" data-site-link><span class="ja">共同研究・産学連携</span><span class="en" lang="en">Industry Collaboration</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
