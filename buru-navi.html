@@ -123,6 +123,8 @@
         .bn-from { display: inline-flex; align-items: baseline; gap: 0.4rem; align-self: flex-start; margin-bottom: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 30px; border: 1px solid var(--border-color); background: var(--bg-glass); font-size: 0.78rem; font-weight: 700; color: var(--accent-cyan); text-decoration: none; }
         .bn-from:hover { border-color: var(--accent-cyan); }
         .bn-dev-photo { margin-bottom: 1rem; }
+        .bn-video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-md); overflow: hidden; background: #000; }
+        .bn-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
         .bn-dev-card h3 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.5rem; }
         .bn-dev-card > p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.8; margin-bottom: 0.9rem; }
         .bn-ref { margin-top: auto; padding-top: 0.9rem; border-top: 1px solid var(--border-color); font-size: 0.85rem; }
@@ -131,6 +133,8 @@
         .bn-ref .theme-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
         .bn-talk { background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 3.5rem; font-size: 0.92rem; color: var(--text-secondary); }
         .bn-talk strong { color: var(--text-primary); }
+        .bn-talk ul { margin: 0.5rem 0 0 1.3rem; display: grid; gap: 0.4rem; line-height: 1.7; }
+        .bn-talk a { color: var(--accent-cyan); }
         /* 報道（スクリーンショットの枠つき） */
         .bn-media-cat { font-size: 1.05rem; margin: 1.75rem 0 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
         .bn-media-cat::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
@@ -531,10 +535,9 @@
                     </div>
                 </article>
                 <article class="bn-dev-card">
-                    <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-heaviness.jpg</code></span>
-                        <img src="img/buru-navi/dev-heaviness.jpg" alt="重さの錯覚を、指先でつまんだ物へ" data-alt-ja="重さの錯覚を、指先でつまんだ物へ" data-alt-en="A heaviness illusion for pinched objects" width="960" height="540" loading="lazy" decoding="async">
-                    </figure>
+                    <div class="bn-video bn-dev-photo">
+                        <iframe src="https://www.youtube-nocookie.com/embed/SJzutYl1yaE?rel=0" title="Asymmetric Gravitational Oscillation on Fingertips Increased the Perceived Heaviness of a Pinched Object（YouTube）" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <a class="bn-from" href="#bn1"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：非対称振動による重さの錯覚（2008年）</span><span class="en" lang="en">Builds on: The heaviness illusion from asymmetric oscillation (2008)</span></a>
                     <h3><span class="ja">重さの錯覚を、指先でつまんだ物へ</span><span class="en" lang="en">A heaviness illusion for pinched objects</span></h3>
                     <p><span class="ja">指先に重力の向きの非対称振動を与えると、指でつまんだ物体が重く感じられることを示しました。</span><span class="en" lang="en">Shows that asymmetric oscillation in the direction of gravity on the fingertips increases the perceived heaviness of a pinched object.</span></p>
@@ -636,7 +639,13 @@
                     </div>
                 </article>
             </div>
-            <p class="bn-talk"><i class="fa-solid fa-microphone" aria-hidden="true"></i> <strong><span class="ja">招待講演（2020年12月）</span><span class="en" lang="en">Invited talk (Dec. 2020)</span></strong>　<span class="ja">雨宮智浩「身体感覚インタフェースのデザイン ～ぶるなび誕生秘話とVR応用展開～」自動車技術会 ヒューマンファクター部門委員会</span><span class="en" lang="en">Tomohiro Amemiya, “Designing body-sense interfaces: the untold story of how Buru-Navi was born and its VR applications” (in Japanese), Human Factors Committee, Society of Automotive Engineers of Japan</span></p>
+            <div class="bn-talk">
+                <p><i class="fa-solid fa-microphone" aria-hidden="true"></i> <strong><span class="ja">招待講演</span><span class="en" lang="en">Invited talks</span></strong></p>
+                <ul>
+                    <li><span lang="en">Tomohiro Amemiya, “<a href="https://web.archive.org/web/20180503013648/https://www.idw.or.jp/IDW15AP.pdf" target="_blank" rel="noopener">Perceptual Illusions for Multisensory Displays</a>,” The 22nd International Display Workshops (IDW ’15), Otsu, Shiga, December 2015.</span></li>
+                    <li><span class="ja">雨宮智浩「身体感覚インタフェースのデザイン ～ぶるなび誕生秘話とVR応用展開～」自動車技術会 ヒューマンファクター部門委員会, 2020年12月.</span><span class="en" lang="en">Tomohiro Amemiya, “Designing body-sense interfaces: the untold story of how Buru-Navi was born and its VR applications” (in Japanese), Human Factors Committee, Society of Automotive Engineers of Japan, December 2020.</span></li>
+                </ul>
+            </div>
 
             <h2 class="bn-h2" id="awards"><span class="ja">受賞・選定</span><span class="en" lang="en">Awards and selections</span></h2>
             <p class="bn-h2-note"><span class="ja">ぶるなびと、そこから発展した研究に関する受賞・ノミネートです。</span><span class="en" lang="en">Awards and nominations for Buru-Navi and the research that grew out of it.</span></p>
@@ -736,8 +745,7 @@
                     <h4>日本経済新聞 夕刊1面</h4>
                     <p class="bn-media-title" lang="ja">脳の錯覚、ビジネスに活用　[東大]小皿に盛って満腹感　[ＮＴＴ]「手引っ張り」道案内</p>
                     
-                </article>
-            </div>
+                </article></div>
             <ol class="bn-press">
                 <li><time>2006.06.19</time><span class="bn-press-outlet">映像新聞</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.eizoshimbun.com/bb/1764/top.html" target="_blank" rel="noopener" lang="ja">ＮＴＴコミュニケーション科学基礎研究所「未来想論2006」レポート <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
                 <li><time>2006.07.25</time><span class="bn-press-outlet">朝日新聞 夕刊3面</span><span class="bn-press-title"><span lang="ja">ケータイ手を引き道案内!?　重りブルブル、錯覚利用</span></span></li>
@@ -802,8 +810,7 @@
                     <h4>NHK World（国際放送）</h4>
                     <p class="bn-media-title" lang="en">The Wonder of Senses: Illusion and Communication</p>
                     <div class="theme-links"><a href="http://player.jibtv.com/embed/283" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
-                </article>
-            </div>
+                </article></div>
             <ol class="bn-press">
                 <li><time>2007.02.01</time><span class="bn-press-outlet">テレビ東京 ワールドビジネスサテライト「トレンドたまご」</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.tv-tokyo.co.jp/wbs/2007/02/01/toretama/tt.html" target="_blank" rel="noopener" lang="ja">ブルっとナビゲーション <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
                 <li><time>2007.12.05</time><span class="bn-press-outlet">Channel NewsAsia（MediaCorp News、シンガポール）</span><span class="bn-press-title"><span lang="en">MDA, Science Centre to promote interactive &amp; digital media</span></span></li>
@@ -862,8 +869,7 @@
                     <h4>情報処理（情報処理学会誌）2020年4月号</h4>
                     <p class="bn-media-title" lang="ja">連載漫画「IT紀行」その7「VRセンター三銃士に会ってきた！　どうなるVRの未来!?」</p>
                     <div class="theme-links"><a href="https://www.ipsj.or.jp/magazine/ittravelogmanga/07.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
-                </article>
-            </div>
+                </article></div>
             <ol class="bn-press">
                 <li><time>2006.07</time><span class="bn-press-outlet">週刊ファミ通 7/14増刊号 No. 917, p. 70</span><span class="bn-press-title"><span lang="ja">ゲームの未来</span></span></li>
                 <li><time>2006.07.15</time><span class="bn-press-outlet">New Scientist, No. 2560</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.newscientisttech.com/channel/tech/mg19125606.000.html" target="_blank" rel="noopener" lang="en">Gadgets get the feel of the tactile world <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
@@ -885,52 +891,7 @@
                 <li><time>2020.04</time><span class="bn-press-outlet">情報処理（情報処理学会誌）2020年4月号</span><span class="bn-press-title"><a href="https://www.ipsj.or.jp/magazine/ittravelogmanga/07.html" target="_blank" rel="noopener" lang="ja">連載漫画「IT紀行」その7「VRセンター三銃士に会ってきた！　どうなるVRの未来!?」 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
             </ol>
             <h3 class="bn-media-cat" id="media-web"><span class="ja">Webニュース</span><span class="en" lang="en">Web news</span> <small><span class="ja">22件</span><span class="en" lang="en">22 items</span></small></h3>
-            <div class="bn-media">
-                <article class="bn-media-card">
-                    <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/newscientist-web-2006.jpg</code></span>
-                        <img src="img/buru-navi/media/newscientist-web-2006.jpg" alt="NewScientist.com" width="800" height="500" loading="lazy" decoding="async">
-                    </figure>
-                    <p class="bn-credit">© New Scientist</p>
-                    <time>2006.08.02</time>
-                    <h4>NewScientist.com</h4>
-                    <p class="bn-media-title" lang="en">Sensory illusions dazzle at graphics conference</p>
-                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://www.newscientisttech.com/article/dn9664-sensory-illusions-dazzle-at-graphics-conference.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
-                </article>
-                <article class="bn-media-card">
-                    <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/cnet-2011.jpg</code></span>
-                        <img src="img/buru-navi/media/cnet-2011.jpg" alt="CNET News" width="800" height="500" loading="lazy" decoding="async">
-                    </figure>
-                    <p class="bn-credit">© CNET</p>
-                    <time>2011.06.21</time>
-                    <h4>CNET News</h4>
-                    <p class="bn-media-title" lang="en">GPS device guides you by pulling your hand</p>
-                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://news.cnet.com/8301-17938_105-20073059-1/gps-device-guides-you-by-pulling-your-hand/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
-                </article>
-                <article class="bn-media-card">
-                    <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/mit-2014.jpg</code></span>
-                        <img src="img/buru-navi/media/mit-2014.jpg" alt="MIT Technology Review" width="800" height="500" loading="lazy" decoding="async">
-                    </figure>
-                    <p class="bn-credit">© MIT Technology Review</p>
-                    <time>2014.07.21</time>
-                    <h4>MIT Technology Review</h4>
-                    <p class="bn-media-title" lang="en">Could “Force Illusions” Help Wearables Catch On?</p>
-                    <div class="theme-links"><a href="https://www.technologyreview.com/2014/07/21/171986/could-force-illusions-help-wearables-catch-on/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
-                </article>
-                <article class="bn-media-card">
-                    <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/mashable-2014.jpg</code></span>
-                        <img src="img/buru-navi/media/mashable-2014.jpg" alt="Mashable" width="800" height="500" loading="lazy" decoding="async">
-                    </figure>
-                    <p class="bn-credit">© Mashable</p>
-                    <time>2014.07.22</time>
-                    <h4>Mashable</h4>
-                    <p class="bn-media-title" lang="en">Haptic Feedback Could Give Wearables a Push (or Pull)</p>
-                    <div class="theme-links"><a href="https://web.archive.org/web/20180503013648/http://mashable.com/2014/07/22/haptic-interface-wearables/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">記事・資料を開く</span><span class="en" lang="en">Open</span></a></div>
-                </article>
-            </div>
+            
             <ol class="bn-press">
                 <li><time>2006.04.26</time><span class="bn-press-outlet">DCC Cafe.com</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/https://secure.ibsystems.com/DCC/nbc/articles/index.php?section=CorpNews&amp;articleid=265112" target="_blank" rel="noopener" lang="en">Pioneering Leaps in Technology: From Heart Surgery to Virtual Reality <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
                 <li><time>2006.07.25</time><span class="bn-press-outlet">asahi.com</span><span class="bn-press-title"><a href="https://web.archive.org/web/20180503013648/http://www.asahi.com/digital/mobile/TKY200607250322.html" target="_blank" rel="noopener" lang="ja">携帯が押したり引いたり道案内、新装置を試作　ＮＴＴ研 <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a></span></li>
