@@ -1451,6 +1451,15 @@ footer {
     color: var(--text-muted);
 }
 
+/* Alumni：在籍中の受賞 */
+.alumni-award {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-purple-text);
+}
+
 /* 研究紹介 */
 .theme-group {
     margin-bottom: 4rem;
