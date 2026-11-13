@@ -165,6 +165,22 @@
         .bn-scope strong { color: var(--text-primary); }
         .bn-scope i { color: var(--accent-cyan); }
         .bn-award-picks { margin-bottom: 1.25rem; }
+        .bn-intro-video { max-width: 760px; margin: 0 auto 2.5rem; }
+        .bn-video-slot { aspect-ratio: 16 / 9; background: var(--bg-secondary); }
+        .bn-video-slot .bn-ph { color: var(--text-muted); }
+        .bn-column { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--accent-purple-text); border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; }
+        .bn-column > h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+        .bn-column-q { margin-top: 1rem; }
+        .bn-column-q h3 { font-size: 1rem; margin-bottom: 0.35rem; }
+        .bn-column-q p { color: var(--text-secondary); line-height: 1.9; }
+        .bn-column-todo { padding: 0.6rem 0.9rem; border: 2px dashed var(--border-color); border-radius: var(--radius-md); color: var(--text-muted) !important; font-size: 0.88rem; }
+        .bn-faq { margin-bottom: 3rem; }
+        .bn-faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 0.6rem; }
+        .bn-faq-item summary { cursor: pointer; padding: 0.9rem 1.2rem; font-weight: 700; }
+        .bn-faq-item p { padding: 0 1.2rem 1rem; color: var(--text-secondary); line-height: 1.9; }
+        .bn-lineup { margin-bottom: 3.5rem; }
+        .bn-lineup-photo { aspect-ratio: 2466 / 1046; margin-bottom: 1rem; }
+        .bn-cmp th[scope="row"] { color: var(--text-primary); font-weight: 700; font-size: 0.9rem; }
         .bn-h2 { font-size: 1.5rem; margin: 0 0 0.5rem; }
         .bn-h2-note { color: var(--text-secondary); margin-bottom: 1.5rem; }
         .bn-notes { font-size: 0.85rem; line-height: 1.9; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
@@ -242,6 +258,13 @@
         <div class="bn-wrap">
             <p class="bn-lead"><span class="ja">「ぶるなび」は、手に持った装置を非対称に振動させることで、<strong>どこにも固定していないのに、一方向へ引っ張られるように感じさせる</strong>技術です（牽引力錯覚）。雨宮智浩は、安藤英由樹・前田太郎とともに、<strong>2004年9月の日本バーチャルリアリティ学会 第9回大会でこの手法を初めて発表</strong>し、この発表により2005年3月に同学会の学術奨励賞を受賞しました。その後、初号機からぶるなび3まで装置の小型化を進め、知覚の仕組みの解明や歩行ナビゲーションへの応用に取り組みました。2019年に東京大学へ移ってからは、この研究をVRや新しい提示部位へと発展させています。このページでは、論文・受賞・報道などの公開されている資料をもとに、その歩みを紹介します。</span><span class="en" lang="en">Buru-Navi is a technique that vibrates a handheld device asymmetrically so that it <strong>feels as if it is pulling in one direction even though it is not fixed to anything</strong> (the pulling illusion). Together with Hideyuki Ando and Taro Maeda, Tomohiro Amemiya <strong>first presented the method at the 9th Annual Conference of the Virtual Reality Society of Japan in September 2004</strong>, and for this presentation he received the society’s presentation award in March 2005. He went on to make the device smaller, from the first model to Buru-Navi3, while studying how the sensation is perceived and applying it to pedestrian navigation. Since moving to the University of Tokyo in 2019, he has extended this research to VR and to new parts of the body. This page tells that story through publicly available papers, awards and press coverage.</span></p>
 
+            <div class="bn-intro-video" id="intro-video">
+                <figure class="bn-photo wide" id="intro-video-slot">
+                    <span class="bn-ph"><i class="fa-solid fa-film" aria-hidden="true"></i><span class="ja">紹介動画を入れる場所</span><span class="en" lang="en">Introductory video to be added</span><code>img/buru-navi/intro.mp4</code></span>
+                </figure>
+                <p class="bn-cap"><span class="ja">30秒でわかる「ぶるなび」：装置を持つと、引っ張られる方向がわかり、歩行案内やVRに使えます（字幕付き・音声なしでも内容がわかる構成）</span><span class="en" lang="en">Buru-Navi in 30 seconds: hold the device, feel which way it pulls, and see how it is used for walking guidance and VR (subtitled, understandable without sound)</span></p>
+            </div>
+
             <div class="bn-stats">
                 <div class="bn-stat"><b>2004</b><span class="ja">最初の発表（日本VR学会 第9回大会）</span><span class="en" lang="en">First presentation (9th VRSJ Annual Conference)</span></div>
                 <div class="bn-stat"><b>250 g → 42 g</b><span class="ja">初号機（2007年）からぶるなび3（2014年）へ</span><span class="en" lang="en">From the first model (2007) to Buru-Navi3 (2014)</span></div>
@@ -274,6 +297,22 @@
                     </div>
             </div>
 
+            <div class="bn-column" id="column" role="region" aria-labelledby="column-title">
+                <h2 id="column-title"><span class="ja">開発者が語る、ぶるなび誕生の経緯</span><span class="en" lang="en">How Buru-Navi was born, in the developer’s words</span></h2>
+                <div class="bn-column-q">
+                    <h3><span class="ja">最初に「引っ張られる感覚」に気づいたとき</span><span class="en" lang="en">When the pulling sensation was first noticed</span></h3>
+                    <p class="bn-column-todo"><span class="ja">（雨宮先生のコメントを入れる）</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
+                </div>
+                <div class="bn-column-q">
+                    <h3><span class="ja">「ぶるなび」という名前の由来</span><span class="en" lang="en">Where the name “Buru-Navi” came from</span></h3>
+                    <p class="bn-column-todo"><span class="ja">（雨宮先生のコメントを入れる）</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
+                </div>
+                <div class="bn-column-q">
+                    <h3><span class="ja">いちばん苦労したこと</span><span class="en" lang="en">The hardest part</span></h3>
+                    <p class="bn-column-todo"><span class="ja">（雨宮先生のコメントを入れる）</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
+                </div>
+            </div>
+
             <div class="bn-principle" id="principle">
                 <div>
                     <h2><span class="ja">引っ張られる感覚の仕組み</span><span class="en" lang="en">How the pulling sensation works</span></h2>
@@ -295,6 +334,51 @@
                         </figure>
                         <p class="bn-cap"><span class="ja">非対称振動の原理の図</span><span class="en" lang="en">Diagram of the principle of asymmetric vibration</span></p>
                     </div>
+            </div>
+
+            <div class="bn-faq" id="faq" role="region" aria-labelledby="faq-title">
+                <h2 class="bn-h2" id="faq-title"><span class="ja">よくある質問</span><span class="en" lang="en">Frequently asked questions</span></h2>
+                <details class="bn-faq-item">
+                    <summary><span class="ja">実際に手を引っ張っているのですか？</span><span class="en" lang="en">Is the device actually pulling the hand?</span></summary>
+                    <p><span class="ja">装置はどこにも固定されておらず、振動による力は1周期で平均すると釣り合っています。それでも引っ張られるように感じるのは、加速度波形の非対称性と、人が刺激の強さや時間的な変化を感じ取る特性によるものと考えられています（牽引力錯覚）。</span><span class="en" lang="en">The device is not fixed to anything, and the forces from the vibration balance out when averaged over one cycle. The pulling sensation is thought to arise from the asymmetric acceleration waveform together with the way people perceive the intensity and temporal change of stimuli (the pulling illusion).</span></p>
+                </details>
+                <details class="bn-faq-item">
+                    <summary><span class="ja">普通の振動と何が違うのですか？</span><span class="en" lang="en">How is this different from ordinary vibration?</span></summary>
+                    <p><span class="ja">携帯電話などの普通の振動は、加速度波形がほぼ左右対称なので、ぶるぶると震える感じはしても、特定の方向は感じません。ぶるなびは、一方向には強く短く、反対方向には弱く長く力が加わるように、加速度波形を非対称にしています。</span><span class="en" lang="en">Ordinary vibration, as in a mobile phone, has a nearly symmetric acceleration waveform, so it feels like buzzing without any particular direction. Buru-Navi makes the waveform asymmetric, with a strong, brief force in one direction and a weak, longer force in the other.</span></p>
+                </details>
+                <details class="bn-faq-item">
+                    <summary><span class="ja">誰でも同じように感じますか？</span><span class="en" lang="en">Does everyone feel it the same way?</span></summary>
+                    <p><span class="ja">多くの人が引っ張られる感覚を得られますが、感じ方の強さやわかりやすさには個人差があり、持ち方や振動の条件によっても変わります。装置を持った手を自分で動かすと、力の方向をより正しく感じやすくなることもわかっています。</span><span class="en" lang="en">Most people feel the pull, but its strength and clarity vary between individuals and with how the device is held and how it is driven. Moving the hand that holds the device has also been shown to make the direction easier to perceive correctly.</span></p>
+                </details>
+                <details class="bn-faq-item">
+                    <summary><span class="ja">スマートフォンの振動でもできますか？</span><span class="en" lang="en">Can a smartphone’s vibration do this?</span></summary>
+                    <p><span class="ja">スマートフォンに内蔵されている振動モーターは、多くがほぼ対称な振動を出すように作られているため、そのままでは、はっきりした引っ張られる感覚は得にくいとされます。ぶるなび3では、非対称な振動を出すために、親指ほどの大きさの専用の振動子を使っています。</span><span class="en" lang="en">The vibration motors built into smartphones are mostly designed to produce nearly symmetric vibration, so on their own they are generally not expected to give a clear pulling sensation. Buru-Navi3 uses a dedicated thumb-sized vibrator to produce asymmetric vibration.</span></p>
+                </details>
+                <details class="bn-faq-item">
+                    <summary><span class="ja">どの方向にでも引っ張れますか？</span><span class="en" lang="en">Can it pull in any direction?</span></summary>
+                    <p><span class="ja">1つの振動子が引っ張る向きは、往復運動の軸に沿った方向です。振動機構を積み重ねた積層型のデバイスでは東西南北の4方向、円盤形のぶるなび2では360度の任意の方向に引っ張る感覚を出せます。</span><span class="en" lang="en">A single vibrator pulls along the axis of its back-and-forth motion. The stacked-type device can pull in the four cardinal directions, and the disc-shaped Buru-Navi2 in any direction through 360 degrees.</span></p>
+                </details>
+            </div>
+
+            <div class="bn-lineup" id="lineup" role="region" aria-labelledby="lineup-title">
+                <h2 class="bn-h2" id="lineup-title"><span class="ja">歴代の装置</span><span class="en" lang="en">Devices over the years</span></h2>
+                <p class="bn-h2-note"><span class="ja">試作機からぶるなび3までの装置を並べました。何が変わってきたかを、下の表にまとめています。</span><span class="en" lang="en">Devices from the first prototype to Buru-Navi3, side by side. The table below summarizes what changed.</span></p>
+                <figure class="bn-photo bn-lineup-photo" data-media>
+                    <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/lineup.jpg</code></span>
+                    <img src="img/buru-navi/lineup.jpg" alt="歴代のぶるなびの装置を横に並べた写真" data-alt-ja="歴代のぶるなびの装置を横に並べた写真" data-alt-en="The Buru-Navi devices over the years, side by side" width="1600" height="679" loading="lazy" decoding="async">
+                </figure>
+                <div class="table-wrap">
+                    <table class="data-table bn-cmp">
+                        <thead><tr><th scope="col"><span class="ja">装置</span><span class="en" lang="en">Device</span></th><th scope="col"><span class="ja">年</span><span class="en" lang="en">Year</span></th><th scope="col"><span class="ja">形・重さ</span><span class="en" lang="en">Form and weight</span></th><th scope="col"><span class="ja">仕組み</span><span class="en" lang="en">Mechanism</span></th><th scope="col"><span class="ja">引っ張る方向</span><span class="en" lang="en">Pulling direction</span></th><th scope="col"><span class="ja">何が変わったか</span><span class="en" lang="en">What changed</span></th></tr></thead>
+                        <tbody>
+                            <tr><th scope="row"><span class="ja">最初の試作機</span><span class="en" lang="en">The first prototype</span></th><td>2004</td><td>—</td><td><span class="ja">おもりの往復運動</span><span class="en" lang="en">Back-and-forth motion of a weight</span></td><td><span class="ja">1方向</span><span class="en" lang="en">One direction</span></td><td><span class="ja">原理を確かめた最初の装置</span><span class="en" lang="en">The first device to test the principle</span></td></tr>
+                            <tr><th scope="row"><span class="ja">「ぶるなび」初号機</span><span class="en" lang="en">The first Buru-Navi</span></th><td>2007</td><td><span class="ja">コードレス電話ほどの箱形、約250 g</span><span class="en" lang="en">Box about the size of a cordless phone, about 250 g</span></td><td><span class="ja">スライダクランク機構</span><span class="en" lang="en">Slider-crank mechanism</span></td><td><span class="ja">1方向</span><span class="en" lang="en">One direction</span></td><td><span class="ja">手に持って使える形に</span><span class="en" lang="en">A form that can be held in the hand</span></td></tr>
+                            <tr><th scope="row"><span class="ja">積層型デバイス</span><span class="en" lang="en">Stacked-type device</span></th><td>2009</td><td>—</td><td><span class="ja">振動機構を積み重ねる</span><span class="en" lang="en">Stacked vibration mechanisms</span></td><td><span class="ja">東西南北の4方向</span><span class="en" lang="en">Four cardinal directions</span></td><td><span class="ja">複数の方向を案内できるように</span><span class="en" lang="en">Guidance in several directions</span></td></tr>
+                            <tr><th scope="row"><span class="ja">ぶるなび2</span><span class="en" lang="en">Buru-Navi2</span></th><td>—</td><td><span class="ja">DVDと同じ直径の円盤形、約260 g</span><span class="en" lang="en">Disc the size of a DVD, about 260 g</span></td><td><span class="ja">円盤内の振動機構</span><span class="en" lang="en">Vibration mechanisms in a disc</span></td><td><span class="ja">360度の任意の方向</span><span class="en" lang="en">Any direction through 360°</span></td><td><span class="ja">どの方向にも引っ張れるように</span><span class="en" lang="en">Pulling in any direction</span></td></tr>
+                            <tr><th scope="row"><span class="ja">ぶるなび3</span><span class="en" lang="en">Buru-Navi3</span></th><td>2014</td><td><span class="ja">親指ほどの大きさ、約42 g</span><span class="en" lang="en">About the size of a thumb, about 42 g</span></td><td><span class="ja">非対称に振動する振動子</span><span class="en" lang="en">A vibrator driven asymmetrically</span></td><td><span class="ja">1方向</span><span class="en" lang="en">One direction</span></td><td><span class="ja">指先でつまめる大きさに</span><span class="en" lang="en">Small enough to pinch between the fingers</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <h2 class="bn-h2" id="timeline"><span class="ja">ぶるなびの系譜（2004–2016）</span><span class="en" lang="en">The Buru-Navi lineage (2004–2016)</span></h2>
@@ -667,11 +751,11 @@
             <div class="bn-media bn-award-picks">
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-vrsj-2005.jpg</code></span>
-                        <img src="img/buru-navi/award-vrsj-2005.jpg" alt="日本バーチャルリアリティ学会 学術奨励賞" data-alt-ja="日本バーチャルリアリティ学会 学術奨励賞" data-alt-en="Presentation Award, Virtual Reality Society of Japan" width="800" height="500" loading="lazy" decoding="async">
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-his-2005.jpg</code></span>
+                        <img src="img/buru-navi/award-his-2005.jpg" alt="ヒューマンインタフェースシンポジウム2005 優秀プレゼンテーション賞" data-alt-ja="ヒューマンインタフェースシンポジウム2005 優秀プレゼンテーション賞" data-alt-en="Best Presentation Award, Human Interface Symposium 2005" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
-                    <time style="margin-top: 0.75rem;">2005.03</time>
-                    <h4><span class="ja">日本バーチャルリアリティ学会 学術奨励賞</span><span class="en" lang="en">Presentation Award, Virtual Reality Society of Japan</span></h4>
+                    <time style="margin-top: 0.75rem;">2005.09</time>
+                    <h4><span class="ja">ヒューマンインタフェースシンポジウム2005 優秀プレゼンテーション賞</span><span class="en" lang="en">Best Presentation Award, Human Interface Symposium 2005</span></h4>
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
