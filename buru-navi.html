@@ -69,9 +69,10 @@
         .bn-photo.wide { aspect-ratio: 16 / 9; }
         .bn-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
         .bn-photo .bn-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; padding: 1rem; text-align: center; font-size: 0.82rem; color: var(--text-muted); border: 2px dashed var(--border-color); border-radius: var(--radius-md); }
-        .bn-photo .bn-ph i { font-size: 1.6rem; opacity: 0.6; }
+        .bn-photo .bn-ph i { font-size: 2.2rem; opacity: 0.45; }
         .bn-photo .bn-ph code { font-size: 0.75rem; }
         .bn-photo.has-image .bn-ph { display: none; }
+        .bn-photo.bn-contain img { object-fit: contain; background: #fff; }
         .bn-cap { margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
         /* 原理 */
         .bn-principle { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 2rem; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 3.5rem; }
@@ -179,7 +180,7 @@
         .bn-faq-item summary { cursor: pointer; padding: 0.9rem 1.2rem; font-weight: 700; }
         .bn-faq-item p { padding: 0 1.2rem 1rem; color: var(--text-secondary); line-height: 1.9; }
         .bn-lineup { margin-bottom: 3.5rem; }
-        .bn-lineup-photo { aspect-ratio: 2466 / 1046; margin-bottom: 1rem; }
+        .bn-lineup-photo { aspect-ratio: 4767 / 1902; margin-bottom: 1rem; }
         .bn-cmp th[scope="row"] { color: var(--text-primary); font-weight: 700; font-size: 0.9rem; }
         .bn-h2 { font-size: 1.5rem; margin: 0 0 0.5rem; }
         .bn-h2-note { color: var(--text-secondary); margin-bottom: 1.5rem; }
@@ -260,7 +261,7 @@
 
             <div class="bn-intro-video" id="intro-video">
                 <figure class="bn-photo wide" id="intro-video-slot">
-                    <span class="bn-ph"><i class="fa-solid fa-film" aria-hidden="true"></i><span class="ja">紹介動画を入れる場所</span><span class="en" lang="en">Introductory video to be added</span><code>img/buru-navi/intro.mp4</code></span>
+                    <span class="bn-ph"><i class="fa-solid fa-film" aria-hidden="true"></i></span>
                 </figure>
                 <p class="bn-cap"><span class="ja">30秒でわかる「ぶるなび」：装置を持つと、引っ張られる方向がわかり、歩行案内やVRに使えます（字幕付き・音声なしでも内容がわかる構成）</span><span class="en" lang="en">Buru-Navi in 30 seconds: hold the device, feel which way it pulls, and see how it is used for walking guidance and VR (subtitled, understandable without sound)</span></p>
             </div>
@@ -290,7 +291,7 @@
                 </div>
                 <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/team.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/team.jpg" alt="初期開発チーム（2004〜2006年ごろ）" data-alt-ja="初期開発チーム（2004〜2006年ごろ）" data-alt-en="The original development team (c. 2004–2006)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">初期開発チーム（2004〜2006年ごろ）</span><span class="en" lang="en">The original development team (c. 2004–2006)</span></p>
@@ -300,12 +301,16 @@
             <div class="bn-column" id="column" role="region" aria-labelledby="column-title">
                 <h2 id="column-title"><span class="ja">開発者が語る、ぶるなび誕生の経緯</span><span class="en" lang="en">How Buru-Navi was born, in the developer’s words</span></h2>
                 <div class="bn-column-q">
+                    <h3><span class="ja">最初に「引っ張られる感覚」に気づいたとき</span><span class="en" lang="en">When the pulling sensation was first noticed</span></h3>
+                    <p class="bn-column-todo"><span class="ja">（雨宮先生のコメントを入れる）</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
+                </div>
+                <div class="bn-column-q">
                     <h3><span class="ja">「ぶるなび」という名前の由来</span><span class="en" lang="en">Where the name “Buru-Navi” came from</span></h3>
-                    <p class="bn-column-todo"><span class="ja">当初はカタカタ音がなるので，カタカタマシンと呼んでいました．その後，キャッチーな名前ということで当時人気のグルメサイトの響きからインスパイアされて命名しました．</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
+                    <p><span class="ja">当初はカタカタと音が鳴るので、「カタカタマシン」と呼んでいました。その後、覚えやすい名前にしようと、当時人気だったグルメサイトの名前の響きから着想を得て命名しました。</span><span class="en" lang="en">At first it made a clattering noise, so we called it the “Katakata Machine” (katakata is the Japanese word for a clattering sound). Later, wanting a catchier name, we took inspiration from the sound of the name of a popular restaurant-guide website at the time.</span></p>
                 </div>
                 <div class="bn-column-q">
                     <h3><span class="ja">いちばん苦労したこと</span><span class="en" lang="en">The hardest part</span></h3>
-                    <p class="bn-column-todo"><span class="ja">言われてみればなんとなく力として感じるという状態が長く続き，何を変えると錯覚が生じるのかの探索期間が長かった．そもそもこうした錯覚が作れるのかを含め，もともとのアイデアが間違っているのか，やり方が悪いのか正解がないがゆえの悩みが続いたこと．</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
+                    <p><span class="ja">「言われてみれば、なんとなく力のように感じる」という状態が長く続き、何を変えれば錯覚が生じるのかを探る期間が長くかかりました。そもそもこうした錯覚を作り出せるのかも含めて、もとのアイデアが間違っているのか、やり方が悪いのか、正解がないがゆえに悩み続けたことです。</span><span class="en" lang="en">For a long time, the sensation was only something that felt vaguely like a force once you were told to look for it, and it took a long period of exploration to find out what had to change to produce the illusion. With no right answer to go by, including whether such an illusion could be created at all, I kept wondering whether the original idea was wrong or whether my approach was at fault.</span></p>
                 </div>
             </div>
 
@@ -325,7 +330,7 @@
                 </div>
                 <div>
                         <figure class="bn-photo wide" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/principle.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/principle.jpg" alt="非対称振動の原理の図" data-alt-ja="非対称振動の原理の図" data-alt-en="Diagram of the principle of asymmetric vibration" width="960" height="540" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">非対称振動の原理の図</span><span class="en" lang="en">Diagram of the principle of asymmetric vibration</span></p>
@@ -340,7 +345,7 @@
                 </details>
                 <details class="bn-faq-item">
                     <summary><span class="ja">普通の振動と何が違うのですか？</span><span class="en" lang="en">How is this different from ordinary vibration?</span></summary>
-                    <p><span class="ja">携帯電話などの普通の振動は、加速度波形がほぼ左右対称なので、ぶるぶると震える感じはしても、特定の「方向」は感じません。ぶるなびは、一方向には強く短く、反対方向には弱く長く力が加わるように、加速度波形を非対称にしています。そのため，ある方向に動いているように感じさせます．</span><span class="en" lang="en">Ordinary vibration, as in a mobile phone, has a nearly symmetric acceleration waveform, so it feels like buzzing without any particular direction. Buru-Navi makes the waveform asymmetric, with a strong, brief force in one direction and a weak, longer force in the other.</span></p>
+                    <p><span class="ja">携帯電話などの普通の振動は、加速度波形がほぼ左右対称なので、ぶるぶると震える感じはしても、特定の「方向」は感じません。ぶるなびは、一方向には強く短く、反対方向には弱く長く力が加わるように、加速度波形を非対称にしています。そのため、ある方向に動いているように感じられます。</span><span class="en" lang="en">Ordinary vibration, as in a mobile phone, has a nearly symmetric acceleration waveform, so it feels like buzzing without any particular “direction”. Buru-Navi makes the waveform asymmetric, with a strong, brief force in one direction and a weak, longer force in the other. This makes it feel as if the device is moving in one direction.</span></p>
                 </details>
                 <details class="bn-faq-item">
                     <summary><span class="ja">誰でも同じように感じますか？</span><span class="en" lang="en">Does everyone feel it the same way?</span></summary>
@@ -348,11 +353,11 @@
                 </details>
                 <details class="bn-faq-item">
                     <summary><span class="ja">スマートフォンの振動でもできますか？</span><span class="en" lang="en">Can a smartphone’s vibration do this?</span></summary>
-                    <p><span class="ja">スマートフォンに内蔵されている振動モータは、偏心モータ(ERM:Eccentric Rotating Mass)やLRA(Linear Resonant Actuator)が採用されています．一般的には対称振動が生成するために使われますが，入力信号を工夫することで、非対称振動を作ることができます。ぶるなび3では、非対称な振動を出すために、親指ほどの大きさの専用のボイスコイル型の振動子を採用しました。</span><span class="en" lang="en">The vibration motors built into smartphones are mostly designed to produce nearly symmetric vibration, so on their own they are generally not expected to give a clear pulling sensation. Buru-Navi3 uses a dedicated thumb-sized vibrator to produce asymmetric vibration.</span></p>
+                    <p><span class="ja">スマートフォンに内蔵されている振動モータには、偏心モータ（ERM：Eccentric Rotating Mass）やLRA（Linear Resonant Actuator）が使われています。一般には対称な振動を生み出すために使われますが、入力信号を工夫することで、非対称な振動を作ることもできます。ぶるなび3では、非対称な振動を出すために、親指ほどの大きさの専用のボイスコイル型振動子を採用しました。</span><span class="en" lang="en">The vibration motors built into smartphones are eccentric rotating mass (ERM) motors or linear resonant actuators (LRAs). They are generally used to produce symmetric vibration, but asymmetric vibration can also be produced by designing the input signal. For Buru-Navi3, we adopted a dedicated thumb-sized voice-coil vibrator to produce asymmetric vibration.</span></p>
                 </details>
                 <details class="bn-faq-item">
                     <summary><span class="ja">どの方向にでも引っ張れますか？</span><span class="en" lang="en">Can it pull in any direction?</span></summary>
-                    <p><span class="ja">1つの振動子が引っ張る向きは、往復運動の軸に沿った方向です。振動の方向を変化させれば任意の方向に引っ張る感覚を出せます。</span><span class="en" lang="en">A single vibrator pulls along the axis of its back-and-forth motion. The stacked-type device can pull in the four cardinal directions, and the disc-shaped Buru-Navi2 in any direction through 360 degrees.</span></p>
+                    <p><span class="ja">1つの振動子が引っ張る向きは、往復運動の軸に沿った方向です。振動の方向を変えれば、任意の方向に引っ張る感覚を出せます。</span><span class="en" lang="en">A single vibrator pulls along the axis of its back-and-forth motion. By changing the direction of the vibration, a pulling sensation can be created in any direction.</span></p>
                 </details>
             </div>
 
@@ -360,8 +365,8 @@
                 <h2 class="bn-h2" id="lineup-title"><span class="ja">歴代の装置</span><span class="en" lang="en">Devices over the years</span></h2>
                 <p class="bn-h2-note"><span class="ja">試作機からぶるなび3までの装置を並べました。何が変わってきたかを、下の表にまとめています。</span><span class="en" lang="en">Devices from the first prototype to Buru-Navi3, side by side. The table below summarizes what changed.</span></p>
                 <figure class="bn-photo bn-lineup-photo" data-media>
-                    <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/lineup.jpg</code></span>
-                    <img src="img/buru-navi/lineup.jpg" alt="歴代のぶるなびの装置を横に並べた写真" data-alt-ja="歴代のぶるなびの装置を横に並べた写真" data-alt-en="The Buru-Navi devices over the years, side by side" width="1600" height="679" loading="lazy" decoding="async">
+                    <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
+                    <img src="img/buru-navi/lineup.jpg" alt="歴代のぶるなびの装置を横に並べた写真" data-alt-ja="歴代のぶるなびの装置を横に並べた写真" data-alt-en="The Buru-Navi devices over the years, side by side" width="2000" height="798" loading="lazy" decoding="async">
                 </figure>
                 <div class="table-wrap">
                     <table class="data-table bn-cmp">
@@ -370,7 +375,7 @@
                             <tr><th scope="row"><span class="ja">最初の試作機</span><span class="en" lang="en">The first prototype</span></th><td>2004</td><td>—</td><td><span class="ja">おもりの往復運動</span><span class="en" lang="en">Back-and-forth motion of a weight</span></td><td><span class="ja">1方向</span><span class="en" lang="en">One direction</span></td><td><span class="ja">原理を確かめた最初の装置</span><span class="en" lang="en">The first device to test the principle</span></td></tr>
                             <tr><th scope="row"><span class="ja">「ぶるなび」初号機</span><span class="en" lang="en">The first Buru-Navi</span></th><td>2007</td><td><span class="ja">コードレス電話ほどの箱形、約250 g</span><span class="en" lang="en">Box about the size of a cordless phone, about 250 g</span></td><td><span class="ja">スライダクランク機構</span><span class="en" lang="en">Slider-crank mechanism</span></td><td><span class="ja">1方向</span><span class="en" lang="en">One direction</span></td><td><span class="ja">手に持って使える形に</span><span class="en" lang="en">A form that can be held in the hand</span></td></tr>
                             <tr><th scope="row"><span class="ja">積層型デバイス</span><span class="en" lang="en">Stacked-type device</span></th><td>2009</td><td>—</td><td><span class="ja">振動機構を積み重ねる</span><span class="en" lang="en">Stacked vibration mechanisms</span></td><td><span class="ja">東西南北の4方向</span><span class="en" lang="en">Four cardinal directions</span></td><td><span class="ja">複数の方向を案内できるように</span><span class="en" lang="en">Guidance in several directions</span></td></tr>
-                            <tr><th scope="row"><span class="ja">ぶるなび2</span><span class="en" lang="en">Buru-Navi2</span></th><td>—</td><td><span class="ja">DVDと同じ直径の円盤形、約260 g</span><span class="en" lang="en">Disc the size of a DVD, about 260 g</span></td><td><span class="ja">円盤内の振動機構</span><span class="en" lang="en">Vibration mechanisms in a disc</span></td><td><span class="ja">360度の任意の方向</span><span class="en" lang="en">Any direction through 360°</span></td><td><span class="ja">どの方向にも引っ張れるように</span><span class="en" lang="en">Pulling in any direction</span></td></tr>
+                            <tr><th scope="row"><span class="ja">ぶるなび2</span><span class="en" lang="en">Buru-Navi2</span></th><td>2011</td><td><span class="ja">DVDと同じ直径の円盤形、約260 g</span><span class="en" lang="en">Disc the size of a DVD, about 260 g</span></td><td><span class="ja">円盤内の振動機構</span><span class="en" lang="en">Vibration mechanisms in a disc</span></td><td><span class="ja">360度の任意の方向</span><span class="en" lang="en">Any direction through 360°</span></td><td><span class="ja">どの方向にも引っ張れるように</span><span class="en" lang="en">Pulling in any direction</span></td></tr>
                             <tr><th scope="row"><span class="ja">ぶるなび3</span><span class="en" lang="en">Buru-Navi3</span></th><td>2014</td><td><span class="ja">親指ほどの大きさ、約42 g</span><span class="en" lang="en">About the size of a thumb, about 42 g</span></td><td><span class="ja">非対称に振動する振動子</span><span class="en" lang="en">A vibrator driven asymmetrically</span></td><td><span class="ja">1方向</span><span class="en" lang="en">One direction</span></td><td><span class="ja">指先でつまめる大きさに</span><span class="en" lang="en">Small enough to pinch between the fingers</span></td></tr>
                         </tbody>
                     </table>
@@ -398,14 +403,14 @@
                 <div class="bn-era-photos three">
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/origin-1.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/origin-1.jpg" alt="最初の試作機（2004年ごろ）" data-alt-ja="最初の試作機（2004年ごろ）" data-alt-en="The first prototype (c. 2004)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">最初の試作機（2004年ごろ）</span><span class="en" lang="en">The first prototype (c. 2004)</span></p>
                     </div>
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/origin-2.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/origin-2.jpg" alt="SIGGRAPH 2006 Emerging Technologies での展示" data-alt-ja="SIGGRAPH 2006 Emerging Technologies での展示" data-alt-en="Exhibit at SIGGRAPH 2006 Emerging Technologies" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">SIGGRAPH 2006 Emerging Technologies での展示</span><span class="en" lang="en">Exhibit at SIGGRAPH 2006 Emerging Technologies</span></p>
@@ -442,14 +447,14 @@
                 <div class="bn-era-photos">
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi1-1.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/buru-navi1-1.jpg" alt="「ぶるなび」初号機（2007年、約250 g）" data-alt-ja="「ぶるなび」初号機（2007年、約250 g）" data-alt-en="The first Buru-Navi (2007, about 250 g)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">「ぶるなび」初号機（2007年、約250 g）</span><span class="en" lang="en">The first Buru-Navi (2007, about 250 g)</span></p>
                     </div>
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi1-2.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/buru-navi1-2.jpg" alt="Laval Virtual 2007 での展示・受賞" data-alt-ja="Laval Virtual 2007 での展示・受賞" data-alt-en="Exhibit and award at Laval Virtual 2007" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">Laval Virtual 2007 での展示・受賞</span><span class="en" lang="en">Exhibit and award at Laval Virtual 2007</span></p>
@@ -483,14 +488,14 @@
                 <div class="bn-era-photos">
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi2-1.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/buru-navi2-1.jpg" alt="積層型の牽引力提示デバイス（ACM ASSETS 2009）" data-alt-ja="積層型の牽引力提示デバイス（ACM ASSETS 2009）" data-alt-en="Stacked-type pulling-force device (ACM ASSETS 2009)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">積層型の牽引力提示デバイス（ACM ASSETS 2009）</span><span class="en" lang="en">Stacked-type pulling-force device (ACM ASSETS 2009)</span></p>
                     </div>
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi2-2.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/buru-navi2-2.jpg" alt="京都市消防局・京都府立盲学校との歩行実験" data-alt-ja="京都市消防局・京都府立盲学校との歩行実験" data-alt-en="Walking experiment with the Kyoto City Fire Department and the Kyoto Prefectural School for the Blind" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">京都市消防局・京都府立盲学校との歩行実験</span><span class="en" lang="en">Walking experiment with the Kyoto City Fire Department and the Kyoto Prefectural School for the Blind</span></p>
@@ -523,14 +528,14 @@
                 <div class="bn-era-photos">
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/navigation-2.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/navigation-2.jpg" alt="円盤形の「ぶるなび2」（約260 g）" data-alt-ja="円盤形の「ぶるなび2」（約260 g）" data-alt-en="The disc-shaped Buru-Navi2 (about 260 g)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">円盤形の「ぶるなび2」（約260 g）</span><span class="en" lang="en">The disc-shaped Buru-Navi2 (about 260 g)</span></p>
                     </div>
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/navigation-1.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/navigation-1.jpg" alt="テレビ朝日「モーニングバード！」での歩行案内デモ（2012年）" data-alt-ja="テレビ朝日「モーニングバード！」での歩行案内デモ（2012年）" data-alt-en="Walking-guidance demo on TV Asahi’s “Morning Bird!” (2012)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">テレビ朝日「モーニングバード！」での歩行案内デモ（2012年）</span><span class="en" lang="en">Walking-guidance demo on TV Asahi’s “Morning Bird!” (2012)</span></p>
@@ -556,14 +561,14 @@
                 <div class="bn-era-photos">
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi3-1.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/buru-navi3-1.jpg" alt="指先でつまむ「ぶるなび3」（2014年、約42 g）" data-alt-ja="指先でつまむ「ぶるなび3」（2014年、約42 g）" data-alt-en="Buru-Navi3 pinched between the fingers (2014, about 42 g)" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">指先でつまむ「ぶるなび3」（2014年、約42 g）</span><span class="en" lang="en">Buru-Navi3 pinched between the fingers (2014, about 42 g)</span></p>
                     </div>
                     <div>
                         <figure class="bn-photo" data-media>
-                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/buru-navi3-2.jpg</code></span>
+                            <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                             <img src="img/buru-navi/buru-navi3-2.jpg" alt="ぶるなび3を使った釣りのデモ" data-alt-ja="ぶるなび3を使った釣りのデモ" data-alt-en="A fishing demo using Buru-Navi3" width="960" height="720" loading="lazy" decoding="async">
                         </figure>
                         <p class="bn-cap"><span class="ja">ぶるなび3を使った釣りのデモ</span><span class="en" lang="en">A fishing demo using Buru-Navi3</span></p>
@@ -601,7 +606,7 @@
             <div class="bn-dev">
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-review.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-review.jpg" alt="広がった研究を、総説論文にまとめる" data-alt-ja="広がった研究を、総説論文にまとめる" data-alt-en="A review of a growing field" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#origin"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：2004年からの研究の全体</span><span class="en" lang="en">Builds on: The whole body of research since 2004</span></a>
@@ -615,8 +620,8 @@
                     </div>
                 </article>
                 <article class="bn-dev-card">
-                    <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-vr.jpg</code></span>
+                    <figure class="bn-photo wide bn-dev-photo bn-contain" data-media>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-vr.jpg" alt="VR空間での力の表現へ" data-alt-ja="VR空間での力の表現へ" data-alt-en="Force presentation in VR" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：ぶるなび3の引っ張られる感覚</span><span class="en" lang="en">Builds on: The pulling sensation of Buru-Navi3</span></a>
@@ -645,7 +650,7 @@
                 </article>
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-synergy.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-synergy.jpg" alt="運動錯覚と組み合わせて、感覚を強める" data-alt-ja="運動錯覚と組み合わせて、感覚を強める" data-alt-en="Strengthening the illusion with a kinesthetic illusion" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#origin"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：牽引力錯覚そのもの</span><span class="en" lang="en">Builds on: The pulling illusion itself</span></a>
@@ -660,7 +665,7 @@
                 </article>
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-tractfree.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-tractfree.jpg" alt="指を空けたまま、引っ張られる感覚と重さを" data-alt-ja="指を空けたまま、引っ張られる感覚と重さを" data-alt-en="Traction and weight with the fingers left free" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：指先でつまむ、ぶるなび3</span><span class="en" lang="en">Builds on: Buru-Navi3, pinched between the fingers</span></a>
@@ -675,7 +680,7 @@
                 </article>
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-seat.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-seat.jpg" alt="手から、座面へ" data-alt-ja="手から、座面へ" data-alt-en="From the hand to the seat" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：手に持つ装置での提示</span><span class="en" lang="en">Builds on: Presentation with a handheld device</span></a>
@@ -690,7 +695,7 @@
                 </article>
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-asymdrive.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-asymdrive.jpg" alt="指先を空けて、手の腱へ" data-alt-ja="指先を空けて、手の腱へ" data-alt-en="Leaving the fingertips free: onto the hand tendons" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：指先でつまむ、ぶるなび3</span><span class="en" lang="en">Builds on: Buru-Navi3, pinched between the fingers</span></a>
@@ -705,7 +710,7 @@
                 </article>
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-visual.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-visual.jpg" alt="視覚の動きと組み合わせる" data-alt-ja="視覚の動きと組み合わせる" data-alt-en="Combining it with visual motion cues" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#origin"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：牽引力錯覚そのもの</span><span class="en" lang="en">Builds on: The pulling illusion itself</span></a>
@@ -720,7 +725,7 @@
                 </article>
                 <article class="bn-dev-card">
                     <figure class="bn-photo wide bn-dev-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/dev-iss.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/dev-iss.jpg" alt="VRで移動する速さの感じ方を変える" data-alt-ja="VRで移動する速さの感じ方を変える" data-alt-en="Changing how fast self-motion feels in VR" width="960" height="540" loading="lazy" decoding="async">
                     </figure>
                     <a class="bn-from" href="#bn3"><i class="fa-solid fa-code-branch" aria-hidden="true"></i> <span class="ja">受け継いだもの：手に持つ装置の引っ張られる感覚</span><span class="en" lang="en">Builds on: The pulling sensation from a handheld device</span></a>
@@ -747,7 +752,7 @@
             <div class="bn-media bn-award-picks">
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-his-2005.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/award-his-2005.jpg" alt="ヒューマンインタフェースシンポジウム2005 優秀プレゼンテーション賞" data-alt-ja="ヒューマンインタフェースシンポジウム2005 優秀プレゼンテーション賞" data-alt-en="Best Presentation Award, Human Interface Symposium 2005" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <time style="margin-top: 0.75rem;">2005.09</time>
@@ -755,7 +760,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-laval-2007.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/award-laval-2007.jpg" alt="Laval Virtual 2007 Grand Prix du Jury" data-alt-ja="Laval Virtual 2007 Grand Prix du Jury" data-alt-en="Grand Prix du Jury, Laval Virtual 2007" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <time style="margin-top: 0.75rem;">2007.04</time>
@@ -763,7 +768,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-eurohaptics-2014.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/award-eurohaptics-2014.jpg" alt="EuroHaptics 2014 Best Demonstration Award" data-alt-ja="EuroHaptics 2014 Best Demonstration Award" data-alt-en="Best Demonstration Award, EuroHaptics 2014" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <time style="margin-top: 0.75rem;">2014.06</time>
@@ -771,7 +776,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span class="ja">写真を入れる場所</span><span class="en" lang="en">Photo to be added</span><code>img/buru-navi/award-meti-2014.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/award-meti-2014.jpg" alt="経済産業省 Innovative Technologies 2014" data-alt-ja="経済産業省 Innovative Technologies 2014" data-alt-en="Innovative Technologies 2014 (METI, Japan)" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <time style="margin-top: 0.75rem;">2014.09</time>
@@ -799,7 +804,7 @@
             <div class="bn-media">
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/asahi-2006.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/asahi-2006.jpg" alt="朝日新聞 夕刊3面" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© 朝日新聞社</p>
@@ -810,7 +815,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/asahi-2009.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/asahi-2009.jpg" alt="朝日新聞 7面（土曜版Be「ナントカ学」）" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© 朝日新聞社</p>
@@ -821,7 +826,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/hket-2010.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/hket-2010.jpg" alt="Hong Kong Economic Times（香港經濟日報）A39" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© Hong Kong Economic Times</p>
@@ -832,7 +837,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nikkei-2011.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/nikkei-2011.jpg" alt="日本経済新聞 朝刊11面" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© 日本経済新聞社</p>
@@ -843,7 +848,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nikkei-2014.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/nikkei-2014.jpg" alt="日本経済新聞 夕刊1面" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© 日本経済新聞社</p>
@@ -875,7 +880,7 @@
             <div class="bn-media">
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/wbs-2007.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/wbs-2007.jpg" alt="テレビ東京 ワールドビジネスサテライト「トレンドたまご」" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© テレビ東京</p>
@@ -886,7 +891,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/morningbird-2012.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/morningbird-2012.jpg" alt="テレビ朝日 モーニングバード！「アカデミヨシズミ」" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© テレビ朝日</p>
@@ -897,7 +902,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/realscope-2012.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/realscope-2012.jpg" alt="フジテレビ あらゆる世界を見学せよ！リアルスコープＺ" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© フジテレビ</p>
@@ -908,7 +913,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/wbs-2014.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/wbs-2014.jpg" alt="テレビ東京 ワールドビジネスサテライト「トレンドたまご」" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© テレビ東京</p>
@@ -919,7 +924,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/kbs-kyobizs.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/kbs-kyobizs.jpg" alt="KBS京都 京bizS「ビジタネ」" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© KBS京都</p>
@@ -930,7 +935,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/nhkworld-2016.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/nhkworld-2016.jpg" alt="NHK World（国際放送）" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© NHK</p>
@@ -956,7 +961,7 @@
             <div class="bn-media">
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/doraemon-2014.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/doraemon-2014.jpg" alt="小学館「ドラえもん もっと！ふしぎのサイエンス Vol.4」" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© 藤子プロ・小学館</p>
@@ -967,7 +972,7 @@
                 </article>
                 <article class="bn-media-card">
                     <figure class="bn-photo" data-media>
-                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i><span class="ja">スクリーンショットを入れる場所</span><span class="en" lang="en">Screenshot to be added</span><code>img/buru-navi/media/ipsj-2020.jpg</code></span>
+                        <span class="bn-ph"><i class="fa-regular fa-image" aria-hidden="true"></i></span>
                         <img src="img/buru-navi/media/ipsj-2020.jpg" alt="情報処理（情報処理学会誌）2020年4月号" width="800" height="500" loading="lazy" decoding="async">
                     </figure>
                     <p class="bn-credit">© 情報処理学会</p>
