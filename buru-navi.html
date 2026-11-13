@@ -167,6 +167,7 @@
         .bn-scope i { color: var(--accent-cyan); }
         .bn-award-picks { margin-bottom: 1.25rem; }
         .bn-intro-video { max-width: 760px; margin: 0 auto 2.5rem; }
+        .bn-try { text-align: center; margin-top: 1rem; }
         .bn-video-slot { aspect-ratio: 16 / 9; background: var(--bg-secondary); }
         .bn-video-slot .bn-ph { color: var(--text-muted); }
         .bn-column { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--accent-purple-text); border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; }
@@ -260,10 +261,11 @@
             <p class="bn-lead"><span class="ja">「ぶるなび」は、手に持った装置を非対称に振動させることで、<strong>どこにも固定していないのに、一方向へ引っ張られるように感じさせる</strong>技術です（牽引力錯覚）。雨宮智浩は、安藤英由樹・前田太郎とともに、<strong>2004年9月の日本バーチャルリアリティ学会 第9回大会でこの手法を初めて発表</strong>し、この発表により2005年3月に同学会の学術奨励賞を受賞しました。その後、初号機からぶるなび3まで装置の小型化を進め、知覚の仕組みの解明や歩行ナビゲーションへの応用に取り組みました。2019年に東京大学へ移ってからは、この研究をVRや新しい提示部位へと発展させています。このページでは、論文・受賞・報道などの公開されている資料をもとに、その歩みを紹介します。</span><span class="en" lang="en">Buru-Navi is a technique that vibrates a handheld device asymmetrically so that it <strong>feels as if it is pulling in one direction even though it is not fixed to anything</strong> (the pulling illusion). Together with Hideyuki Ando and Taro Maeda, Tomohiro Amemiya <strong>first presented the method at the 9th Annual Conference of the Virtual Reality Society of Japan in September 2004</strong>, and for this presentation he received the society’s presentation award in March 2005. He went on to make the device smaller, from the first model to Buru-Navi3, while studying how the sensation is perceived and applying it to pedestrian navigation. Since moving to the University of Tokyo in 2019, he has extended this research to VR and to new parts of the body. This page tells that story through publicly available papers, awards and press coverage.</span></p>
 
             <div class="bn-intro-video" id="intro-video">
-                <figure class="bn-photo wide" id="intro-video-slot">
-                    <span class="bn-ph"><i class="fa-solid fa-film" aria-hidden="true"></i></span>
-                </figure>
-                <p class="bn-cap"><span class="ja">30秒でわかる「ぶるなび」：装置を持つと、引っ張られる方向がわかり、歩行案内やVRに使えます（字幕付き・音声なしでも内容がわかる構成）</span><span class="en" lang="en">Buru-Navi in 30 seconds: hold the device, feel which way it pulls, and see how it is used for walking guidance and VR (subtitled, understandable without sound)</span></p>
+                <div class="bn-video" id="intro-video-slot">
+                    <video src="img/buru-navi/intro.mp4" poster="img/buru-navi/intro-poster.jpg" controls muted playsinline preload="none" aria-label="30秒でわかる「ぶるなび」 / Buru-Navi in 30 seconds"></video>
+                </div>
+                <p class="bn-cap"><span class="ja">30秒でわかる「ぶるなび」：歴代の装置、引っ張られるように感じる仕組み、歩行案内・ゲーム・VRへの応用を紹介します（字幕付き、音声なし）。</span><span class="en" lang="en">Buru-Navi in 30 seconds: the devices over the years, how the pulling sensation arises, and its use in walking guidance, games and VR (Japanese captions, no sound).</span></p>
+                <p class="bn-try"><a href="buru-navi-simulator/" class="btn btn-primary"><i class="fa-solid fa-wave-square" aria-hidden="true"></i> <span class="ja">シミュレーターで仕組みを見る</span><span class="en" lang="en">Explore it in the simulator</span></a></p>
             </div>
 
             <div class="bn-stats">
@@ -301,16 +303,12 @@
             <div class="bn-column" id="column" role="region" aria-labelledby="column-title">
                 <h2 id="column-title"><span class="ja">開発者が語る、ぶるなび誕生の経緯</span><span class="en" lang="en">How Buru-Navi was born, in the developer’s words</span></h2>
                 <div class="bn-column-q">
-                    <h3><span class="ja">最初に「引っ張られる感覚」に気づいたとき</span><span class="en" lang="en">When the pulling sensation was first noticed</span></h3>
-                    <p class="bn-column-todo"><span class="ja">（雨宮先生のコメントを入れる）</span><span class="en" lang="en">(Prof. Amemiya’s comment to be added)</span></p>
-                </div>
-                <div class="bn-column-q">
                     <h3><span class="ja">「ぶるなび」という名前の由来</span><span class="en" lang="en">Where the name “Buru-Navi” came from</span></h3>
-                    <p><span class="ja">当初はカタカタと音が鳴るので、「カタカタマシン」と呼んでいました。その後、覚えやすい名前にしようと、当時人気だったグルメサイトの名前の響きから着想を得て命名しました。</span><span class="en" lang="en">At first it made a clattering noise, so we called it the “Katakata Machine” (katakata is the Japanese word for a clattering sound). Later, wanting a catchier name, we took inspiration from the sound of the name of a popular restaurant-guide website at the time.</span></p>
+                    <p><span class="ja">当初はカタカタと音が鳴るので、「カタカタマシン」と呼んでいました。その後、覚えやすい名前にしようと、当時人気だったグルメサイトの名前の響きから着想を得て命名しました。展示などを通じていろいろなところで覚えてもらえるようになったので、いつのまにか正式名称になりました。</span><span class="en" lang="en">At first it made a clattering noise, so we called it the “Katakata Machine” (katakata is the Japanese word for a clattering sound). Later, wanting a catchier name, we took inspiration from the sound of the name of a popular restaurant-guide website at the time. As people in many places came to remember the name through exhibitions and demonstrations, it gradually became the official name.</span></p>
                 </div>
                 <div class="bn-column-q">
                     <h3><span class="ja">いちばん苦労したこと</span><span class="en" lang="en">The hardest part</span></h3>
-                    <p><span class="ja">「言われてみれば、なんとなく力のように感じる」という状態が長く続き、何を変えれば錯覚が生じるのかを探る期間が長くかかりました。そもそもこうした錯覚を作り出せるのかも含めて、もとのアイデアが間違っているのか、やり方が悪いのか、正解がないがゆえに悩み続けたことです。</span><span class="en" lang="en">For a long time, the sensation was only something that felt vaguely like a force once you were told to look for it, and it took a long period of exploration to find out what had to change to produce the illusion. With no right answer to go by, including whether such an illusion could be created at all, I kept wondering whether the original idea was wrong or whether my approach was at fault.</span></p>
+                    <p><span class="ja">「言われてみれば、なんとなく力のように感じる」という状態が長く続き、何を変えれば錯覚が生じるのかを探る期間が長くかかりました。この錯覚が実現できると知っていればよかったのですが、そもそもこうした錯覚を作り出せるのかも含めて、もとのアイデアが間違っているのか、やり方が悪いのか、正解がないがゆえに悩み続けたことです。</span><span class="en" lang="en">For a long time, the sensation was only something that felt vaguely like a force once you were told to look for it, and it took a long period of exploration to find out what had to change to produce the illusion. It would have been easier had I known that the illusion could be achieved, but with no right answer to go by, not even whether such an illusion could be created at all, I kept wondering whether the original idea was wrong or whether my approach was at fault.</span></p>
                 </div>
             </div>
 

@@ -180,7 +180,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 - ほかのページからはリンクしていません。URL（`buru-navi.html`）を直接案内してください。
 - 検索エンジンに載せない指定（`<meta name="robots" content="noindex">`）を入れています。公開の準備ができたら、buru-navi.html の `<head>` にあるこの1行を消してください。
-- 写真が無い欄には「写真を入れる場所」という点線の枠が出ます。写真のファイル名は `img/buru-navi/README.md` にあります。
+- 写真が無い欄には、アイコンだけの点線の枠が出ます。写真のファイル名は `img/buru-navi/README.md` にあります。
+- 冒頭の動画の下と「引っ張られる感覚の仕組み」の欄から、非対称振動シミュレーター（`buru-navi-simulator/`）にリンクしています。
 - このページ専用のデザインは、buru-navi.html の `<style>` の中に書いています。
 
 ### 共同研究・産学連携を更新する（collaboration.html）
