@@ -101,11 +101,14 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 | --- | --- |
 | journal | 学術論文誌 |
 | intl | 国際会議 |
-| dom | 国内発表・解説記事 |
+| article | 書籍・解説（学会誌・雑誌などの解説記事、書籍、Editorial） |
+| dom | 国内発表（学会大会・研究会・シンポジウムの発表） |
 | talk | 招待講演 |
 | thesis | 学位論文（修士論文・博士論文） |
 | award | 受賞 |
 | media | メディア掲載 |
+
+種別のラベルは、論文誌 › 国際会議 › 書籍・解説 › 国内発表 の順に強い見た目にしています（`assets/css/style.css` の `.pub-type`・`.pub-item[data-type=…]`）。ラベルは `<span class="pub-type t-journal"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">論文誌</span><span class="en" lang="en">Journal</span></span>` のように書きます（`t-` の後ろは data-type と同じ。アイコンは同じ種別の既存の項目からコピーしてください）。
 
 学位論文（`data-type="thesis"`）には、雨宮が指導教員を務めた修士論文・博士論文を載せます。「学位論文」のタブで論文・国際会議などとは別に数えます。トップページの「論文・発表」の件数には含めません。書誌は「修士論文, 東京大学大学院総合文化研究科 広域科学専攻, 2026.03」のように書きます。
 
@@ -203,6 +206,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 ### 研究のつながり（ネットワーク図・research.html）
 
 研究紹介ページの上部に、研究とキーワードのつながりを表すネットワーク図があります（D3.js で描画。図の近くまでスクロールしたときに読み込みます）。図は研究カードから自動で作られるので、次の2か所を書き換えるだけで更新できます。
+
+**図の動き**：図が画面に入ると点が中央から広がって配置につき（登場の動き）、その後はゆっくりゆれ続けます（ゆらぎ）。点に触れている間・説明を開いている間・⏸ボタンを押したとき・画面の外や別タブのときは止まり、端末で「視差効果を減らす」を設定している人には動きません。動きは `<div class="net-box" data-network data-motion="intro float">` の `data-motion` で選べます（`intro`＝登場、`float`＝ゆらぎ、空にすると動きなし）。
 
 - **研究カードの点**：各カードの `<article … id="card-…" data-topics="…">` が1つの点になります。`data-topics` にはつながるキーワードの ID を半角スペース区切りで書きます（例：`data-topics="pseudo-haptics multisensory"`）。新しいカードを図に出すときは、重ならない `id` と `data-topics` を付けてください。付けないカードは図に出ません。
 - **キーワード**：research.html の `<script type="application/json" id="networkData">` の `topics` に、ID・日本語名・英語名・説明があります。キーワードを増やすときはここに1件追加します。

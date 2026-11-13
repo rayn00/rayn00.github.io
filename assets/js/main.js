@@ -897,9 +897,15 @@
             .attr('y', function (n) { return n.kind === 'domain' ? -(n.r + 9) : 0; })
             .attr('dy', function (n) { return n.kind === 'domain' ? 0 : '0.35em'; });
         var position = function () {
-            link.attr('x1', function (l) { return l.source.x; }).attr('y1', function (l) { return l.source.y; })
-                .attr('x2', function (l) { return l.target.x; }).attr('y2', function (l) { return l.target.y; });
-            node.attr('transform', function (n) { return 'translate(' + n.x + ',' + n.y + ')'; });
+            // px・py は「見た目の位置」（ゆらぎ・登場の動きを足したもの）
+            nodes.forEach(function (n) {
+                var pin = n.fx != null;
+                n.px = (n.x * (pin ? 1 : n.ik == null ? 1 : n.ik)) + (pin ? 0 : (n.ox || 0));
+                n.py = (n.y * (pin ? 1 : n.ik == null ? 1 : n.ik)) + (pin ? 0 : (n.oy || 0));
+            });
+            link.attr('x1', function (l) { return l.source.px; }).attr('y1', function (l) { return l.source.py; })
+                .attr('x2', function (l) { return l.target.px; }).attr('y2', function (l) { return l.target.py; });
+            node.attr('transform', function (n) { return 'translate(' + n.px + ',' + n.py + ')'; });
         };
         var updateText = function () {
             node.select('text').text(function (n) { return tx(n.name); });
@@ -939,6 +945,68 @@
             }).observe(box);
         }
 
+        // ---- 動き（試作）：登場の動き（intro）と、ゆっくりしたゆらぎ（float）
+        // 「視差効果を減らす」設定の端末では動かさない。画面の外・別タブでは止める
+        var motion = box.getAttribute('data-motion') || '';
+        var useIntro = /intro/.test(motion) && !reduceMotion.matches;
+        var useFloat = /float/.test(motion) && !reduceMotion.matches;
+        var floatOn = useFloat, amp = 0, inView = false, introT0 = null, raf = null, INTRO = 1300;
+        nodes.forEach(function (n, k) {
+            n.fa = (n.kind === 'domain' ? 3 : n.kind === 'topic' ? 5 : 7) * sf;       // ゆれ幅（px）
+            n.fp1 = k * 1.7; n.fp2 = k * 2.9;                                          // 位相
+            n.ft1 = 5200 + (k * 37 % 11) * 380; n.ft2 = 6100 + (k * 53 % 13) * 340;    // 周期（ミリ秒）
+            n.idelay = n.kind === 'domain' ? 0 : n.kind === 'topic' ? 140 : 300;
+            if (useIntro) n.ik = 0.12;
+        });
+        if (useIntro) { g.style('opacity', 0); position(); }
+        var easeOutBack = function (t) { var c = 1.4; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+        var frame = function (now) {
+            raf = null;
+            var busy = false;
+            if (useIntro && introT0 != null) {
+                var e = now - introT0;
+                nodes.forEach(function (n) {
+                    var t = Math.max(0, Math.min(1, (e - n.idelay) / (INTRO - 300)));
+                    n.ik = 0.12 + 0.88 * easeOutBack(t);
+                });
+                g.style('opacity', Math.min(1, e / 400));
+                if (e < INTRO) busy = true; else { nodes.forEach(function (n) { n.ik = 1; }); g.style('opacity', null); introT0 = null; useIntro = false; }
+            }
+            if (useFloat) {
+                // 点に触れている間・説明を開いている間・止めている間は、ゆれ幅を0に近づける
+                var want = (floatOn && !box.classList.contains('has-focus') && !useIntro) ? 1 : 0;
+                amp += (want - amp) * 0.06;
+                if (Math.abs(want - amp) < 0.002) amp = want;
+                nodes.forEach(function (n) {
+                    n.ox = amp * n.fa * Math.sin(now / n.ft1 * 6.2832 + n.fp1);
+                    n.oy = amp * n.fa * Math.cos(now / n.ft2 * 6.2832 + n.fp2);
+                });
+                if (floatOn || amp > 0) busy = true;
+            }
+            position();
+            if (busy && inView && !document.hidden) raf = requestAnimationFrame(frame);
+        };
+        var kick = function () { if (!raf && inView && !document.hidden) raf = requestAnimationFrame(frame); };
+        if ((useIntro || useFloat) && 'IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                inView = entries[entries.length - 1].isIntersecting;
+                if (inView && useIntro && introT0 == null) introT0 = performance.now();
+                kick();
+            }, { threshold: 0.3 }).observe(box);
+            document.addEventListener('visibilitychange', kick);
+            box.addEventListener('pointerover', kick);
+        } else if (useIntro) { nodes.forEach(function (n) { n.ik = 1; }); g.style('opacity', null); position(); }
+        var floatBtn = document.querySelector('[data-net="float"]');
+        if (floatBtn) {
+            floatBtn.hidden = !useFloat;
+            floatBtn.addEventListener('click', function () {
+                floatOn = !floatOn;
+                floatBtn.setAttribute('aria-pressed', String(!floatOn));
+                floatBtn.querySelector('i').className = floatOn ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+                kick();
+            });
+        }
+
         // ---- 点のドラッグ（マウス・ペン・指）。動かした点はその場所に留まる（↺ボタンで元に戻す）
         var moved = false;
         node.call(d3.drag()
@@ -946,7 +1014,7 @@
                 if (e.type === 'touchstart') return e.touches.length === 1;
                 return !e.button;
             })
-            .on('start', function (e, n) { moved = false; n.fx = n.x; n.fy = n.y; })
+            .on('start', function (e, n) { moved = false; n.x = n.px; n.y = n.py; n.fx = n.x; n.fy = n.y; })
             .on('drag', function (e, n) {
                 if (!moved) {
                     moved = true;

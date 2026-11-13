@@ -748,9 +748,44 @@ section {
     margin-bottom: 0.4rem;
 }
 
+/* 種別のラベル。論文誌 › 国際会議 › 書籍・解説 › 国内発表 の順に強く見せる */
 .pub-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.12rem 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    font-size: 0.76rem;
     font-weight: 700;
-    color: var(--accent-cyan);
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.pub-type i { font-size: 0.72rem; }
+.pub-type.t-journal { background: var(--accent-cyan); border-color: var(--accent-cyan); color: var(--on-accent); }
+.pub-type.t-intl { background: transparent; border: 1.5px solid var(--accent-cyan); color: var(--accent-cyan); }
+.pub-type.t-article { background: transparent; border: 1px dashed var(--text-muted); color: var(--text-secondary); }
+.pub-type.t-dom { background: transparent; border-color: transparent; padding-left: 0; font-weight: 600; color: var(--text-muted); }
+
+.pub-item[data-type="journal"] { border-left: 5px solid var(--accent-cyan); }
+.pub-item[data-type="intl"] { border-left: 5px solid color-mix(in srgb, var(--accent-cyan) 40%, transparent); }
+.pub-item[data-type="article"] { border-left: 5px solid var(--border-color); }
+.pub-item[data-type="journal"] .pub-title { font-size: 1.06rem; }
+.pub-item[data-type="dom"] { padding: 0.85rem 1.25rem; background: transparent; }
+.pub-item[data-type="dom"] .pub-title { font-size: 0.93rem; font-weight: 600; }
+.pub-item[data-type="dom"] .pub-authors,
+.pub-item[data-type="dom"] .pub-venue { font-size: 0.8rem; }
+
+.pub-rank-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
 }
 
 .pub-year {
