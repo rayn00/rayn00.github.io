@@ -373,6 +373,56 @@
         var items = Array.prototype.slice.call(list.querySelectorAll('[data-type]'));
         var groups = Array.prototype.slice.call(list.querySelectorAll('.year-group'));
         var state = { type: 'all', q: '' };
+
+        // 検索：空白（全角の空白も可）で区切った語をすべて含むものを表示する（AND 検索）。
+        // 全角・半角、大文字・小文字、氏名の間の空白の有無は区別しない。
+        // <script type="application/json" data-names-for="…"> の著者名の対応表があれば、
+        // 「雨宮」で Tomohiro Amemiya、「Amemiya」で 雨宮智浩 の項目も見つかる
+        var norm = function (t) {
+            t = String(t || '');
+            if (t.normalize) t = t.normalize('NFKC');
+            return t.toLowerCase().replace(/[\s\u3000・･.,，、]+/g, '');
+        };
+        var nameGroups = [];
+        var nameEl = document.querySelector('script[data-names-for="' + id + '"]');
+        if (nameEl) {
+            try {
+                JSON.parse(nameEl.textContent).forEach(function (row) {
+                    var forms = [];
+                    row.forEach(function (cell) {
+                        String(cell).split('|').forEach(function (f) {
+                            if (!f.trim()) return;
+                            forms.push(norm(f));
+                            var w = f.trim().split(/\s+/);   // 英語名は「姓 名」の順も入れる（Amemiya Tomohiro）
+                            if (w.length > 1 && /^[\x00-\x7f]+$/.test(f)) forms.push(norm(w.slice(1).join('') + w[0]));
+                        });
+                    });
+                    nameGroups.push(forms);
+                });
+            } catch (e) {}
+        }
+        var hay = items.map(function (it) { return norm(it.textContent); });
+        // 1つの語に当てはまる表記の一覧（語そのもの＋その語を含む著者の日英の氏名）
+        var expand = function (term) {
+            var out = [term];
+            var minLen = /^[\x00-\x7f]+$/.test(term) ? 3 : 2;   // 短すぎる語は氏名に広げない
+            if (term.length < minLen) return out;
+            nameGroups.forEach(function (forms) {
+                if (forms.some(function (f) { return f.indexOf(term) !== -1; })) out = out.concat(forms);
+            });
+            return out;
+        };
+        var terms = [];
+        var setQuery = function (q) {
+            terms = String(q || '').split(/[\s\u3000]+/).map(norm).filter(Boolean).map(expand);
+        };
+        function matchText(i) {
+            if (!terms.length) return true;
+            var h = hay[i];
+            return terms.every(function (alts) {
+                return alts.some(function (a) { return h.indexOf(a) !== -1; });
+            });
+        }
         var shown = items.length;
 
         function updateCount() {
@@ -388,9 +438,9 @@
         }
         function apply() {
             shown = 0;
-            items.forEach(function (it) {
+            items.forEach(function (it, i) {
                 var okType = isType(it, state.type);
-                var okText = !state.q || it.textContent.toLowerCase().indexOf(state.q) !== -1;
+                var okText = matchText(i);
                 it.hidden = !(okType && okText);
                 if (!it.hidden) shown++;
             });
@@ -431,7 +481,8 @@
         });
         if (search) {
             search.addEventListener('input', function () {
-                state.q = search.value.trim().toLowerCase();
+                state.q = search.value.trim();
+                setQuery(state.q);
                 apply();
             });
         }
