@@ -16,5 +16,5 @@
 | 2025.09.18 日本バーチャルリアリティ学会 論文賞を受賞 | `vrsj-paper2025.jpg` |
 | 2025.09.12 SICHI2025 学生コンテストで奨励賞を受賞 | `sichi2025.jpg` |
 | 2026.10.28 SIGGRAPH Asia 2026 Emerging Technologies で3件の展示発表 | `siggraphasia2026.jpg` |
-| 2026.10.12 研究室合宿を行いました | `lab-retreat2026-1.jpg` 〜 `lab-retreat2026-4.jpg`（何枚でも可。4枚より多いときは記事のページに `<figure>` を足す） |
+| 2026.10.12 研究室合宿を行いました | `lab-retreat2026-1.jpg`（2枚目以降は `lab-retreat2026-2.jpg` …とし、記事のページに `<figure>` を足す） |
 | 2026.09.17 雨宮教授がヒューマンインタフェースシンポジウム2027の大会長に | `his2027-chair.jpg`（無くてもよい） |
