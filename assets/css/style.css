@@ -1291,6 +1291,41 @@ footer {
     margin-bottom: 1rem;
 }
 
+/* 年で移動（ニュース一覧の上） */
+.year-jump {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.5rem;
+    margin: 0 0 0.9rem;
+    font-size: 0.85rem;
+}
+
+.year-jump-label {
+    margin-right: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.year-jump a {
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.year-jump a:hover,
+.year-jump a:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.year-jump a[hidden] {
+    display: none;
+}
+
 /* 年ごとのまとまり */
 .year-group {
     margin-bottom: 2.5rem;
@@ -2817,6 +2852,31 @@ a.partner-chip i {
 .news-more:focus-visible {
     border-color: var(--accent-cyan);
     background: var(--bg-glass);
+}
+
+/* 研究室サイト内の記事ページ（news/…）への「詳しく読む」は塗りつぶして、外部ページなどへのリンクと区別する */
+.news-more:not(.is-article) {
+    color: var(--text-secondary);
+}
+
+.news-card:hover .news-more:not(.is-article),
+.news-more:not(.is-article):hover,
+.news-more:not(.is-article):focus-visible {
+    color: var(--accent-cyan);
+}
+
+.news-more.is-article {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    color: var(--on-accent);
+}
+
+.news-card:hover .news-more.is-article,
+.news-more.is-article:hover,
+.news-more.is-article:focus-visible {
+    background: var(--accent-cyan);
+    color: var(--on-accent);
+    filter: brightness(1.08);
 }
 
 .news-more i {

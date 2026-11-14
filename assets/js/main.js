@@ -447,6 +447,15 @@
             groups.forEach(function (g) {
                 g.hidden = !g.querySelector('[data-type]:not([hidden])');
             });
+            // 「年で移動」：絞り込み・検索で項目が無くなった年は、リンクも隠す
+            var jump = document.querySelector('[data-year-jump-for="' + id + '"]');
+            if (jump) {
+                Array.prototype.slice.call(jump.querySelectorAll('a[href^="#"]')).forEach(function (a) {
+                    var h = document.getElementById(a.getAttribute('href').slice(1));
+                    var g = h && h.closest('.year-group');
+                    a.hidden = !!(g && g.hidden);
+                });
+            }
             if (empty) empty.hidden = shown !== 0;
             updateCount();
             updateYears();
