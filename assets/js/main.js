@@ -1392,7 +1392,12 @@
     /* ---------- 写真が無いときは写真の枠を出さない（data-photo-item） ---------- */
     document.querySelectorAll('[data-photo-item] img').forEach(function (img) {
         var item = img.closest('[data-photo-item]');
-        var fail = function () { var f = img.closest('figure'); if (f) f.remove(); item.classList.add('no-photo'); };
+        var fail = function () {
+            var f = img.closest('figure'); if (f) f.remove();
+            if (item.querySelector('figure')) return;   // ほかの写真が残っているときは枠を残す
+            var box = item.querySelector('.history-photos'); if (box) box.remove();
+            item.classList.add('no-photo');
+        };
         if (img.complete) { if (!img.naturalWidth) fail(); }
         else img.addEventListener('error', fail);
     });
