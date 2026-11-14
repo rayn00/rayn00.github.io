@@ -17,4 +17,6 @@
 | 2025.09.12 SICHI2025 学生コンテストで奨励賞を受賞 | `sichi2025.jpg` |
 | 2026.10.28 SIGGRAPH Asia 2026 Emerging Technologies で3件の展示発表 | `siggraphasia2026.jpg` |
 | 2026.10.12 研究室合宿を行いました | `lab-retreat2026-1.jpg`（2枚目以降は `lab-retreat2026-2.jpg` …とし、記事のページに `<figure>` を足す） |
-| 2026.09.17 雨宮教授がヒューマンインタフェースシンポジウム2027の大会長に | `his2027-chair.jpg`（無くてもよい） |
+| 2026.09.17 雨宮教授がヒューマンインタフェースシンポジウム2027の大会長に | `his2027-chair.mp4`（動画、表紙は `his2027-chair-poster.jpg`）、`his2027-chair-1.jpg`、`his2027-chair-2.jpg` |
+
+動画を載せるときは、記事の `<figure>` の中に `<video src="img/news/….mp4" poster="img/news/….jpg" autoplay muted loop playsinline controls preload="metadata"></video>` と書きます（音声なしのMP4。数MB以下を推奨）。写真の端を切らずに見せたいときは、`<div class="article-photos no-crop">` のように `no-crop` を付けます。
