@@ -1200,77 +1200,55 @@
             .observe(root, { attributes: true, attributeFilter: ['lang'] });
     }
 
-    /* ---------- ニュースの詳しい記事（ポップアップ） ---------- */
-    // ニュースの項目に data-article="記事のid" を付けると、項目のクリックで同じページ内の
-    // <article class="news-article" id="記事のid"> をポップアップで表示する（news.html#記事のid でも開く）
-    var newsArticles = document.querySelectorAll('.news-article[id]');
-    if (newsArticles.length) {
-        var adlg = null, aBody, aClose, aLast = null;
-        var clearHash = function () {
-            if (location.hash.indexOf('#article-') === 0 && window.history && history.replaceState) {
-                history.replaceState(null, '', location.pathname + location.search);
-            }
+    /* ---------- ニュースの記事ページ（news/日付-記事名.html） ---------- */
+    // 以前のURL（news.html#article-記事名）で来た人を、新しい記事ページへ案内する
+    if (location.hash.indexOf('#article-') === 0) {
+        var oldName = location.hash.slice('#article-'.length);
+        var moved = Array.prototype.slice.call(document.querySelectorAll('a.news-more[href^="news/"]')).filter(function (a) {
+            return a.getAttribute('href').replace(/^news\/\d{4}-\d{2}-\d{2}-/, '') === oldName + '.html';
+        })[0];
+        if (moved) location.replace(moved.href);
+    }
+    // 記事ページ：写真が読み込めないときは、その写真の枠を表示しない
+    document.querySelectorAll('.article-photos img').forEach(function (img) {
+        var drop = function () {
+            var f = img.closest('figure'), box = img.closest('.article-photos');
+            if (f) f.remove();
+            if (box && !box.querySelector('figure')) box.remove();
         };
-        var buildArticleDialog = function () {
-            adlg = document.createElement('dialog');
-            adlg.className = 'article-dialog';
-            adlg.innerHTML = '<div class="article-dialog-inner">' +
-                '<button type="button" class="article-dialog-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>' +
-                '<div class="article-dialog-body"></div></div>';
-            document.body.appendChild(adlg);
-            aBody = adlg.querySelector('.article-dialog-body');
-            aClose = adlg.querySelector('.article-dialog-close');
-            aClose.addEventListener('click', function () { adlg.close(); });
-            adlg.addEventListener('click', function (e) { if (e.target === adlg) adlg.close(); });
-            adlg.addEventListener('close', function () {
-                aBody.innerHTML = '';
-                clearHash();
-                if (aLast) aLast.focus();
-                aLast = null;
+        if (img.complete && !img.naturalWidth) drop(); else img.addEventListener('error', drop);
+    });
+    // 記事ページ：「前の記事」「次の記事」を、ニュース一覧（news.html）の並び順から自動で作る
+    var articleNav = document.querySelector('[data-article-nav]');
+    if (articleNav && window.fetch && window.DOMParser) {
+        var listUrl = new URL('news.html', document.baseURI).href;
+        fetch(listUrl).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (text) {
+            var doc = new DOMParser().parseFromString(text, 'text/html');
+            var seen = {}, list = [];
+            Array.prototype.slice.call(doc.querySelectorAll('.news-card a.news-more')).forEach(function (a) {
+                var href = a.getAttribute('href') || '';
+                if (href.indexOf('news/') !== 0 || seen[href]) return;
+                seen[href] = true;
+                var c = a.closest('.news-card').querySelector('.news-content');
+                list.push({ href: href, title: c ? c.textContent.trim() : '' });
             });
-        };
-        var openArticle = function (id, opener) {
-            var src = document.getElementById(id);
-            if (!src || !src.classList.contains('news-article')) return;
-            if (typeof HTMLDialogElement !== 'function') {   // ポップアップに対応していないブラウザ
-                src.parentNode.hidden = false;
-                src.scrollIntoView();
-                return;
-            }
-            if (!adlg) buildArticleDialog();
-            aLast = opener || null;
-            var art = src.cloneNode(true);
-            art.removeAttribute('id');
-            var title = art.querySelector('.news-article-title');
-            if (title) { title.id = 'articleDialogTitle'; adlg.setAttribute('aria-labelledby', 'articleDialogTitle'); }
-            // 写真が無い（読み込めない）ときは、写真の枠ごと表示しない
-            art.querySelectorAll('.news-article-photo img').forEach(function (img) {
-                img.addEventListener('error', function () { var f = img.closest('figure'); if (f) f.remove(); });
-            });
-            aBody.innerHTML = '';
-            aBody.appendChild(art);
-            aClose.setAttribute('aria-label', root.lang === 'en' ? 'Close' : '閉じる');
-            if (location.hash !== '#' + id && window.history && history.replaceState) history.replaceState(null, '', '#' + id);
-            if (!adlg.open) adlg.showModal();
-            aBody.scrollTop = 0;
-            aClose.focus();
-        };
-        document.querySelectorAll('[data-article]').forEach(function (item) {
-            item.classList.add('has-article');
-            var more = item.querySelector('.news-more');
-            item.addEventListener('click', function (e) {
-                var a = e.target.closest('a');
-                if (a && a !== more) return;   // 項目内のほかのリンクはそのまま開く
-                e.preventDefault();
-                openArticle(item.getAttribute('data-article'), more || null);
-            });
-        });
-        var articleFromHash = function () {
-            var id = decodeURIComponent(location.hash.slice(1));
-            if (id.indexOf('article-') === 0) openArticle(id, null);
-        };
-        articleFromHash();
-        window.addEventListener('hashchange', articleFromHash);
+            var here = location.pathname.split('/').pop();
+            var i = -1;
+            list.forEach(function (it, k) { if (it.href.split('/').pop() === here) i = k; });
+            if (i === -1) return;
+            var link = function (it, cls, ja, en, before) {
+                var a = document.createElement('a');
+                a.className = cls;
+                a.href = new URL(it.href, document.baseURI).href;
+                var arrow = '<i class="fa-solid fa-arrow-' + (before ? 'left' : 'right') + '" aria-hidden="true"></i>';
+                var label = '<span class="ja">' + ja + '</span><span class="en" lang="en">' + en + '</span>';
+                a.innerHTML = '<span class="dir">' + (before ? arrow + ' ' + label : label + ' ' + arrow) + '</span><span class="ttl" lang="ja"></span>';
+                a.querySelector('.ttl').textContent = it.title;
+                articleNav.appendChild(a);
+            };
+            if (list[i + 1]) link(list[i + 1], 'prev', '前の記事', 'Older', true);     // 一覧は新しい順
+            if (list[i - 1]) link(list[i - 1], 'next', '次の記事', 'Newer', false);
+        }).catch(function () {});
     }
 
     // トップページの新着ニュース：「詳しく読む」がある項目は、項目のどこをクリックしても記事を開く
