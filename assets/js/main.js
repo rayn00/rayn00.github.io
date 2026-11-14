@@ -1246,7 +1246,9 @@
                 if (href.indexOf('news/') !== 0 || seen[href]) return;
                 seen[href] = true;
                 var c = a.closest('.news-card').querySelector('.news-content');
-                list.push({ href: href, title: c ? c.textContent.trim() : '' });
+                var cj = c && c.querySelector('.ja'), ce = c && c.querySelector('.en');
+                var tj = (cj || c) ? (cj || c).textContent.trim() : '';
+                list.push({ href: href, title: tj, titleEn: ce ? ce.textContent.trim() : tj });
             });
             var here = location.pathname.split('/').pop();
             var i = -1;
@@ -1258,8 +1260,9 @@
                 a.href = new URL(it.href, document.baseURI).href;
                 var arrow = '<i class="fa-solid fa-arrow-' + (before ? 'left' : 'right') + '" aria-hidden="true"></i>';
                 var label = '<span class="ja">' + ja + '</span><span class="en" lang="en">' + en + '</span>';
-                a.innerHTML = '<span class="dir">' + (before ? arrow + ' ' + label : label + ' ' + arrow) + '</span><span class="ttl" lang="ja"></span>';
-                a.querySelector('.ttl').textContent = it.title;
+                a.innerHTML = '<span class="dir">' + (before ? arrow + ' ' + label : label + ' ' + arrow) + '</span><span class="ttl"><span class="ja"></span><span class="en" lang="en"></span></span>';
+                a.querySelector('.ttl .ja').textContent = it.title;
+                a.querySelector('.ttl .en').textContent = it.titleEn;
                 articleNav.appendChild(a);
             };
             if (list[i + 1]) link(list[i + 1], 'prev', '前の記事', 'Older', true);     // 一覧は新しい順

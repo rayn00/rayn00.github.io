@@ -156,6 +156,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 冒頭の日付は**掲載日**（ニュースを載せた日）です。学会やイベントの開催日は、文の中に書いてください（例：「UIST 2026（11月2日〜5日、米国デトロイト）の…」）。
 
+ニュースの文は日本語と英語の両方を書きます：`<p class="news-content"><span class="ja">日本語の文</span><span class="en" lang="en">English sentence.</span></p>`。
+
 該当する年の `<ul class="news-list">` の先頭に、`<li class="news-card" data-type="…">` 〜 `</li>` を1件分コピーして書き換えます。`data-type` は `award`（受賞）・`conf`（学会発表）・`pub`（掲載・出版）・`event`（イベント）・`info`（お知らせ）のいずれかです。種類ラベルの色は、award が `badge-blue`、conf が `badge-purple`、pub が `badge-cyan`、event と info が `badge-gray` です。トップページのニュース欄（最新8件）は `index.html` を書き換えてください。日本語の文はニュース一覧と同じ文にし、文末に句点（。）は付けません（英語の文はピリオドで終えます）。
 
 ### ニュース欄のショート動画を差し替える（index.html）
@@ -177,7 +179,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 1. `news/` の中の既存の記事を1つコピーし、ファイル名を新しい日付と記事名（半角の英数字とハイフン）にします。
 2. コピーしたファイルの、次の箇所を書き換えます。
    - 上のほう（`<head>` の中と `<body …>` の行）にある題・説明文・URL（`og:url`）・写真（`og:image`）。SNSで共有したときの表示に使われます。
-   - `<article class="news-article">` 〜 `</article>` の中の日付・種別・題・本文・表・関連リンク。
+   - `<article class="news-article">` 〜 `</article>` の中の日付・種別・題・本文・表・関連リンク。文は日本語と英語の両方を `<span class="ja">日本語</span><span class="en" lang="en">English</span>` の形で書きます。
+   - `<body …>` の行の `data-title-en`・`data-desc-en` は、英語表示のときの題と説明文です。
 3. 写真は `img/news/` に置き、`<div class="article-photos">` の中に `<figure>` 〜 `</figure>` を1枚につき1つ書きます。何枚でも並べられます（2枚以上は2列。枚数が奇数のときは1枚目が大きくなります）。説明を付けるときは `</a>` の次の行に `<figcaption>説明</figcaption>` を入れます。ファイルが無い写真の枠は表示されません。
 4. ニュース一覧（news.html）の該当する項目の `</p>` の後に、「詳しく読む」のリンク `<a href="news/2026-07-09-eurohaptics2026-demo.html" class="news-more is-article">…詳しく読む…</a>` を入れます（既存の項目からコピーできます）。項目のどこをクリックしても記事が開きます。トップページ（index.html）の新着ニュースに同じ項目があるときは、そちらにも同じリンクを入れます。
 
