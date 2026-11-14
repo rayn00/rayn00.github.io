@@ -266,4 +266,4 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 ### 種類を指定してページを開く
 
-`publications.html#journal` や `news.html#award` のように `#種類` を付けると、その種類で絞り込んだ状態で開きます。
+`publications.html#journal` や `news.html#award` のように `#種類` を付けると、その種類で絞り込んだ状態で開きます。`publications.html?q=IEEE VR 2026` のように `?q=検索語` を付けると、その語で検索した状態で開きます（ニュース一覧の「発表を見る」のリンクで使っています）。

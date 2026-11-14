@@ -486,6 +486,13 @@
                 apply();
             });
         }
+        // URLの ?q=検索語 で、検索した状態で開けるようにする（例：publications.html?q=IEEE VR 2026）
+        if (search) {
+            try {
+                var q0 = new URLSearchParams(location.search).get('q');
+                if (q0) { search.value = q0; state.q = q0.trim(); setQuery(state.q); }
+            } catch (e) {}
+        }
         // URLの #journal などで種類を指定して開けるようにする
         var hashType = location.hash.slice(1);
         var hashTab = tabs.filter(function (tb) { return tb.getAttribute('data-filter') === hashType; })[0];
