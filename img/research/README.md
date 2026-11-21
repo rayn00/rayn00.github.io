@@ -77,3 +77,4 @@
 | VR漫才トレーニング（吉本興業との共同研究） | `past-vr-manzai.jpg` |
 | 立体視テレプレゼンスと遠隔の空間理解 | `past-telepresence.jpg` |
 | スマートフォンによる胸骨圧迫（心臓マッサージ）の計測 | `past-cpr-smartphone.jpg` |
+| 手持ちの牽引力錯覚によるVR移動速度の変調（ISS 2026） | `pseudo-traction-self-motion.jpg` |
