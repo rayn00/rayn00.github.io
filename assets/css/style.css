@@ -3843,3 +3843,21 @@ button.chip-link {
 .history-item p + p {
     margin-top: 0.7rem;
 }
+
+/* ---------- 書籍（論文・発表一覧の上） ---------- */
+#books { padding-bottom: 1rem; }
+.book-group { font-size: 1rem; font-weight: 700; color: var(--text-secondary); margin: 0 0 1rem; }
+.book-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 1rem; margin: 0 0 2.25rem; padding: 0; }
+.book-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 1rem; align-items: start; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); }
+.book-cover { position: relative; margin: 0; aspect-ratio: 3 / 4.2; display: flex; align-items: center; justify-content: center; border-radius: 4px; overflow: hidden; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-muted); font-size: 1.6rem; }
+.book-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--bg-card); }
+.book-cover.has-image > i { display: none; }
+.book-title { font-size: 0.95rem; font-weight: 700; line-height: 1.55; margin-bottom: 0.35rem; }
+.book-lang { font-weight: 400; font-size: 0.8rem; color: var(--text-muted); }
+.book-meta { font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); }
+.book-isbn { display: inline-block; color: var(--text-muted); }
+.book-award { margin-top: 0.4rem; font-size: 0.8rem; font-weight: 700; color: var(--accent-purple-text); }
+.book-links { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; margin-top: 0.45rem; font-size: 0.8rem; font-weight: 600; }
+.book-links a { color: var(--accent-cyan); }
+.book-links a:hover { text-decoration: underline; }
+#books + #publication-list { padding-top: 1rem; }

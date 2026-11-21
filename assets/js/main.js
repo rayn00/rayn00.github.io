@@ -827,10 +827,20 @@
     // 画像ファイルが無い・読み込めないときは、アイコン入りの背景を表示する
     document.querySelectorAll('[data-media] img').forEach(function (img) {
         var box = img.closest('[data-media]');
-        function ok() { box.classList.add('has-image'); }
-        function fail() { box.classList.add('is-empty'); img.remove(); }
+        // data-fallback="別の画像のURL" があれば、最初の画像が無いときにそちらを試す。
+        // 1〜数ピクセルの画像（書影が無いときに返る空の画像）も「無い」とみなす
+        function ok() {
+            if (img.naturalWidth > 0 && img.naturalWidth < 10) { fail(); return; }
+            box.classList.add('has-image');
+        }
+        function fail() {
+            var alt = img.getAttribute('data-fallback');
+            if (alt) { img.removeAttribute('data-fallback'); img.src = alt; return; }
+            box.classList.add('is-empty'); img.remove();
+        }
+        img.addEventListener('load', ok);
+        img.addEventListener('error', fail);
         if (img.complete) { if (img.naturalWidth) ok(); else fail(); }
-        else { img.addEventListener('load', ok); img.addEventListener('error', fail); }
     });
 
     /* ---------- 研究のつながり（ネットワーク図・研究紹介ページ） ---------- */

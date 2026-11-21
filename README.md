@@ -94,6 +94,13 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 - メールのリンクを増やすときは、既存の `<a … data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><span class="mail-addr">info [at] <span class="mail-domain">amelab.vr.u-tokyo.ac.jp</span></span></a>` をコピーしてください（`mail-addr`・`mail-domain` は、狭い画面でアドレスの途中のハイフンで折り返さず「[at]」の後で折り返すための指定です）。
 - アドレスを変えるときは、ブラウザの開発者ツールのコンソールで `btoa('新しいアドレス')` を実行し、表示された文字列を `data-mail` に入れて、画面の表示も書き換えます。
 
+### 書籍を追加する（publications.html の「書籍」）
+
+論文・発表一覧の上の「書籍」には、著書・監修（上の段）と分担執筆（下の段）を表紙付きで並べています。`<li class="book-card">` 〜 `</li>` を1件分コピーして、書名・役割・出版社・刊行年月・ISBN・リンクを書き換えます。
+
+- 表紙は、まず国立国会図書館サーチの書影（`https://ndlsearch.ndl.go.jp/thumbnail/ISBN13桁.jpg`）を表示し、無いときは `data-fallback` に書いた Amazon の書影（`https://images-na.ssl-images-amazon.com/images/P/ISBN10桁.09.LZZZZZZZ.jpg`）を表示します。どちらも無い本は、本のアイコンが出ます。
+- 自分で用意した表紙を使うときは、`img/books/ISBN13桁.jpg` に置き、`<img src="…">` をそのファイルに書き換えます。
+
 ### 論文・発表を追加する（publications.html）
 
 該当する年の `<ol class="pub-list">` の先頭に、既存の `<li class="pub-item" data-type="…">` 〜 `</li>` を1件分コピーして書き換えます。新しい年は `<div class="year-group">` ごとコピーして年を書き換えてください。
@@ -102,14 +109,14 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 | --- | --- |
 | journal | 学術論文誌 |
 | intl | 国際会議 |
-| article | 書籍・解説（学会誌・雑誌などの解説記事、書籍、Editorial） |
+| article | 解説（学会誌・雑誌などの解説記事、Editorial など。書籍は一覧の上の「書籍」の欄に載せます） |
 | dom | 国内発表（学会大会・研究会・シンポジウムの発表） |
 | talk | 招待講演 |
 | thesis | 学位論文（修士論文・博士論文） |
 | award | 受賞 |
 | media | メディア掲載 |
 
-種別のラベルは、論文誌 › 国際会議 › 書籍・解説 › 国内発表 の順に強い見た目にしています（`assets/css/style.css` の `.pub-type`・`.pub-item[data-type=…]`）。ラベルは `<span class="pub-type t-journal"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">論文誌</span><span class="en" lang="en">Journal</span></span>` のように書きます（`t-` の後ろは data-type と同じ。アイコンは同じ種別の既存の項目からコピーしてください）。
+種別のラベルは、論文誌 › 国際会議 › 解説 › 国内発表 の順に強い見た目にしています（`assets/css/style.css` の `.pub-type`・`.pub-item[data-type=…]`）。ラベルは `<span class="pub-type t-journal"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">論文誌</span><span class="en" lang="en">Journal</span></span>` のように書きます（`t-` の後ろは data-type と同じ。アイコンは同じ種別の既存の項目からコピーしてください）。
 
 学位論文（`data-type="thesis"`）には、雨宮が指導教員を務めた修士論文・博士論文を載せます。「学位論文」のタブで論文・国際会議などとは別に数えます。トップページの「論文・発表」の件数には含めません。書誌は「修士論文, 東京大学大学院総合文化研究科 広域科学専攻, 2026.03」のように書きます。
 
