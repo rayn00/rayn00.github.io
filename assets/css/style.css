@@ -3860,4 +3860,14 @@ button.chip-link {
 .book-links { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; margin-top: 0.45rem; font-size: 0.8rem; font-weight: 600; }
 .book-links a { color: var(--accent-cyan); }
 .book-links a:hover { text-decoration: underline; }
-#books + #publication-list { padding-top: 1rem; }
+/* 書籍の欄と論文・発表一覧の境目：区切り線と見出しで、別のまとまりであることを示す */
+#books + #publication-list { position: relative; padding-top: 3.5rem; }
+#books + #publication-list::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: var(--gutter);
+    right: var(--gutter);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color) 12%, var(--border-color) 88%, transparent);
+}

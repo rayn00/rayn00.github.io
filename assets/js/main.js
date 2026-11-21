@@ -647,6 +647,7 @@
         var listEl = catalog.querySelector('.shorts-catalog-list'), countEl = catalog.querySelector('.shorts-catalog-count');
         var search = catalog.querySelector('input[type="search"]');
         var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+        Array.prototype.forEach.call(section.querySelectorAll('.shorts-total'), function (e) { e.textContent = videos.length; });   // 動画の本数（shortsData から自動）
         var closeCatalog = function () { if (typeof catalog.close === 'function') catalog.close(); else catalog.removeAttribute('open'); };
 
         // 各動画に関係する研究カード（同じ DOI の論文リンクを持つカード → 同じ動画を付けたカード の順に探す）
