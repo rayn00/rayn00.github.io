@@ -117,7 +117,7 @@
             </div>
             <label class="search-box">
                 <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                <input type="search" data-search-for="pubList" data-ph-ja="タイトル・著者・会議名で検索（空白で区切ると AND 検索）" data-ph-en="Search title, author, venue (space = AND)" placeholder="タイトル・著者・会議名で検索（空白で区切ると AND 検索）" aria-label="タイトル・著者・会議名で検索">
+                <input type="search" data-search-for="pubList" data-ph-ja="タイトル・著者・会議名で検索" data-ph-en="Search by title, author or venue" placeholder="タイトル・著者・会議名で検索" title="空白で区切ると、すべての語を含むものを探します（AND 検索） / Separate words with spaces to find items containing all of them" aria-label="タイトル・著者・会議名で検索">
             </label>
         </div>
         <!-- 著者名の日本語・英語の対応表（検索用）。["日本語の氏名", "English Name"] を1行に1人。
@@ -211,6 +211,7 @@
             ["前田太郎", "Taro Maeda"]
         ]
         </script>
+        <nav class="year-jump" data-year-jump-for="pubList" aria-label="年で移動 / Jump to year"><span class="year-jump-label"><span class="ja">年で移動</span><span class="en" lang="en">Jump to</span></span><a href="#pub-2026">2026</a><a href="#pub-2025">2025</a><a href="#pub-2024">2024</a><a href="#pub-2023">2023</a><a href="#pub-2022">2022</a><a href="#pub-2021">2021</a><a href="#pub-2020">2020</a><a href="#pub-2019">2019</a></nav>
         <p class="pub-rank-legend"><span class="ja">種別の見方：</span><span class="en" lang="en">Types:</span>
             <span class="pub-type t-journal"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span class="ja">論文誌</span><span class="en" lang="en">Journal</span></span><span class="sep" aria-hidden="true">›</span>
             <span class="pub-type t-intl"><i class="fa-solid fa-earth-asia" aria-hidden="true"></i> <span class="ja">国際会議</span><span class="en" lang="en">Intl. Conference</span></span><span class="sep" aria-hidden="true">›</span>
