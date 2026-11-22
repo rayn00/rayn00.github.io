@@ -602,7 +602,7 @@ section {
 }
 
 .member-avatar .avatar-fallback {
-    font-size: 2.25rem;
+    font-size: 1.5rem;
 }
 
 .member-info h4 {
@@ -2506,9 +2506,9 @@ a.partner-chip i {
     vertical-align: -0.08em;
 }
 
-.net-dot.k-domain { background: var(--accent-purple-text); }
-.net-dot.k-topic { background: var(--accent-blue); }
-.net-dot.k-current { background: var(--text-primary); }
+.net-dot.k-domain { background: radial-gradient(circle at 35% 30%, var(--accent-cyan), var(--accent-purple-text) 75%); }
+.net-dot.k-topic { background: radial-gradient(circle at 35% 30%, var(--accent-cyan), var(--accent-blue) 75%); }
+.net-dot.k-current { background: radial-gradient(circle at 35% 30%, var(--accent-blue), var(--text-primary) 75%); }
 .net-dot.k-past { border: 2px solid var(--text-secondary); }
 
 .net-controls {
@@ -2620,9 +2620,9 @@ a.partner-chip i {
     stroke-width: 2;
 }
 
-.net-node.k-domain circle { fill: var(--accent-purple-text); }
-.net-node.k-topic circle { fill: var(--accent-blue); }
-.net-node.k-current circle { fill: var(--text-primary); }
+.net-node.k-domain circle { fill: var(--accent-purple-text); fill: url(#net-grad-domain); }
+.net-node.k-topic circle { fill: var(--accent-blue); fill: url(#net-grad-topic); }
+.net-node.k-current circle { fill: var(--text-primary); fill: url(#net-grad-current); }
 
 .net-node.k-past circle {
     fill: var(--bg-secondary);
@@ -3878,3 +3878,17 @@ button.chip-link {
 .books-note { margin: -1.25rem 0 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
 .books-note a { font-weight: 700; color: var(--accent-cyan); }
 .books-note a:hover { text-decoration: underline; }
+
+/* メンバーページの顔写真（トップページより大きく表示） */
+.person-grid-lg {
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+}
+
+.person-grid-lg .avatar {
+    width: 128px;
+    height: 128px;
+}
+
+.person-grid-lg .avatar-fallback {
+    font-size: 2.4rem;
+}

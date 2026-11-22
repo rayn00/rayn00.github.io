@@ -982,6 +982,14 @@
         // ---- 描画
         box.classList.add('is-ready');
         var svg = d3.select(box).insert('svg', ':first-child').attr('class', 'net-svg');
+        // 点の塗り：種類ごとのグラデーション（色はテーマの変数から。ライト／ダークで自動で切り替わる）
+        var defs = svg.append('defs');
+        [['domain', '--accent-cyan', '--accent-purple-text'], ['topic', '--accent-cyan', '--accent-blue'], ['current', '--accent-blue', '--text-primary']].forEach(function (gdef) {
+            var rg = defs.append('radialGradient').attr('id', 'net-grad-' + gdef[0])
+                .attr('cx', '35%').attr('cy', '30%').attr('r', '75%');
+            rg.append('stop').attr('offset', '0%').attr('style', 'stop-color: var(' + gdef[1] + ')');
+            rg.append('stop').attr('offset', '100%').attr('style', 'stop-color: var(' + gdef[2] + ')');
+        });
         var g = svg.append('g');
         var link = g.append('g').selectAll('line').data(links).join('line')
             .attr('class', function (l) { return 'net-link k-' + l.kind; });
