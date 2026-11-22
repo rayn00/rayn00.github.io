@@ -99,6 +99,7 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 論文・発表一覧の上の「書籍」には、著書・監修（上の段）と分担執筆（下の段）を表紙付きで並べています。`<li class="book-card">` 〜 `</li>` を1件分コピーして、書名・役割・出版社・刊行年月・ISBN・リンクを書き換えます。
 
 - 表紙は、まず国立国会図書館サーチの書影（`https://ndlsearch.ndl.go.jp/thumbnail/ISBN13桁.jpg`）を表示し、無いときは `data-fallback` に書いた Amazon の書影（`https://images-na.ssl-images-amazon.com/images/P/ISBN10桁.09.LZZZZZZZ.jpg`）を表示します。どちらも無い本は、本のアイコンが出ます。
+- 検索語（`?q=…`）や種類（`#journal` など）を付けてページを開いたときは、書籍の欄を隠して論文・発表の一覧から表示します（一覧の上の「書籍」の欄へのリンクで表示に戻せます）。
 - 自分で用意した表紙を使うときは、`img/books/ISBN13桁.jpg` に置き、`<img src="…">` をそのファイルに書き換えます。
 
 ### 論文・発表を追加する（publications.html）

@@ -507,6 +507,26 @@
         var hashTab = tabs.filter(function (tb) { return tb.getAttribute('data-filter') === hashType; })[0];
         if (hashTab) hashTab.click(); else apply();
         listCounters.push(function () { updateCount(); updateYears(); });
+
+        // 論文・発表一覧（publications.html）：検索語（?q=）や種類（#journal など）を付けて開いたときは、
+        // 一覧の上の書籍の欄を隠して、一覧から始める。「書籍」の欄へのリンクで、いつでも表示に戻せる
+        var books = document.getElementById('books');
+        var booksNote = document.querySelector('[data-books-note]');
+        if (books && booksNote) {
+            var hasQ = false;
+            try { hasQ = !!new URLSearchParams(location.search).get('q'); } catch (e) {}
+            if (hasQ || hashTab) {
+                books.hidden = true;
+                booksNote.hidden = false;
+                window.scrollTo(0, 0);
+            }
+            booksNote.querySelector('[data-show-books]').addEventListener('click', function (e) {
+                e.preventDefault();
+                books.hidden = false;
+                booksNote.hidden = true;
+                books.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+            });
+        }
     });
 
     /* ---------- 研究テーマのショート動画 ---------- */

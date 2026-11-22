@@ -3871,3 +3871,10 @@ button.chip-link {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-color) 12%, var(--border-color) 88%, transparent);
 }
+
+/* 検索語付きで開いて書籍の欄を隠したとき（publications.html） */
+#books[hidden] + #publication-list { padding-top: 4rem; }
+#books[hidden] + #publication-list::before { display: none; }
+.books-note { margin: -1.25rem 0 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+.books-note a { font-weight: 700; color: var(--accent-cyan); }
+.books-note a:hover { text-decoration: underline; }
