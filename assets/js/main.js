@@ -508,6 +508,52 @@
         if (hashTab) hashTab.click(); else apply();
         listCounters.push(function () { updateCount(); updateYears(); });
 
+        // 年ごとの件数の表（publications.html の <div class="pub-heat" data-pub-heat-for="…">）
+        var heat = document.querySelector('[data-pub-heat-for="' + id + '"]');
+        if (heat) {
+            var LABEL = {};
+            tabs.forEach(function (tb) {
+                var ja = tb.querySelector('.ja'), en = tb.querySelector('.en');
+                LABEL[tb.getAttribute('data-filter')] = { ja: ja ? ja.textContent : '', en: en ? en.textContent : '' };
+            });
+            var hTypes = heat.getAttribute('data-types').split(/\s+/);
+            var yearOf = function (it) { var t = it.querySelector('time[datetime]'); return t ? t.getAttribute('datetime').slice(0, 4) : ''; };
+            var hYears = [];
+            items.forEach(function (it) { var y = yearOf(it); if (y && hYears.indexOf(y) === -1) hYears.push(y); });
+            hYears.sort();
+            var table = document.createElement('table');
+            table.className = 'pub-heat-table';
+            var head = '<thead><tr><th scope="col"></th><th scope="col" class="pub-heat-total">' +
+                '<span class="ja">合計</span><span class="en" lang="en">Total</span></th>' +
+                hYears.map(function (y) { return '<th scope="col">' + y + '</th>'; }).join('') + '</tr></thead>';
+            var body = hTypes.map(function (type) {
+                var counts = hYears.map(function (y) {
+                    return items.filter(function (it) { return yearOf(it) === y && isType(it, type); }).length;
+                });
+                var total = counts.reduce(function (a, b) { return a + b; }, 0);
+                var max = Math.max.apply(null, counts) || 1;
+                var lab = LABEL[type] || { ja: type, en: type };
+                return '<tr><th scope="row"><span class="ja">' + lab.ja + '</span><span class="en" lang="en">' + lab.en + '</span></th>' +
+                    '<td class="pub-heat-total">' + total + '</td>' +
+                    counts.map(function (n, k) {
+                        var lv = n ? Math.max(1, Math.ceil(n / max * 4)) : 0;   // 0〜4 の5段階
+                        return '<td class="lv' + lv + '">' + (n ? '<button type="button" data-type="' + type + '" data-year="' + hYears[k] + '"' +
+                            ' aria-label="' + hYears[k] + ' ' + lab.ja + ' ' + n + '">' + n + '</button>' : '<span aria-hidden="true">·</span>') + '</td>';
+                    }).join('') + '</tr>';
+            }).join('');
+            table.innerHTML = head + '<tbody>' + body + '</tbody>';
+            heat.querySelector('.pub-heat-scroll').appendChild(table);
+            table.addEventListener('click', function (e) {
+                var b = e.target.closest('button[data-type]');
+                if (!b) return;
+                if (search && search.value) { search.value = ''; state.q = ''; setQuery(''); }
+                var tab = tabs.filter(function (tb) { return tb.getAttribute('data-filter') === b.getAttribute('data-type'); })[0];
+                if (tab) tab.click();
+                var h = document.getElementById('pub-' + b.getAttribute('data-year'));
+                if (h) h.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+            });
+        }
+
         // 論文・発表一覧（publications.html）：検索語（?q=）や種類（#journal など）を付けて開いたときは、
         // 一覧の上の書籍の欄を隠して、一覧から始める。「書籍」の欄へのリンクで、いつでも表示に戻せる
         var books = document.getElementById('books');

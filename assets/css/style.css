@@ -3892,3 +3892,23 @@ button.chip-link {
 .person-grid-lg .avatar-fallback {
     font-size: 2.4rem;
 }
+
+/* ---------- 年ごとの件数（publications.html） ---------- */
+.pub-heat { margin: 0 0 2rem; padding: 1.1rem 1.25rem 0.9rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); }
+.pub-heat-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.7rem; }
+.pub-heat-title i { color: var(--accent-cyan); margin-right: 0.3rem; }
+.pub-heat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.pub-heat-table { border-collapse: separate; border-spacing: 4px; font-size: 0.82rem; min-width: 100%; }
+.pub-heat-table th { font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+.pub-heat-table thead th { font-size: 0.75rem; text-align: center; padding: 0 0.2rem 0.15rem; color: var(--text-muted); }
+.pub-heat-table tbody th { text-align: left; padding-right: 0.6rem; }
+.pub-heat-table td { min-width: 2.6rem; height: 2rem; text-align: center; border-radius: 6px; font-weight: 700; padding: 0; }
+.pub-heat-table td.pub-heat-total { background: transparent; color: var(--text-primary); font-size: 0.9rem; border-right: 1px solid var(--border-color); border-radius: 0; padding-right: 0.4rem; }
+.pub-heat-table td button { all: unset; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 6px; cursor: pointer; }
+.pub-heat-table td button:hover, .pub-heat-table td button:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 1px; }
+.pub-heat-table td.lv0 { background: var(--bg-secondary); color: var(--text-muted); font-weight: 400; }
+.pub-heat-table td.lv1 { background: color-mix(in srgb, var(--accent-cyan) 18%, transparent); color: var(--text-primary); }
+.pub-heat-table td.lv2 { background: color-mix(in srgb, var(--accent-cyan) 38%, transparent); color: var(--text-primary); }
+.pub-heat-table td.lv3 { background: color-mix(in srgb, var(--accent-cyan) 62%, transparent); color: var(--text-primary); }
+.pub-heat-table td.lv4 { background: var(--accent-cyan); color: var(--on-accent); }
+.pub-heat-note { margin-top: 0.6rem; font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
