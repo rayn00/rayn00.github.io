@@ -20,3 +20,4 @@
 | 2026.09.17 雨宮教授がヒューマンインタフェースシンポジウム2027の大会長に | `his2027-chair.mp4`（動画、表紙は `his2027-chair-poster.jpg`）、`his2027-chair-1.jpg`、`his2027-chair-2.jpg` |
 
 動画を載せるときは、記事の `<figure>` の中に `<video src="img/news/….mp4" poster="img/news/….jpg" autoplay muted loop playsinline controls preload="metadata"></video>` と書きます（音声なしのMP4。数MB以下を推奨）。写真の端を切らずに見せたいときは、`<div class="article-photos no-crop">` のように `no-crop` を付けます。
+| 2026.11.24 インドネシアの研究者の訪問団に研究室のデモ体験会 | `indonesia-visit2026-1.jpg` 〜 `indonesia-visit2026-3.jpg` |
