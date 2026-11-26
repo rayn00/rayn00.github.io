@@ -349,6 +349,19 @@
     // アドレス収集ロボットに読まれないよう、マウスを乗せる・タップ・キーボードで選ぶ・クリックの
     // いずれかをしたときに初めて mailto: のリンクを組み立てる。
     // アドレスを変えるときは、ブラウザの開発者ツールで btoa('新しいアドレス') を実行した結果を data-mail に入れる。
+    // 画面に出すアドレスも HTML には書かず、ページを開いたあとに data-mail から組み立てて
+    // 「info [at] amelab.vr.u-tokyo.ac.jp」の形で表示する（<span class="mail-addr" data-mail-text> の中）
+    document.querySelectorAll('a[data-mail] [data-mail-text]').forEach(function (el) {
+        var addr = '';
+        try { addr = atob(el.closest('a[data-mail]').getAttribute('data-mail')); } catch (e) { return; }
+        var at = addr.indexOf('@');
+        if (at < 0) return;
+        el.textContent = addr.slice(0, at) + ' [at] ';
+        var dom = document.createElement('span');
+        dom.className = 'mail-domain';
+        dom.textContent = addr.slice(at + 1);
+        el.appendChild(dom);
+    });
     document.querySelectorAll('a[data-mail]').forEach(function (a) {
         function reveal() {
             if (a.hasAttribute('data-mail-ready')) return;

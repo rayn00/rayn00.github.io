@@ -89,10 +89,10 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 
 アドレス収集ロボットに読まれないよう、HTML にはメールアドレスをそのまま書いていません。
 
-- 画面には `info [at] amelab.vr.u-tokyo.ac.jp` と表示し、リンクの `data-mail` にアドレスを Base64 という形式に変換して入れています。
-- マウスを乗せる・タップする・キーボードで選ぶ・クリックする、のいずれかをしたときに初めて、`assets/js/main.js` がメールのリンクを組み立てます。クリックするとメールソフトが開きます。
-- メールのリンクを増やすときは、既存の `<a … data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><span class="mail-addr">info [at] <span class="mail-domain">amelab.vr.u-tokyo.ac.jp</span></span></a>` をコピーしてください（`mail-addr`・`mail-domain` は、狭い画面でアドレスの途中のハイフンで折り返さず「[at]」の後で折り返すための指定です）。
-- アドレスを変えるときは、ブラウザの開発者ツールのコンソールで `btoa('新しいアドレス')` を実行し、表示された文字列を `data-mail` に入れて、画面の表示も書き換えます。
+- 画面に出すアドレス（`info [at] amelab.vr.u-tokyo.ac.jp` の形）も HTML には書かず、ページを開いたあとに `assets/js/main.js` が `data-mail` から組み立てて表示します。JavaScript が動かない環境では「メールアドレス」とだけ表示されます。
+- リンク先（`mailto:`）は、マウスを乗せる・タップする・キーボードで選ぶ・クリックする、のいずれかをしたときに初めて組み立てます。クリックするとメールソフトが開きます。
+- メールのリンクを増やすときは、既存の `<a … data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><span class="mail-addr" data-mail-text><span class="ja">メールアドレス</span><span class="en" lang="en">Email address</span></span></a>` をコピーしてください。
+- アドレスを変えるときは、ブラウザの開発者ツールのコンソールで `btoa('新しいアドレス')` を実行し、表示された文字列を `data-mail` に入れます（画面の表示は自動で変わります）。
 
 ### 書籍を追加する（publications.html の「書籍」）
 
