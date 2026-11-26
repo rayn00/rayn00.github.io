@@ -520,7 +520,7 @@
             var yearOf = function (it) { var t = it.querySelector('time[datetime]'); return t ? t.getAttribute('datetime').slice(0, 4) : ''; };
             var hYears = [];
             items.forEach(function (it) { var y = yearOf(it); if (y && hYears.indexOf(y) === -1) hYears.push(y); });
-            hYears.sort();
+            hYears.sort().reverse();   // 新しい年を左に
             var table = document.createElement('table');
             table.className = 'pub-heat-table';
             var head = '<thead><tr><th scope="col"></th><th scope="col" class="pub-heat-total">' +

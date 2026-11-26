@@ -3912,3 +3912,16 @@ button.chip-link {
 .pub-heat-table td.lv3 { background: color-mix(in srgb, var(--accent-cyan) 62%, transparent); color: var(--text-primary); }
 .pub-heat-table td.lv4 { background: var(--accent-cyan); color: var(--on-accent); }
 .pub-heat-note { margin-top: 0.6rem; font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+
+/* メンバーページ：雨宮の個人サイトへのボタン（ほかのボタンと同じ大きさで、青のグラデーション） */
+.chip-link.profile-site {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    border-color: transparent;
+    color: var(--on-accent);
+}
+
+.chip-link.profile-site:hover,
+.chip-link.profile-site:focus-visible {
+    color: var(--on-accent);
+    filter: brightness(1.08);
+}
