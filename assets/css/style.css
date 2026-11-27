@@ -3292,7 +3292,7 @@ a.partner-chip i {
     margin-top: 0.6rem;
 }
 
-/* 共同研究・産学連携ページの上部（4つの案内を2列で） */
+/* 共同研究・技術相談ページ：技術相談の2つの形（学術指導・兼業）を2列で */
 @media (min-width: 640px) {
     .ways-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3925,3 +3925,110 @@ button.chip-link {
     color: var(--on-accent);
     filter: brightness(1.08);
 }
+
+
+/* ===== 研究室について・進学・募集・ご寄附・お問い合わせで共通に使うスタイル（もとは about.html の中にあったもの） ===== */
+.about-jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; list-style: none; margin: 0 auto 1rem; }
+.about-block { max-width: 1040px; margin: 0 auto; padding-top: 4.5rem; scroll-margin-top: 4rem; }
+.about-block:first-of-type { padding-top: 2rem; }
+.about-block > .section-header { margin-bottom: 2.25rem; }
+.about-lead { font-size: 1.15rem; line-height: 1.9; font-weight: 600; color: var(--text-primary); margin-bottom: 1.25rem; }
+.about-text p { color: var(--text-secondary); line-height: 1.95; margin-bottom: 1rem; }
+.mission-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+.mission-points { list-style: none; display: grid; gap: 0.75rem; }
+.mission-points li { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 1.15rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-card); }
+.mission-points i { flex: none; width: 2.3rem; height: 2.3rem; display: grid; place-items: center; border-radius: 50%; background: var(--bg-secondary); color: var(--accent-cyan); }
+.mission-points strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
+.mission-points span.desc { display: block; font-size: 0.84rem; line-height: 1.7; color: var(--text-secondary); }
+
+/* あゆみ（年表） */
+.history { list-style: none; position: relative; display: grid; gap: 2rem; }
+.history::before { content: ""; position: absolute; left: 0.55rem; top: 0.6rem; bottom: 0.6rem; width: 2px; background: linear-gradient(var(--accent-cyan), var(--accent-purple)); opacity: 0.55; }
+.history-item { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; align-items: start; padding-left: 2.4rem; }
+.history-item::before { content: ""; position: absolute; left: 0.1rem; top: 0.45rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--bg-primary); border: 3px solid var(--accent-cyan); }
+.history-item.no-photo { grid-template-columns: minmax(0, 1fr); }
+.history-now::before { background: var(--accent-cyan); box-shadow: 0 0 0 5px rgba(0, 242, 254, 0.18); }
+.history-when { display: inline-block; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.04em; color: var(--accent-cyan); margin-bottom: 0.3rem; }
+.history-item h3 { font-size: 1.15rem; line-height: 1.5; margin-bottom: 0.6rem; }
+.history-item p { color: var(--text-secondary); line-height: 1.9; font-size: 0.93rem; }
+.history-photo { margin: 0; max-width: 480px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); }
+.history-photos { display: grid; gap: 0.9rem; max-width: 480px; }
+.history-photo img { width: 100%; height: auto; display: block; }
+.history-photo figcaption { padding: 0.5rem 0.8rem; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); }
+.history-roots { margin-top: 2.25rem; padding: 1.2rem 1.4rem; border: 1px dashed var(--border-color); border-radius: var(--radius-md); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
+.history-roots a { color: var(--accent-cyan); font-weight: 600; }
+.history-roots a:hover { text-decoration: underline; }
+
+/* 募集 */
+.join-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.join-card { display: flex; flex-direction: column; padding: 1.6rem 1.6rem 1.4rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); scroll-margin-top: 5rem; }
+.join-card h3 { display: flex; align-items: center; gap: 0.7rem; font-size: 1.12rem; margin-bottom: 0.8rem; }
+.join-card h3 i { width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: var(--on-accent); font-size: 0.95rem; flex: none; }
+.join-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; margin-bottom: 0.7rem; }
+.join-card .theme-links { margin-top: auto; padding-top: 0.6rem; }
+
+/* 寄附 */
+.donate-box { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem; padding: 2rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: radial-gradient(circle at 0% 0%, rgba(0, 242, 254, 0.08), transparent 55%), var(--bg-card); }
+.donate-steps { list-style: none; counter-reset: step; display: grid; gap: 1rem; }
+.donate-steps li { counter-increment: step; position: relative; padding-left: 2.6rem; color: var(--text-secondary); line-height: 1.8; font-size: 0.93rem; }
+.donate-steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border-radius: 50%; background: var(--accent-cyan); color: var(--on-accent); font-weight: 800; font-size: 0.85rem; }
+.donate-steps strong { color: var(--text-primary); }
+.copy-box { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; padding: 0.55rem 0.55rem 0.55rem 0.9rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-secondary); }
+.copy-box code { flex: 1; min-width: 0; font-family: inherit; font-weight: 700; color: var(--text-primary); overflow-wrap: anywhere; }
+.copy-btn { flex: none; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.8rem; border: 1px solid var(--border-color); border-radius: 999px; background: transparent; color: var(--accent-cyan); font: inherit; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: var(--transition); }
+.copy-btn:hover, .copy-btn:focus-visible { border-color: var(--accent-cyan); }
+.copy-btn.is-done { background: var(--accent-cyan); color: var(--on-accent); border-color: var(--accent-cyan); }
+.donate-side { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+.donate-side p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
+
+/* 取材・講演 */
+.about-contact { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 2rem; align-items: center; padding: 2rem 2rem 2rem 2.25rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); }
+.about-contact-body > p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.25rem; }
+.about-contact .theme-links { justify-content: flex-start; }
+.contact-photo { margin: 0; }
+.contact-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-secondary); }
+.about-sns { list-style: none; display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+.about-sns a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; font-weight: 600; padding: 0.45rem 0.95rem; border-radius: 30px; border: 1px solid var(--border-color); color: var(--text-primary); }
+.about-sns a:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.about-sns .fa-youtube { color: #ff3d3d; }
+.about-sns .fa-instagram { color: #e1306c; }
+.x-logo { display: inline-block; vertical-align: -0.125em; }
+
+@media (max-width: 860px) {
+    .mission-grid, .donate-box { grid-template-columns: minmax(0, 1fr); }
+    .history-item { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .join-grid { grid-template-columns: minmax(0, 1fr); }
+    .about-contact { grid-template-columns: minmax(0, 1fr) 170px; gap: 1.5rem; }
+}
+@media (max-width: 600px) {
+    .donate-box { padding: 1.4rem 1.2rem; }
+    .join-card { padding: 1.3rem 1.2rem 1.2rem; }
+    .about-contact { grid-template-columns: minmax(0, 1fr); padding: 1.5rem 1.2rem; }
+    .contact-photo { width: min(100%, 220px); margin: 0 auto; }
+}
+
+/* 目的から選ぶカード（進学・募集／共同研究・技術相談／お問い合わせ） */
+.path-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 1040px; margin: 0 auto; list-style: none; }
+.path-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.path-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.path-card { height: 100%; display: flex; flex-direction: column; gap: 0.55rem; padding: 1.35rem 1.4rem 1.2rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); color: var(--text-primary); transition: var(--transition); }
+.path-card:hover, .path-card:focus-visible { border-color: var(--accent-cyan); transform: translateY(-2px); }
+.path-icon { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); color: var(--on-accent); font-size: 1rem; }
+.path-card strong { font-size: 1.05rem; line-height: 1.5; }
+.path-desc { font-size: 0.86rem; line-height: 1.75; color: var(--text-secondary); }
+.path-go { margin-top: auto; padding-top: 0.25rem; font-size: 0.84rem; font-weight: 700; color: var(--accent-cyan); }
+.path-intro { text-align: center; color: var(--text-secondary); margin: 0 auto 1.25rem; max-width: 720px; line-height: 1.8; }
+.consult-note { max-width: 1040px; margin: 1.25rem auto 0; padding: 1.1rem 1.3rem; border: 1px dashed var(--border-color); border-radius: var(--radius-md); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; }
+.consult-note strong { color: var(--text-primary); }
+.support-line { max-width: 1040px; margin: 3rem auto 0; text-align: center; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.8; }
+.support-line a { color: var(--accent-cyan); font-weight: 700; }
+.support-line a:hover { text-decoration: underline; }
+.themes-video-note { margin-top: 0.9rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8; }
+.themes-video-note a { color: var(--accent-cyan); font-weight: 600; }
+.themes-video-note a:hover { text-decoration: underline; }
+@media (max-width: 1000px) { .path-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) { .path-grid, .path-grid.cols-2 { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 520px) { .path-grid.cols-4 { grid-template-columns: minmax(0, 1fr); } }
+.path-grid + .about-block { padding-top: 4rem; }
+.join-faq-links { justify-content: center; margin-top: 1.5rem; }
+@media (min-width: 900px) { .joint-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

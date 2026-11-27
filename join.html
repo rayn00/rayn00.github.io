@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- アクセス解析（Google アナリティクス。測定IDは assets/js/analytics.js） -->
+    <script src="assets/js/analytics.js" async></script>
+    <title>進学・募集 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）への大学院進学（修士・博士）、学生インターン、研究員（ポスドクなど）としての参加についてのご案内。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="進学・募集 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）への大学院進学（修士・博士）、学生インターン、研究員（ポスドクなど）としての参加についてのご案内。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/join.html">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+<body data-title-ja="進学・募集 | 雨宮研究室 AME LAB" data-title-en="Join Us | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）への大学院進学（修士・博士）、学生インターン、研究員（ポスドクなど）としての参加についてのご案内。" data-desc-en="How to join AME LAB (Amemiya Lab), The University of Tokyo: graduate admissions (Master&rsquo;s and Ph.D.), student internships, and research positions.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="join.html" class="nav-link active" aria-current="page"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></a></li>
+                    <li><a href="collaboration.html" class="nav-link"><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></span>
+            </nav>
+            <span class="section-tag">Join Us</span>
+            <h1 class="page-title"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></h1>
+            <p class="hero-subtitle"><span class="ja">大学院への進学、学生インターン、研究員としての参加についてご案内します。</span><span class="en" lang="en">Graduate study, internships and research positions at AME LAB.</span></p>
+        </div>
+    </section>
+
+    <section id="join-page">
+        <p class="path-intro"><span class="ja">どのような形で参加したいかを選んでください。</span><span class="en" lang="en">Choose how you would like to join us.</span></p>
+        <ul class="path-grid" aria-label="参加の形">
+            <li><a class="path-card" href="#graduate"><span class="path-icon"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></span><strong><span class="ja">大学院に進学したい</span><span class="en" lang="en">I want to join as a graduate student</span></strong><span class="path-desc"><span class="ja">修士課程・博士課程（社会人を含む）。出願前の連絡の期限があります。</span><span class="en" lang="en">Master's and Ph.D. programs, including working professionals. Note the deadline for contacting us before you apply.</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+            <li><a class="path-card" href="#intern"><span class="path-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span><strong><span class="ja">インターンに参加したい</span><span class="en" lang="en">I want to do an internship</span></strong><span class="path-desc"><span class="ja">学部生・大学院生の短期インターンを随時受け入れています。</span><span class="en" lang="en">We accept undergraduate and graduate students as short-term interns at any time.</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+            <li><a class="path-card" href="#researchers"><span class="path-icon"><i class="fa-solid fa-flask" aria-hidden="true"></i></span><strong><span class="ja">研究員として参加したい</span><span class="en" lang="en">I want to join as a researcher</span></strong><span class="path-desc"><span class="ja">特別研究員（PD）や特任研究員など。募集の状況はお問い合わせください。</span><span class="en" lang="en">JSPS fellows (PD), project researchers and more. Please ask us whether a position is open.</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+        </ul>
+
+        <div class="about-block" id="graduate">
+            <div class="section-header">
+                <span class="section-tag">Graduate Admissions</span>
+                <h2 class="section-title"><span class="ja">大学院進学</span><span class="en" lang="en">Graduate Admissions</span></h2>
+                <p class="section-description"><span class="ja">社会人を含め、修士課程・博士課程の学生を受け入れています。工学・情報だけでなく、心理学・経済学・芸術など、さまざまな分野や他大学からの進学を歓迎します。必要な技術は研究を通じて身につけられます。</span><span class="en" lang="en">We accept Master&rsquo;s and doctoral students, including working professionals. Students from diverse fields such as engineering, information science, psychology, economics and the arts, and from other universities, are welcome. You can learn the skills you need through research.</span></p>
+            </div>
+            <!-- 募集のお知らせ（年度が変わったら、index.html・faq.html の「募集のお知らせ」と一緒に書き換えてください） -->
+            <div class="admit-box">
+                <div class="admit-head">
+                    <span class="admit-badge"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> <span class="ja">募集中</span><span class="en" lang="en">Now accepting</span></span>
+                    <h3><span class="ja">2027年度入学希望者を受け入れています</span><span class="en" lang="en">Accepting students for April / October 2027 entry</span></h3>
+                </div>
+                <p class="admit-lead"><span class="ja">進学を考えている方は、次の順に進めてください。</span><span class="en" lang="en">If you are considering joining us, please follow these steps.</span></p>
+                <ol class="admit-steps">
+                    <li><strong><span class="ja">研究内容を確認する</span><span class="en" lang="en">Check our research</span></strong><span><span class="ja">研究紹介や論文を見て、取り組みたいテーマを考えてください。</span><span class="en" lang="en">Look through our research and publications and think about what you would like to work on.</span></span></li>
+                    <li><strong><span class="ja">出願前にメールで連絡する</span><span class="en" lang="en">Email us before applying</span></strong><span><span class="ja">雨宮を第1希望とする場合は、志望する専攻・コースの<em>入学願書受付開始日の前日まで</em>に、必ずご連絡ください。CV、既発表資料、研究計画（完成していなくてもかまいません）、制作物があればその資料を添付してください。</span><span class="en" lang="en">If Prof. Amemiya is your first-choice supervisor, be sure to email us <em>by the day before the application period of your intended program opens</em>. Please attach your CV, any published work, a research plan (a draft is fine) and materials on anything you have made.</span></span></li>
+                    <li><strong><span class="ja">志望する大学院に出願する</span><span class="en" lang="en">Apply to your graduate school</span></strong><span><span class="ja">入試の日程や出願要件は年度によって変わります。必ず各大学院のWebサイトで確認してください。</span><span class="en" lang="en">Exam schedules and requirements change every year, so always check each graduate school&rsquo;s website.</span></span></li>
+                </ol>
+                <p class="admit-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span class="ja">事前の面談や研究室見学は必須ではありません。学外からの<a class="inline-link" href="https://www.u-tokyo.ac.jp/adm/inbound/ja/programs-admissions-r.html" target="_blank" rel="noopener">研究生</a>は受け入れていません。</span><span class="en" lang="en">A prior interview or lab visit is not required. We do not accept non-degree <a class="inline-link" href="https://www.u-tokyo.ac.jp/adm/inbound/en/programs-admissions-r.html" target="_blank" rel="noopener">research students</a> (kenkyusei) from outside the university.</span></p>
+                <div class="admit-actions">
+                    <a href="faq.html" class="btn btn-primary" data-site-link><i class="fa-solid fa-circle-question" aria-hidden="true"></i> <span class="ja">大学院進学・出願前の連絡について</span><span class="en" lang="en">Graduate admissions &amp; contacting us before applying</span></a>
+                    <a href="#graduate" class="btn btn-secondary" data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="ja">メールで連絡する</span><span class="en" lang="en">Email us</span></a>
+                </div>
+            </div>
+
+            <p class="tab-lead">
+                <span class="ja">当研究室は、2つの大学院（総合文化研究科・学際情報学府）で学生を受け入れています。</span>
+                <span class="en" lang="en">We accept students through two graduate schools.</span>
+            </p>
+            <div class="campus-grid">
+                <div class="campus-card main-lab">
+                    <span class="campus-badge badge-cyan"><span class="ja">研究拠点・研究室所在地</span><span class="en" lang="en">Research Base &amp; Lab Location</span></span>
+                    <h3 class="campus-title">
+                        <span><span class="ja">情報基盤センター</span><span class="en" lang="en">Information Technology Center</span></span>
+                        <i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i>
+                    </h3>
+                    <p class="campus-desc">
+                        <span class="ja"><strong>本郷地区キャンパス（浅野キャンパス）</strong><br>
+                        研究室の実験環境、デスク、プロトタイピング機器はすべて本郷地区キャンパス（浅野キャンパス）に集約されています。日々の研究活動の拠点となります。</span>
+                        <span class="en" lang="en"><strong>Hongo Area Campus (Asano Campus)</strong><br>
+                        All of the lab's experimental spaces, desks and prototyping equipment are on the Hongo Area Campus (Asano Campus), the base of our day-to-day research.</span>
+                    </p>
+                </div>
+
+                <div class="campus-card">
+                    <span class="campus-badge badge-purple"><span class="ja">大学院受入（総合文化）</span><span class="en" lang="en">Graduate Admissions (Arts &amp; Sciences)</span></span>
+                    <h3 class="campus-title">
+                        <span><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></span>
+                        <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                    </h3>
+                    <p class="campus-desc">
+                        <span class="ja"><strong>駒場キャンパス</strong><br>
+                        広域科学専攻 広域システム科学系で学生を受け入れています。単位取得に必要な講義の多くは駒場キャンパスで開講されます。</span>
+                        <span class="en" lang="en"><strong>Komaba Campus</strong><br>
+                        We accept students through the Department of Multi-Disciplinary Sciences, General Systems Studies. Most courses required for credits are held on the Komaba Campus.</span>
+                    </p>
+                </div>
+
+                <div class="campus-card">
+                    <span class="campus-badge badge-blue"><span class="ja">大学院受入（学際情報）</span><span class="en" lang="en">Graduate Admissions (Interdisciplinary Information Studies)</span></span>
+                    <h3 class="campus-title">
+                        <span><span class="ja">学際情報学府</span><span class="en" lang="en">Graduate School of Interdisciplinary Information Studies</span></span>
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    </h3>
+                    <p class="campus-desc">
+                        <span class="ja"><strong>本郷キャンパス</strong><br>
+                        学際情報学専攻 先端表現情報学コースで学生を受け入れています。講義は主に本郷キャンパスで実施されます。</span>
+                        <span class="en" lang="en"><strong>Hongo Campus</strong><br>
+                        We accept students through the Emerging Design and Informatics Course, Interdisciplinary Information Studies. Courses are mainly held on the Hongo Campus.</span>
+                    </p>
+                </div>
+            </div>
+                <div class="theme-links join-faq-links">
+                <a href="faq.html" class="chip-link" data-site-link><i class="fa-solid fa-circle-question" aria-hidden="true"></i> <span class="ja">大学院進学についてのよくある質問</span><span class="en" lang="en">FAQ on graduate admissions (Japanese)</span></a>
+                <a href="faq.html#q-interview" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">面談・見学について</span><span class="en" lang="en">Meetings &amp; lab visits</span></a>
+                <a href="faq.html#q-working" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">社会人の受け入れについて</span><span class="en" lang="en">Working professionals</span></a>
+            </div>
+        </div>
+
+        <div class="about-block" id="positions">
+            <div class="section-header">
+                <span class="section-tag">Internships &amp; Positions</span>
+                <h2 class="section-title"><span class="ja">インターン・研究員</span><span class="en" lang="en">Internships &amp; Research Positions</span></h2>
+            </div>
+            <div class="join-grid">
+                <article class="join-card" id="intern">
+                    <h3><i class="fa-solid fa-laptop-code" aria-hidden="true"></i><span class="ja">学生インターン</span><span class="en" lang="en">Student internships</span></h3>
+                    <p><span class="ja">VRシステムの開発やインタフェース機器の研究に関心のある学部生・大学院生を、短期インターンとして随時受け入れています。テーマによっては、オンラインでの参加もできます。研究テーマとの相性によっては、お受けできない場合もあります。</span><span class="en" lang="en">We accept undergraduate and graduate students interested in developing VR systems or researching interface devices as short-term interns at any time. Depending on the project, you may be able to take part online. We may not be able to accept you if your interests do not match our current projects.</span></p>
+                    <p><span class="ja">学部生で研究室に関心のある方も、まずはインターンについてご相談ください。</span><span class="en" lang="en">Undergraduates interested in the lab are also welcome to ask about internships first.</span></p>
+                    <div class="theme-links">
+                        <a href="#intern" class="chip-link" data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><i class="fa-solid fa-envelope" aria-hidden="true"></i> <span class="mail-addr" data-mail-text><span class="ja">メールアドレス</span><span class="en" lang="en">Email address</span></span></a>
+                    </div>
+                </article>
+                <article class="join-card" id="researchers">
+                    <h3><i class="fa-solid fa-flask" aria-hidden="true"></i><span class="ja">研究員（ポスドクなど）</span><span class="en" lang="en">Researchers (postdocs, etc.)</span></h3>
+                    <p><span class="ja">日本学術振興会 特別研究員（PD）の受け入れや、進行中のプロジェクトの特任助教・特任研究員の募集を行うことがあります。所属は情報基盤センターになります。</span><span class="en" lang="en">We may host JSPS Research Fellows (PD) or recruit project assistant professors and project researchers for ongoing projects. The affiliation will be the Information Technology Center.</span></p>
+                    <p><span class="ja">まずは現在募集しているかどうかをお問い合わせください。</span><span class="en" lang="en">Please first ask us whether a position is currently open.</span></p>
+                    <div class="theme-links">
+                        <a href="#researchers" class="chip-link" data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><i class="fa-solid fa-envelope" aria-hidden="true"></i> <span class="mail-addr" data-mail-text><span class="ja">メールアドレス</span><span class="en" lang="en">Email address</span></span></a>
+                        <a href="https://www.jsps.go.jp/j-pd/" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">日本学術振興会 特別研究員</span><span class="en" lang="en">JSPS Research Fellowship</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="page-links">
+            <a href="research.html" class="btn btn-primary" data-site-link><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究紹介を見る</span><span class="en" lang="en">Our research</span></a>
+            <a href="members.html" class="btn btn-secondary" data-site-link><i class="fa-solid fa-users" aria-hidden="true"></i> <span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students through the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="join.html"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></a></li>
+                    <li><a href="collaboration.html"><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="contact.html"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="donation.html" data-site-link><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support Our Lab</span></a></li>
+                    <li><a href="contact.html#media" data-site-link><span class="ja">取材・講演のご依頼</span><span class="en" lang="en">Media &amp; Talks</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

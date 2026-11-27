@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- アクセス解析（Google アナリティクス。測定IDは assets/js/analytics.js） -->
+    <script src="assets/js/analytics.js" async></script>
+    <title>研究室へのご寄附 | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）へのご寄附の手順。東京大学基金（東大基金）を通じて受け付けています。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="研究室へのご寄附 | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）へのご寄附の手順。東京大学基金（東大基金）を通じて受け付けています。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/donation.html">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+<body data-title-ja="研究室へのご寄附 | 雨宮研究室 AME LAB" data-title-en="Support Our Lab | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）へのご寄附の手順。東京大学基金（東大基金）を通じて受け付けています。" data-desc-en="How to support AME LAB (Amemiya Lab), The University of Tokyo, through the University of Tokyo Foundation.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="join.html" class="nav-link"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></a></li>
+                    <li><a href="collaboration.html" class="nav-link"><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support Our Lab</span></span>
+            </nav>
+            <span class="section-tag">Support Us</span>
+            <h1 class="page-title"><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support Our Lab</span></h1>
+            <p class="hero-subtitle"><span class="ja">東京大学基金を通じて、研究室の研究・教育活動をご支援いただけます。</span><span class="en" lang="en">You can support our research and education through the University of Tokyo Foundation.</span></p>
+        </div>
+    </section>
+
+    <section id="donation-page">
+        <div class="about-block" id="support">
+            <div class="section-header">
+                <span class="section-tag">Support Us</span>
+                <h2 class="section-title"><span class="ja">ご寄附の手順</span><span class="en" lang="en">How to Give</span></h2>
+                <p class="section-description"><span class="ja">研究室へのご寄附は、東京大学基金（東大基金）を通じて受け付けています。</span><span class="en" lang="en">Donations to the lab are accepted through the University of Tokyo Foundation.</span></p>
+            </div>
+            <div class="donate-box">
+                <div>
+                    <ol class="donate-steps ja">
+                        <li>東京大学基金のWebサイトで<strong>「寄付をする」</strong>を選びます。</li>
+                        <li>寄附目的で<strong>「その他」</strong>を選びます。</li>
+                        <li>指定の欄に、次のように入力してください。
+                            <div class="copy-box"><code>情報基盤センター雨宮研究室における研究・教育活動への支援のため</code><button type="button" class="copy-btn" data-copy="情報基盤センター雨宮研究室における研究・教育活動への支援のため"><i class="fa-regular fa-copy" aria-hidden="true"></i> コピー</button></div>
+                        </li>
+                    </ol>
+                    <ol class="donate-steps en" lang="en">
+                        <li>On the University of Tokyo Foundation website, choose <strong>GIVE NOW</strong>.</li>
+                        <li>As the purpose of your gift, enter the following:
+                            <div class="copy-box"><code>Support for research and education activities of the Amemiya Laboratory, Information Technology Center</code><button type="button" class="copy-btn" data-copy="Support for research and education activities of the Amemiya Laboratory, Information Technology Center"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copy</button></div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="donate-side">
+                    <p><span class="ja">ご寄附には、税制上の優遇措置があります。詳しくは東京大学の案内をご覧ください。</span><span class="en" lang="en">Donations may be eligible for tax benefits. Please see the University of Tokyo&rsquo;s information for details.</span></p>
+                    <div class="theme-links">
+                        <a href="https://utf.u-tokyo.ac.jp/" target="_blank" rel="noopener" class="btn btn-primary ja"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> 東京大学基金で寄付する</a>
+                        <a href="https://utf.u-tokyo.ac.jp/en" target="_blank" rel="noopener" class="btn btn-primary en" lang="en"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> Give to the UTokyo Foundation</a>
+                        <a href="https://www.u-tokyo.ac.jp/ja/society/funding/d01_10.html" target="_blank" rel="noopener" class="chip-link"><i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> <span class="ja">東京大学への寄附について</span><span class="en" lang="en">About donations to UTokyo (Japanese)</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-links">
+            <a href="about.html" class="btn btn-secondary" data-site-link><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a>
+            <a href="research.html" class="btn btn-secondary" data-site-link><i class="fa-solid fa-flask" aria-hidden="true"></i> <span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students through the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="join.html"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></a></li>
+                    <li><a href="collaboration.html"><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="contact.html"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="donation.html" data-site-link><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support Our Lab</span></a></li>
+                    <li><a href="contact.html#media" data-site-link><span class="ja">取材・講演のご依頼</span><span class="en" lang="en">Media &amp; Talks</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

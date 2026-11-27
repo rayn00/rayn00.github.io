@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- アクセス解析（Google アナリティクス。測定IDは assets/js/analytics.js） -->
+    <script src="assets/js/analytics.js" async></script>
+    <title>お問い合わせ・アクセス | 雨宮研究室 AME LAB</title>
+    <meta name="description" content="東京大学 雨宮研究室（AME LAB）のお問い合わせ先と所在地（本郷地区キャンパス 情報基盤センター）。取材・講演・執筆のご依頼。">
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+    <!-- OGP（SNS共有時の表示） -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AME LAB 雨宮研究室">
+    <meta property="og:title" content="お問い合わせ・アクセス | 雨宮研究室 AME LAB">
+    <meta property="og:description" content="東京大学 雨宮研究室（AME LAB）のお問い合わせ先と所在地（本郷地区キャンパス 情報基盤センター）。取材・講演・執筆のご依頼。">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="https://www.amelab.vr.u-tokyo.ac.jp/contact.html">
+    <meta property="og:image" content="https://www.amelab.vr.u-tokyo.ac.jp/img/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- テーマ・言語を描画前に確定（ちらつき防止） -->
+    <script>
+        (function () {
+            var d = document.documentElement, theme = null, lang = null;
+            try {
+                theme = localStorage.getItem('amelab-theme');
+                lang = localStorage.getItem('amelab-lang');
+            } catch (e) {}
+            try {
+                var q = new URLSearchParams(location.search).get('lang');
+                if (q === 'en' || q === 'ja') lang = q;
+            } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            d.setAttribute('data-theme', theme);
+            d.lang = (lang === 'en') ? 'en' : 'ja';
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+<body data-title-ja="お問い合わせ・アクセス | 雨宮研究室 AME LAB" data-title-en="Contact &amp; Access | AME LAB, The University of Tokyo" data-desc-ja="東京大学 雨宮研究室（AME LAB）のお問い合わせ先と所在地（本郷地区キャンパス 情報基盤センター）。取材・講演・執筆のご依頼。" data-desc-en="Contact details and location of AME LAB (Amemiya Lab), The University of Tokyo, and how to request media coverage or talks.">
+
+    <a class="skip-link" href="#main"><span class="ja">本文へスキップ</span><span class="en" lang="en">Skip to content</span></a>
+
+    <!-- Header Navigation -->
+    <header id="siteHeader">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" data-logo-wrap>
+                <img src="img/amelab-mark.png" alt="" width="146" height="128" data-logo>
+                <span class="brand-text"><span class="ja">雨宮研究室</span><span class="en" lang="en">AME LAB</span></span>
+            </a>
+            <nav id="siteNav" aria-label="メインメニュー">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#about" class="nav-link"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html" class="nav-link"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html" class="nav-link"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html" class="nav-link"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" class="nav-link"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="join.html" class="nav-link"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></a></li>
+                    <li><a href="collaboration.html" class="nav-link"><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="contact.html" class="nav-link active" aria-current="page"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="themeBtn" aria-label="ライトモードに切り替え">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="lang-toggle" id="langBtn" aria-label="Switch to English">EN</button>
+                <button type="button" class="mobile-toggle" id="mobileBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+    <section class="hero page-hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><span class="ja">ホーム</span><span class="en" lang="en">Home</span></a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact &amp; Access</span></span>
+            </nav>
+            <span class="section-tag">Contact</span>
+            <h1 class="page-title"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact &amp; Access</span></h1>
+            <p class="hero-subtitle"><span class="ja">研究室へのお問い合わせ先と所在地、取材・講演・執筆のご依頼についてご案内します。</span><span class="en" lang="en">How to reach us, where we are, and how to request media coverage or talks.</span></p>
+        </div>
+    </section>
+
+    <section id="contact-page">
+        <p class="path-intro"><span class="ja">ご用件に合わせて、案内のページもご覧ください。</span><span class="en" lang="en">Depending on your inquiry, these pages may help.</span></p>
+        <ul class="path-grid cols-4" aria-label="ご用件">
+            <li><a class="path-card" href="join.html"><span class="path-icon"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></span><strong><span class="ja">進学・募集</span><span class="en" lang="en">Joining the lab</span></strong><span class="path-desc"><span class="ja">大学院進学、インターン、研究員について</span><span class="en" lang="en">Graduate study, internships and research positions</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+            <li><a class="path-card" href="collaboration.html"><span class="path-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></span><strong><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Joint research &amp; consulting</span></strong><span class="path-desc"><span class="ja">企業・研究機関の方へ</span><span class="en" lang="en">For companies and organizations</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+            <li><a class="path-card" href="#media"><span class="path-icon"><i class="fa-solid fa-microphone" aria-hidden="true"></i></span><strong><span class="ja">取材・講演のご依頼</span><span class="en" lang="en">Media &amp; talks</span></strong><span class="path-desc"><span class="ja">取材・講演・執筆のご依頼</span><span class="en" lang="en">Media coverage, talks and writing</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+            <li><a class="path-card" href="donation.html"><span class="path-icon"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></span><strong><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support our lab</span></strong><span class="path-desc"><span class="ja">東京大学基金を通じたご寄附</span><span class="en" lang="en">Giving through the UTokyo Foundation</span></span><span class="path-go"><span class="ja">詳しく見る</span><span class="en" lang="en">Learn more</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a></li>
+        </ul>
+
+        <div class="about-block" id="contact-info">
+            <div class="section-header">
+                <span class="section-tag">Access &amp; Contact</span>
+                <h2 class="section-title"><span class="ja">所在地・お問い合わせ先</span><span class="en" lang="en">Location &amp; Contact</span></h2>
+                <p class="section-description"><span class="ja">進学を希望する方の研究室見学は、個別の日程調整による実施は原則として行っていません（各大学院の説明会に合わせて実施する予定です）。</span><span class="en" lang="en">For prospective students, we do not, as a rule, arrange individual lab visits; visits are planned together with each graduate school&rsquo;s information sessions.</span></p>
+                <p class="contact-faq"><a href="faq.html#q-interview" class="chip-link" data-site-link><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span class="ja">面談・見学について（よくある質問）</span><span class="en" lang="en">Meetings &amp; lab visits (FAQ, Japanese)</span></a></p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <h3><i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i> <span class="ja">研究室所在地</span><span class="en" lang="en">Lab Location</span></h3>
+                    <address class="card-text" style="font-style: normal;">
+                        <span class="ja">〒113-8658 東京都文京区弥生2-11-16<br>
+                        東京大学 情報基盤センター<br>
+                        浅野本館</span>
+                        <span class="en" lang="en">Information Technology Center, Asano Main Building<br>
+                        The University of Tokyo<br>
+                        2-11-16 Yayoi, Bunkyo-ku, Tokyo 113-8658, Japan</span>
+                    </address>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-train icon-blue" aria-hidden="true"></i> <span class="ja">最寄り駅アクセス</span><span class="en" lang="en">Nearest Stations</span></h3>
+                    <ul class="card-text card-list">
+                        <li><span class="ja">千代田線「根津駅」徒歩5分</span><span class="en" lang="en">Nezu Sta. (Chiyoda Line): 5 min walk</span></li>
+                        <li><span class="ja">南北線「東大前駅」徒歩10分</span><span class="en" lang="en">Todaimae Sta. (Namboku Line): 10 min walk</span></li>
+                        <li><span class="ja">丸ノ内線「本郷三丁目駅」徒歩15分</span><span class="en" lang="en">Hongo-sanchome Sta. (Marunouchi Line): 15 min walk</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-envelope icon-purple" aria-hidden="true"></i> <span class="ja">お問い合わせ</span><span class="en" lang="en">Contact</span></h3>
+                    <p class="card-text">
+                        <span class="ja">雨宮研究室 事務窓口:</span><span class="en" lang="en">Lab office:</span><br>
+                        <a href="#contact-info" class="card-link" data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><span class="mail-addr" data-mail-text><span class="ja">メールアドレス</span><span class="en" lang="en">Email address</span></span></a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 地図（Google マップ埋め込み。APIキー不要） -->
+            <div class="map-card" id="access-map">
+                <iframe class="map-frame" id="mapFrame"
+                    src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16&amp;hl=ja&amp;z=17&amp;output=embed"
+                    data-map-q="%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16"
+                    title="地図：東京大学 情報基盤センター 浅野本館"
+                    data-title-ja="地図：東京大学 情報基盤センター 浅野本館"
+                    data-title-en="Map: Information Technology Center, Asano Main Building, The University of Tokyo"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                <div class="map-footer">
+                    <span><i class="fa-solid fa-location-dot icon-cyan" aria-hidden="true"></i>
+                        <span class="ja">東京大学 本郷地区キャンパス（浅野キャンパス） 情報基盤センター 浅野本館</span><span class="en" lang="en">Information Technology Center, Asano Main Building, Hongo Area Campus (Asano Campus)</span></span>
+                    <a class="btn btn-secondary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> <span class="ja">Google マップで開く</span><span class="en" lang="en">Open in Google Maps</span>
+                    </a>
+                </div>
+            </div>
+            </div>
+
+        <div class="about-block" id="media">
+            <div class="section-header">
+                <span class="section-tag">Inquiries</span>
+                <h2 class="section-title"><span class="ja">取材・講演・執筆のご依頼</span><span class="en" lang="en">Media, Talks &amp; Writing</span></h2>
+            </div>
+            <div class="about-contact">
+                <div class="about-contact-body">
+                    <p><span class="ja">取材、講演、執筆のご依頼は、下記のアドレスまでご連絡ください。<br>技術顧問・コンサルティングのご相談は「<a class="inline-link" href="collaboration.html#consult">共同研究・技術相談</a>」をご覧ください。</span><span class="en" lang="en">For media coverage, talks or writing, please contact us at the address below.<br>For technical advisory or consulting, see <a class="inline-link" href="collaboration.html#consult">Joint Research &amp; Consulting</a>.</span></p>
+                    <div class="theme-links">
+                        <a href="#media" class="chip-link" data-mail="aW5mb0BhbWVsYWIudnIudS10b2t5by5hYy5qcA=="><i class="fa-solid fa-envelope" aria-hidden="true"></i> <span class="mail-addr" data-mail-text><span class="ja">メールアドレス</span><span class="en" lang="en">Email address</span></span></a>
+                    </div>
+                    <ul class="about-sns" aria-label="SNS">
+                        <li><a href="https://x.com/amelabvr" target="_blank" rel="noopener"><svg class="x-logo" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a></li>
+                        <li><a href="https://www.instagram.com/amelabvr/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@amelabvr" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube</a></li>
+                    </ul>
+                </div>
+                <!-- 本郷キャンパスの写真（img/campus/） -->
+                <figure class="contact-photo">
+                    <img src="img/campus/hongo-yasuda.jpg" alt="本郷キャンパスの安田講堂" width="450" height="600" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </div>
+
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand" data-logo-wrap>
+                <img src="img/amelab-logo.png" alt="AMELAB UTokyo" width="184" height="240" loading="lazy" data-logo>
+                <span class="logo-wordmark">AME LAB</span>
+                <p class="footer-desc">
+                    <span class="ja">東京大学 情報基盤センター 雨宮研究室<br>
+                    (Augmented Multisensory Experience Lab)<br>
+                    大学院学際情報学府・総合文化研究科 学生受入</span>
+                    <span class="en" lang="en">Amemiya Laboratory (Augmented Multisensory Experience Lab)<br>
+                    Information Technology Center, The University of Tokyo<br>
+                    Accepting students through the Graduate Schools of Interdisciplinary Information Studies and Arts and Sciences</span>
+                </p>
+            </div>
+            <div>
+                <h2 class="footer-title">Navigation</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html#about"><span class="ja">研究室概要</span><span class="en" lang="en">About</span></a></li>
+                    <li><a href="research.html"><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="news.html"><span class="ja">ニュース</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="members.html"><span class="ja">メンバー</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html"><span class="ja">論文・発表</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="join.html"><span class="ja">進学・募集</span><span class="en" lang="en">Join Us</span></a></li>
+                    <li><a href="collaboration.html"><span class="ja">共同研究・技術相談</span><span class="en" lang="en">Collaboration</span></a></li>
+                    <li><a href="contact.html"><span class="ja">お問い合わせ・アクセス</span><span class="en" lang="en">Contact</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Pages</h2>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-site-link><span class="ja">研究室について</span><span class="en" lang="en">About the Lab</span></a></li>
+                    <li><a href="research.html" data-site-link><span class="ja">研究紹介</span><span class="en" lang="en">Research</span></a></li>
+                    <li><a href="members.html" data-site-link><span class="ja">メンバー一覧</span><span class="en" lang="en">Members</span></a></li>
+                    <li><a href="publications.html" data-site-link><span class="ja">論文・発表一覧</span><span class="en" lang="en">Publications</span></a></li>
+                    <li><a href="news.html" data-site-link><span class="ja">ニュース一覧</span><span class="en" lang="en">News</span></a></li>
+                    <li><a href="faq.html" data-site-link><span class="ja">よくある質問</span><span class="en" lang="en">FAQ</span></a></li>
+                    <li><a href="donation.html" data-site-link><span class="ja">研究室へのご寄附</span><span class="en" lang="en">Support Our Lab</span></a></li>
+                    <li><a href="contact.html#media" data-site-link><span class="ja">取材・講演のご依頼</span><span class="en" lang="en">Media &amp; Talks</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="footer-title">Links</h2>
+                <ul class="footer-links">
+                    <li><a href="https://www.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">東京大学</span><span class="en" lang="en">The University of Tokyo</span></a></li>
+                    <li><a href="https://www.iii.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報学環・学際情報学府</span><span class="en" lang="en">III / GSII</span></a></li>
+                    <li><a href="https://www.c.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">総合文化研究科</span><span class="en" lang="en">Graduate School of Arts and Sciences</span></a></li>
+                    <li><a href="https://www.vr.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">バーチャルリアリティ教育研究センター</span><span class="en" lang="en">Virtual Reality Educational Research Center</span></a></li>
+                    <li><a href="https://www.i.u-tokyo.ac.jp/" target="_blank" rel="noopener"><span class="ja">情報理工学系研究科</span><span class="en" lang="en">Graduate School of Information Science and Technology</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; AME LAB, The University of Tokyo. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

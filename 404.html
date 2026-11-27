@@ -141,10 +141,12 @@
             'research': ['research.html', '研究紹介', 'Research'],
             'about-us': ['about.html', '研究室について', 'About the Lab'],
             'about': ['about.html', '研究室について', 'About the Lab'],
-            'access': ['index.html#contact', 'アクセス・問い合わせ', 'Contact'],
-            'contact': ['index.html#contact', 'アクセス・問い合わせ', 'Contact'],
+            'access': ['contact.html', 'お問い合わせ・アクセス', 'Contact'],
+            'contact': ['contact.html', 'お問い合わせ・アクセス', 'Contact'],
             'faq': ['faq.html', 'よくある質問', 'FAQ'],
-            'collaboration': ['collaboration.html', '共同研究・産学連携', 'Collaboration']
+            'collaboration': ['collaboration.html', '共同研究・技術相談', 'Collaboration'],
+            'join': ['join.html', '進学・募集', 'Join Us'],
+            'donation': ['donation.html', '研究室へのご寄附', 'Support Our Lab']
         };
         (function () {
             var parts = location.pathname.split('/').filter(Boolean);
@@ -154,7 +156,7 @@
             if (!parts.length) return;
 
             var first = decodeURIComponent(parts[0]).toLowerCase().replace(/\.html?$/, '');
-            var to = MOVED[first] || (/^openlab/.test(first) ? ['index.html#prospective', '研究室配属', 'Admissions'] : null);
+            var to = MOVED[first] || (/^openlab/.test(first) ? ['join.html', '進学・募集', 'Join Us'] : null);
             // 旧サイトの見出しへのリンク（#h.…）は、旧サイトのその記事を開けるように残す
             var oldAnchor = /^#h\./.test(location.hash);
             if (to && parts.length === 1 && !oldAnchor) {

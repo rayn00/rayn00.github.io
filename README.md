@@ -11,9 +11,12 @@ members.html        メンバー（教授のプロフィール・スタッフ・
 publications.html   論文・発表一覧（種類で絞り込み・キーワード検索）
 news.html           ニュース一覧（種類で絞り込み・キーワード検索）
 news/               ニュースの詳しい記事（1件1ページ。ファイル名は 西暦-月-日-記事名.html）
-about.html          研究室について（あゆみ・メンバー募集・寄附・取材のご依頼）
+about.html          研究室について（AME LAB とは・研究室のあゆみ）
+join.html           進学・募集（大学院進学・学生インターン・研究員）
+collaboration.html  共同研究・技術相談（目的別の案内、学術指導と兼業、主な共同研究と成果、共同研究実績）
+donation.html       研究室へのご寄附（東京大学基金での手順）
+contact.html        お問い合わせ・アクセス（所在地・地図・取材・講演・執筆のご依頼）
 faq.html            よくある質問（進学を希望する方へ。開閉式・キーワード検索）
-collaboration.html  共同研究・産学連携（主な共同研究と成果、共同研究実績）
 buru-navi.html      ぶるなびの歩み（系譜・東京大学での発展・受賞・報道。メニューとフッターには出していません）
 404.html            ページが見つからないときの表示
 .nojekyll           GitHub Pages の加工処理（Jekyll）を止める空ファイル
@@ -29,7 +32,7 @@ img/
   ogp.png           SNSで共有したときの画像（1200×630）
   members/          メンバーの顔写真（伊藤・佐久間の2名は仮の画像）
   research/         研究紹介ページのカード画像（ファイル名は research/README.md）
-  collaboration/    共同研究・産学連携ページの写真（ファイル名は collaboration/README.md）
+  collaboration/    共同研究・技術相談ページの写真（ファイル名は collaboration/README.md）
   buru-navi/        「ぶるなびの歩み」ページの写真（ファイル名は buru-navi/README.md）
 ```
 
@@ -83,7 +86,7 @@ GitHub 上でファイルを開き、鉛筆アイコン（Edit）で編集して
 ### デザイン・動きとヘッダー・フッター（全ページ共通）
 
 - 色・文字・レイアウトは `assets/css/style.css`、メニューや日英・配色の切替などの動きは `assets/js/main.js` に、トップページも含めて全ページ共通でまとめています。ここを1か所直せば全ページに反映されます。
-- ヘッダー（メニュー）とフッターは各HTMLファイルに書いてあるため、項目を増やすときは全ページ（`index.html`・`research.html`・`members.html`・`publications.html`・`news.html`・`faq.html`）で同じように書き換えてください。トップページだけ、メニューのリンク先がページ内（`#about` など）になっています。
+- ヘッダー（メニュー）とフッターは各HTMLファイルに書いてあるため、項目を増やすときは全ページ（トップと各ページ、`news/` の記事、`pseudo-haptics/` などのフォルダの中のページ）で同じように書き換えてください。メニューは「研究室概要・研究紹介・ニュース・メンバー・論文・発表・進学・募集・共同研究・技術相談・お問い合わせ・アクセス」の8項目、フッターの「Pages」には研究室へのご寄附（donation.html）と取材・講演のご依頼（contact.html#media）も入っています。トップページだけ、メニューのリンク先がページ内（`#about` など）になっています。
 
 ### メールアドレス（迷惑メール対策）
 
@@ -147,20 +150,26 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 トップページの「主要論文・学会発表」にある件数（論文・発表／学術論文誌／国際会議／受賞）も、`publications.html` の一覧から自動で数え直します（`index.html` の `.pub-stat` の `data-types` に、数える種類を空白区切りで書きます。「論文・発表」は `journal intl dom talk` の合計です）。`index.html` に書いてある数字は、一覧を読み込めなかったとき（ファイルを直接開いたときなど）の予備なので、ときどき実際の件数に合わせておくと安心です。
 
-### 進学希望者向けの募集のお知らせ（index.html と faq.html）
+### 進学希望者向けの募集のお知らせ（index.html・join.html・faq.html）
 
-募集年度（例：「2027年度入学希望者を受け入れています」）は、トップページの「研究室配属」の `admit-box` と、faq.html の「募集のお知らせ」の2か所に書いています。年度が変わったら、両方を書き換えてください。
+募集年度（例：「2027年度入学希望者を受け入れています」）は、トップページの「大学院進学・募集」の `admit-box`、join.html の「大学院進学」の `admit-box`、faq.html の「募集のお知らせ」の3か所に書いています。年度が変わったら、すべて書き換えてください。
 
 ### よくある質問のキャンパス写真（faq.html）
 
-「募集のお知らせ」の横に、本郷キャンパスのいちょう並木の写真（`img/campus/`）を表示しています。安田講堂の写真は about.html の「取材・講演・執筆のご依頼」の右側にあります。差し替えるときは img/campus/README.md を見てください。写真の位置情報は消してから置いてください。
+「募集のお知らせ」の横に、本郷キャンパスのいちょう並木の写真（`img/campus/`）を表示しています。安田講堂の写真は contact.html の「取材・講演・執筆のご依頼」の右側にあります。差し替えるときは img/campus/README.md を見てください。写真の位置情報は消してから置いてください。
 
 ### 研究室について（about.html）
 
-研究室のあゆみ、メンバー募集（大学院生・学生インターン・研究員・企業の方）、東京大学基金でのご寄附、取材・講演のご依頼をまとめたページです。旧サイトの「About us」に当たり、旧サイトの `/about-us` で来た人はこのページに移動します。
+「AME LAB とは」と研究室のあゆみのページです。ページの最後に、ご寄附のページへの1行のリンクがあります。旧サイトの「About us」に当たり、旧サイトの `/about-us` で来た人はこのページに移動します。
+
+以前このページにあった項目は、別のページに分けました。古いリンク（`about.html#join` など）で来た人は、about.html の `<head>` にある短いプログラムで新しいページへ自動で移動します。
+
+- 募集（大学院生・インターン・研究員）→ join.html
+- 企業・研究機関の方 → collaboration.html（`#consult`）
+- 寄附 → donation.html
+- 取材・講演のご依頼 → contact.html（`#media`）
 
 - **あゆみの写真**：`img/about/` に `history-2019.jpg`・`history-2020.jpg`・`history-2023.jpg`・`history-2026.jpg`（現在の研究室）を置くと、各時期の横に表示されます（横幅 480px）（無い時期は文章だけ。詳しくは img/about/README.md）。
-- **寄附の指定欄に入れる文**：「コピー」ボタンでコピーできます。文を変えるときは、`<code>` の中と、ボタンの `data-copy` の2か所を書き換えてください。
 
 ### ニュースを追加する（news.html）
 
@@ -180,9 +189,15 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - ページを開いた時点では読み込まず、ニュース欄の近くまでスクロールしたときに読み込みます。
 - 投稿者が「埋め込みを許可」をオフにしている動画は再生できません。
 
-### 研究室配属・産学連携の案内（index.html）
+### 進学・募集、共同研究・技術相談、ご寄附、お問い合わせのページ
 
-トップページには、学生向けの「研究室配属」（`index.html#prospective`）と、企業・研究機関向けの「産学連携」（`index.html#industry`）の2つの案内を、別々の欄として並べています。メニューにもそれぞれの項目があります。産学連携の詳しい内容は collaboration.html にあります。
+- **トップページの冒頭のボタン**：「研究テーマを見る」（research.html#themes）、「大学院進学・募集情報を見る」（join.html）、「共同研究・技術相談をしたい」（collaboration.html）。
+- **トップページの欄**：「大学院進学・募集」（`index.html#prospective`）と「共同研究・技術相談」（`index.html#industry`）は要約で、それぞれ join.html・collaboration.html へ進めます。
+- **join.html**：冒頭のカードで「大学院に進学したい」（`#graduate`）・「インターンに参加したい」（`#intern`）・「研究員として参加したい」（`#researchers`）を選べます。
+- **collaboration.html**：冒頭のカードで「製品への応用を一緒に研究したい」（`#joint`）・「専門家の助言を受けたい」（`#consult`）を選べます。技術相談の欄では、学術指導（`#advisory`）と兼業（`#kengyo`）を分けて案内しています。
+- **donation.html**：寄附の指定欄に入れる文は「コピー」ボタンでコピーできます。文を変えるときは、`<code>` の中と、ボタンの `data-copy` の2か所を書き換えてください（日本語・英語それぞれ）。
+- **contact.html**：所在地・地図・お問い合わせ先と、取材・講演・執筆のご依頼（`#media`）があります。トップページの「お問い合わせ・アクセス」の欄にも所在地と地図があるので、住所などを変えるときは両方を書き換えてください。
+- 4つのページで共通のデザイン（`about-block`・`join-card`・`donate-box`・`path-card` など）は `assets/css/style.css` の最後にあります。
 
 ### ニュースに詳しい記事のページを付ける（news/ フォルダ）
 
@@ -212,13 +227,13 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 - 冒頭の動画の下と「引っ張られる感覚の仕組み」の欄から、非対称振動シミュレーター（`buru-navi-simulator/`）にリンクしています。
 - このページ専用のデザインは、buru-navi.html の `<style>` の中に書いています。
 
-### 共同研究・産学連携を更新する（collaboration.html）
+### 共同研究・技術相談を更新する（collaboration.html）
 
 - **主な共同研究と成果**：`<article class="collab-project" id="…">` 〜 `</article>` が1件分です。成果は、その中の `<li class="collab-output">` 〜 `</li>` を1件分コピーして書き換えます。DOI などのリンクは論文・発表一覧と同じ書き方です。
-- **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「産学連携」の欄にも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
-- トップページの「産学連携」の欄にあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
+- **共同研究実績**：`<ul class="partner-chips">` の中に1社1行で並んでいます。詳しい紹介があるところは `<a class="partner-chip has-detail" href="#ID">`、無いところは `<span class="partner-chip">` です。トップページの「共同研究・技術相談」の欄にも同じ一覧があるので、両方を書き換えてください（トップページ側のリンク先は `collaboration.html#ID`）。
+- トップページの「共同研究・技術相談」の欄にあるカード（4件）は、`index.html` の `collab-card` を書き換えます。
 - 各共同研究の写真は `img/collaboration/` に入れます（ファイル名は `img/collaboration/README.md`）。
-- 「技術顧問・学術指導」の案内文は、collaboration.html の上部（`id="advisory"`）と、トップページの「産学連携」の欄（`advisory-box`）の2か所にあります。
+- 「学術指導」の案内文は、collaboration.html の「技術相談」の欄（`id="advisory"`）と、トップページの「共同研究・技術相談」の欄（`advisory-box`）の2か所にあります。
 
 ### 研究紹介のカードに図・写真を入れる（research.html）
 
