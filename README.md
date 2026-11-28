@@ -177,6 +177,8 @@ DOI がある論文は、`<p class="pub-venue">…</p>` の次の行に、次の
 
 冒頭の日付は**掲載日**（ニュースを載せた日）です。学会やイベントの開催日は、文の中に書いてください（例：「UIST 2026（11月2日〜5日、米国デトロイト）の…」）。
 
+検索で見つかるようにしたい語が文の中に無いとき（略称など）は、`<li class="news-card" data-type="…" data-keywords="HI2027 HIS2027">` のように `data-keywords` に空白区切りで書きます（画面には表示されません。論文・発表一覧でも同じ書き方ができます）。
+
 ニュースの文は日本語と英語の両方を書きます：`<p class="news-content"><span class="ja">日本語の文</span><span class="en" lang="en">English sentence.</span></p>`。
 
 該当する年の `<ul class="news-list">` の先頭に、`<li class="news-card" data-type="…">` 〜 `</li>` を1件分コピーして書き換えます。`data-type` は `award`（受賞）・`conf`（学会発表）・`pub`（掲載・出版）・`event`（イベント）・`info`（お知らせ）のいずれかです。種類ラベルの色は、award が `badge-blue`、conf が `badge-purple`、pub が `badge-cyan`、event と info が `badge-gray` です。トップページのニュース欄（最新8件）は `index.html` を書き換えてください。日本語の文はニュース一覧と同じ文にし、文末に句点（。）は付けません（英語の文はピリオドで終えます）。

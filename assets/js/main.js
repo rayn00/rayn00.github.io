@@ -414,7 +414,8 @@
                 });
             } catch (e) {}
         }
-        var hay = items.map(function (it) { return norm(it.textContent); });
+        // data-keywords="…" に書いた語（画面には出ない検索用の語）も検索の対象にする
+        var hay = items.map(function (it) { return norm(it.textContent + ' ' + (it.getAttribute('data-keywords') || '')); });
         // 1つの語に当てはまる表記の一覧（語そのもの＋その語を含む著者の日英の氏名）
         var expand = function (term) {
             var out = [term];
